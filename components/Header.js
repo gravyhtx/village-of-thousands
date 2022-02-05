@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 // import { Link, useLocation } from "react-router-dom";
 import Link from 'next/link';
 // import Logo from "../images/header.svg";
-import Image from 'next/image';
+// import Image from 'next/image';
+import ImageContainer from "./ImageContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 // import Auth from '../utils/auth';
 // import { getSingleUser } from '../utils/API';
+import HeaderImg from '../public/images/header.svg';
 
 const Header = () => {
 
@@ -45,9 +47,12 @@ const Header = () => {
   let abbv = SiteData.abbreviation.toLowerCase();
   let notification;
 
+  // const { asPath, pathname } = withRouter();
+  // console.log(asPath); // '/blog/xyz'
+  // console.log(pathname); // '/blog/[slug]'
+
   const headerLink = "/"
   const notificationLink = "/register"
-
   // const location =  useLocation();
   // const { pathname } = location;
   const splitLocation = "";
@@ -66,14 +71,19 @@ const Header = () => {
         <Link className="navbar-brand container" href="/" id="header-link-container">
           <div className="header-img-container" id="header-img-container">
             <div className={splitLocation[1] === "" ? "header-img animate__animated animate__fadeInDown " + abbv + "-txt-header" : abbv + "-txt-header header-img"}>
-              <Image
+              {/* <Image
                 src={'/header.svg'}
-                // layout="fill"
-                width="30px"
-                height="30px"
+                layout="responsive"
                 id="header-img"
                 draggable="false"
                 alt={siteName ? siteName + " Logo" : "Website Logo"}
+              /> */}
+              <ImageContainer
+                svg={true}
+                src={HeaderImg}
+                id="header-img"
+                draggable="false"
+                description={siteName ? siteName + " Logo" : "Website Logo"}
               />
             </div>
           </div>
