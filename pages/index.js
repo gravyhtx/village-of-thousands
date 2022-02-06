@@ -1,4 +1,4 @@
-// import Link from 'next/link';
+import Link from 'next/link';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -33,11 +33,11 @@ const Home = () => {
           </p>
         </div>
         <div className="col m12 l6 p-style index-main_row">
-          <ImageContainer width={"400px"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} />
+          <ImageContainer width={"400px"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} contain />
         </div>
       </div>
       <div className="row index-main_row">
-      <ImageContainer width={"400px"} containerClasses={"img-main_container mobile only"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} />
+        <ImageContainer width={"400px"} containerClasses={"img-main mobile only"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} contain />
         <div className="index-main_row col s12 weight-2 justify-text">We are passionate about minimizing our impact on the environment
         so we can focus on maximizing our efforts to build our community. Our company uses high quality products and
         services that prioritize fair trade practices at every step in our development process.
@@ -50,7 +50,7 @@ const Home = () => {
     <Header />
     {/* <NavMobile /> */}
     <div id="content" className="main-content">
-    <Hero image={HeroImage} priority blur />
+    <Hero image={HeroImage} priority />
     <div className="spacer"/>
     <div className="index-section animate__animated animate__fadeIn">
       <div className="container col s12 index-main">
@@ -72,25 +72,25 @@ const Home = () => {
             textClasses={main.textClasses}
         />
       </div>
-      <br/>
-      <div className="col s12 italics center">
+      <div className="index-quote col s12 italics center">
         <RandomQuote className={"home-zen"} type={"zen"} />
       </div>
       <div className="big-spacer"/>
       <div className="index-content row">
         <div className="index-nft-art col s12 m6 center break">
-          <ImageContainer imageClasses="" description="Choose Your VoT" src={Pixels} />
+          <ImageContainer description="Choose Your VoT" src={Pixels} contain />
         </div>
         <div className="index-socials col s12 m6 break">
           <div className="right-align index-aside justify-text">
-            <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
-            for all emerging Web 3.0 products and services.
-            </p><p>Our company is currently preparing for a full Web 3.0 release in early 2022 when we will begin selling all
-            of our products with NFTs as a means of authentication. If you’d like to join the movement, follow us on our socials
-            and you can get ready for our first drop by {/* <Link className="text-link" href="/register"><a>creating an
-            account</a></Link> with us today. */}
-            </p>
-            <br/>
+            <div className="index-aside_text">
+              <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
+              for all emerging Web 3.0 products and services.
+              </p><p>Our company is currently preparing for a full Web 3.0 release in early 2022 when we will begin selling all
+              of our products with NFTs as a means of authentication. If you’d like to join the movement, follow us on our socials
+              and you can get ready for our first drop by <Link href="/register"><a className="text-link">creating an
+              account</a></Link> with us today.
+              </p>
+            </div>
             <SocialCircles />
           </div>
         </div>

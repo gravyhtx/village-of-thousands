@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const ImageContainer = ({ width, containerClasses, imgClasses, layout, description, src, id, svg, priority, blur, drag }) => {
+const ImageContainer = ({ width, containerClasses, imgClasses, layout, description, src, id, svg, priority, blur, drag, contain }) => {
 
     containerClasses = containerClasses ? ' '+containerClasses : '';
     imgClasses = imgClasses ? ' '+imgClasses : '';
@@ -11,9 +11,10 @@ const ImageContainer = ({ width, containerClasses, imgClasses, layout, descripti
     svg = svg ? svg : false;
     blur = blur ? "blur" : "";
     drag = drag ? drag : false;
+    contain = contain ? " contain" : ""
 
     return (
-      <div className={"image-container"+containerClasses}>
+      <div className={"image-container"+containerClasses+contain}>
         <Image
           layout={layout}
           className={"image-class"+imgClasses}

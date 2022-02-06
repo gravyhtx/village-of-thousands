@@ -26,12 +26,12 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
     icon3alt=icon3alt?icon3alt:"Village of Thousands // Discord";
     icon4alt=icon4alt?icon4alt:"Village of Thousands // Github";
 
-    const icons = [
-        [icon1,icon1link,icon1alt],
-        [icon2,icon2link,icon2alt],
-        [icon3,icon3link,icon3alt],
-        [icon4,icon4link,icon4alt],
-    ]
+    // const icons = [
+    //     [icon1,icon1link,icon1alt],
+    //     [icon2,icon2link,icon2alt],
+    //     [icon3,icon3link,icon3alt],
+    //     [icon4,icon4link,icon4alt],
+    // ]
 
     return (
         <div className={"social-circles icon-container row"}>
@@ -46,61 +46,57 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                         link={icon.ref}
                         color={"white"}
                         width={"75%"}
-                        maxWidth={"75px"}
+                        maxWidth={"60px"}
                         src={icon.acct} />
                         {icon[0]}
                 </div>
             ))} */}
             <div className='col s3'>
                 <SvgContainer
-                    classes={
-                        "social-icon link"
-                        +iClass}
+                    layout="responsive"
+                    classes="social-icon link"
                     width={width}
                     description={icon1alt}
                     link={icon1link}
                     color={"white"}
                     width={"75%"}
-                    maxWidth={"75px"}
+                    maxWidth={"60px"}
                     src={icon1} />
             </div>
             <div className='col s3'>
                 <SvgContainer
-                    classes={
-                        "social-icon link"
-                        +iClass}
+                    layout="responsive"
+                    classes="social-icon link"
                     width={width}
                     description={icon2alt}
                     link={icon2link}
                     color={"white"}
                     width={"75%"}
-                    maxWidth={"75px"}
+                    maxWidth={"60px"}
                     src={icon2} />
             </div>
             <div className='col s3'>
                 <SvgContainer
-                    classes={
-                        "social-icon link"
-                        +iClass}
+                    layout="responsive"
+                    classes="social-icon link"
                     width={width}
                     description={icon3alt}
                     link={icon3link}
                     color={"white"}
                     width={"75%"}
-                    maxWidth={"75px"}
+                    maxWidth={"60px"}
                     src={icon3} />
             </div>
             <div className='col s3'>
                 <SvgContainer
-                    classes={
-                        "social-icon link"
-                        +iClass}
+                    layout="responsive"
+                    classes="social-icon link"
                     width={width}
                     description={icon4alt}
                     link={icon4link}
                     color={"white"}
                     width={"75%"}
-                    maxWidth={"75px"}
+                    maxWidth={"60px"}
                     src={icon4} />
             </div>
         </div>

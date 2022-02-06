@@ -38,7 +38,7 @@ const Footer = () => {
               </span></a>
             </Link>
             </div>
-            <div>
+            <div className="disable-highlight">
             <Link href="/news">
             <a><span className="footer-link">
                 NEWS
@@ -62,7 +62,7 @@ const Footer = () => {
                 <span className="highlight-selection-light cursor-help">
                 <a className="highlight-selection-light cursor-help" href="https://www.instagram.com/gravydesignco/"
                 rel="noreferrer" target="_blank">
-                &nbsp;MADE WITH LOVE BY GRÄVY DESIGN CO.&nbsp;</a>
+                &nbsp;MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
                 </span>
             </span>
         </div>
