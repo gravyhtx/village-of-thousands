@@ -8,6 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "mongoose": "^6.2.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@ethersproject/providers": "^5.5.1",
@@ -24,7 +28,6 @@
     "react-scripts": "5.0.0",
     "react-materialize": "^3.10.0",
     "gsap": "^3.9.0",
-    "jwt-decode": "^3.1.2",
     "nodemailer": "^6.7.2",
     "dotenv": "^10.0.0",
     "color": "^4.2.0",
