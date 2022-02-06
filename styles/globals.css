@@ -657,6 +657,7 @@ input:focus { border-bottom: 1px solid #7fcce4 !important; }
     filter: invert(100%);
 }
 
+
 /* BORDERS */
 
 .border {
@@ -2057,6 +2058,10 @@ label#upload-label.active:hover::after {
     filter: blur(0);
     transition: 1s ease-in-out;
     text-shadow: 1px 1px black;
+}
+
+.madewithlove {
+    padding: .125rem .33rem;
 }
 
 /*

@@ -12,7 +12,7 @@ const NavMobile = () => {
         <div className="mobile-nav mobile">
 
             <div className="col s3 nav-mobile-col">
-            <Link to={account}>
+            <Link href={account}>
               <a><Button
                 className="btn-floating navigation-link"
                 floating
@@ -23,7 +23,7 @@ const NavMobile = () => {
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/products">
+            <Link href="/products">
               <a><Button
                 className="btn-floating navigation-link"
                 floating
@@ -34,7 +34,7 @@ const NavMobile = () => {
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/faq">
+            <Link href="/faq">
                <a><Button
                 className="btn-floating navigation-link"
                 floating
@@ -45,7 +45,7 @@ const NavMobile = () => {
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/cart">
+            <Link href="/cart">
             <a><Button
                 className="btn-floating navigation-link"
                 floating

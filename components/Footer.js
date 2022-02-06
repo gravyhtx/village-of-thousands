@@ -54,15 +54,15 @@ const Footer = () => {
                 CONTACT US
                 </span></a>
             </Link>
-            </div>
+          </div>
         </div>
         <div className="copyright container center">
             <div className="copyright-text">Copyright &copy; 2022 // Village of Thousands</div>
             <span className="gravydidit highlight-selection gravy-font container center">
                 <span className="highlight-selection-light cursor-help">
-                <a className="highlight-selection-light cursor-help" href="https://www.instagram.com/gravydesignco/"
+                <a className="highlight-selection-light cursor-help madewithlove" href="https://www.instagram.com/gravydesignco/"
                 rel="noreferrer" target="_blank">
-                &nbsp;MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
+                MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
                 </span>
             </span>
         </div>

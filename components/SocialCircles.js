@@ -54,7 +54,7 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
             <div className='col s3'>
                 <SvgContainer
                     layout="responsive"
-                    classes="social-icon link"
+                    classes="social-icon instagram link"
                     width={width}
                     description={icon1alt}
                     link={icon1link}

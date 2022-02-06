@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Layout from '../components/Layout';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -46,15 +47,14 @@ const Home = () => {
     </>
   }
   return (
-    <div className="animate__animated animate__fadeIn">
-    <Header />
-    {/* <NavMobile /> */}
+    <Layout>
     <div id="content" className="main-content">
     <Hero image={HeroImage} priority />
     <div className="spacer"/>
     <div className="index-section animate__animated animate__fadeIn">
       <div className="container col s12 index-main">
         <div className="mobile only index_mobile-container justify-text gravy-font">
+        {/* NEED TO MAKE THIS SECTION A TEXT CONTAINER */}
           <div className="index_mobile-box">
             <div><span className="weight-5 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
               brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
@@ -82,6 +82,7 @@ const Home = () => {
         </div>
         <div className="index-socials col s12 m6 break">
           <div className="right-align index-aside justify-text">
+          {/* MAKE THIS SECTION A TEXT CONTAINER ALSO */}
             <div className="index-aside_text">
               <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
               for all emerging Web 3.0 products and services.
@@ -90,7 +91,7 @@ const Home = () => {
               and you can get ready for our first drop by <Link href="/register"><a className="text-link">creating an
               account</a></Link> with us today.
               </p>
-            </div>
+            </div>  
             <SocialCircles />
           </div>
         </div>
@@ -98,9 +99,7 @@ const Home = () => {
       <div className="big-spacer"/>
     </div>
     </div>
-    <Footer />
-    {/* <NavDesktop /> */}
-    </div>
+    </Layout>
   );
 }
 
