@@ -4,8 +4,6 @@ const TextContainer = ( { containerClasses, containerId, header, headerClasses, 
     let hClass = headerClasses ? " "+headerClasses  : "";
     let tClass= textClasses ? " "+textClasses: "";
 
-    // const [focus, setFocus] = useState(false);
-
     const handleClick = () =>  {
         // scrollbox.classList.add('reverse');
     }
@@ -36,7 +34,7 @@ const TextContainer = ( { containerClasses, containerId, header, headerClasses, 
 
 // CONTAINER
 //    Background: no-bkg, dark, light, dark-gradient
-//    Box: padding, margin
+//    Box: padding, margin, no-margin/padding
 
 // BORDERS
 //    FX: thick, dark, shadow, glow

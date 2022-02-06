@@ -771,6 +771,8 @@ h2, .h2 {
     /* Container Box Styles */
     .text-container.padding { padding: 40px; }
     .text-container.margin { margin: 50px; }
+    .text-container.no-padding { padding: 0; }
+    .text-container.no-margin { margin: 0; }
     .text-container.shadow { box-shadow: 3px 3px var(--text-container-shadow-color); }
         .text-container.reverse.shadow { box-shadow: 3px 3px var(--text-container-border-color); }
         .text-container.thick.shadow { box-shadow: 8px 8px var(--text-container-shadow-color); }
@@ -847,7 +849,7 @@ h2, .h2 {
 @media only screen and (max-width: 570px) {
     .text-container {
         margin: 40px 0;
-        padding: 10px;
+        padding: 20px;
     }
     .text-container.padding { padding: 5px 20px; }
     .text-container_header {
@@ -950,6 +952,7 @@ h2, .h2 {
 
 .img-card, .img-container { max-width: 100%; }
 .img-main.mobile { margin: 1rem auto 2rem }
+.img-main_container.desktop .main-text { margin-top: 30px }
 .img-main_content { margin-top: 1em; }
 
 
@@ -1498,16 +1501,13 @@ label#upload-label.active:hover::after {
 }
 
 .index_mobile-container {
-    margin: 0 auto;
+    margin: 30px auto 65px !important;
     font-size: var(--theme-font-size);
     font-weight: 300;
-    padding: 10px 0;
-    /* max-width: 90vw; */
 }
 
 .index_mobile-box {
     font-size: 1.4rem;
-    margin: 20px 0;
     padding: 20px;
     border: 5px solid #222222;
     background-color: #111111;
@@ -2249,7 +2249,7 @@ label#upload-label.active:hover::after {
         bottom: 10px;
     }
     .index-main {
-        font-size: 1.55rem;
+        font-size: 1.525rem;
         padding: 0;
     }
     .index-aside {
@@ -2280,13 +2280,16 @@ label#upload-label.active:hover::after {
         font-size: 1rem;
     }
     .index-main {
-        font-size: 1.4rem;
+        font-size: 1.38rem;
     }
 }
 
 @media only screen and (max-width: 1080px) {
     .index-aside {
         font-size: 1.5rem;
+    }
+    .index-main {
+        font-size: 1.3rem;
     }
 }
 
@@ -2296,6 +2299,9 @@ label#upload-label.active:hover::after {
         width: 90%;
     }
     .index-aside {
+        font-size: 1.45rem;
+    }
+    .index-main {
         font-size: 1.45rem;
     }
 }
@@ -2309,7 +2315,7 @@ label#upload-label.active:hover::after {
 }
 
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 770px) {
 
     input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
         font-size: 14px;
@@ -2351,7 +2357,7 @@ label#upload-label.active:hover::after {
     
     .index-main,
     .index-aside {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         margin: 0 auto;
     }
 
@@ -2515,7 +2521,7 @@ label#upload-label.active:hover::after {
     }
 }
 
-@media only screen and (max-width: 601px) {
+@media only screen and (max-width: 600px) {
     .lost-mobile-header {  margin-bottom: 30px; }
     .faq-header {
         font-size: var(--theme-font-size-sm);
@@ -2529,8 +2535,7 @@ label#upload-label.active:hover::after {
     }
     .index-main_row {
         font-size: 1.15rem;
-        padding: 0 10px !important;
-        margin-bottom: 5px !important;
+        margin-bottom: 10px !important;
     }
     .image-class.index-main_img {
         margin: 10px auto;
