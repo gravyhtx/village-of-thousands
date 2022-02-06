@@ -59,8 +59,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     description={icon1alt}
                     link={icon1link}
                     color={"white"}
-                    width={"75%"}
-                    maxWidth={"60px"}
                     src={icon1} />
             </div>
             <div className='col s3'>
@@ -71,8 +69,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     description={icon2alt}
                     link={icon2link}
                     color={"white"}
-                    width={"75%"}
-                    maxWidth={"60px"}
                     src={icon2} />
             </div>
             <div className='col s3'>
@@ -83,8 +79,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     description={icon3alt}
                     link={icon3link}
                     color={"white"}
-                    width={"75%"}
-                    maxWidth={"60px"}
                     src={icon3} />
             </div>
             <div className='col s3'>
@@ -95,8 +89,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     description={icon4alt}
                     link={icon4link}
                     color={"white"}
-                    width={"75%"}
-                    maxWidth={"60px"}
                     src={icon4} />
             </div>
         </div>

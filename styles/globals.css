@@ -652,7 +652,7 @@ input:focus { border-bottom: 1px solid #7fcce4 !important; }
 }
 
 .social-icon {
-    max-width:75px;
+    max-width: 65px;
     width: 75%;
     filter: invert(100%);
 }
@@ -1471,6 +1471,7 @@ label#upload-label.active:hover::after {
 .index-content { max-width: 1080px; }
 
 .index-section {
+    margin-top: 10px;
     padding: 10px 20px;
     color:rgb(245, 245, 245);
     min-height: 50vh;
@@ -1500,6 +1501,10 @@ label#upload-label.active:hover::after {
     margin: .5em 0 1em;
 }
 
+.index_aside-container {
+    margin: 60px auto !important;
+}
+
 .index_mobile-container {
     margin: 30px auto 65px !important;
     font-size: var(--theme-font-size);
@@ -1515,6 +1520,7 @@ label#upload-label.active:hover::after {
 
 .index-quote {
     padding-top: 20px;
+    margin-bottom: 60px;
 }
 
 .home-zen {
@@ -2325,7 +2331,6 @@ label#upload-label.active:hover::after {
 
     h1 { font-size: 2rem; }
     /* .header-img { padding: 15px; } */
-    .social-icon { width: 100%; }
 
     .spacer {  margin: 10px 0; }
     /* .big-spacer {
@@ -2364,6 +2369,16 @@ label#upload-label.active:hover::after {
     .index-socials div p {
         font-size: 1.3rem;
         margin: 0 auto 15px;
+    }
+
+    .socials-text-container {
+        margin-bottom: 60px;
+    }
+
+    .social-icon {
+        max-width: 50px;
+        width: 100%;
+        filter: invert(100%);
     }
         
     .product-grid-image {
