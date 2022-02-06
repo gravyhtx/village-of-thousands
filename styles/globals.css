@@ -939,6 +939,7 @@ h2, .h2 {
 .responsive-image_lg, .responsive-image_90 { max-width: 90vw; }
 
 .img-card, .img-container { max-width: 100%; }
+.img-main_container.mobile { margin: 10px 0 }
 
 
 /* COLLAPSIBLE */
@@ -1462,7 +1463,7 @@ label#upload-label.active:hover::after {
 }
 
 .index-main {
-    font-size: var(--theme-font-size-md);
+    font-size: 1.75rem;
     /* font-family: var(--gravy-font); */
     font-weight: 300;
     /* text-align: justify; */
@@ -1989,6 +1990,7 @@ label#upload-label.active:hover::after {
 /* FOOTER */
 .page-footer {
     bottom: 0;
+    padding: 20px 0 0;
     height: var(--footer-height);
     color: var(--footer-color);
     font-size: var(--footer-font-size);
@@ -2218,7 +2220,7 @@ label#upload-label.active:hover::after {
         bottom: 10px;
     }
     .index-main {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         padding: 0;
     }
     .lost-header {
@@ -2303,7 +2305,7 @@ label#upload-label.active:hover::after {
     
     .index-main,
     .index-aside {
-        font-size: 1rem;
+        font-size: 1.25rem;
         margin: 0 auto;
     }
 
@@ -2457,7 +2459,8 @@ label#upload-label.active:hover::after {
         width: 100%;
     }
     .index-content .index-socials div p {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
+        text-align: justify;
     }
 }
 
@@ -2475,10 +2478,9 @@ label#upload-label.active:hover::after {
         display: flex;
         margin: 0 auto;
     }
-    /* .index-main_row {
-        display: flex;
-        margin: 0 auto;
-    } */
+    .index-main_row {
+        font-size: 1rem;
+    }
     .image-class.index-main_img {
         margin: 10px auto;
     }

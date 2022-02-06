@@ -26,10 +26,32 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
     icon3alt=icon3alt?icon3alt:"Village of Thousands // Discord";
     icon4alt=icon4alt?icon4alt:"Village of Thousands // Github";
 
+    const icons = [
+        [icon1,icon1link,icon1alt],
+        [icon2,icon2link,icon2alt],
+        [icon3,icon3link,icon3alt],
+        [icon4,icon4link,icon4alt],
+    ]
+
     return (
         <div className={"social-circles icon-container row"}>
+            {/* {icons.map((icon, i) => (
+                <div className='col s3' key={i}>
+                    <SvgContainer
+                        classes={
+                            "social-icon link"
+                            +iClass}
+                        width={width}
+                        description={icon.alt}
+                        link={icon.ref}
+                        color={"white"}
+                        width={"75%"}
+                        maxWidth={"75px"}
+                        src={icon.acct} />
+                        {icon[0]}
+                </div>
+            ))} */}
             <div className='col s3'>
-            {/* INSTAGRAM */}
                 <SvgContainer
                     classes={
                         "social-icon link"
@@ -43,7 +65,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     src={icon1} />
             </div>
             <div className='col s3'>
-            {/* TWITTER */}
                 <SvgContainer
                     classes={
                         "social-icon link"
@@ -57,7 +78,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     src={icon2} />
             </div>
             <div className='col s3'>
-            {/* DISCORD */}
                 <SvgContainer
                     classes={
                         "social-icon link"
@@ -71,7 +91,6 @@ const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, ico
                     src={icon3} />
             </div>
             <div className='col s3'>
-            {/* GITHUB */}
                 <SvgContainer
                     classes={
                         "social-icon link"

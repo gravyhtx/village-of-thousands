@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const SvgContainer = ( { margins, src, link, color, width, description, container, classes, id, styles, draggable, maxWidth } ) => {
+const SvgContainer = ( { margins, src, link, color, width, description, container, classes, id, styles, drag, maxWidth } ) => {
     
     let svgContainer="";
     if(container){svgContainer=" "+container;}
@@ -31,7 +31,7 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
                 width={width}
                 className={"svg-img"+svgClass}
                 id={svgId ? "svg-img_"+svgId : ""}
-                draggable={draggable ? draggable : false}
+                draggable={drag ? drag : false}
                 alt={description} />
         </div>
         </a>

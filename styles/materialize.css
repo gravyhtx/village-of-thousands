@@ -2606,8 +2606,8 @@
   }
   
   a {
-    color: #039be5;
-    text-decoration: none;
+    /* color: #039be5;
+    text-decoration: none; */
     -webkit-tap-highlight-color: transparent;
   }
   
@@ -2943,11 +2943,6 @@
     }
   }
   
-  .page-footer {
-    padding-top: 20px;
-    color: #fff;
-    background-color: #ee6e73;
-  }
   
   .page-footer .footer-copyright {
     overflow: hidden;

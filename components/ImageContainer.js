@@ -1,16 +1,16 @@
 import Image from "next/image";
 
-const ImageContainer = ({ width, containerClasses, imgClasses, layout, description, src, id, svg, priority, blur }) => {
+const ImageContainer = ({ width, containerClasses, imgClasses, layout, description, src, id, svg, priority, blur, drag }) => {
 
     containerClasses = containerClasses ? ' '+containerClasses : '';
     imgClasses = imgClasses ? ' '+imgClasses : '';
     width = width ? {maxWidth: width} : '';
     layout = layout ? layout : 'responsive';
     id = id ? id : '';
-    priority = priority ? priority : false;
+    priority = priority ? priority : '';
     svg = svg ? svg : false;
     blur = blur ? "blur" : "";
-    console.log(priority)
+    drag = drag ? drag : false;
 
     return (
       <div className={"image-container"+containerClasses}>
@@ -21,6 +21,7 @@ const ImageContainer = ({ width, containerClasses, imgClasses, layout, descripti
           src={src}
           id={id}
           placeholder={blur}
+          draggable={drag}
           priority={priority} />
       </div>
     )
