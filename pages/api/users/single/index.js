@@ -1,6 +1,6 @@
-import dbConnect from "../../../utils/dbConnect";
-import { authMiddleware } from "../../../utils/jwAuth";
-import User from '../../../models/User';
+import dbConnect from "../../../../utils/dbConnect";
+import { authMiddleware } from "../../../../utils/jwAuth";
+import User from '../../../../models/User';
 
 dbConnect();
 
