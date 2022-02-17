@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import DefaultLayout from '../templates/DefaultLayout';
 
 import Hero from '../components/Hero';
 import HeroImage from '../public/images/vot_banner.png';
-import RandomQuote from '../modules/RandomQuote';
+import RandomQuote from '../components/dynamic-content/RandomQuote';
 
 import TextContainer from '../components/TextContainer';
 import ImageContainer from '../components/ImageContainer';
@@ -11,6 +11,7 @@ import SocialCircles from '../components/SocialCircles';
 
 import Pixels from '../public/images/art/choose_your_vot.png';
 import Hope from '../public/images/art/hope.png';
+// import LoadComponents from '../modules/LoadComponents';
 
 const Home = () => {
 
@@ -86,9 +87,9 @@ const Home = () => {
   }
 
   return (
-    <Layout>
+    <DefaultLayout>
     <div id="content" className="main-content">
-      <Hero image={HeroImage} priority />
+      <Hero image={HeroImage} />
       <div className="index-section animate__animated animate__fadeIn">
         <div className="container index-main">
           <TextContainer
@@ -116,7 +117,7 @@ const Home = () => {
             />
       </div>
     </div>
-    </Layout>
+    </DefaultLayout>
   );
 }
 

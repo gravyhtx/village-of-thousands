@@ -5247,7 +5247,7 @@
   .btn, .btn-large, .btn-small {
     text-decoration: none;
     color: #fff;
-    background-color: #26a69a;
+    /* background-color: #26a69a; */
     text-align: center;
     letter-spacing: .5px;
     -webkit-transition: background-color .2s ease-out;
@@ -5269,7 +5269,7 @@
     height: 40px;
     line-height: 40px;
     padding: 0;
-    background-color: #26a69a;
+    /* background-color: #26a69a; */
     border-radius: 50%;
     -webkit-transition: background-color .3s;
     transition: background-color .3s;
@@ -5278,7 +5278,7 @@
   }
   
   .btn-floating:hover {
-    background-color: #26a69a;
+    /* background-color: #26a69a; */
   }
   
   .btn-floating:before {
@@ -5481,7 +5481,7 @@
     z-index: -1;
     width: 40px;
     height: 40px;
-    background-color: #26a69a;
+    /* background-color: #26a69a; */
     border-radius: 50%;
     -webkit-transform: scale(0);
             transform: scale(0);
@@ -5581,7 +5581,7 @@
   
   .dropdown-content li > a, .dropdown-content li > span {
     font-size: 16px;
-    color: #26a69a;
+    /* color: #26a69a; */
     display: block;
     line-height: 22px;
     padding: 14px 16px;
@@ -5840,7 +5840,11 @@
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-left: 1px solid #ddd;
-    margin: 0.5rem 0 1rem 0;
+    /* margin: 0.5rem 0 1rem 0; */
+  }
+
+  .MuiAccordionDetails-root.collapsible {
+    border-top: 0;
   }
   
   .collapsible-header {
@@ -5958,7 +5962,7 @@
   
   .chip:focus {
     outline: none;
-    background-color: #26a69a;
+    /* background-color: #26a69a; */
     color: #fff;
   }
   
@@ -6136,13 +6140,13 @@
     outline: none;
     height: 3rem;
     width: 100%;
-    font-size: 16px;
+    /* font-size: 16px; */
     margin: 0 0 8px 0;
-    padding: 0;
+    /* padding: 0; */
     -webkit-box-shadow: none;
             box-shadow: none;
-    -webkit-box-sizing: content-box;
-            box-sizing: content-box;
+    /* -webkit-box-sizing: content-box;
+            box-sizing: content-box; */
     -webkit-transition: border .3s, -webkit-box-shadow .3s;
     transition: border .3s, -webkit-box-shadow .3s;
     transition: box-shadow .3s, border .3s;
@@ -6175,7 +6179,7 @@
   textarea.materialize-textarea:disabled,
   textarea.materialize-textarea[readonly="readonly"] {
     color: rgba(0, 0, 0, 0.42);
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.42);
+    /* border-bottom: 1px dotted rgba(0, 0, 0, 0.42); */
   }
   
   input:not([type]):disabled + label,
@@ -6221,8 +6225,8 @@
   input[type=search]:not(.browser-default):focus:not([readonly]),
   textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #26a69a;
-    -webkit-box-shadow: 0 1px 0 0 #26a69a;
-            box-shadow: 0 1px 0 0 #26a69a;
+    /* -webkit-box-shadow: 0 1px 0 0 #26a69a;
+            box-shadow: 0 1px 0 0 #26a69a; */
   }
   
   input:not([type]):focus:not([readonly]) + label,

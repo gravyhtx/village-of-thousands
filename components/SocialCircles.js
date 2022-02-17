@@ -5,7 +5,7 @@ import Instagram from '../public/images/icons/instagram_social-circles.svg';
 import Twitter from '../public/images/icons/twitter_social-circles.svg';
 import Discord from '../public/images/icons/discord_social-circles.svg';
 
-const SocialCircles = ( socialContainer, iClass, width, icon1, icon2, icon3, icon4, icon1link, icon2link, icon3link, icon4link, icon1alt, icon2alt, icon3alt, icon4alt ) => {
+const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, icon4, icon1link, icon2link, icon3link, icon4link, icon1alt, icon2alt, icon3alt, icon4alt }) => {
 
     iClass=iClass?" "+iClass:" svg-color-light";
     socialContainer=socialContainer?" "+socialContainer:"";

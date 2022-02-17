@@ -1,0 +1,195 @@
+import { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
+import Auth from '../utils/auth';
+import { useRouter } from 'next/router';
+import { updateUser, getSingleUser } from '../utils/API';
+
+const AddressForm = () => {
+  // Get User Data
+  const [userData, setUserData] = useState({});
+  const userDataLength = Object.keys(userData).length;
+  const [windowLocation, setWindowLocation] = useState('');
+
+  let router = useRouter();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      // setWindowLocation(router.pathname);
+      try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        const response = await getSingleUser(token);
+
+        console.log(token)
+        if(!response.ok){
+          throw new Error('Something went wrong!');
+        }
+
+        const user = await response.json();
+        setUserData(user);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUserData();
+  }, [userDataLength]);
+  // firstName?firstName:""
+  const [userFormData, setUserFormData] = useState({
+    // GET FROM PREVIOUS FORM //
+    first_name: "",
+    last_name: "",
+    // OPTIONAL //
+    phone: "",
+    // ENTER IN ADDRESS FORM //
+    addressOne: "",
+    addressTwo: "",
+    city: "",
+    state: "",
+    zip: "",
+    // // GET FROM NEW WALLET APP //
+    // walletAddress: "",
+    // walletBalance: ""
+  })
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({...userFormData, [name]: value });
+  }
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if(form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      router.push('/404');
+      return false;
+    }
+
+    try {
+      const response = await updateUser(userFormData, token);
+
+      if(!response.ok) {
+        throw new Error('something went wrong!');
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+
+    setUserFormData({
+      first_name: "",
+      last_name: "",
+      // OPTIONAL //
+      phone: "",
+      // ENTER IN ADDRESS FORM //
+      addressOne: "",
+      addressTwo: "",
+      city: "",
+      state: "",
+      zip: "",
+      // // GET FROM NEW WALLET APP //
+      // walletAddress: "",
+      // walletBalance: "",
+      // completed: true
+    })
+
+    // router.push('/');
+  }
+
+  return (
+    <>
+    <div className='register-address-container container'>
+      <div className="register-input-container" id="user-register-container">
+      <div className="user-register-address-header">ADDRESS</div>
+        <input
+          className="input-field"
+          id="user-register-address1_input"
+          aria-labelledby="user-register-address"
+          name="addressOne"
+          placeholder='Address Line 1'
+          // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
+          onChange={handleInputChange}
+          // value={userData.addressOne?userData.addressOne:''}
+        />
+        <input
+          className="input-field" 
+          id="user-register-address2_input"
+          aria-labelledby="user-register-address"
+          name="addressTwo"
+          placeholder='Address Line 2'
+          // placeholder={userData.addressTwo?userData.addressTwo:'Address Line 2'}
+          onChange={handleInputChange}
+          // value={userData.addressTwo?userData.addressTwo:''}
+        />
+        <input
+          className="input-field" 
+          id="user-register-city_input"
+          aria-labelledby="user-register-address"
+          name="city"
+          placeholder='City'
+          // placeholder={userData.city?userData.city:'City'}
+          onChange={handleInputChange}
+          // value={userData.city?userData.city:''}
+        />
+        <input
+          className="input-field" 
+          id="user-register-state_input"
+          aria-labelledby="user-register-address"
+          name="state"
+          placeholder='State'
+          // placeholder={userData.state?userData.state:'State'}
+          onChange={handleInputChange}
+          // value={userData.state?userData.state:''}
+        />
+        <input
+          className="input-field" 
+          id="user-register-zip_input"
+          aria-labelledby="user-register-address"
+          name="zip"
+          placeholder='Zip Code'
+          // placeholder={userData.zip?userData.zip:'Zip Code'}
+          onChange={handleInputChange}
+          // value={userData.zip?userData.zip:''}
+        />
+      </div>
+      <br/>
+      {windowLocation === "/signup-2"
+      ?<div className='user-register-finish'>
+      <Button
+          node="button"
+          style={{
+              width: '250px'
+          }}
+          waves="light"
+          className="account-wallet-btn"
+          onClick={handleFormSubmit}
+      >
+        {"COMPLETE REGISTRATION"}
+      </Button>
+      </div>
+      :<div className='user-address-edit'>
+      <Button
+        node="button"
+        style={{
+            width: '250px'
+        }}
+        waves="light"
+        className="account-wallet-btn"
+        onClick={handleFormSubmit}
+      >
+        EDIT ADDRESS
+      </Button>
+      </div>}
+    </div>
+    </>
+  )
+}
+
+export default AddressForm;

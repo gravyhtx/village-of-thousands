@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 // import { Link, useLocation } from "react-router-dom";
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 // import Logo from "../images/header.svg";
 // import Image from 'next/image';
 import ImageContainer from "./ImageContainer";
+import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 // import { getSingleUser } from '../utils/API';
 import HeaderImg from '../public/images/header.svg';
 
@@ -17,20 +19,20 @@ const Header = () => {
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-    let notificationBar = document.getElementById('notification-bar')
+    let notificationBar = document.getElementById('notification-bar');
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        const response = await getSingleUser(token);
+        
+        // const response = await getSingleUser(token);
 
         // console.log(token)
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
+        // if (!response.ok) {
+        //   throw new Error('something went wrong!');
+        // }
 
-        const user = await response.json();
-        setUserData(user);
+        // const user = await response.json();
+        // setUserData(user);
 
       } catch (err) {
         console.error(err);
@@ -51,11 +53,10 @@ const Header = () => {
   // console.log(asPath); // '/blog/xyz'
   // console.log(pathname); // '/blog/[slug]'
 
-  const headerLink = "/"
+  const router = useRouter();
+  const path = router.pathname;
+
   const notificationLink = "/register"
-  // const location =  useLocation();
-  // const { pathname } = location;
-  const splitLocation = "";
 
   notification =
     <>
@@ -70,16 +71,9 @@ const Header = () => {
       <div className="navbar-container black" id="header-container">
         <Link className="navbar-brand container" href="/" id="header-link-container">
           <div className="header-img-container" id="header-img-container">
-            <div className={splitLocation[1] === "" ? "header-img animate__animated animate__fadeInDown " + abbv + "-txt-header" : abbv + "-txt-header header-img"}>
-              {/* <Image
-                src={'/header.svg'}
+            <div className={path === "/" ? "header-img animate__animated animate__fadeInDown " + abbv + "-txt-header" : abbv + "-txt-header header-img"}>
+              <SvgContainer
                 layout="responsive"
-                id="header-img"
-                draggable="false"
-                alt={siteName ? siteName + " Logo" : "Website Logo"}
-              /> */}
-              <ImageContainer
-                svg={true}
                 src={HeaderImg}
                 id="header-img"
                 draggable="false"

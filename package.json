@@ -13,6 +13,7 @@
     "@ethersproject/providers": "^5.5.1",
     "@ethersproject/units": "^5.5.0",
     "@hcaptcha/react-hcaptcha": "^1.0.0",
+    "@mui/icons-material": "^5.4.1",
     "@mui/material": "^5.4.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",

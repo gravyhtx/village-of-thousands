@@ -1,24 +1,20 @@
-const TextContainer = ( { containerClasses, containerId, header, headerClasses, headerId, text, textId, textClasses, border, fnClick, fnChange } ) => {
+const TextContainer = ({ containerClasses, containerId, header, headerClasses, headerId, text, textId, textClasses, border, fnClick, fnChange, fnBlur }) => {
     let cClass = containerClasses ? " "+containerClasses : "";
-    let cId = containerId ? containerId : 'text-container';
+    let cId = containerId || 'text-container';
     let hClass = headerClasses ? " "+headerClasses  : "";
     let tClass= textClasses ? " "+textClasses: "";
 
-    const handleClick = () =>  {
-        // scrollbox.classList.add('reverse');
-    }
-    const handleChange = () => {
+    const handleClick = () =>  fnClick();
 
-    }
-    const setBlur = () =>  {
-        // scrollbox.classList.remove('reverse');
-    }
+    const handleChange = () => fnChange();
+
+    const handleBlur = () => fnBlur();
 
     return (
         <div
-        onClick={fnClick?fnClick:handleClick}
-        onChange={fnChange?fnChange:handleChange}
-        onBlur={setBlur}
+        onClick={fnClick?handleClick:null}
+        onChange={fnChange?handleChange:null}
+        onBlur={fnBlur?handleBlur:null}
         className={border ? "text-container borders"+cClass : "text-container"+cClass}
         id={cId}>
             {header ? <header className={"text-container_header"+hClass} id={headerId?headerId:"text-container-header"}>{header}</header> : ""}

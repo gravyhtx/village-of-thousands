@@ -21,7 +21,7 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
         styles
     }
     return (
-        <Link href={link?link:''} target="_blank" rel="noreferrer">
+        <Link href={link?link:'/'} target="_blank" rel="noreferrer">
         <a target="_blank" rel="noreferrer">
         <div className={"svg-container"+svgContainer}>
             <img

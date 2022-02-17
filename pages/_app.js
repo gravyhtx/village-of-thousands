@@ -1,8 +1,9 @@
 import React from 'react';
-import '../styles/globals.css';
 // import '../styles/style.css';
 import '../styles/materialize.css';
-import '../styles/fonts.css'
+import '../styles/animate.css';
+import '../styles/fonts.css';
+import '../styles/globals.css';
 
 
 function MyApp({ Component, pageProps }) {
