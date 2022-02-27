@@ -37,22 +37,7 @@ const AddressForm = () => {
     getUserData();
   }, [userDataLength]);
 
-  const [userFormData, setUserFormData] = useState({
-    // GET FROM PREVIOUS FORM //
-    first_name: "",
-    last_name: "",
-    // OPTIONAL //
-    phone: "",
-    // ENTER IN ADDRESS FORM //
-    addressOne: "",
-    addressTwo: "",
-    city: "",
-    state: "",
-    zip: "",
-    // // GET FROM NEW WALLET APP //
-    // walletAddress: "",
-    // walletBalance: ""
-  })
+  const [userFormData, setUserFormData] = useState({})
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -128,7 +113,7 @@ const AddressForm = () => {
             className="input-field"
             id={"user-register-"+field.name+"_input"}
             aria-labelledby="user-register-address"
-            name={field.placeholder}
+            name={field.name}
             placeholder={field.placeholder}
             // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
             onChange={handleInputChange}
