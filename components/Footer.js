@@ -1,67 +1,68 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-// make array to loop for "links-list"
 const Footer = () => {
 
-    const links = [
-      ["home", "products", "faq", "cart"],
-      ["login", ""]
-    ]
-    const siteMap = {
+  const row1 = [
+    { link: "/", name: "HOME" },
+    { link: "/shop", name: "SHOP" },
+    { link: "/about", name: "ABOUT" },
+    { link: "/cart", name: "CART" }
+  ];
 
-    }
+  const row2 = [
+    { link: "/faq", name: "FAQ" },
+    { link: "/news", name: "NEWS" },
+    { link: "/faq#3", name: "CONTACT" }
+  ];
+
+  const spacer = <> &emsp;{"//"}&emsp;</>;
+
+  const copyright = <>Copyright &copy; 2022 // Village of Thousands</>;
+
+  const RowOne = () => {
     return (
-      <div className="footer animate__animated animate__fadeIn">
-        <div className="page-footer" id="online">
-          <div className="footer-container container-fluid center">
-            <div className="links-list disable-highlight" id="links-list">
-              <div>
-                <Link to="/">
-                  <span className="footer-link">
-                    HOME
-                  </span>
-                </Link> &emsp;//&emsp;
-                <Link to="/faq#1">
-                  <span className="footer-link">
-                    ABOUT
-                  </span>
-                </Link> &emsp;//&emsp;
-                <Link to="/shipping">
-                  <span className="footer-link">
-                    SHIPPING
-                  </span>
-                </Link> &emsp;//&emsp;
-                <Link to="/returns">
-                  <span className="footer-link">
-                    RETURNS
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link to="/news">
-                  <span className="footer-link">
-                    NEWS
-                  </span>&emsp;//&emsp;
-                </Link>
-                <Link to="/faq">
-                  <span className="footer-link">
-                    FAQ
-                  </span>
-                </Link>&emsp;//&emsp;
-                <Link to="/faq#3">
-                  <span className="footer-link">
-                    CONTACT US
-                  </span>
-                </Link>
-                </div>
-            </div>
-            <div className="copyright container center">Copyright &copy; 2022 // Village of Thousands</div>
-            <br/>
-          </div>
+      row1.map((row, index) =>
+      <span key={index}>
+        <Link href={row.link}><a>
+          <span className="footer-link">{row.name}</span>
+        </a></Link>{index !== row1.length-1 ? spacer : <></>}
+      </span>
+    ))
+  };
+
+  const RowTwo = () => {
+    return (
+      row2.map((row, index) =>
+      <span key={index}>
+        <Link href={row.link}><a>
+          <span className="footer-link">{row.name}</span>
+        </a></Link>{index !== row2.length-1 ? spacer : <></>}
+      </span>
+    ))
+  };
+
+  return (
+    <div className="footer animate__animated animate__fadeIn">
+      <div className="page-footer" id="online">
+        <div className="footer-container container-fluid center disable-highlight">
+          <div><RowOne /></div>
+          <div><RowTwo /></div>
         </div>
+        <div className="copyright container center">
+          <div className="copyright-text">{copyright}</div>
+          <span className="gravydidit highlight-selection gravy-font container center">
+            <span className="highlight-selection-light cursor-help">
+            <a className="highlight-selection-light cursor-help madewithlove" href="https://www.instagram.com/gravydesignco/"
+            rel="noreferrer" target="_blank">
+            &nbsp;MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
+            </span>
+          </span>
+        </div>
+        <br/>
       </div>
-    );    
+    </div>
+  );    
 }
 
 export default Footer;

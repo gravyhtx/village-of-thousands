@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const NotificationBar = ({ text, link }) =>  {
 
     const component=   
-        <Link to={link} className="nav-link" id="notify-link">
+        <Link href={link} className="nav-link" id="notify-link">
+            <a>
             <div className="notify" id="notify">
                 {text}
             </div>
+            </a>
         </Link>
 
     return (

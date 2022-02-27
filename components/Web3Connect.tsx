@@ -6,9 +6,9 @@ import {
 } from '@web3-react/injected-connector'
 import { Web3Provider } from '@ethersproject/providers'
 import { formatEther } from '@ethersproject/units'
-import { useEagerConnect, useInactiveListener } from '../utils/hooks'
+import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { Spinner } from '../components/Spinner'
+// import { Spinner } from '../components/Spinner'
 // import AddWallet from './AddWallet'
 import { getSingleUser, updateUser } from '../utils/API'
 import Auth from '../utils/auth';
@@ -84,24 +84,24 @@ function Account() {
   const userAccount = account === null? '-': account? account: ''
   // console.log(userAccount)
 
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  if (!token) {
-      // window.location.assign('/404');
-      return false;
-  }
+  // if (!token) {
+  //     // window.location.assign('/404');
+  //     return false;
+  // }
 
   try {
       let updateObj = {
         walletAddress: userAccount
       }
       updateUser(updateObj, token)
-      .then(response => {
-        if(!response.ok) {
-            throw new Error('something went wrong!');
-        }
+      // .then(response => {
+      //   if(!response.ok) {
+      //       throw new Error('something went wrong!');
+      //   }
 
-      });
+      // });
 
 
   } catch (err) {
@@ -328,7 +328,7 @@ function App() {
           }}
         >
           <div>
-            {activating && <Spinner color={'black'} style={{ height: '25%', marginLeft: '-1rem' }} />}
+            {/* {activating && <Spinner color={'black'} style={{ height: '25%', marginLeft: '-1rem' }} />} */}
             {connected}
           </div>
           ADD WALLET

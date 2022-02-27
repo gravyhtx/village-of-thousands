@@ -1,102 +1,124 @@
-// import React, { useState, useEffect } from "react";
-// import { BrowserRouter as Router, Route, Routes, Redirect } from "react-router-dom";
-// import ScrollToTop from "./components/ScrollToTop";
+import Link from 'next/link';
+import DefaultLayout from '../templates/DefaultLayout';
 
-// import UserLogin from "./UserLogin";
-// import UserRegister from "./UserRegister";
-// import UserMnemonic from "./UserMnemonic";
-// import UserRegistration from "./UserRegistration";
-// import Account from "./Account";
-// import UserRecoverPassword from "./UserRecoverPassword";
+import Hero from '../components/Hero';
+import HeroImage from '../public/images/vot_banner.png';
+import RandomQuote from '../components/dynamic-content/RandomQuote';
 
-// import Home from "./pages/Home";
-// import ProductsPage from "./pages/ProductsPage";
-// import About from "./pages/About";
-// import Faq from "./pages/Faq";
-// import FaqActive from "./pages/FaqActive";
-// import Policy from "./pages/Policy";
-// import Cart from "./pages/Cart";
+import TextContainer from '../components/TextContainer';
+import ImageContainer from '../components/ImageContainer';
+import SocialCircles from '../components/SocialCircles';
 
-// import PageNotFound from "./pages/404"
+import Pixels from '../public/images/art/choose_your_vot.png';
+import Hope from '../public/images/art/hope.png';
+// import LoadComponents from '../modules/LoadComponents';
 
-// import AdminLogin from "./components/AdminLogin";
-// import AdminDashboard from "./components/AdminDashboard";
-// import AdminOrderPage from "./components/AdminOrderPage";
-// import AdminCreateDrop from "./components/AdminCreateDrop";
+const Home = () => {
 
-// import SendEmail from "./pages/SendEmail";
-
-
-function App() {
-
-  const website = {
-    name: process.env.REACT_APP_COMPANY_NAME || "Village of Thousands",
-    domain: process.env.REACT_APP_DOMAIN || "villageofthousands.io",
-    drop: process.env.REACT_APP_CURRENT_DROP || 1,
-    szn: process.env.REACT_APP_CURRENT_SZN || "Winter 2022",
-    hCaptchaKey: process.env.REACT_APP_HCAPTCHA_SITE_KEY || "",
-    hCaptchaSecret: process.env.REACT_APP_HCAPTCHA_SECRET || ""
+  const main = {
+    border: true,
+    containerClasses: "thick shadow dark-gradient padding",
+    textClasses: "col s12 index-main gravy-font",
+    id: "main-text-container",
+    p: <>
+      <div className="row img-main_container desktop only">
+        <div className="main-text col m12 l6 justify-text">
+          <div><span className="weight-6 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
+          brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
+          </div>
+          <p>Our village is a state of mind. We believe that our dedication to <span className="weight-7 italics">sustainability</span> is
+          what will help us achieve our vision of building a community with the <span className="weight-7 italics">ability to sustain.</span>
+          </p>
+        </div>
+        <div className="col m12 l6 p-style index-main_row">
+          <ImageContainer imgClasses={"index-main_img"} description={"Hope"} src={Hope} contain />
+        </div>
+      </div>
+      <div className="row index-main_row">
+        <ImageContainer containerClasses={"img-main mobile only"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} contain />
+        <div className="index-main_row col s12 weight-2 justify-text">We are passionate about minimizing our impact on the environment
+        so we can focus on maximizing our efforts to build our community. Our company uses high quality products and
+        services that prioritize fair trade practices at every step in our development process.
+        </div>
+      </div>
+    </>
   }
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
 
-  document.onload = scrollToTop()
+  const mobile = {
+    containerClasses: "index_mobile-container no-bkg no-margin no-padding",
+    textClasses: "mobile only justify-text gravy-font",
+    id: "mobile-text-container",
+    p: <>
+      <div className="index_mobile-box">
+        <div><span className="weight-5 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
+          brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
+        </div>
+        <br/>
+        <div>Our village is a state of mind. We believe that our dedication to <span className="weight-7 italics">sustainability</span> is
+          what will help us achieve our vision of building a community with the <span className="weight-7 italics">ability to sustain.</span>
+        </div>
+      </div>
+    </>
+  }
 
-  // document.addEventListener('load', scrollToTop());
-  // var rootElement = document.documentElement
-  // function handleScroll() {
-  //   var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
-  //   if ((rootElement.scrollTop / scrollTotal ) > 0.80 ) {
-  //   // Show button
-  //     scrollToTopBtn.classList.add("showBtn")
-  //   } else {
-  //     // Hide button
-  //     scrollToTopBtn.classList.remove("showBtn")
-  //   }
-  // }
-  
+  const socials = {
+    containerClasses: "index_aside-container no-bkg no-margin no-padding",
+    textClasses: "index-content row",
+    id: "socials-text-container",
+    p: <>
+      <div className="index-nft-art col s12 m6 center break">
+        <ImageContainer description="Choose Your VoT" src={Pixels} contain />
+      </div>
+      <div className="index-socials col s12 m6 break">
+        <div className="right-align index-aside justify-text">
+          <div className="index-aside_text">
+            <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
+            for all emerging Web 3.0 products and services.
+            </p><p>Our company is currently preparing for a full Web 3.0 release in early 2022 when we will begin selling all
+            of our products with NFTs as a means of authentication. If you’d like to join the movement, follow us on our socials
+            and you can get ready for our first drop by <Link href="/register"><a className="text-link">creating an
+            account</a></Link> with us today.
+            </p>
+          </div>  
+          <SocialCircles />
+        </div>
+      </div>
+    </>
+  }
 
   return (
-    <div className="App">
-      <Router>
-      <ScrollToTop />
-        <Routes>
-        {/* ADMIN */}
-          <Route path="/admin/login" exact element={<AdminLogin website={website} />} />
-          <Route path="/admin/dashboard" exact element={<AdminDashboard website={website} />} />
-          <Route path="/admin/orders" exact element={<AdminOrderPage website={website} />} />
-          <Route path="/admin/drop" exact element={<AdminCreateDrop website={website} />} />
-          {/* <Route path="/admin/send-email" exact element={<SendEmail website={website} />} /> */}
-        {/* USERS */}
-          <Route path="/login" exact element={<UserLogin website={website} />} />
-          <Route path="/register" exact element={<UserRegister website={website} />} />
-          <Route path="/signup-1" exact element={<UserMnemonic website={website} />} />
-          <Route path="/signup-2" exact element={<UserRegistration website={website} />} />
-          <Route path="/account" exact element={<Account website={website} />} />
-          <Route path="/recover-password" exact element={<UserRecoverPassword website={website} />} />
-        {/* SITE */}
-          <Route path="/" exact element={<Home website={website} />} />
-          <Route path="/products" exact element={<ProductsPage website={website} />} />
-          {/* <Route path="/about" exact element={<About website={website} />} /> */}
-          <Route path="/faq" exact element={<Faq website={website} />} />
-          <Route path="/faq/active" exact element={<FaqActive website={website} />} />
-          <Route path="/shipping" exact element={<FaqActive website={website} />} />
-        {/* CART/CHECKOUT */}
-          <Route path="/cart" exact element={<Cart website={website} />} />
-        {/* QR */}
-          {/* <Route exact path="/qr">
-            <Redirect to="/" />
-          </Route> */}
-        {/* 404 */}
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Router>
+    <DefaultLayout>
+    <div id="content" className="main-content">
+      <Hero image={HeroImage} />
+      <div className="index-section animate__animated animate__fadeIn">
+        <div className="container index-main">
+          <TextContainer
+            containerClasses={mobile.containerClasses}
+            text={mobile.p}
+            textClasses={mobile.textClasses}
+            containerId={mobile.id}
+            />
+          <TextContainer
+            border={main.border}
+            containerClasses={main.containerClasses}
+            text={main.p}
+            textClasses={main.textClasses}
+            containerId={main.id}
+            />
+        </div>
+        <div className="index-quote italics center">
+          <RandomQuote className={"home-zen"} type={"zen"} />
+        </div>
+        <TextContainer
+            containerClasses={socials.containerClasses}
+            text={socials.p}
+            textClasses={socials.textClasses}
+            containerId={socials.id}
+            />
+      </div>
     </div>
+    </DefaultLayout>
   );
 }
 
-export default App;
+export default Home;

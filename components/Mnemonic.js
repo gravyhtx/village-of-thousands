@@ -31,7 +31,8 @@ if (typeof window !== 'undefined') { //a browser
 }
 
 var Mnemonic = function (args) {
-    var bits, i, l, w1, w2, w3, n;
+    // var bits, i, l, w1, w2, w3, n;
+    var bits;
 
     if (typeof args === 'undefined' || typeof args === 'number') {
         // Create a new instance of mnemonic
@@ -89,7 +90,8 @@ Mnemonic.fromHex = function (hex) {
         i = 0, n = Mnemonic.wc,
         l = hex.length / 8,
         seed = new Uint32Array(l),
-        x, w1, w2, w3;
+        // x, w1, w2, w3;
+        x;
 
     for (; i < l; i++) {
         x = parseInt(hexParts[i], 16);

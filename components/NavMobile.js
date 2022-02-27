@@ -1,56 +1,54 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Icon } from 'react-materialize';
+import Link from "next/link";
+import { Button, Icon } from '@mui/material';
 import Auth from '../utils/auth';
 
 const NavMobile = () => {
 
+    // const account = "/login";
     const account = Auth.loggedIn() ? "/account" : "/login";
 
     return (
         <div className="mobile-nav mobile">
 
             <div className="col s3 nav-mobile-col">
-            <Link to={account}>
-            <Button
+            <Link href={account}>
+              <a><Button
+                color="inherit"
                 className="btn-floating navigation-link"
                 floating
-                icon={<Icon>person</Icon>}
                 node="button"
-            />
+              ><Icon>person</Icon></Button></a>
             </Link>
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/products">
-            <Button
+            <Link href="/products">
+              <a><Button
                 className="btn-floating navigation-link"
                 floating
-                icon={<Icon>remove_red_eye</Icon>}
                 node="button"
-            />
+            ><Icon>remove_red_eye</Icon></Button></a>
             </Link>
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/faq">
-            <Button
+            <Link href="/faq">
+               <a><Button
                 className="btn-floating navigation-link"
                 floating
-                icon={<Icon>all_inclusive</Icon>}
                 node="button"
-            />
+              ><Icon>all_inclusive</Icon></Button></a>
             </Link>
             </div>
 
             <div className="col s3 nav-mobile-col">
-            <Link to="/cart">
-            <Button
+            <Link href="/cart">
+            <a><Button
                 className="btn-floating navigation-link"
                 floating
-                icon={<Icon>shopping_cart</Icon>}
                 node="button"
-            />
+            ><Icon>shopping_cart</Icon></Button></a>
             </Link>
             </div>
 

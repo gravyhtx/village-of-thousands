@@ -1,16 +1,23 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ScrollToEl from "./ScrollToEl";
+import { useRouter } from "next/router";
 
-export default function ScrollToTop() {
-
-  const checkId = window.location.hash ? window.location.hash.substring(1) : "";
-  const qId = Number(checkId-1);
-  const { pathname } = useLocation();
+const ScrollToTop = () => {
+  const router = useRouter();
+  const { pathname } = router.pathname;
   useEffect(() => {
-    checkId ? ScrollToEl(('scrollToEl-'+qId),200) : ScrollToEl('root',200);
+    const checkId = window.location.hash ? window.location.hash.substring(1) : "";
+    const qId = Number(checkId-1);
+    const rootEl = document.getElementById('layout');
+    const scrollPosition = () => {
+      checkId
+      ? ('scrollToEl-'+qId).scrollIntoView({behavior: "smooth", block: "start"})
+      : rootEl.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+    setTimeout(() => {
+      scrollPosition()},200);
   }, [pathname]);
 
   return null;
-  
-}
+};
+
+export default ScrollToTop;

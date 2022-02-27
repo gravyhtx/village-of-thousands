@@ -1,6 +1,6 @@
 // use this to decode a token and get the user's information out of it
 import decode from 'jwt-decode';
-
+const ISSERVER = typeof window === "undefined";
 // create a new class to instantiate for a user
 class AuthService {
   // get user data
@@ -29,18 +29,24 @@ class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
+    if(!ISSERVER) {
     return localStorage.getItem('id_token');
+    };
   }
 
   login(idToken) {
     // Saves user token to localStorage
+    if(!ISSERVER) {
     localStorage.setItem('id_token', idToken);
+    };
     // window.location.assign('/');
   }
 
   logout() {
     // Clear user token and profile data from localStorage
+    if(!ISSERVER) {
     localStorage.removeItem('id_token');
+    };
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
