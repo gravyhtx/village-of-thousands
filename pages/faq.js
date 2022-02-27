@@ -31,17 +31,10 @@ const Faq = () => {
   const accordElem = useRef(null);
   const scroll = () => {
     scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
-    console.log(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
-    console.log(expanded);
   }
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
-  // GET 'ETH' + 'BTC' PRICES //
-  // cryptoConverter(40);
-  // UPDATE COIN PRICES //
-  // setInterval(() => {CryptoConverter(40)}, 15000);
 
   const question = () => {
     return (
