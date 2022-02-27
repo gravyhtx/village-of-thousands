@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SocialCircles from "../SocialCircles";
+import SocialCircles from "./SocialCircles";
 
 const FaqContent = () => {
 
@@ -131,16 +131,16 @@ const FaqContent = () => {
         by our developers, line-by-line, in order to provide a sustainable decentralized platform for the
         future of our brand. This takes a bit more work than click-and-drag websites, but we are able to
         carefully select every service we use and organically grow with Web 3.0 without restriction.</>,
-        <>Village of Thousands also has our very own, <a className='link underline'
-        href='https://ethereum.org/en/developers/docs/standards/tokens/erc-20/' target="_blank"
-        rel="noreferrer">ERC-20</a> token, VOT, ready for distribution in 2022 alongside our full Web 3.0
-        release. If you’d like to be able to trade, purchase, and invest in our token when it has been
-        released then make sure you have an account with a non-custodial wallet service, such
-        as <a className='link underline' href='https://metamask.io/download' target="_blank"
-        rel="noreferrer">MetaMask</a>, stored on a Web 3.0 integrated browser, such
-        as <a className='link underline' href='https://brave.com/download/' target="_blank"
-        rel="noreferrer">Brave Browser</a>. We are already in development of our NFT-authenticated products
-        and will be airdropping rewards as VOT token and limited runs of NFTs.</>,
+        // <>Village of Thousands also has our very own, <a className='link underline'
+        // href='https://ethereum.org/en/developers/docs/standards/tokens/erc-20/' target="_blank"
+        // rel="noreferrer">ERC-20</a> token, VOT, ready for distribution in 2022 alongside our full Web 3.0
+        // release. If you’d like to be able to trade, purchase, and invest in our token when it has been
+        // released then make sure you have an account with a non-custodial wallet service, such
+        // as <a className='link underline' href='https://metamask.io/download' target="_blank"
+        // rel="noreferrer">MetaMask</a>, stored on a Web 3.0 integrated browser, such
+        // as <a className='link underline' href='https://brave.com/download/' target="_blank"
+        // rel="noreferrer">Brave Browser</a>. We are already in development of our NFT-authenticated products
+        // and will be airdropping rewards as VOT token and limited runs of NFTs.</>,
         <>We have already set up our website to store your wallet address for quick, easy, and secure
         checkout using “browser injection”. Injection uses your in-browser wallet in order to verify that we
         have a correct address to send and receive assets so that you don’t need to worry about incorrectly
@@ -264,13 +264,15 @@ const FaqContent = () => {
     {
       "question": "Where can I report bugs?",
       "answer": [
-        <>Please visit our GitHub repository <a className='link underline'
-        href='https://github.com/gravyhtx/village-of-thousands' target="_blank"
-        rel="noreferrer">here</a> or message our developers on Instagram
-        (<a className='link underline' href='https://www.instagram.com/gravydesignco/' target="_blank"
-        rel="noreferrer">@gravydesignco</a> or <a className='link underline'
-        href='https://www.instagram.com/villageofthousands/' target="_blank"
-        rel="noreferrer">@villageofthousands</a>) to report any bugs or issues with our website.</>
+        <>Please visit our GitHub repository
+        <Link href="https://github.com/gravyhtx/village-of-thousands"><a className="link underline"
+        target="_blank"
+        rel="noreferrer">here</a></Link> or message our developers on Instagram
+        (<Link href="https://www.instagram.com/gravydesignco/"><a className="link underline" target="_blank"
+        rel="noreferrer">@gravydesignco</a></Link>
+        or <Link href="https://www.instagram.com/villageofthousands/">
+        <a className="link underline"target="_blank" rel="noreferrer">@villageofthousands</a></Link>) to report
+        any bugs or issues with our website.</>
       ]
     }
   ]

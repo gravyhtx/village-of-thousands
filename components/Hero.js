@@ -5,7 +5,7 @@ function Hero({ image, drag, description, id }) {
   id=id?id:'hero';
   
   return (
-    <div id="content" className="main-content animate__animated animate__fadeIn">
+    <div id="content" className="index-hero animate__animated animate__fadeIn">
       <div className="index-hero">
           {/* <img src={banner} draggable="false" alt="VoT Pipe Hero" /> */}
           <img

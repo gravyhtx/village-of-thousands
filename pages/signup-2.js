@@ -1,12 +1,10 @@
-// import React, {useState} from 'react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import DefaultLayout from '../templates/DefaultLayout';
 
-import AddressForm from '../components/AddressForm';
-// import CompleteUserRegistration from '../components/CompleteUserRegistration';
+import AddressFormContainer from '../components/AddressFormContainer';
 import Web3Wallet from '../components/Web3Wallet.tsx';
 
 import Auth from '../utils/auth';
@@ -43,7 +41,7 @@ const UserRegistration = () => {
     };
 
     getUserData();
-    console.log(userData);
+    // console.log(userData);
   }, [userDataLength]);
 
   return (
@@ -68,8 +66,7 @@ const UserRegistration = () => {
         contact us for support on Instagram (@villageofthousands).</div>} */}
       </div>
       <div className="user-registration-forms">
-        <AddressForm />
-        {/* <CompleteUserRegistration /> */}
+        <AddressFormContainer />
       </div>
     </div>
     </DefaultLayout>

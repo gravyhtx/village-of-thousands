@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DefaultLayout from '../templates/DefaultLayout';
 import Mnemonic from "../components/Mnemonic";
-import { Button, Checkbox } from '@mui/material';
+import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
 import { updateUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
@@ -45,19 +45,21 @@ const UserMnemonic = () => {
   // const [userFormData, setUserFormData] = useState({ email: '', password: '', mnemonic: '', completeRegistration: false });
   const m = new Mnemonic(96)
   const hex = m.toHex()
-  let seedHex = hex;
+  const [seedHex, setSeedHex] = useState(hex);
 
   useEffect(() => {
     const getMnemonic=localStorage.getItem('seed_hex');
     if (getMnemonic) {
-      seedHex = getMnemonic;
+      setSeedHex(getMnemonic);
+      console.log(getMnemonic);
     } else {
       localStorage.setItem('seed_hex', seedHex);
+      console.log('hmmmm')
     }
-  }, [])
+  }, []);
 
   let getHex = Mnemonic.fromHex(seedHex);
-  const phrase = getHex.toWords();
+  let phrase = getHex.toWords();;
 
   // Handle Agreement
   let [checked, setChecked] = useState(false);
@@ -77,11 +79,11 @@ const UserMnemonic = () => {
   const handleMnemonicSubmit = async (event) => {
     event.preventDefault();
 
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
     try {
       let updateObj = {
@@ -91,17 +93,16 @@ const UserMnemonic = () => {
       updateUser(updateObj, token)
         .then(response => {
           if (!response.ok) {
-              throw new Error('something went wrong!');
+            throw new Error('something went wrong!');
           } else {
-              // window.location.assign('/signup-2');
+            // window.location.assign('/signup-2');
+            router.push('/signup-2')
           }
         });
 
     } catch (err) {
       console.error(err);
     }
-
-    router.push('/signup-2')
   }
 
   const ErrorMessage = () => {
@@ -127,6 +128,7 @@ const UserMnemonic = () => {
           waves="light"
           className="account-wallet-btn"
           onClick={handleMnemonicSubmit}
+          suppressHydrationWarning
         >
           Next
         </Button>
@@ -137,12 +139,13 @@ const UserMnemonic = () => {
         <Button
           node="button"
           style={{
-              margin: '0 auto',
-              width: '250px'
+            margin: '0 auto',
+            width: '250px'
           }}
           waves="light"
           className="theme-btn disabled-btn"
           onClick={handleAgreement}
+          suppressHydrationWarning
         >
           Next
         </Button>
@@ -153,8 +156,9 @@ const UserMnemonic = () => {
     const text = phrase.join(' ')
     return (text)
   }
+
   const downloadTxtFile = () => {
-    // const textData = document.createElement("a");
+    const textData = document.createElement("a");
     const file = new Blob([seedTxt()], { type: 'text/plain' });
     textData.href = URL.createObjectURL(file);
     textData.download = "vot_seed_phrase.txt";
@@ -175,7 +179,7 @@ const UserMnemonic = () => {
                 <div className="seed-word-container center col s4" key={index}>
                   <div className="row">
                     <div className="seed-word-number col s2 disable-highlight">{index + 1}.&nbsp;</div>
-                    <div className="seed-word col s10">{word}</div>
+                    <div className="seed-word col s10" suppressHydrationWarning>{word}</div>
                   </div>
                 </div>
               )}
@@ -192,12 +196,9 @@ const UserMnemonic = () => {
               <div className='download-seed-phrase container center sm' id='download' onClick={downloadTxtFile}>DOWNLOAD SEED PHRASE TO .TXT</div>
             </div>
             <ErrorMessage />
-            <Checkbox
-              onChange={handleChange}
-              checked={false}
-              id="seed-phrase-checkbox"
+            <FormControlLabel
               label="I have saved my seed phrase."
-              value="I have saved my seed phrase."
+              control={<Checkbox checked={checked} onChange={handleChange} />}
             />
           </div>
           <div className="user-registration-next center">

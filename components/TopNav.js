@@ -8,13 +8,13 @@ const TopNav = () => {
 
   const navlinks = [
     { name: "account", ref: "person", link: account, },
-    { name: "products", ref: "remove_red_eye", link: "/products" },
+    { name: "products", ref: "remove_red_eye", link: "/shop" },
     { name: "faq", ref: "all_inclusive", link: "/faq" },
     { name: "cart", ref: "shopping_cart", link: "/cart" }
   ];
 
   return (
-    <div className="top-nav row">
+    <div className="top-nav disable-highlight row">
       {navlinks.map((item, index) =>
         <div className="col s3 nav-top-col" key={index}>
           <Link href={item.link}><a>
@@ -22,7 +22,7 @@ const TopNav = () => {
               color="inherit"
               className={"btn-floating btn-floating navigation-link nav-"+item.name}
               node="button"
-            ><icon className="material-icons nav-icon">{item.ref}</icon></button>
+            ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
           </a></Link>
         </div>
       )}

@@ -12,36 +12,33 @@ import { useState, useEffect } from 'react';
 
 */}
 
-export default function LoadComponents({preLoadComponent, loadedComponent, count, interval, classes}) {
+export default function LoadComponents({ preLoadComponent, loadedComponent, interval, classes }) {
 
   // Set active 'component' to the 'preLoadComponent' before state updates. Sets an empty Fragment as default.
-  const a = preLoadComponent ? preLoadComponent : <></>;
-  const b = loadedComponent = loadedComponent ? loadedComponent : <></>;
+  const a = preLoadComponent || <></>;
+  const b = loadedComponent || <></>;
   const [component, setComponent] = useState(a);
 
   // Set defaults.
-  count = count ? count : false;
-  interval = interval ? interval : 1000;
   classes = classes ? ' '+classes : '';
 
   useEffect(() => {
     // Update  'component' to the 'loadedComponent' when state updates.
     const updateComponent = async () => {
-
+      console.log(classes)
       try {
         // Set timeout delay if parameters are entered (correctly).
-        if (count === "boolean" || typeof interval === 'number') {
-          setTimeout(setComponent(b), interval);
-        } else if (count && count !== "boolean") {
-          console.error('Parameter "count" must be true/false or left blank.')
-        } else if (interval && interval !== "number") {
-          console.error('Parameter "interval" must be a number or left blank (default is 1000).')
-        // Otherwise just switch in the new component immediately upon load.
-        } else {
+        if (typeof interval === 'number' && interval !== 0) {
+          setTimeout(() => {setComponent(b)}, interval);
+        } else if (interval === undefined || interval === 0) {
           setComponent(b);
+        } else if (interval && interval !== "number") {
+          console.error('Parameter "interval" must be a number or left blank.');
+        } else {
+          console.error('Yo. Check ur code, homie.');
         }
       } catch (err) {
-          console.error(err);
+        console.error(err);
       }
     };
 

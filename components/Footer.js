@@ -3,22 +3,22 @@ import Link from "next/link";
 
 const Footer = () => {
 
-  const copyright = <>Copyright &copy; 2022 // Village of Thousands</>
-
   const row1 = [
     { link: "/", name: "HOME" },
-    { link: "/products", name: "SHOP" },
-    { link: "/faq#1", name: "ABOUT" },
+    { link: "/shop", name: "SHOP" },
+    { link: "/about", name: "ABOUT" },
     { link: "/cart", name: "CART" }
   ];
 
   const row2 = [
     { link: "/faq", name: "FAQ" },
     { link: "/news", name: "NEWS" },
-    { link: "/faq#3", name: "CONTACT US" }
-  ]
+    { link: "/faq#3", name: "CONTACT" }
+  ];
 
   const spacer = <> &emsp;{"//"}&emsp;</>;
+
+  const copyright = <>Copyright &copy; 2022 // Village of Thousands</>;
 
   const RowOne = () => {
     return (
@@ -29,7 +29,7 @@ const Footer = () => {
         </a></Link>{index !== row1.length-1 ? spacer : <></>}
       </span>
     ))
-  }
+  };
 
   const RowTwo = () => {
     return (
@@ -40,29 +40,29 @@ const Footer = () => {
         </a></Link>{index !== row2.length-1 ? spacer : <></>}
       </span>
     ))
-  }
+  };
 
   return (
-  <div className="footer animate__animated animate__fadeIn">
-    <div className="page-footer" id="online">
-      <div className="footer-container container-fluid center disable-highlight">
-        <div><RowOne /></div>
-        <div><RowTwo /></div>
-      </div>
-      <div className="copyright container center">
-        <div className="copyright-text">{copyright}</div>
-        <span className="gravydidit highlight-selection gravy-font container center">
-          <span className="highlight-selection-light cursor-help">
-          <a className="highlight-selection-light cursor-help madewithlove" href="https://www.instagram.com/gravydesignco/"
-          rel="noreferrer" target="_blank">
-          MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
+    <div className="footer animate__animated animate__fadeIn">
+      <div className="page-footer" id="online">
+        <div className="footer-container container-fluid center disable-highlight">
+          <div><RowOne /></div>
+          <div><RowTwo /></div>
+        </div>
+        <div className="copyright container center">
+          <div className="copyright-text">{copyright}</div>
+          <span className="gravydidit highlight-selection gravy-font container center">
+            <span className="highlight-selection-light cursor-help">
+            <a className="highlight-selection-light cursor-help madewithlove" href="https://www.instagram.com/gravydesignco/"
+            rel="noreferrer" target="_blank">
+            &nbsp;MADE WITH LOVE BY GRÄVY DESIGN CO.</a>
+            </span>
           </span>
-        </span>
+        </div>
+        <br/>
       </div>
-      <br/>
     </div>
-  </div>
-);    
+  );    
 }
 
 export default Footer;

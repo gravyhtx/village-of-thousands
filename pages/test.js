@@ -7,9 +7,13 @@ import DefaultLayout from '../templates/DefaultLayout';
 import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
+import { cryptoConverter, gemini  } from '../modules/blockchain';
+
 const Test = () =>  {
 
   const router = useRouter();
+
+  gemini();
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 
@@ -51,6 +55,13 @@ const Test = () =>  {
         email: '',
         password: ''
     })
+  }
+
+  const crypto = {
+    eth: currentEth,
+    api3: currentEth,
+    mkr: currentEth,
+    sol: currentEth
   }
 
   return (
@@ -96,6 +107,12 @@ const Test = () =>  {
       </Button>
     </div>
     </div>
+    <h1>TRACKER</h1>
+    <div><span className='bold'>ETH</span>{crypto.eth}</div>
+    <div><span className='bold'>ETH</span>{crypto.lrc}</div>
+    <div><span className='bold'>ETH</span>{crypto.api3}</div>
+    <div><span className='bold'>ETH</span>{crypto.mkr}</div>
+    <div><span className='bold'>ETH</span>{crypto.sol}</div>
     </DefaultLayout>
   )   
 }

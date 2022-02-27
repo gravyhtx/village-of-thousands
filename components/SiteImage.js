@@ -18,9 +18,8 @@ const SiteImage = ({ images, width, containerClasses, imgClasses, description })
     let imgSize = {};
     if(width){imgSize = {maxWidth: width}};
 
-    const arr = images; // "files" must be an array
-    const n = Math.floor(Math.random()*arr.length);
-    const image = arr[n];
+    const n = Math.floor(Math.random()*images.length);
+    const image = Array.isArray(images) ? images[n] : images;
     
     return (
         <>

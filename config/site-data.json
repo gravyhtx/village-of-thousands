@@ -2,8 +2,10 @@
     "website": "https://villageofthousands.io/",
     "name": "Village of Thousands",
     "abbreviation": "VoT",
-    "github": "",
+    "drop": 1,
+    "szn": "Spring 2022",
+    "github": "https://github.com/gravyhtx/village-of-thousands",
     "instagram": "@Village_of_Thousands",
     "twitter": "@VoThousands",
-    "discord": ""
+    "discord": "https://discord.gg/ZyNsT2y7"
 }

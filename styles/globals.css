@@ -22,7 +22,7 @@
   --theme-font-size-xs:   0.75rem;
   --theme-font-size-sm:   0.925rem;
   --theme-font-size-md:   1.5rem;
-  --theme-font-size-lg:   2.0rem;
+  --theme-font-size-lg:   2.25rem;
   --theme-font-size-xl:   2.8rem;
   --theme-font-size-xxl:  3.5rem;
   --theme-font-size-xxxl: 4.2rem;
@@ -372,18 +372,22 @@ input.input-error {
 }
 
 .justify-text { text-align: justify; }
-.left-text { text-align: left; }
-.right-text { text-align: right; }
-.center-text { text-align: center; }
+.left-text    { text-align: left; }
+.right-text   { text-align: right; }
+.center-text  { text-align: center; }
 
-.no-margin { margin: 0 !important; }
-.no-padding { padding: 0 !important; }
+.no-margin    { margin: 0 !important; }
+.no-padding   { padding: 0 !important; }
 .side-padding { padding: 0 25px; }
-.side-boob { padding: 0 50px; }
+.side-boob    { padding: 0 50px; }
 
 .sm-margin { margin: 0 0 8px !important; }
 .md-margin { margin: 0 0 15px !important; }
 .lg-margin { margin: 0 0 25px !important; }
+
+.uppercase  { text-transform: uppercase }
+.lowercase  { text-transform: lowercase }
+.capitalize { text-transform: capitalize }
 
 .p-style {
   display: block;
@@ -605,14 +609,14 @@ Some of these were generated with ~https://animista.net/~ !! */
 .xxxl { font-size: var(--theme-font-size-xxxl); }
 .yuge, .xxxxl { font-size: var(--theme-font-size-yuge); }
 
-.responsive-font.xs { font-size: var(--theme-font-size-xs); }
-.responsive-font.sm { font-size: var(--theme-font-size-sm); }
-.responsive-font.md { font-size: var(--theme-font-size-md); }
-.responsive-font.lg { font-size: var(--theme-font-size-lg); }
-.responsive-font.xl { font-size: var(--theme-font-size-xl); }
-.responsive-font.xxl { font-size: var(--theme-font-size-xxl); }
-.responsive-font.xxxl { font-size: var(--theme-font-size-xxxl); }
-.responsive-font.yuge, .responsive-font.xxxxl { font-size: var(--theme-font-size-yuge); }
+.responsive-font.xs { font-size: var(--responsive-font-size-xs); }
+.responsive-font.sm { font-size: var(--responsive-font-size-sm); }
+.responsive-font.md { font-size: var(--responsive-font-size-md); }
+.responsive-font.lg { font-size: var(--responsive-font-size-lg); }
+.responsive-font.xl { font-size: var(--responsive-font-size-xl); }
+.responsive-font.xxl { font-size: var(--responsive-font-size-xxl); }
+.responsive-font.xxxl { font-size: var(--responsive-font-size-xxxl); }
+.responsive-font.yuge, .responsive-font.xxxxl { font-size: var(--responsive-theme-font-size-yuge); }
 
 .theme-font, .sans { font-family: var(--theme-font) !important; }
 .theme-font-condensed { font-family: var(--theme-font-condensed) !important; }
@@ -637,9 +641,34 @@ Some of these were generated with ~https://animista.net/~ !! */
 
 /* FONT STYLES */
 .italics { font-style: italic; }
-.underline { text-decoration: underline; }
 .overline { text-decoration: overline; }
 .strikethrough { text-decoration: line-through; }
+.underline { text-decoration: underline; }
+.underline-1 {
+  text-decoration: underline;
+  text-decoration-thickness: 0.01em;
+  text-underline-offset: 0.15em;
+}
+.underline-2 {
+  text-decoration: underline;
+  text-decoration-thickness: 0.035em;
+  text-underline-offset: 0.15em;
+}
+.underline-3 {
+  text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.15em;
+}
+.underline-4 {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+.underline-5 {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.15em;
+}
 
 /* ICONS */
 i { color: var(--theme-primary-light-color); cursor: default; }
@@ -790,7 +819,7 @@ h2, .h2 {
   .text-container.dark-gradient { background: var(--dark-gradient); }
 
   /* Container Box Styles */
-  .text-container.padding { padding: 40px; }
+  .text-container.padding { padding: 20px 30px; }
   .text-container.margin { margin: 50px; }
   .text-container.no-padding { padding: 0; }
   .text-container.no-margin { margin: 0; }
@@ -1156,7 +1185,7 @@ button.btn-floating.navigation-link:focus {
 .top-nav {
   position: sticky;
   margin-bottom: 0px !important;
-  border-bottom: 2px solid #ffffff50;
+  border-bottom: 1px solid #ffffff50;
   background-color: var(--theme-alt-dark-color);
   box-shadow: 0px 0 20px black;
   height: 35px;
@@ -1274,7 +1303,7 @@ button.btn-floating.navigation-link:focus {
   background-color: #3b495425;
   border: 2px solid var(--theme-secondary-dark-color);
   box-shadow: 0 0 15px #7fcce433;
-  text-shadow: 0 0 50px white;
+  text-shadow: 0 0 10px #ffffff33;
 }
 
 .theme-btn.disabled-btn,
@@ -1315,6 +1344,10 @@ button.btn-floating.navigation-link:focus {
   text-shadow: 2px 2px 2px black;
 }
 
+.seed-phrase-reminder.container {
+  width: 75%;
+}
+
 .seed-phrase-container {
   max-width: 750px;
   margin: 0 auto;
@@ -1352,6 +1385,11 @@ button.btn-floating.navigation-link:focus {
 .seed-phrase-checkbox [type="checkbox"]:checked+span:not(.lever):before {
   border-right: 2px solid white;
   border-bottom: 2px solid white;
+}
+
+.seed-phrase-reminder {
+  margin-top: 10px;
+  font-size: 1rem;
 }
 
 .download-seed-phrase,
@@ -1490,7 +1528,8 @@ label#upload-label:hover {
 }
 
 .user-register-address-header,
-.user-register-email-header {
+.user-register-email-header,
+.user-wallet-header {
   font-size: var(--theme-font-size-md);
   font-weight: 500;
   padding: 10px 0 20px;
@@ -1611,7 +1650,7 @@ label#upload-label:hover {
 
 .index_mobile-box {
   font-size: 1.4rem;
-  padding: 20px;
+  padding: 30px;
   border: 5px solid #222222;
   background-color: #111111;
 }
@@ -1671,6 +1710,10 @@ label#upload-label:hover {
 }
 
 /* PRODUCTS PAGE */
+.scroll-box {
+  font-size: 1.25rem;
+}
+
 .products-page-content {
   /* padding: 50px; */
   border-bottom: 4px solid white;
@@ -1832,35 +1875,53 @@ label#upload-label:hover {
 .faq-container {
   min-height: 80vh;
 }
+
 .faq-header {
   font-size: var(--theme-font-size-md);
   font-family: var(--theme-font-monospace);
   letter-spacing: 5px;
   word-spacing: 5px;
+  margin-bottom: 50px;
 }
-.faq-collapsible .collapsible .collapsible-header {
+/* .faq-collapsible .collapsible .collapsible-header {
   justify-content: left;
   font-size: var(--theme-font-size-md);
   color: var(--theme-primary-light-highlight);
   background-color: var(--dark-gradient);
   padding: 1rem 2rem;
-  /* cursor: pointer; */
+} */
+.faq-image-container {
+  margin: 30px 0 10px;
 }
 
-.faq-collapsible .collapsible .collapsible-body {
+.faq-collapsible.container {
+  border: 1px solid white;
+  border-radius: 0;
+}
+
+.collapsible .faq-body {
   color: var(--theme-primary-light-color);
   font-size: var(--theme-font-size-md);
   background: var(--darker-gradient);
-  text-shadow: 0 0 20px #ffffff50;
+  text-shadow: 0 0 8px #ffffff25;
   padding: 4rem;
 }
 
-.faq-question-header {
-  color: var(--theme-primary-light-highlight);
+.collapsible .faq-question-header {
+  color: #eeeeee;
+  background-color: #000000;
+  justify-content: left;
+  font-size: var(--theme-font-size-md);
+  padding: 1rem 2rem;
+}
+
+.collapsible.active .faq-question-header {
+  border-bottom: 1px solid white;
+  color: #ffffff;
 }
 
 .faq-image {
-  width: 40vw;;
+  width: 40vw;
 }
 
 .faq-number {
@@ -1903,6 +1964,7 @@ label#upload-label:hover {
 /* ACCOUNT */
 .account {
   padding: 10px;
+  text-align: center;
 }
 
 .account-header {
@@ -1933,6 +1995,10 @@ label#upload-label:hover {
   margin: 0 auto;
   line-height: 95px;
   color: white;
+}
+
+.account-wallet {
+  margin: 40px 0;
 }
 
 .account-wallet .wallet-info {
@@ -2090,7 +2156,7 @@ label#upload-label:hover {
 }
 
 .account-logout {
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 .account-logout .logout-btn {
@@ -2277,6 +2343,8 @@ label#upload-label:hover {
 
 /* Create New Drop */
 
+/* Error Pages */
+
 .lost-header {
   font-size: var(--theme-font-size-xxl);
   font-weight: 600;
@@ -2302,6 +2370,32 @@ label#upload-label:hover {
   max-width: 380px;
 }
 
+.error-page {
+  margin-top: 30px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 3rem;
+}
+.shit-happens {
+  color: #eeeeee;
+  font-size: 6rem;
+}
+
+.fix-that-shit {
+  line-height: 0.5;
+}
+
+.gtfo {
+  line-height: .2;
+}
+
+.gtfo a {
+  text-shadow:
+    .5px .5px currentColor,
+    .5px -.5px currentColor,
+   -.5px .5px currentColor,
+   -.5px -.5px currentColor;
+}
 
 @media only screen and (min-width: 1600px) {
 
@@ -2376,12 +2470,17 @@ label#upload-label:hover {
     font-size: var(--theme-font-size);
   }
   .user-registration-header {
-    font-size: var(--theme-font-size-lg);
+    font-size: 2.5rem;
   }
   .learn-more {
     font-size: var(--theme-font-size-md) !important;
   }
-
+  .scroll-box {
+    font-size: 1.24rem;
+  }
+  .faq-image {
+    width: 50vw;
+  }
 }
 
 @media only screen and (max-width: 1124px) {
@@ -2393,6 +2492,9 @@ label#upload-label:hover {
   }
   .signup-error.error-message {
     font-size: 0.8rem;
+  }
+  .scroll-box {
+    font-size: 1.15rem;
   }
 }
 
@@ -2419,6 +2521,12 @@ label#upload-label:hover {
   }
   .index-main {
     font-size: 1.45rem;
+  }
+  .seed-phrase-reminder.container {
+    width: 80%;
+  }
+  .faq-image {
+    width: 66.6vw;
   }
 }
 
@@ -2579,7 +2687,7 @@ label#upload-label:hover {
     padding: 0.5rem 1rem;
   }
 
-  .faq-collapsible .collapsible .collapsible-body {
+  .collapsible .faq-body {
     font-size: var(--theme-font-size);
     padding: 1rem;
     /* text-align: justify; */
@@ -2597,8 +2705,13 @@ label#upload-label:hover {
     display: none;
   }
 
+  .seed-phrase-container {
+    font-size: 1rem;
+  }
+
   .seed-phrase-reminder {
     margin-bottom: 20px;
+    font-size: .85rem;
   }
 
   .learn-more {
@@ -2678,26 +2791,46 @@ label#upload-label:hover {
   .index_mobile-box {
     font-size: 1.1rem;
   }
+  .user-registration-header {
+    font-size: 2rem;
+  }
+  .seed-phrase-reminder.container {
+    width: 100%;
+  }
+  .seed-phrase-reminder,
+  .seed-phrase-container {
+    font-size: .8rem;
+  }
+  .index_mobile-box {
+    padding: 25px;
+  }
 }
 
 @media only screen and (max-width: 400px) {
-    .register-collapsible-item {
-        padding: 2rem 1rem 0.75rem;
-    }
-    .login-btn,
-    .login-btn:focus,
-    .back-btn,
-    .back-btn:focus,
-    .logout-btn,
-    .logout-btn:focus,
-    .account-wallet-btn,
-    .account-wallet-btn:focus,
-    .theme-btn,
-    .theme-btn:focus {
-      width: 100%;
-      padding: 0 20px;
-      font-size: 0.67rem;
-    }
+  .register-collapsible-item {
+    padding: 2rem 1rem 0.75rem;
+  }
+  .login-btn,
+  .login-btn:focus,
+  .back-btn,
+  .back-btn:focus,
+  .logout-btn,
+  .logout-btn:focus,
+  .account-wallet-btn,
+  .account-wallet-btn:focus,
+  .theme-btn,
+  .theme-btn:focus {
+    width: 100%;
+    padding: 0 20px;
+    font-size: 0.67rem;
+  }
+  .user-registration-header {
+    font-size: 1.8rem;
+  }
+  .seed-phrase-reminder,
+  .seed-phrase-container {
+    font-size: .75rem;
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -2712,6 +2845,11 @@ label#upload-label:hover {
   .quote.home-zen,
   .gravy-font {
     font-size: .8rem;
+  }
+  .products-header {
+    font-size: 1.35rem;
+    margin: 40px 0;
+    padding: 0 5px;
   }
   .index-content .index-socials div p {
     font-size: .9rem;

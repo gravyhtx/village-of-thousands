@@ -22,8 +22,6 @@ const Register = () =>  {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({...userFormData, [name]: value });
-    console.log(userFormData.email);
-    console.log(event.target.value);
     setErrorClass({
       email: '',
       password: ''
@@ -42,9 +40,6 @@ const Register = () =>  {
       email: email.match(emailFormat) ? '' : ' input-error',
       password: password.match(pwFormat) ? '' : ' input-error'
     })
-    
-    console.log(errorClass)
-    console.log(formError)
   }
 
   const handleFormSubmit = async (event) => {
@@ -68,7 +63,7 @@ const Register = () =>  {
       }
 
       const { token, user } = await response.json();
-        console.log(user.length);
+        // console.log(user.length);
 
       Auth.login(token);
       router.push('/signup-1');
