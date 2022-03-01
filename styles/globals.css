@@ -796,7 +796,7 @@ h2, .h2 {
 }
 
 .text-container.scroll {
-  height: 440px;
+  height: 460px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   /* Hide scrollbar for IE, Edge and Firefox */
@@ -2494,7 +2494,7 @@ label#upload-label:hover {
     font-size: 0.8rem;
   }
   .scroll-box {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
   }
 }
 

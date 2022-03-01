@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Button } from "@mui/material";
 
 import AddressFormContainer from "./AddressFormContainer";
@@ -13,6 +14,8 @@ import SvgContainer from "../components/SvgContainer";
 
 const AccountContainer = () => {
 
+  const router = useRouter();
+
   const [wallet, setWallet] = useState('');
   const [colors, setColors] = useState('');
 
@@ -20,10 +23,6 @@ const AccountContainer = () => {
     setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
     setColors(localStorage.getItem('blockie-color'));
   })
-  // const wallet = userData.walletAddress;
-  // const email = userData.email;
-
-  
 
   const themeVot = ['#111111','#3b4954','#7FCCE4'];
 
@@ -49,7 +48,7 @@ const AccountContainer = () => {
   let color1 = themeColors[0];
   let color2 = themeColors[1];
   let color3 = themeColors[2];
-  let scheme = colors?colors:0;
+  let scheme = themeSchema.colors?themeSchema.colors:0;
 
   useEffect(() => {
     const setColors = (n) => localStorage.setItem('blockie-color', n);
@@ -72,28 +71,29 @@ const AccountContainer = () => {
       color2 = themeColors[2];
       color3 = themeColors[0];
     }
-  
-    const setScheme = () => {
-      console.log('click')
-      if (scheme === 1) {
-        scheme++;
-        setColors(scheme);
-        console.log(scheme);
-      } else if (scheme > 1) {
-        scheme = 0;
-        setColors(scheme);
-        console.log(scheme);
-      } else {
-        scheme++;
-        setColors(scheme);
-        console.log(scheme);
-      }
-      window.location.reload();
+  });
+
+  const setScheme = () => {
+    console.log('click')
+    if (scheme === 1) {
+      scheme++;
+      setColors(scheme);
+      console.log(scheme);
+    } else if (scheme > 1) {
+      scheme = 0;
+      setColors(scheme);
+      console.log(scheme);
+    } else {
+      scheme++;
+      setColors(scheme);
+      console.log(scheme);
     }
-  })
+    router.reload();
+    // window.location.reload();
+  }
   
-  const [ avatar, setAvatar ] = useState(<></>)
-  let AccountAvatar = () => {return avatar}
+  const [ avatar, setAvatar ] = useState(<></>);
+  let AccountAvatar = () => { return avatar };
   const UserBlockie = () => {
     return (
     <Blockie
@@ -108,7 +108,7 @@ const AccountContainer = () => {
         spotcolor: color3
     }}/>)
   }
-  const Logo = () => {return (<SvgContainer src={Avatar} classes="no-avatar" />)}
+  const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
   const [userData, setUserData] = useState([]);
   // const userDataLength = Object.keys(userData).length;
   
@@ -117,10 +117,10 @@ const AccountContainer = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        // if(!token) {
-        //   window.location.assign('/login');
-        //   return false
-        // }
+        if(!token) {
+          window.location.assign('/login');
+          return false
+        }
 
         const response = await getSingleUser(token);
 
@@ -160,17 +160,6 @@ const AccountContainer = () => {
   // var dataURL = canvas.toDataURL();
   // console.log(dataURL);
   // const blockie = document.write('<img src="'+img+'"/>');
-  
-
-  // console.log(userData.walletAddress,"data")
-  // console.log(wallet,"local")
-
-  // const blockieSeed = (email, wallet) => {
-  //   const a = email.split('@');
-  //   const b = wallet.substring(2, 12);
-  //   const output = a+" "+b
-  //   console.log(output);
-  // }
 
   return (
     <>
@@ -178,7 +167,8 @@ const AccountContainer = () => {
       <br/>
       <div className="blockie-container">
         <AccountAvatar/>
-        {userData.walletAddress
+      </div>
+      {userData.walletAddress
         ?<Button
           node="button"
           className="blockie-colors not-a-button monospace"
@@ -186,13 +176,13 @@ const AccountContainer = () => {
           <span className="blockie-colors-text">[CHANGE COLORS]</span>
         </Button>
         :<></>}
-        <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
-        <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
+      <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
+      <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
+
+      <div className="account-wallet">
+      <div className="user-wallet-header">WALLET</div>
+      <Web3Wallet />
       </div>
-    </div>
-    <div className="account-wallet">
-    <div className="user-wallet-header">WALLET</div>
-    <Web3Wallet />
     </div>
     <AddressFormContainer />
     </>

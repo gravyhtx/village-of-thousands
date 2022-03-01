@@ -9,7 +9,8 @@ const Register = () =>  {
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', mnemonic:''});
   const [formError, setFormError] = useState({ email: '', password: '' });
-  const [errorClass, setErrorClass] = useState({ email: '', password: '' })
+  const [errorClass, setErrorClass] = useState({ email: '', password: '' });
+  const [pass, setPass] = useState(false);
 
   const router = useRouter();
 
@@ -31,7 +32,13 @@ const Register = () =>  {
   function formValidation(email, password) {
     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, one uppercase and one lowercase letter
-
+    if (email.match(emailFormat) && password.match(pwFormat)) {
+      setPass(true);
+      console.log('email',email.match(emailFormat));
+      console.log('password',password.match(pwFormat));
+    } else {
+      setPass(false);
+    }
     setFormError({
       email: email.match(emailFormat) ? '' : errorElements[0],
       password: password.match(pwFormat) ? '' : errorElements[1]
@@ -48,12 +55,9 @@ const Register = () =>  {
     event.stopPropagation();
 
     formValidation(userFormData.email, userFormData.password);
-    // const form = event.currentTarget;
-    // if(form.checkValidity() === false) {
-    if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    console.log(pass);
+
+    // if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
 
     try {
       const response = await createUser(userFormData);
@@ -63,10 +67,13 @@ const Register = () =>  {
       }
 
       const { token, user } = await response.json();
-        // console.log(user.length);
-
-      Auth.login(token);
-      router.push('/signup-1');
+      console.log(user.length);
+      console.log(pass);
+      
+      if(pass) {
+        Auth.login(token);
+        router.push('/signup-1');
+      }
 
     } catch (err) {
       console.error(err);
@@ -102,7 +109,7 @@ const Register = () =>  {
         </div>
         <div className='input-field col'>
           <input
-              name="password"
+            name="password"
             type="password"
             aria-labelledby="user-register-password"
             className={"input-field" + errorClass.password}
@@ -111,7 +118,6 @@ const Register = () =>  {
             value={userFormData.password} />
             {formError.password}
         </div>
-          
       </div>
       <div className="center-text">
         <Button

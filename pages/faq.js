@@ -39,14 +39,13 @@ const Faq = () => {
   const question = () => {
     return (
       questions.map((q, index) =>
-        <div id={"scrollToEl-"+index}>
+        <div id={"scrollToEl-"+index} key={index}>
         <Accordion
           className={expanded === index ? "collapsible active" : "collapsible"}
           expanded={expanded === index}
           onChange={handleChange(index)}
           ref={accordElem}
-          disableGutters
-          key={index}>
+          disableGutters>
           <AccordionSummary className="faq-question-header" onClick={scroll()}>
             <span className="faq-number">{(index+1) < 10 ? ("00"+(index+1)+"//") : ("0"+(index+1)+"//")}&emsp;</span>
             {q.question}
