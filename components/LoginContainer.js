@@ -8,8 +8,8 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import RandomQuote from '../components/dynamic-content/RandomQuote';
 
-const LoginContainer = ({ state, message }) =>  {
-  const [expanded, setExpanded] = useState(state || 'login');
+const LoginContainer = ({ name, message }) =>  {
+  const [expanded, setExpanded] = useState(name || 'login');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

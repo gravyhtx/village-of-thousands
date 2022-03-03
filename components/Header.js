@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 // import Logo from "../images/header.svg";
 // import Image from 'next/image';
-import ImageContainer from "./ImageContainer";
+// import ImageContainer from "./ImageContainer";
 import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
@@ -19,7 +19,6 @@ const Header = () => {
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-    let notificationBar = document.getElementById('notification-bar');
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -36,7 +35,6 @@ const Header = () => {
       } catch (err) {
         console.error(err);
       }
-      notificationBar.classList.remove('hide');
     };
     // console.log(userData)
     getUserData();
@@ -45,7 +43,6 @@ const Header = () => {
   // const getWallet = localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses');
 
   let siteName = SiteData.name;
-  let abbv = SiteData.abbreviation.toLowerCase();
   let notification;
 
   // const { asPath, pathname } = withRouter();
@@ -70,18 +67,22 @@ const Header = () => {
       <div className="navbar-container black" id="header-container">
         <Link className="navbar-brand container" href="/" id="header-link-container">
           <div className="header-img-container" id="header-img-container">
-            <div className={path === "/" ? "header-img animate__animated animate__fadeInDown " + abbv + "-txt-header" : abbv + "-txt-header header-img"}>
+            <div className={
+              path === "/"
+              ? "header-img animate__animated animate__fadeInDown vot-txt-header"
+              : "vot-txt-header header-img" }>
               <SvgContainer
                 layout="responsive"
                 src={HeaderImg}
                 id="header-img"
                 draggable="false"
-                description={siteName ? siteName + " Logo" : "Website Logo"}
+                description="Village of Thousands Logo"
               />
             </div>
           </div>
         </Link>
-        {userData.walletAddress ? <></>
+        {userData.walletAddress
+          ? <></>
           : <div id="notification-bar"><NotificationBar text={notification} link={notificationLink} /></div>
         }
       </div>

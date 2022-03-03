@@ -5836,9 +5836,9 @@
   }
   
   .collapsible {
-    border-top: 1px solid #ddd;
+    /* border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    border-left: 1px solid #ddd; */
     /* margin: 0.5rem 0 1rem 0; */
   }
 
@@ -5856,7 +5856,7 @@
     line-height: 1.5;
     padding: 1rem;
     background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
   }
   
   .collapsible-header:focus {
