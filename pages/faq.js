@@ -31,29 +31,21 @@ const Faq = () => {
   const accordElem = useRef(null);
   const scroll = () => {
     scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
-    console.log(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
-    console.log(expanded);
   }
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  // GET 'ETH' + 'BTC' PRICES //
-  // cryptoConverter(40);
-  // UPDATE COIN PRICES //
-  // setInterval(() => {CryptoConverter(40)}, 15000);
-
   const question = () => {
     return (
       questions.map((q, index) =>
-        <div id={"scrollToEl-"+index}>
+        <div id={"scrollToEl-"+index} key={index}>
         <Accordion
           className={expanded === index ? "collapsible active" : "collapsible"}
           expanded={expanded === index}
           onChange={handleChange(index)}
           ref={accordElem}
-          disableGutters
-          key={index}>
+          disableGutters>
           <AccordionSummary className="faq-question-header" onClick={scroll()}>
             <span className="faq-number">{(index+1) < 10 ? ("00"+(index+1)+"//") : ("0"+(index+1)+"//")}&emsp;</span>
             {q.question}

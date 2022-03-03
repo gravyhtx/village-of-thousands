@@ -8,15 +8,22 @@ import Auth from '../utils/auth';
 const Register = () =>  {
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', mnemonic:''});
-  const [formError, setFormError] = useState({ email: '', password: '' });
-  const [errorClass, setErrorClass] = useState({ email: '', password: '' })
+  const [formError, setFormError] = useState({ email: '', password: '', passwordSpacing: '' });
+  const [errorClass, setErrorClass] = useState({ email: '', password: '' });
+  const [pass, setPass] = useState(false);
+
+  useEffect(() => {
+    handleFormSubmit();
+    console.log(errorClass);
+  }, [pass])
 
   const router = useRouter();
 
   const errorElements = [
-    <div className='signup-error error-message italics' id='email-error'> Please enter a valid email address.</div>,
-    <div className='signup-error error-message italics' id='password-error'> Password must be between 6 to 20
-    characters withat least one numeric digit, one uppercase and one lowercase letter.</div>
+    <div className='signup-error error-message italics' id='email-error'>Please enter a valid email address.</div>,
+    <span className='signup-error error-message italics' id='password-error'>Password must be between 6 to 20
+    characters withat least one numeric digit, one uppercase, and one lowercase letter.</span>,
+    <span className='signup-error error-message italics' id='password-error'>Password cannot contain spaces.</span>
   ]
 
   const handleInputChange = (event) => {
@@ -24,7 +31,8 @@ const Register = () =>  {
     setUserFormData({...userFormData, [name]: value });
     setErrorClass({
       email: '',
-      password: ''
+      password: '',
+      passwordSpacing: ''
     })
   }
 
@@ -32,28 +40,40 @@ const Register = () =>  {
     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, one uppercase and one lowercase letter
 
+    const pwFormatSpaces = /^\S*$/;  // No white space
+
+    if (emailFormat.test(email) && pwFormat.test(password) && pwFormatSpaces.test(password)) {
+      setPass(true);
+      // console.log('passing statements have been activated')
+    } else {
+      // console.log('failing statements have been activated')
+      setPass(false);
+    }
     setFormError({
       email: email.match(emailFormat) ? '' : errorElements[0],
-      password: password.match(pwFormat) ? '' : errorElements[1]
+      password: password.match(pwFormat) ? '' : errorElements[1],
+      passwordSpacing: password.match(pwFormatSpaces) ? '' : errorElements[2]
     })
     setErrorClass({
       email: email.match(emailFormat) ? '' : ' input-error',
-      password: password.match(pwFormat) ? '' : ' input-error'
+      password: (password.match(pwFormat) || password.match(pwFormatSpaces)) ? '' : ' input-error',
     })
   }
 
-  const handleFormSubmit = async (event) => {
+  const formHandlerPass = () => {
+    formValidation(userFormData.email, userFormData.password, userFormData.passwordSpacing);
+  }
 
-    event.preventDefault();
-    event.stopPropagation();
+  const handleFormSubmit = async () => {
 
-    formValidation(userFormData.email, userFormData.password);
-    // const form = event.currentTarget;
-    // if(form.checkValidity() === false) {
-    if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
-      event.preventDefault();
-      event.stopPropagation();
+    // event.preventDefault();
+    // event.stopPropagation();
+    console.log(errorClass)
+
+    if(!pass) {
+      return 
     }
+    // if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
 
     try {
       const response = await createUser(userFormData);
@@ -63,10 +83,13 @@ const Register = () =>  {
       }
 
       const { token, user } = await response.json();
-        // console.log(user.length);
-
-      Auth.login(token);
-      router.push('/signup-1');
+      console.log(user.length);
+      console.log(pass);
+      
+      if(pass) {
+        Auth.login(token);
+        router.push('/signup-1');
+      }
 
     } catch (err) {
       console.error(err);
@@ -93,7 +116,7 @@ const Register = () =>  {
             id="user-register-email_input"
             onChange={handleInputChange}
             value={userFormData.email} />
-          {formError.email}
+            {formError.email}
           </div>
       </div>
       <div className="login-input-container" id='user-register-container'>
@@ -102,23 +125,24 @@ const Register = () =>  {
         </div>
         <div className='input-field col'>
           <input
-              name="password"
+            name="password"
             type="password"
             aria-labelledby="user-register-password"
             className={"input-field" + errorClass.password}
             id="user-register-password_input"
             onChange={handleInputChange}
             value={userFormData.password} />
-            {formError.password}
+            <div>{formError.password}
+            {formError.password && formError.passwordSpacing ? <span>&nbsp;</span> : <></>}
+            {formError.passwordSpacing}</div>
         </div>
-          
       </div>
       <div className="center-text">
         <Button
           node="button"
           waves="light"
           className="login-btn"
-          onClick={handleFormSubmit}
+          onClick={formHandlerPass}
         >
           Create Account
         </Button>

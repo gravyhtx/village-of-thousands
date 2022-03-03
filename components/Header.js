@@ -9,7 +9,7 @@ import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
-// import { getSingleUser } from '../utils/API';
+import { getSingleUser } from '../utils/API';
 import HeaderImg from '../public/images/header.svg';
 
 const Header = () => {
@@ -24,15 +24,14 @@ const Header = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         
-        // const response = await getSingleUser(token);
+        const response = await getSingleUser(token);
 
-        // console.log(token)
-        // if (!response.ok) {
-        //   throw new Error('something went wrong!');
-        // }
+        if (!response.ok) {
+          throw new Error('something went wrong!');
+        }
 
-        // const user = await response.json();
-        // setUserData(user);
+        const user = await response.json();
+        setUserData(user);
 
       } catch (err) {
         console.error(err);
