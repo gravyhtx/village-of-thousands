@@ -56,7 +56,7 @@ const Register = () =>  {
     })
     setErrorClass({
       email: email.match(emailFormat) ? '' : ' input-error',
-      password: (password.match(pwFormat) || password.match(pwFormatSpaces)) ? '' : ' input-error',
+      password: (password.match(pwFormat) && password.match(pwFormatSpaces)) ? '' : ' input-error',
     })
   }
 
@@ -138,14 +138,12 @@ const Register = () =>  {
         </div>
       </div>
       <div className="center-text">
-        <Button
-          node="button"
-          waves="light"
+        <button
           className="login-btn"
           onClick={formHandlerPass}
         >
           Create Account
-        </Button>
+        </button>
       </div>
     </>
   )      

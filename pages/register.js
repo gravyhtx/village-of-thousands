@@ -2,7 +2,7 @@ import LoginContainer from "../components/LoginContainer";
 
 const Register = () => {
   return (
-    <LoginContainer state="register" />
+    <LoginContainer name="register" />
   )
 }
 

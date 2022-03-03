@@ -89,13 +89,12 @@ const Login = () =>  {
       </div>
     </div>
     <div className="center-text">
-      <Button
-        node='button'
+      <button
         onClick={handleFormSubmit}
         className='login-btn'
       >
         SIGN IN
-      </Button>
+      </button>
     </div>
     </>
   )   

@@ -126,30 +126,20 @@ const AddressForm = () => {
       <br/>
       {windowLocation === "/signup-2"
       ?<div className='user-register-finish'>
-      <Button
-        node="button"
-        style={{
-            width: '250px'
-        }}
-        waves="light"
+      <button
         className="account-wallet-btn"
         onClick={handleFormSubmit}
       >
-        {"COMPLETE REGISTRATION"}
-      </Button>
+        COMPLETE REGISTRATION
+      </button>
       </div>
       :<div className='user-address-edit'>
-      <Button
-        node="button"
-        style={{
-            width: '250px'
-        }}
-        waves="light"
+      <button
         className="account-wallet-btn"
         onClick={handleFormSubmit}
       >
         EDIT ADDRESS
-      </Button>
+      </button>
       </div>}
     </div>
     </>

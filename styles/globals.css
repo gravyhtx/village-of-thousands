@@ -1029,10 +1029,12 @@ h2, .h2 {
 }
 
 .Mui-expanded .collapsible-header {
-  color: var(--theme-primary-light-color);
+  color: var(--theme-primary-light-color) !important;
   /* font-size: var(--theme-font-size-xl); */
   /* font-size: var(--responsive-font-size-xxl); */
   text-shadow: 0 0 20px #ffffff50;
+  -webkit-transition: 500ms ease-in-out;
+  transition: 500ms ease-in-out;
 }
 
 .collapsible-header,
@@ -1042,8 +1044,13 @@ h2, .h2 {
   justify-content: center;
   background-color: #0b0b0b !important;
   padding: .5rem 2rem;
-  color: var(--button-bg-disabled);
+  color: var(--button-bg-disabled) !important;
   cursor: default;
+  -webkit-transition: 500ms ease-in-out;
+  transition: 500ms ease-in-out;
+  /* border: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid white; */
 }
 
 .collapsible-header .MuiAccordionSummary-content {
@@ -1060,13 +1067,10 @@ h2, .h2 {
   color: var(--theme-header-color)
 }
 
-.login-collapsible-item {
-  padding: 2rem 2rem 1rem;
-  border-bottom: 2px solid #ddd;
-}
+.login-collapsible-item,
 .register-collapsible-item {
-  padding: 2rem 2rem .75rem;
-  border-bottom: none;
+  padding: 2rem 2rem 1rem !important;
+  border-top: 2px solid #ddd;
 }
 
 
@@ -1096,6 +1100,10 @@ h2, .h2 {
   max-width: 75vw;
   padding: 15px;
   display: flex;
+}
+
+.btn-floating {
+  box-shadow: none !important;
 }
 
 .btn-floating.btn-large {
@@ -1145,6 +1153,8 @@ h2, .h2 {
   /* color: #aaaaaa; */
   background-color: transparent;
   padding: 0;
+  box-shadow: none !important;
+  line-height: 40px;
 }
 
 .action-nav,
@@ -1200,7 +1210,7 @@ button.btn-floating.navigation-link:focus {
 
 .nav-icon {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
 }
 
 /* MOBILE NAV */
@@ -1237,12 +1247,11 @@ button.btn-floating.navigation-link:focus {
 .signup-collapsible {
   margin-top: 10px;
   margin-bottom: 30px;
-  border: 2px solid white;
   box-shadow: 3px 3px 0 #7fcce4;
 }
 
 .signup-collapsible .collapsible {
-    border: none;
+  border: 2px solid white;
 }
 
 .signup-error.error-message {
@@ -1283,14 +1292,23 @@ button.btn-floating.navigation-link:focus {
 .account-wallet-btn:focus,
 .theme-btn,
 .theme-btn:focus {
-  width: 200px;
+  width: 250px;
   height: 50px;
-  background-color: var(--button-bg-darker);
-  color: var(--theme-primary-light-color);
-  border: 2px solid #7fcce4;
+  background-color: var(--button-bg-darker) !important;
+  color: var(--theme-primary-light-color) !important;
+  border: 2px solid #7fcce4 !important;
   box-shadow: 5px 5px 2px black;
-  margin: 20px 0;
-  border-radius: 0;
+  margin: 20px 0 !important;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+  -webkit-transition: 750ms ease-in-out;
+  transition: 750ms ease-in-out;
 }
 
 .login-btn:hover,
@@ -1895,7 +1913,7 @@ label#upload-label:hover {
 }
 
 .faq-collapsible.container {
-  border: 1px solid white;
+  border: 1px solid white !important;
   border-radius: 0;
 }
 
@@ -1905,6 +1923,8 @@ label#upload-label:hover {
   background: var(--darker-gradient);
   text-shadow: 0 0 8px #ffffff25;
   padding: 4rem;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
 }
 
 .collapsible .faq-question-header {
@@ -1913,6 +1933,8 @@ label#upload-label:hover {
   justify-content: left;
   font-size: var(--theme-font-size-md);
   padding: 1rem 2rem;
+  border-bottom: 1px solid white !important;
+  border-right: 1px solid white;
 }
 
 .collapsible.active .faq-question-header {
@@ -1977,7 +1999,7 @@ label#upload-label:hover {
   background-color: #0c0d0e;
   border: 5px solid var(--theme-secondary-dark-color);
   border-radius: 50px;
-  margin: 25px auto;
+  margin: 25px auto 50px;
   padding: 40px 20px;
   box-shadow: 4px 5px #353535;
 }
@@ -2004,6 +2026,7 @@ label#upload-label:hover {
 .account-wallet .wallet-info {
   cursor: default;
   color: var(--theme-disabled-color);
+  text-overflow: ellipsis;
 }
 
 .blockie-container {
@@ -2161,6 +2184,8 @@ label#upload-label:hover {
 
 .account-logout .logout-btn {
   border: 3px solid var(--button-bg-focus);
+  background-color: #00000000 !important;
+  border-color: #7fcce450 !important;
 }
 .account-logout .logout-btn:hover {
   border-color: #7fcce4;
@@ -2750,6 +2775,10 @@ label#upload-label:hover {
     padding: 0 5px;
   }
 
+  .account-wallet .wallet-info {
+    font-size: 18px;
+  }
+
 }
 @media only screen and (max-width: 700px) {
   .index-content .index-socials.col.break,
@@ -2804,6 +2833,9 @@ label#upload-label:hover {
   .index_mobile-box {
     padding: 25px;
   }
+  .account-wallet .wallet-info {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (max-width: 400px) {
@@ -2831,6 +2863,9 @@ label#upload-label:hover {
   .seed-phrase-container {
     font-size: .75rem;
   }
+  .account-wallet .wallet-info {
+    font-size: 12px;
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -2853,6 +2888,9 @@ label#upload-label:hover {
   }
   .index-content .index-socials div p {
     font-size: .9rem;
+  }
+  .account-wallet .wallet-info {
+    font-size: 10px;
   }
 }
 
@@ -3013,6 +3051,7 @@ input.input-field {
 .fixed-action-btn {
   float: right;
 }
+
 .fixed-action-btn.toolbar {
   animation: fadeIn 1s;
   -webkit-animation: fadeIn 1s;
@@ -3020,6 +3059,7 @@ input.input-field {
   -o-animation: fadeIn 1s;
   -ms-animation: fadeIn 1s;
 }
+
 .fixed-action-btn.toolbar.active {
   position: fixed;
   height: 56px;
@@ -3030,7 +3070,14 @@ input.input-field {
   -ms-animation: fadeIn 2s;
 }
 
-.waves-effect.waves-light .waves-ripple{background-color:#87b1d852}
+.waves-effect.waves-light .waves-ripple { background-color:#87b1d852 }
+
+.collapsible-header,
+.collapsible-header:active,
+.collapsible-header:focus-visible {
+  /* border-top: 2px solid white !important; */
+  /* border-bottom: 2px solid white !important; */
+}
 
 
 /* ANIMATIONS */

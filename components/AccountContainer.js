@@ -43,7 +43,7 @@ const AccountContainer = () => {
     }
   }
 
-  console.log(themeSchema("vot", themeColors))
+  // console.log(themeSchema("vot", themeColors))
 
   let color1 = themeColors[0];
   let color2 = themeColors[1];
@@ -131,7 +131,7 @@ const AccountContainer = () => {
         }
 
         const user = await response.json();
-        // console.log(user)
+        console.log(user)
         setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
@@ -169,12 +169,11 @@ const AccountContainer = () => {
         <AccountAvatar/>
       </div>
       {userData.walletAddress
-        ?<Button
-          node="button"
+        ?<button
           className="blockie-colors not-a-button monospace"
           onClick={setScheme}>
           <span className="blockie-colors-text">[CHANGE COLORS]</span>
-        </Button>
+        </button>
         :<></>}
       <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
       <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
