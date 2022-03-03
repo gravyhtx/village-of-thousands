@@ -66,7 +66,7 @@ const Test = () =>  {
 
   return (
     <DefaultLayout>
-    <div className='login-collapsible-item'>
+    {/* <div className='login-collapsible-item'>
       <div className='login-input-container' id='user-login-container'>
         <div id='user-login-email'>Email</div>
         <TextField
@@ -112,7 +112,7 @@ const Test = () =>  {
     <div><span className='bold'>ETH</span>{crypto.lrc}</div>
     <div><span className='bold'>ETH</span>{crypto.api3}</div>
     <div><span className='bold'>ETH</span>{crypto.mkr}</div>
-    <div><span className='bold'>ETH</span>{crypto.sol}</div>
+    <div><span className='bold'>ETH</span>{crypto.sol}</div> */}
     </DefaultLayout>
   )   
 }

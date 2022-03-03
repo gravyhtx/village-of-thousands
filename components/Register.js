@@ -8,16 +8,22 @@ import Auth from '../utils/auth';
 const Register = () =>  {
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', mnemonic:''});
-  const [formError, setFormError] = useState({ email: '', password: '' });
+  const [formError, setFormError] = useState({ email: '', password: '', passwordSpacing: '' });
   const [errorClass, setErrorClass] = useState({ email: '', password: '' });
   const [pass, setPass] = useState(false);
+
+  useEffect(() => {
+    handleFormSubmit();
+    console.log(errorClass);
+  }, [pass])
 
   const router = useRouter();
 
   const errorElements = [
-    <div className='signup-error error-message italics' id='email-error'> Please enter a valid email address.</div>,
-    <div className='signup-error error-message italics' id='password-error'> Password must be between 6 to 20
-    characters withat least one numeric digit, one uppercase and one lowercase letter.</div>
+    <div className='signup-error error-message italics' id='email-error'>Please enter a valid email address.</div>,
+    <span className='signup-error error-message italics' id='password-error'>Password must be between 6 to 20
+    characters withat least one numeric digit, one uppercase, and one lowercase letter.</span>,
+    <span className='signup-error error-message italics' id='password-error'>Password cannot contain spaces.</span>
   ]
 
   const handleInputChange = (event) => {
@@ -25,38 +31,48 @@ const Register = () =>  {
     setUserFormData({...userFormData, [name]: value });
     setErrorClass({
       email: '',
-      password: ''
+      password: '',
+      passwordSpacing: ''
     })
   }
 
   function formValidation(email, password) {
     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, one uppercase and one lowercase letter
-    if (email.match(emailFormat) && password.match(pwFormat)) {
+
+    const pwFormatSpaces = /^\S*$/;  // No white space
+
+    if (emailFormat.test(email) && pwFormat.test(password) && pwFormatSpaces.test(password)) {
       setPass(true);
-      console.log('email',email.match(emailFormat));
-      console.log('password',password.match(pwFormat));
+      // console.log('passing statements have been activated')
     } else {
+      // console.log('failing statements have been activated')
       setPass(false);
     }
     setFormError({
       email: email.match(emailFormat) ? '' : errorElements[0],
-      password: password.match(pwFormat) ? '' : errorElements[1]
+      password: password.match(pwFormat) ? '' : errorElements[1],
+      passwordSpacing: password.match(pwFormatSpaces) ? '' : errorElements[2]
     })
     setErrorClass({
       email: email.match(emailFormat) ? '' : ' input-error',
-      password: password.match(pwFormat) ? '' : ' input-error'
+      password: (password.match(pwFormat) || password.match(pwFormatSpaces)) ? '' : ' input-error',
     })
   }
 
-  const handleFormSubmit = async (event) => {
+  const formHandlerPass = () => {
+    formValidation(userFormData.email, userFormData.password, userFormData.passwordSpacing);
+  }
 
-    event.preventDefault();
-    event.stopPropagation();
+  const handleFormSubmit = async () => {
 
-    formValidation(userFormData.email, userFormData.password);
-    console.log(pass);
+    // event.preventDefault();
+    // event.stopPropagation();
+    console.log(errorClass)
 
+    if(!pass) {
+      return 
+    }
     // if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
 
     try {
@@ -100,7 +116,7 @@ const Register = () =>  {
             id="user-register-email_input"
             onChange={handleInputChange}
             value={userFormData.email} />
-          {formError.email}
+            {formError.email}
           </div>
       </div>
       <div className="login-input-container" id='user-register-container'>
@@ -116,7 +132,9 @@ const Register = () =>  {
             id="user-register-password_input"
             onChange={handleInputChange}
             value={userFormData.password} />
-            {formError.password}
+            <div>{formError.password}
+            {formError.password && formError.passwordSpacing ? <span>&nbsp;</span> : <></>}
+            {formError.passwordSpacing}</div>
         </div>
       </div>
       <div className="center-text">
@@ -124,7 +142,7 @@ const Register = () =>  {
           node="button"
           waves="light"
           className="login-btn"
-          onClick={handleFormSubmit}
+          onClick={formHandlerPass}
         >
           Create Account
         </Button>

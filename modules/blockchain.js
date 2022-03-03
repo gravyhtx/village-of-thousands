@@ -28,7 +28,7 @@ export const cryptoConverter = ( price ) => {
 
   // let ping = 0     // Remove all "ping" comments to test 
   async function convert(coin, api_url, price) {
-    useEffect(() => {
+    // useEffect(() => {
       const cost = Number(price);
       let response = await fetch(api_url);
       const data = await response.json();
@@ -37,7 +37,7 @@ export const cryptoConverter = ( price ) => {
       const total = Number(c_usd*cost);
       let c_display = total.toFixed(6) + " " + coin;
       localStorage.setItem(coin+'_bank', c_display);
-    })
+    // })
     return localStorage.getItem(coin+'_bank');
   }
 
