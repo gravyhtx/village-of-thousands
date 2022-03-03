@@ -1,119 +1,119 @@
-import { useState } from 'react';
-import { Link, useRouter } from 'next/router'
-import { TextField, Button } from '@mui/material';
+// import { useState } from 'react';
+// import { Link, useRouter } from 'next/router'
+// import { TextField, Button } from '@mui/material';
 
-import DefaultLayout from '../templates/DefaultLayout';
+// import DefaultLayout from '../templates/DefaultLayout';
 
-import { loginUser } from '../utils/API';
-import Auth from '../utils/auth';
+// import { loginUser } from '../utils/API';
+// import Auth from '../utils/auth';
 
-import { cryptoConverter, gemini  } from '../modules/blockchain';
+// import { cryptoConverter, gemini  } from '../modules/blockchain';
 
-const Test = () =>  {
+// const Test = () =>  {
 
-  const router = useRouter();
+//   const router = useRouter();
 
-  gemini();
+//   gemini();
 
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+//   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({...userFormData, [name]: value });
-  }
+//   const handleInputChange = (event) => {
+//     const { name, value } = event.target;
+//     setUserFormData({...userFormData, [name]: value });
+//   }
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
 
-    const form = event.currentTarget;
+//     const form = event.currentTarget;
 
-    if(form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+//     if(form.checkValidity() === false) {
+//         event.preventDefault();
+//         event.stopPropagation();
+//     }
 
-    try {
+//     try {
 
-      const response = await loginUser(userFormData);
+//       const response = await loginUser(userFormData);
 
-      if(!response.ok) {
-          throw new Error('something went wrong!');
-      }
+//       if(!response.ok) {
+//           throw new Error('something went wrong!');
+//       }
 
-      const { token, user } = await response.json();
-      console.log(user);
+//       const { token, user } = await response.json();
+//       console.log(user);
 
-      Auth.login(token);
+//       Auth.login(token);
 
-      router.push('/');
+//       router.push('/');
 
-    } catch (err) {
-      console.error(err);
-    }
+//     } catch (err) {
+//       console.error(err);
+//     }
 
-    setUserFormData({
-        email: '',
-        password: ''
-    })
-  }
+//     setUserFormData({
+//         email: '',
+//         password: ''
+//     })
+//   }
 
-  const crypto = {
-    eth: currentEth,
-    api3: currentEth,
-    mkr: currentEth,
-    sol: currentEth
-  }
+//   const crypto = {
+//     eth: currentEth,
+//     api3: currentEth,
+//     mkr: currentEth,
+//     sol: currentEth
+//   }
 
-  return (
-    <DefaultLayout>
-    {/* <div className='login-collapsible-item'>
-      <div className='login-input-container' id='user-login-container'>
-        <div id='user-login-email'>Email</div>
-        <TextField
-          email
-          className='input-field' 
-          id='user-login-email_input'
-          aria-labelledby='user-login-email'
-          name='email'
-          onChange={handleInputChange}
-          value={userFormData.email}
-          validate
-        />
-      </div>
-    <div className="login-input-container" id="user-login-container">
-      <div id="user-login-password">
-      Password&nbsp;
-      <Link href="/recover-password">
-      <span className="forgot-password">{"// "}<u className='forgot-password-link'>Forgot password?</u></span>
-      </Link>
-      </div>
-      <TextField 
-        className='input-field' 
-        id='user-login-password_input'
-        aria-labelledby='user-login-password'
-        type='password'
-        name='password'
-        onChange={handleInputChange}
-        value={userFormData.password}
-      />
-    </div>
-    <div className="center-text">
-      <Button
-        node='button'
-        onClick={handleFormSubmit}
-        className='login-btn'
-      >
-        SIGN IN
-      </Button>
-    </div>
-    </div>
-    <h1>TRACKER</h1>
-    <div><span className='bold'>ETH</span>{crypto.eth}</div>
-    <div><span className='bold'>ETH</span>{crypto.lrc}</div>
-    <div><span className='bold'>ETH</span>{crypto.api3}</div>
-    <div><span className='bold'>ETH</span>{crypto.mkr}</div>
-    <div><span className='bold'>ETH</span>{crypto.sol}</div> */}
-    </DefaultLayout>
-  )   
-}
-export default Test;
+//   return (
+//     <DefaultLayout>
+//     {/* <div className='login-collapsible-item'>
+//       <div className='login-input-container' id='user-login-container'>
+//         <div id='user-login-email'>Email</div>
+//         <TextField
+//           email
+//           className='input-field' 
+//           id='user-login-email_input'
+//           aria-labelledby='user-login-email'
+//           name='email'
+//           onChange={handleInputChange}
+//           value={userFormData.email}
+//           validate
+//         />
+//       </div>
+//     <div className="login-input-container" id="user-login-container">
+//       <div id="user-login-password">
+//       Password&nbsp;
+//       <Link href="/recover-password">
+//       <span className="forgot-password">{"// "}<u className='forgot-password-link'>Forgot password?</u></span>
+//       </Link>
+//       </div>
+//       <TextField 
+//         className='input-field' 
+//         id='user-login-password_input'
+//         aria-labelledby='user-login-password'
+//         type='password'
+//         name='password'
+//         onChange={handleInputChange}
+//         value={userFormData.password}
+//       />
+//     </div>
+//     <div className="center-text">
+//       <Button
+//         node='button'
+//         onClick={handleFormSubmit}
+//         className='login-btn'
+//       >
+//         SIGN IN
+//       </Button>
+//     </div>
+//     </div>
+//     <h1>TRACKER</h1>
+//     <div><span className='bold'>ETH</span>{crypto.eth}</div>
+//     <div><span className='bold'>ETH</span>{crypto.lrc}</div>
+//     <div><span className='bold'>ETH</span>{crypto.api3}</div>
+//     <div><span className='bold'>ETH</span>{crypto.mkr}</div>
+//     <div><span className='bold'>ETH</span>{crypto.sol}</div> */}
+//     </DefaultLayout>
+//   )   
+// }
+// export default Test;
