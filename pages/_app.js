@@ -5,8 +5,9 @@ import '../styles/animate.css';
 import '../styles/fonts.css';
 import '../styles/globals.css';
 
+import withAuth from '../utils/withAuth';
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
   <React.StrictMode>
   <Component {...pageProps} />
@@ -14,4 +15,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App;

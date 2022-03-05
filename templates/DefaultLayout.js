@@ -1,4 +1,5 @@
 import { useWindowSize, screenWidth } from '../modules/getWindow';
+import { UserDataProvider } from '../components/context/UserDataContext';
 import Head from 'next/head';
 import TopNav from '../components/TopNav';
 // import NavMobile from './NavMobile';
@@ -9,6 +10,7 @@ import ScrollToTop from '../components/ScrollToTop';
 
 export default function DefaultLayout({ children }) {
   return (
+    <UserDataProvider>
     <div className="animate__animated animate__fadeIn" id="layout">
       <Head>
         <meta charset="utf-8" />
@@ -28,5 +30,6 @@ export default function DefaultLayout({ children }) {
       <Footer />
       {/* <NavDesktop /> */}
     </div>
+    </UserDataProvider>
   )
 }

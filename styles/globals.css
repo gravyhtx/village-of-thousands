@@ -1588,6 +1588,10 @@ label#upload-label:hover {
   padding: 30px 0;
 }
 
+.pw-recovery-section-header {
+  margin-bottom: 15px;
+}
+
 .pw-recovery-email {
   padding: 0 25px;
 }
@@ -2184,9 +2188,10 @@ label#upload-label:hover {
 
 .account-logout .logout-btn {
   border: 3px solid var(--button-bg-focus);
-  background-color: #00000000 !important;
+  background-color: #00000020 !important;
   border-color: #7fcce450 !important;
 }
+
 .account-logout .logout-btn:hover {
   border-color: #7fcce4;
   background-color: #7fcce433;

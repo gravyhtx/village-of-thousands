@@ -14,7 +14,6 @@ const Register = () =>  {
 
   useEffect(() => {
     handleFormSubmit();
-    console.log(errorClass);
   }, [pass])
 
   const router = useRouter();
@@ -68,7 +67,6 @@ const Register = () =>  {
 
     // event.preventDefault();
     // event.stopPropagation();
-    console.log(errorClass)
 
     if(!pass) {
       return 
@@ -83,7 +81,7 @@ const Register = () =>  {
       }
 
       const { token, user } = await response.json();
-      console.log(user.length);
+      // console.log(user.length);
       console.log(pass);
       
       if(pass) {

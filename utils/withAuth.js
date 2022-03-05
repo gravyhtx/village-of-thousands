@@ -8,11 +8,12 @@ const withAuth = Component => {
 
     // If user is not logged in, return login component
     if (!Auth.loggedIn()) {
+      console.log('bang');
       return (
         <LoginContainer state="login" />
       );
     }
-
+    console.log('bang BANG');
     // If user is logged in, return original component
     return (
       <Component {...props} />

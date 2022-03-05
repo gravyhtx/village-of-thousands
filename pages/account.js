@@ -6,7 +6,7 @@ import AccountContainer from "../components/AccountContainer";
 // import BackToTop from "../components/BackToTop";
 
 import Auth from '../utils/auth';
-
+import withAuth from "../utils/withAuth";
 
 const Account = () => {
 
@@ -33,4 +33,4 @@ const Account = () => {
   )
 }
 
-export default Account;
+export default withAuth(Account);

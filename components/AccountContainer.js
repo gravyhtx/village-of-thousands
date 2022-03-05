@@ -17,7 +17,7 @@ const AccountContainer = () => {
   const router = useRouter();
 
   const [wallet, setWallet] = useState('');
-  const [colors, setColors] = useState('');
+  // const [colors, setColors] = useState('');
 
   useEffect(() => {
     setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
@@ -117,21 +117,16 @@ const AccountContainer = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if(!token) {
-          window.location.assign('/login');
-          return false
-        }
-
         const response = await getSingleUser(token);
 
         // const response = await loadAwait(token);
 
         if(!response.ok){
-          // throw new Error('something went wrong!');
+          throw new Error('something went wrong!');
         }
 
         const user = await response.json();
-        console.log(user)
+        // console.log(user)
         setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
