@@ -16,17 +16,12 @@ const Account = () => {
       <h1 className="account-header">Account</h1>
       <AccountContainer />
       <div className="account-logout">
-        <Button
-          node="button"
-          style={{
-            width: '250px'
-          }}
-          waves="light"
+        <button
           className="logout-btn"
           onClick={Auth.logout}
         >
           LOG OUT
-        </Button>
+        </button>
       </div>
     </div>
     </DefaultLayout>

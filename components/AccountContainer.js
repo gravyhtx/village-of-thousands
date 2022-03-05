@@ -21,7 +21,7 @@ const AccountContainer = () => {
 
   useEffect(() => {
     setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
-    setColors(localStorage.getItem('blockie-color'));
+    // setColors(localStorage.getItem('blockie-color'));
   })
 
   const themeVot = ['#111111','#3b4954','#7FCCE4'];

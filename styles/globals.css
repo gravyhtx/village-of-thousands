@@ -2383,7 +2383,7 @@ label#upload-label:hover {
   text-shadow: 3px 3px 0px var(--theme-primary-dark-highlight);
 }
 .lost-text {
-  font-size: var(--theme-font-size-lg);
+  font-size: 1.8rem;
 }
 .location-error-section .lost-text {
   margin-bottom: 20px;
