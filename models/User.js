@@ -68,7 +68,7 @@ const userSchema = new Schema(
     },
     completeRegistration: {
       type: Boolean,
-      default: false
+      default: true
     },
     blockie: {
       type: String,
