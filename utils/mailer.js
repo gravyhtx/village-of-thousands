@@ -18,7 +18,7 @@ exports.sendConfirmationEmail = function({ toUser, hash }) {
             <h3> Suh Duhhhd ${toUser.email}</h3>
             <p>Thank you for registering</p>
 
-            <p>Click here to activate your account <a target="_blank" href="${process.env.URL}/api/users/active/${hash}">Link </a></p>
+            <p>Click here to activate your account <a target="_blank" href="${process.env.URL}/api/users/activate/${hash}">Link </a></p>
             `
         }
 
