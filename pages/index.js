@@ -11,6 +11,8 @@ import SocialCircles from '../components/SocialCircles';
 
 import Pixels from '../public/images/art/choose_your_vot.png';
 import Hope from '../public/images/art/hope.png';
+
+import { useWindowSize } from '../modules/getWindow';
 // import LoadComponents from '../modules/LoadComponents';
 
 const Home = () => {
@@ -92,19 +94,19 @@ const Home = () => {
       <Hero image={HeroImage} />
       <div className="index-section animate__animated animate__fadeIn">
         <div className="container index-main">
-          <TextContainer
+          {useWindowSize().width <= 880 ? <TextContainer
             containerClasses={mobile.containerClasses}
             text={mobile.p}
             textClasses={mobile.textClasses}
             containerId={mobile.id}
-            />
+            /> :
           <TextContainer
             border={main.border}
             containerClasses={main.containerClasses}
             text={main.p}
             textClasses={main.textClasses}
             containerId={main.id}
-            />
+            />}
         </div>
         <div className="index-quote italics center">
           <RandomQuote className={"home-zen"} type={"zen"} />

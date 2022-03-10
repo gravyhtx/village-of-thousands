@@ -50,7 +50,7 @@ const FaqContent = () => {
         passion for skateboard culture, offering a platform to share in a collective journey towards a common goal
         of sustainability. With support from each other we can maintain the physical and mental well being and clarity
         we seek within to achieve the most positive effect we can offer to the world.</>,
-        <>We are on an everyday mission to better ourselves and our brand and give back to our community.
+        <>We are on an everyday mission to better ourselves and our brand.
         Positivity breeds positivity so the best investments we can make are in ourselves and our community so
         that our VoT Enthusiasts will have the means to invest in themselves and their extended communities
         all around the world.</>,
@@ -80,7 +80,7 @@ const FaqContent = () => {
     {
       "question": "Why will VoT be selling NFT-authenticated apparel and products?",
       "answer": [
-        <>The website will be among the first decentralized web apps to combine digital,
+        <>The website will be among the first decentralized web apps to combine digital
         blockchain-authentication with physical product sales.</>,
         <>After our first SZN drop, we will sell our products linked to authenticated NFTs for potential
         collectors, investors, and VoT Enthusiasts. NFTs are just one amazing example of what Web 3.0 has to
@@ -267,8 +267,7 @@ const FaqContent = () => {
         <a className="link underline" target="_blank"
         rel="noreferrer">here</a></Link> or message our developers on Instagram
         (<Link href="https://www.instagram.com/gravydesignco/"><a className="link underline" target="_blank"
-        rel="noreferrer">@gravydesignco</a></Link>
-        or <Link href="https://www.instagram.com/villageofthousands/">
+        rel="noreferrer">@gravydesignco</a></Link> or <Link href="https://www.instagram.com/villageofthousands/">
         <a className="link underline"target="_blank" rel="noreferrer">@villageofthousands</a></Link>) to report
         any bugs or issues with our website.</>
       ]
