@@ -263,9 +263,8 @@ const FaqContent = () => {
     {
       "question": "Where can I report bugs?",
       "answer": [
-        <>Please visit our GitHub repository
-        <Link href="https://github.com/gravyhtx/village-of-thousands"><a className="link underline"
-        target="_blank"
+        <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">
+        <a className="link underline" target="_blank"
         rel="noreferrer">here</a></Link> or message our developers on Instagram
         (<Link href="https://www.instagram.com/gravydesignco/"><a className="link underline" target="_blank"
         rel="noreferrer">@gravydesignco</a></Link>
