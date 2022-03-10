@@ -1,7 +1,8 @@
 import dbConnect from "../../../utils/dbConnect";
 import { signToken, authMiddleware } from "../../../utils/jwAuth";
 import User from '../../../models/User';
-
+import PendingUser from '../../../models/PendingUser';
+import { sendConfirmationEmail } from '../../../utils/mailer'
 dbConnect();
 
 export default async (req, res) => {
@@ -19,10 +20,21 @@ export default async (req, res) => {
     //   break;
     case 'POST':
       try {
-        const user = await User.create(req.body);
-        
+        const pUser = await PendingUser.findOne({email: req.body.email});
+        const pUserCheck = await User.findOne({email: req.body.email});
+
+        if(pUser || pUserCheck) {
+          return res.status(422).json({ success: false, message: "User email already exists"})
+        }
+
+        const user = await PendingUser.create(req.body);
+        console.log(user._id)
+        const confirmation = await sendConfirmationEmail({toUser: user, hash: user._id.toString()})
+
+        console.log(confirmation)
+
         const token = signToken(user);
-        res.status(201).json({ token, user });
+        res.status(201).json({ token, user, message: 'You have been registered! Please check your email for verification' });
       } catch (err) {
         res.status(400).json({ success: false, message: 'User Creation Error' });
       }

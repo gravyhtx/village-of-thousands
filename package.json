@@ -1,6 +1,7 @@
 {
   "name": "village-of-thousands",
   "private": true,
+  "homepage": "http://villageofthousands.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
