@@ -1117,6 +1117,16 @@ h2, .h2 {
   /* opacity: .7; */
 }
 
+.nav-link {
+  display: flex;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+}
 
 /* TOP BAR NOTIFICATION */
 

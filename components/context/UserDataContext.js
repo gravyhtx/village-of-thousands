@@ -45,14 +45,14 @@ export const UserDataProvider = props => {
     };
 
     fetchUser();
-    console.log(user)
+    // console.log(user)
   }, []);
 
   // const providerValue = useMemo(() => {(userData, setUserData)}, [userData, setUserData]);
 
   useEffect(() => {
-    Auth.loggedIn ? console.log('logged in') : console.log('not logged in');
-    console.log(userData);
+    // Auth.loggedIn ? console.log('logged in') : console.log('not logged in');
+    // console.log(userData);
   })
 
   return (

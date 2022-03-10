@@ -20,7 +20,7 @@ const AddressForm = ({ fields }) => {
           className="input-field"
           id={"user-register-"+field.name+"_input"}
           aria-labelledby="user-register-address"
-          name={field.placeholder}
+          name={field.name}
           placeholder={field.placeholder}
           // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
           onChange={handleInputChange}
