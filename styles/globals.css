@@ -2600,7 +2600,7 @@ label#upload-label:hover {
   .yuge-spacer { margin: 40px 0; }
 
   .header-img-container {
-    max-width: 95vw;
+    max-width: 95%;
   }
 
   .notify, i { font-size: 11px; }
