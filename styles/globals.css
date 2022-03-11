@@ -2461,7 +2461,7 @@ label#upload-label:hover {
   .desktop.only { display: block; }
   
   .header-img {
-    width: 90vw;
+    width: 100%;
     /* padding: 20px; */
   }
   .mobile-nav {
