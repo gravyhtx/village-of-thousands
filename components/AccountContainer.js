@@ -163,13 +163,13 @@ const AccountContainer = () => {
       <div className="blockie-container">
         <AccountAvatar/>
       </div>
-      {userData.walletAddress
+      {/* {userData.walletAddress
         ?<button
           className="blockie-colors not-a-button monospace"
           onClick={setScheme}>
           <span className="blockie-colors-text">[CHANGE COLORS]</span>
         </button>
-        :<></>}
+        :<></>} */}
       <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
       <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
 

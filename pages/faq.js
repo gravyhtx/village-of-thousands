@@ -3,8 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import DefaultLayout from "../templates/DefaultLayout";
 
 import { Accordion, AccordionDetails } from "@mui/material";
-import AccordionSummary from '@mui/material/AccordionSummary'
-;
+import AccordionSummary from '@mui/material/AccordionSummary';
 import SiteImage from "../components/SiteImage";
 import Questions from "../components/FaqContent";
 import RandomQuote from "../components/dynamic-content/RandomQuote";
@@ -18,23 +17,25 @@ import scrollToEl from "../modules/scrollToEl";
 const Faq = () => {
   const questions = Questions();
 
-  let checkId = "";
-  const qId = Number(checkId-1);
-  useEffect(() => {
-    checkId = window.location.hash ? window.location.hash.substring(1) : "";
-    if (checkId) {
-      scrollToEl(("scrollToEl-"+qId),200);
-    }
-  })
-
   const [expanded, setExpanded] = useState(undefined);
+  const [scrollLoad, setScrollLoad] = useState(true);
   const accordElem = useRef(null);
+
   const scroll = () => {
-    scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
+    // scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
+    scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : null);
   }
   const handleChange = (panel) => (event, newExpanded) => {
+    setScrollLoad(false);
     setExpanded(newExpanded ? panel : false);
   };
+
+  let checkId = "";
+  const qId = (checkId-1);
+  useEffect(() => {
+    checkId = window.location.hash ? window.location.hash.substring(1) : "";
+    scrollLoad ? setExpanded(checkId-1) : null;
+  });
 
   const question = () => {
     return (
