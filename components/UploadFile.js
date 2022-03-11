@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const UploadFile = ( data, success, instructions, instructionsClasses, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
 
   let active = false;
   let fileName = "No file chosen";
   let fileNameElement;
-  let buttonElement
+  let buttonElement;
+
   useEffect(() => {
     fileNameElement = document.getElementById('file-name');
     buttonElement = document.getElementById('upload-label');
@@ -22,6 +23,9 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
   if (active) {
     uploadStyle();
   }
+
+  const [uploadData, setUploadData] = useState();
+
   const upload = async (e) => { // Get Seed Phrase from User Files
     e.preventDefault();
     const reader = new FileReader();
@@ -29,9 +33,10 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
       success = true;
       data = (e.target.result);
       console.log(data);
-      useEffect(() => {
-        localStorage.setItem('upload_data', data);
-      })
+      setUploadData(data);
+      // useEffect(() => {
+      //   localStorage.setItem('upload_data', data);
+      // })
     };
     if (e.target.files[0]){
       reader.readAsText(e.target.files[0]);
@@ -40,6 +45,7 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
     } else {
       data = '';
     }
+    data = uploadData;
   }
   return (
     <>

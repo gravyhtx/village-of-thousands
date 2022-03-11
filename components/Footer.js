@@ -6,14 +6,14 @@ const Footer = () => {
   const row1 = [
     { link: "/", name: "HOME" },
     { link: "/shop", name: "SHOP" },
-    { link: "/about", name: "ABOUT" },
+    { link: "/faq#1", name: "ABOUT" },
     { link: "/cart", name: "CART" }
   ];
 
   const row2 = [
     { link: "/faq", name: "FAQ" },
     { link: "/news", name: "NEWS" },
-    { link: "/contact", name: "CONTACT" }
+    { link: "/faq#10", name: "CONTACT" }
   ];
 
   const spacer = <> &emsp;{"//"}&emsp;</>;

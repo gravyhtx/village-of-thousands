@@ -20,6 +20,8 @@ exports.sendConfirmationEmail = function({ toUser, hash }) {
 
             <p>Click here to activate your account <a target="_blank" href="${process.env.URL}/api/users/activate/${hash}">Link </a></p>
             `
+            // SWITCH TO "/activate?id=${hash}" AND CHECK IF USER MATCHES ID?
+            // IF USER IS NOT LOGGED IN SEND ID TO LOGIN PAGE -- ONCED LOGGED IN CHECK WILL BE CONFIRMED (OR DENIED)
         }
 
         transporter.sendMail(message, function(err, info) {

@@ -54,7 +54,7 @@ const UserPasswordRecovery = () => {
   useEffect(() => {
     localStorage.removeItem('upload_data');
   })
-  let txtSeed = '';
+  let [txtSeed, setTextSeed] = '';
   let seed = "";
   let [pass, setPass] = useState(false);
   let [reset, setReset] = useState(false);
@@ -92,7 +92,7 @@ const UserPasswordRecovery = () => {
       seedArr.push(input);
     }
     seed = seedArr.join(' ').toLowerCase();
-    txtSeed = localStorage.getItem('upload_data')
+    // txtSeed = localStorage.getItem('upload_data')
     console.log("seed: "+ seed);
     console.log("txtSeed: "+ txtSeed);
     console.log("Email (Data): "+userData.email);
@@ -131,6 +131,8 @@ const UserPasswordRecovery = () => {
     }
     return inputs;
   }
+
+  console.log(txtSeed);
 
   seedPhrase = SeedPhraseInput();
 
