@@ -52,10 +52,10 @@ const NewPassword = () => {
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      window.location.assign('/404');
-      return false;
-    }
+    // if (!token) {
+    //   window.location.assign('/404');
+    //   return false;
+    // }
 
     try {
       const response = await updateUser(userFormData, token);

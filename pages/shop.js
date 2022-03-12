@@ -52,7 +52,7 @@ const ProductsPage = () =>  {
     containerClasses: "no-bkg no-margin side-padding justify-text",
     textClasses: "big learn-more",
     p1: <p>To learn more about our Village of Thousands and get updates on our Web 3.0 release, head over to
-    our "<Link className="link underline" href="/faq"><a>Frequently Ask Questions</a></Link>" page. 
+    our "<Link href="/faq"><a className="link underline">Frequently Ask Questions</a></Link>" page. 
     You can start your journey as a VoT Enthusiast by creating an account and following us on our socials.
     We look forward to having you grow with us.</p>
   }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Icon } from '@mui/material';
+import { Icon } from '@mui/material';
 import Auth from '../utils/auth';
 
 const TopNav = () => {
@@ -21,7 +21,6 @@ const TopNav = () => {
             <button
               color="inherit"
               className={"btn-floating btn-floating navigation-link nav-"+item.name}
-              node="button"
             ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
           </a></Link>
         </div>

@@ -17,11 +17,11 @@ const AccountContainer = () => {
   const router = useRouter();
 
   const [wallet, setWallet] = useState('');
-  const [colors, setColors] = useState('');
+  // const [colors, setColors] = useState('');
 
   useEffect(() => {
     setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
-    setColors(localStorage.getItem('blockie-color'));
+    // setColors(localStorage.getItem('blockie-color'));
   })
 
   const themeVot = ['#111111','#3b4954','#7FCCE4'];
@@ -117,11 +117,6 @@ const AccountContainer = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if(!token) {
-          window.location.assign('/login');
-          return false
-        }
-
         const response = await getSingleUser(token);
 
         // const response = await loadAwait(token);
@@ -135,7 +130,7 @@ const AccountContainer = () => {
         }
 
         const user = await response.json();
-        console.log(user)
+        // console.log(user)
         setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
@@ -172,13 +167,13 @@ const AccountContainer = () => {
       <div className="blockie-container">
         <AccountAvatar/>
       </div>
-      {userData.walletAddress
+      {/* {userData.walletAddress
         ?<button
           className="blockie-colors not-a-button monospace"
           onClick={setScheme}>
           <span className="blockie-colors-text">[CHANGE COLORS]</span>
         </button>
-        :<></>}
+        :<></>} */}
       <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
       <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
 

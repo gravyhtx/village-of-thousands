@@ -21,11 +21,6 @@ const UserPasswordRecovery = () => {
     try {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-      // if(!token) {
-      //   window.location.assign('/login');
-      //   return false
-      // }
-
       const response = await getSingleUser(token);
 
       if(!response.ok){
@@ -59,7 +54,7 @@ const UserPasswordRecovery = () => {
   useEffect(() => {
     localStorage.removeItem('upload_data');
   })
-  let txtSeed = '';
+  let [txtSeed, setTextSeed] = '';
   let seed = "";
   let [pass, setPass] = useState(false);
   let [reset, setReset] = useState(false);
@@ -69,90 +64,85 @@ const UserPasswordRecovery = () => {
   let submitButton;
   let emailInput;
 
+  let email;
+  let button;
+  let container;
+
   useEffect(() => {
     // Checks and Handle Submit
     // const captcha = localStorage.getItem('hCaptcha_token');
-    const email = document.getElementById('email');
-    const button = document.getElementById('submit');
-    const container = document.getElementById('seed-container');
-
-    const handleChange = () => {
-      if(!pass && reset) {
-        setReset(false);
-        container.style.borderColor = '#222224';
-        email.style.borderColor = '#9e9e9e';
-        button.style.borderColor = '#7FCCE4';
-        button.style.backgroundColor = '#111111';
-      }
-    }
-    
-    const handleSubmit = () => {
-      seedArr = [];
-      for (let i=0; i < 9; i++) {
-        const input = document.getElementById('pw-'+i).value;
-        seedArr.push(input);
-      }
-      seed = seedArr.join(' ').toLowerCase();
-      txtSeed = localStorage.getItem('upload_data')
-      console.log("seed: "+ seed);
-      console.log("txtSeed: "+ txtSeed);
-      console.log("Email (Data): "+userData.email);
-      console.log("Email (Value): "+email.value);
-      if ((seed === phrase && seedArr.length ===  9 && email.value === userData.email) || (txtSeed === phrase && email.value === userData.email)) {
-        setPass(true)
-        // console.log("pass: "+pass)
-        // console.log(captcha);
-        container.style.borderColor = '#222224';
-        email.style.borderColor = '#9e9e9e';
-        button.style.borderColor = '#7FCCE4';
-        button.style.backgroundColor = '#111111';
-      } else if (email.value !== userData.email) {
-        setReset(true);
-        email.style.borderColor = '#D24B4B';
-        button.style.borderColor = '#D24B4B';
-        button.style.backgroundColor = '#D24B4B10';
-        button.style.borderColor = '#D24B4B';
-      }  else if ((seed !== phrase && seedArr.length ===  9) || (txtSeed !== phrase)) {
-        setReset(true);
-        container.style.borderColor = '#D24B4B';
-        button.style.borderColor = '#D24B4B';
-        button.style.backgroundColor = '#D24B4B10';
-        button.style.borderColor = '#D24B4B';
-      } else {
-        console.log("fail");
-        setReset(true);
-        button.style.borderColor = '#D24B4B';
-        button.style.backgroundColor = '#D24B4B10';
-        button.style.borderColor = '#D24B4B';
-      }
-    }
-    const SeedPhraseInput = () => {
-      let inputs = [];
-      for (let i=0; i < 9; i++) {
-        inputs[i] = <div className="pw-recovery-input col s4" id="pw-recovery-input" key={i}>
-                <input name={"input-"+i} id={"pw-"+i} placeholder={i+1} onChange={handleChange} />
-              </div>
-      }
-      return inputs;
-    }
-
-    seedPhrase = SeedPhraseInput();
-
-    submitButton = <Button
-      node="button"
-      style={{
-        margin: '0 auto',
-        width: '250px'
-      }}
-      waves="light"
-      className="theme-btn"
-      onClick={handleSubmit}
-      id="submit"
-      >SUBMIT</Button>
-
-    emailInput = <div name="email" className="pw-recovery-email" id="pw-recovery-email"><input className="center" id="email" onChange={handleChange} /></div>
-    
+    email = document.getElementById('email');
+    button = document.getElementById('submit');
+    container = document.getElementById('seed-container');
   });
+  const handleChange = () => {
+    if(!pass && reset) {
+      setReset(false);
+      container.style.borderColor = '#222224';
+      email.style.borderColor = '#9e9e9e';
+      button.style.borderColor = '#7FCCE4';
+      button.style.backgroundColor = '#111111';
+    }
+  }
+  
+  const handleSubmit = () => {
+    seedArr = [];
+    for (let i=0; i < 9; i++) {
+      const input = document.getElementById('pw-'+i).value;
+      seedArr.push(input);
+    }
+    seed = seedArr.join(' ').toLowerCase();
+    // txtSeed = localStorage.getItem('upload_data')
+    console.log("seed: "+ seed);
+    console.log("txtSeed: "+ txtSeed);
+    console.log("Email (Data): "+userData.email);
+    console.log("Email (Value): "+email.value);
+    if ((seed === phrase && seedArr.length ===  9 && email.value === userData.email) || (txtSeed === phrase && email.value === userData.email)) {
+      setPass(true)
+      container.style.borderColor = '#222224';
+      email.style.borderColor = '#9e9e9e';
+      button.style.borderColor = '#7FCCE4';
+      button.style.backgroundColor = '#111111';
+    } else if (email.value !== userData.email) {
+      setReset(true);
+      email.style.borderColor = '#D24B4B';
+      button.style.borderColor = '#D24B4B';
+      button.style.backgroundColor = '#D24B4B10';
+      button.style.borderColor = '#D24B4B';
+    }  else if ((seed !== phrase && seedArr.length ===  9) || (txtSeed !== phrase)) {
+      setReset(true);
+      container.style.borderColor = '#D24B4B';
+      button.style.borderColor = '#D24B4B';
+      button.style.backgroundColor = '#D24B4B10';
+      button.style.borderColor = '#D24B4B';
+    } else {
+      setReset(true);
+      button.style.borderColor = '#D24B4B';
+      button.style.backgroundColor = '#D24B4B10';
+      button.style.borderColor = '#D24B4B';
+    }
+  }
+  const SeedPhraseInput = () => {
+    let inputs = [];
+    for (let i=0; i < 9; i++) {
+      inputs[i] = <div className="pw-recovery-input col s4" id="pw-recovery-input" key={i}>
+              <input name={"input-"+i} id={"pw-"+i} placeholder={i+1} onChange={handleChange} />
+            </div>
+    }
+    return inputs;
+  }
+
+  console.log(txtSeed);
+
+  seedPhrase = SeedPhraseInput();
+
+  submitButton = <button
+    className="theme-btn"
+    onClick={handleSubmit}
+    id="submit"
+    >SUBMIT</button>
+
+  emailInput = <div name="email" className="pw-recovery-email" id="pw-recovery-email"><input className="center" id="email" onChange={handleChange} /></div>
 
   const instructions = "GET SEED PHRASE FROM .TXT FILE";
 
@@ -169,13 +159,12 @@ const UserPasswordRecovery = () => {
     </p>
     <br/>
     <div className="pw-recovery-input-container row">
-      EMAIL
-      <br/>
+      <div className="pw-recovery-section-header">EMAIL</div>
       {emailInput}
     </div>
       <br/>
     <div className="pw-recovery-input-container row" id='seed-container'>
-      SEED PHRASE<br/><br/>
+      <div className="pw-recovery-section-header">SEED PHRASE</div>
       {seedPhrase}
     </div>
     <div className="upload-file-instructions upload-seed-phrase sm">{instructions}</div>

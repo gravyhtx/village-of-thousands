@@ -11,6 +11,8 @@ import SocialCircles from '../components/SocialCircles';
 
 import Pixels from '../public/images/art/choose_your_vot.png';
 import Hope from '../public/images/art/hope.png';
+
+import { useWindowSize } from '../modules/getWindow';
 // import LoadComponents from '../modules/LoadComponents';
 
 const Home = () => {
@@ -21,7 +23,7 @@ const Home = () => {
     textClasses: "col s12 index-main gravy-font",
     id: "main-text-container",
     p: <>
-      <div className="row img-main_container desktop only">
+      <div className="row img-main_container">
         <div className="main-text col m12 l6 justify-text">
           <div><span className="weight-6 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
           brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
@@ -46,7 +48,7 @@ const Home = () => {
 
   const mobile = {
     containerClasses: "index_mobile-container no-bkg no-margin no-padding",
-    textClasses: "mobile only justify-text gravy-font",
+    textClasses: "justify-text gravy-font",
     id: "mobile-text-container",
     p: <>
       <div className="index_mobile-box">
@@ -58,6 +60,14 @@ const Home = () => {
           what will help us achieve our vision of building a community with the <span className="weight-7 italics">ability to sustain.</span>
         </div>
       </div>
+      <br/>
+      <div className="row index-main_row">
+        <ImageContainer containerClasses={"img-main mobile only"} imgClasses={"index-main_img"} description={"Hope"} src={Hope} contain />
+        <div className="index-main_row col s12 weight-2 justify-text">We are passionate about minimizing our impact on the environment
+        so we can focus on maximizing our efforts to build our community. Our company uses high quality products and
+        services that prioritize fair trade practices at every step in our development process.
+        </div>
+      </div>
     </>
   }
 
@@ -67,7 +77,7 @@ const Home = () => {
     id: "socials-text-container",
     p: <>
       <div className="index-nft-art col s12 m6 center break">
-        <ImageContainer description="Choose Your VoT" src={Pixels} contain />
+        <ImageContainer containerClasses="contain-md" description="Choose Your VoT" src={Pixels} />
       </div>
       <div className="index-socials col s12 m6 break">
         <div className="right-align index-aside justify-text">
@@ -92,19 +102,21 @@ const Home = () => {
       <Hero image={HeroImage} />
       <div className="index-section animate__animated animate__fadeIn">
         <div className="container index-main">
-          <TextContainer
-            containerClasses={mobile.containerClasses}
-            text={mobile.p}
-            textClasses={mobile.textClasses}
-            containerId={mobile.id}
+          {useWindowSize().width <= 880 ?
+            <TextContainer
+              containerClasses={mobile.containerClasses}
+              text={mobile.p}
+              textClasses={mobile.textClasses}
+              containerId={mobile.id}
+            /> :
+            <TextContainer
+              border={main.border}
+              containerClasses={main.containerClasses}
+              text={main.p}
+              textClasses={main.textClasses}
+              containerId={main.id}
             />
-          <TextContainer
-            border={main.border}
-            containerClasses={main.containerClasses}
-            text={main.p}
-            textClasses={main.textClasses}
-            containerId={main.id}
-            />
+          }
         </div>
         <div className="index-quote italics center">
           <RandomQuote className={"home-zen"} type={"zen"} />

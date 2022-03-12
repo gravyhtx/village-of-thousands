@@ -10,7 +10,10 @@ import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-import HeaderImg from '../public/images/header.svg';
+import HeaderImg from '../public/images/header.png';
+import HeaderSvg from '../public/images/header.svg';
+import ImageContainer from "./ImageContainer";
+import { useWindowSize } from "../modules/getWindow";
 
 const Header = () => {
 
@@ -71,13 +74,21 @@ const Header = () => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              <SvgContainer
-                layout="responsive"
-                src={HeaderImg}
-                id="header-img"
-                draggable="false"
-                description="Village of Thousands Logo"
-              />
+              {useWindowSize().width > 880
+              ? <SvgContainer
+                  layout="responsive"
+                  src={HeaderSvg}
+                  id="header-img"
+                  draggable="false"
+                  description="Village of Thousands Logo"
+                />
+              : <ImageContainer
+                  layout="responsive"
+                  src={HeaderImg}
+                  id="header-img"
+                  draggable="false"
+                  description="Village of Thousands Logo"
+                />}
             </div>
           </div>
         </Link>
