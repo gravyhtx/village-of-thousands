@@ -978,6 +978,11 @@ h2, .h2 {
   margin: 0 auto;
 }
 
+.image-container.contain-md {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
 .image-class {
   display: flex;
   width: 100%;
@@ -1663,11 +1668,11 @@ label#upload-label:hover {
 }
 
 .index-aside_text {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .index-aside_text p {
-  margin: .5em 0 1em;
+  margin: 0 0 1em;
 }
 
 .index_aside-container {
