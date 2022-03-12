@@ -56,4 +56,8 @@ pendingUserSchema.pre('save', async function (next) {
   }
 });
 
+pendingUserSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
 module.exports =  mongoose.models.PendingUser || model('PendingUser', pendingUserSchema);

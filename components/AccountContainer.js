@@ -122,7 +122,11 @@ const AccountContainer = () => {
         // const response = await loadAwait(token);
 
         if(!response.ok){
-          throw new Error('something went wrong!');
+          // throw new Error('something went wrong!');
+          setUserData({
+            email: 'Pending User'
+          })
+          return
         }
 
         const user = await response.json();
