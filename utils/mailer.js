@@ -3,7 +3,9 @@ const nodemailer = require('nodemailer');
 exports.sendConfirmationEmail = function({ toUser, hash }) {
     return new Promise((res, rej) => {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
             auth: {
                 user: process.env.EMAIL_GOOGLE,
                 pass: process.env.EMAIL_GOOGLE_PW
