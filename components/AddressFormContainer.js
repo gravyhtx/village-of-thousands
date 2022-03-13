@@ -86,7 +86,9 @@ const AddressForm = () => {
       // walletAddress: "",
       // walletBalance: "",
       // completed: true
-    })
+    });
+
+    localStorage.removeItem('seed_hex');
     router.push('/');
   }
 
@@ -124,23 +126,23 @@ const AddressForm = () => {
       </div>
       {/* <AddressForm fields={fields} handleChange={handleChange} /> */}
       <br/>
-      {windowLocation === "/signup-2"
-      ?<div className='user-register-finish'>
-      <button
-        className="account-wallet-btn"
-        onClick={handleFormSubmit}
-      >
-        COMPLETE REGISTRATION
-      </button>
-      </div>
-      :<div className='user-address-edit'>
-      <button
-        className="account-wallet-btn"
-        onClick={handleFormSubmit}
-      >
-        EDIT ADDRESS
-      </button>
-      </div>}
+      {windowLocation === "/signup-2" ?
+        <div className='user-register-finish'>
+        <button
+          className="account-wallet-btn"
+          onClick={handleFormSubmit}
+        >
+          COMPLETE REGISTRATION
+        </button>
+        </div>
+        : <div className='user-address-edit'>
+        <button
+          className="account-wallet-btn"
+          onClick={handleFormSubmit}
+        >
+          EDIT ADDRESS
+        </button>
+        </div>}
     </div>
     </>
   )

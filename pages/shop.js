@@ -11,6 +11,7 @@ import Image1 from '../public/images/szn/001/the_movement.png';
 import SocialCircles from '../components/SocialCircles';
 
 import website from '../config/site-data.json';
+import SiteImage from '../components/SiteImage';
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -91,11 +92,17 @@ const ProductsPage = () =>  {
       </div>
       <div className="row product-aside box-container">
         <div className="product-aside-image col m12 l6">
-          <ImageContainer
+          {/* <ImageContainer
             containerClasses={img1.containerClasses}
             imgClasses={img1.imgClasses}
             description={img1.description}
             src={Image1}
+          /> */}
+          <SiteImage
+            containerClasses={img1.containerClasses}
+            imgClasses={img1.imgClasses}
+            description={img1.description}
+            images={Image1}
           />
         </div>
         <div className="col m12 l6">

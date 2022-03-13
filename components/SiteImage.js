@@ -18,7 +18,7 @@ const SiteImage = ({ images, width, containerClasses, imgClasses, description })
     let imgSize = {};
     if(width){imgSize = {maxWidth: width}};
 
-    const n = Math.floor(Math.random()*images.length);
+    const n = images ? Math.floor(Math.random()*images.length) : 0;
     const image = Array.isArray(images) ? images[n] : images;
     
     return (
