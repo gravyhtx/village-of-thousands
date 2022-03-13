@@ -34,7 +34,7 @@ const ProductsPage = () =>  {
     textClasses: "gravy-font justify-text products-text-main",
     // h1: `Welcome to our ${website.szn} collection.`,
     p1: <>
-      <p>We are currently preparing for our first SZN, and will be dropping the first wave of product online in January 2022. We will
+      <p>We are currently preparing for our first SZN, and will be dropping the first wave of product online in 2022. We will
       be featuring our VoT Logo on <b>100% organic <span className="italics">Supima®</span> cotton</b> apparel with all of our
       materials GROWN IN THE USA.
       </p><p>We believe in  a crypto future so are preparing for the Web 3.0 movement by selling our physical products with collectible
