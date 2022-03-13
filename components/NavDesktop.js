@@ -1,63 +1,37 @@
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Button, Icon } from '@mui/material';
-import Auth from '../utils/auth';
-// import BlockiesIdenticon from "./BlockiesIdenticon";
-// import BlockiesIdenticon from 'blockies/react-component';
+import { Icon } from "@mui/material";
+import Auth from "../utils/auth";
 
+const NavDesktop = () => {
 
-const NavDesktop = ( userData ) => {
+  const account = Auth.loggedIn() ? "/account" : "/login";
+  const navlinks = [
+    { name: "account", ref: "person", link: account, },
+    { name: "products", ref: "remove_red_eye", link: "/shop" },
+    { name: "faq", ref: "all_inclusive", link: "/faq" },
+    { name: "cart", ref: "shopping_cart", link: "/cart" }
+  ];
 
-    const navlinks = []
-    const fingerprint = <Icon className="avatar">fingerprint</Icon>
-    // const account = "/login";
-    const account = Auth.loggedIn() ? "/account" : "/login";
+  const fingerprint = <Icon className="avatar">fingerprint</Icon>;
 
-    return (
-    <div className="fixed-action-btn toolbar desktop">
-        <Button
-        className="btn-floating btn-large action-nav waves-effect waves-light pulse z-depth-1"
-        fab={{
-            direction: 'top',
-            toolbarEnabled: true
-        }}
-        floating
-        icon={fingerprint}
-        large
-        node="button"
-        >
-        <Link href={account}>
-        <a><Button
-        className="btn-floating navigation-link"
-        floating
-        node="button"
-        ><Icon>person</Icon></Button></a>
-        </Link>
-        <Link href="/products">
-        <a><Button
-            className="btn-floating navigation-link"
-            floating
-            node="button"
-            ><Icon>remove_red_eye</Icon></Button></a>
-        </Link>
-        <Link href="/faq">
-        <a><Button
-            className="btn-floating navigation-link"
-            floating
-            node="button"
-            ><Icon>all_inclusive</Icon></Button></a>
-        </Link>
-        <Link href="/cart">
-        <a><Button
-            className="btn-floating navigation-link"
-            floating
-            node="button"
-            ><Icon>shopping_cart</Icon></Button></a>
-        </Link>
-        </Button>
+  return (
+    <div className="nav-desktop">
+      <button className="nav-fab btn-floating btn-large">{fingerprint}</button>
+      <ul className="row nav-links">
+        {navlinks.map((item, index) =>
+          <li className="col s3 nav-link" key={index}>
+            <Link href={item.link}><a>
+              <button
+                color="inherit"
+                className={"btn-floating btn-floating navigation-link nav-"+item.name}
+              ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
+            </a></Link>
+          </li>
+        )}
+      </ul>
     </div>
-        
-    );
+  )
 }
 
 export default NavDesktop;

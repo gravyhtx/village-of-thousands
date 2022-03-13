@@ -978,6 +978,11 @@ h2, .h2 {
   margin: 0 auto;
 }
 
+.image-container.contain-md {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
 .image-class {
   display: flex;
   width: 100%;
@@ -1117,6 +1122,16 @@ h2, .h2 {
   /* opacity: .7; */
 }
 
+.nav-link {
+  display: flex;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+}
 
 /* TOP BAR NOTIFICATION */
 
@@ -1588,6 +1603,10 @@ label#upload-label:hover {
   padding: 30px 0;
 }
 
+.pw-recovery-section-header {
+  margin-bottom: 15px;
+}
+
 .pw-recovery-email {
   padding: 0 25px;
 }
@@ -1649,11 +1668,11 @@ label#upload-label:hover {
 }
 
 .index-aside_text {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .index-aside_text p {
-  margin: .5em 0 1em;
+  margin: 0 0 1em;
 }
 
 .index_aside-container {
@@ -2184,9 +2203,10 @@ label#upload-label:hover {
 
 .account-logout .logout-btn {
   border: 3px solid var(--button-bg-focus);
-  background-color: #00000000 !important;
+  background-color: #00000020 !important;
   border-color: #7fcce450 !important;
 }
+
 .account-logout .logout-btn:hover {
   border-color: #7fcce4;
   background-color: #7fcce433;
@@ -2378,7 +2398,7 @@ label#upload-label:hover {
   text-shadow: 3px 3px 0px var(--theme-primary-dark-highlight);
 }
 .lost-text {
-  font-size: var(--theme-font-size-lg);
+  font-size: 1.8rem;
 }
 .location-error-section .lost-text {
   margin-bottom: 20px;
@@ -2446,7 +2466,7 @@ label#upload-label:hover {
   .desktop.only { display: block; }
   
   .header-img {
-    width: 90vw;
+    width: 100%;
     /* padding: 20px; */
   }
   .mobile-nav {
@@ -2585,7 +2605,7 @@ label#upload-label:hover {
   .yuge-spacer { margin: 40px 0; }
 
   .header-img-container {
-    max-width: 95vw;
+    max-width: 95%;
   }
 
   .notify, i { font-size: 11px; }

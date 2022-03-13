@@ -8,21 +8,20 @@ const FaqContent = () => {
       "question": "Who is the “Village of Thousands”?",
       "answer": [
         <><span className="italics h2"><b>WELCOME TO THE VOT DIGITAL HQ!</b></span></>,
-        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle brand rooted in skateboard culture that sells
-        high quality, sustainable NFT-authenticated apparel and products. We’re a true lifestyle brand,
-        offering an opportunity for us all to build a community of thousands.</>,
+        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle brand
+        rooted in skateboard culture that sells high quality, sustainable, NFT-authenticated apparel and products.
+        We’re a true lifestyle brand, offering an opportunity for us all to build a community of thousands.</>,
         <>VoT was born in Colombia and grown in the USA. The company was formed in 2021 lead by lifelong skateboarder,
         Juancarlos Villamil, with a passion for aesthetics and a commitment to provide the highest quality sustainable
         apparel and products, all grown here in the USA. The team is based out of Houston, TX with contributors from
         around the globe, ready to push forward with a dynamic Web 3.0 brand, built to grow for
         and with our community.</>,
         <>We believe our success relies on the successes we share together as a community. Our constantly
-        expanding community of VoT Enthusiasts share in our vision of a <span className="italics"><b>sustainable future</b></span> with
-        the <span className="italics"><b>ability to sustain.</b></span></>,
+        expanding community of VoT Enthusiasts share in our vision of a <span className="italics"><b>sustainable
+        future</b></span> with the <span className="italics"><b>ability to sustain.</b></span></>,
         <>We encourage discussion so we thought we'd begin here. And since nobody really frequently has been asking us
         questions quite yet, we're using this FAQ to ask our community to <span className="italics"><b>"Frequently Ask
-        Questions"</b></span> with us
-        as we grow as a brand and truly discover who we are and what we can be.</>,
+        Questions"</b></span> with us as we grow as a brand and truly discover who we are and what we can be.</>,
         <>Village of Thousands intends to achieve our collective vision through our brand’s platform and
         utilize our diversity, creativity, and passion to participate in a more sustainable future.</>
       ]
@@ -33,16 +32,14 @@ const FaqContent = () => {
         <>Village of Thousands is committed to using the best sustainability and fair trade practices from
         our products to our packaging to our website. We do our homework and find vendors and materials
         that align with the company’s values to ensure that we can live up to
-        our <span className="weight-5 italics special
-        ">GROWN IN THE USA</span> standards.
+        our <span className="weight-5 italics special">GROWN IN THE USA</span> standards.
         Our goal is to maintain complete transparency and control over our supply chain with fair
         pay wages for anyone that participates in manufacture, design, and development.</>,
         <>Our garments are made from <b>100% organic <span className="italics">Supima®</span> cotton</b> from
-        farms in the USA and manufactured by
-        a vendor that is ISO certified at every step of the process. The designs and tagless stamps are all
-        printed here in the USA. Even our packages are made from 100% recyclable materials, so we encourage
-        you to help us in our efforts by recycling or reusing your packages when you receive some fresh new
-        gear from us.</>,
+        farms in the USA and manufactured by a vendor that is ISO certified at every step of the process. The
+        designs and tagless stamps are all printed here in the USA. Even our packages are made from 100% recyclable
+        materials, so we encourage you to help us in our efforts by recycling or reusing your packages when you
+        receive some fresh new gear from us.</>,
         <>We believe sustainability goes beyond what we can provide for nature alone. It is the impact on our
         environment which includes how we treat ourselves and each other.</>,
         <><span className="italics"><b>SUSTAINABILITY is the ABILITY to SUSTAIN.</b></span></>,
@@ -53,7 +50,7 @@ const FaqContent = () => {
         passion for skateboard culture, offering a platform to share in a collective journey towards a common goal
         of sustainability. With support from each other we can maintain the physical and mental well being and clarity
         we seek within to achieve the most positive effect we can offer to the world.</>,
-        <>We are on an everyday mission to better ourselves and our brand and give back to our community.
+        <>We are on an everyday mission to better ourselves and our brand.
         Positivity breeds positivity so the best investments we can make are in ourselves and our community so
         that our VoT Enthusiasts will have the means to invest in themselves and their extended communities
         all around the world.</>,
@@ -69,7 +66,7 @@ const FaqContent = () => {
       "question": "How can I become part of the community of VoT Enthusiasts?",
       "answer": [
         <>We are currently growing and developing our brand while building our community both online and
-        locally. The best way to be a part of the community right  now  is to follow our social media
+        locally. The best way to be a part of the community right now is to follow our social media
         accounts, buy our apparel when our first SZN drops, and rep our brand.</>,
         <>You can be an early VoT Enthusiast and create your account with an integrated crypto wallet so
         you can be ready for our Web 3.0 expansion. We will announce a date in early 2022 and VoT Enthusiasts
@@ -83,7 +80,7 @@ const FaqContent = () => {
     {
       "question": "Why will VoT be selling NFT-authenticated apparel and products?",
       "answer": [
-        <>The website will be among the first decentralized web apps to combine digital,
+        <>The website will be among the first decentralized web apps to combine digital
         blockchain-authentication with physical product sales.</>,
         <>After our first SZN drop, we will sell our products linked to authenticated NFTs for potential
         collectors, investors, and VoT Enthusiasts. NFTs are just one amazing example of what Web 3.0 has to
@@ -219,13 +216,15 @@ const FaqContent = () => {
       "question": "How will I be receiving my free limited-edition NFT?",
       "answer": [
         <>We are going to release and send the first 200 customers a limited edition NFT from our first digital
-        collection directly to their verified wallets when our Web 3.0 site is ready in early 2022. Your NFT
+        collection directly to their verified wallets when our Web 3.0 site is ready in 2022. Your NFT
         will go directly into your wallet and any files you receive will be available to download directly
         from your Village of Thousands user account. This set of NFTs will vary and rarity and be randomly
         distributed amongst participating VoT Enthusiasts.</>,
         <>In order to receive the NFT you’ll need a wallet connected to your account so we’ve made it easy for
         you to add your wallet with resources to help you prepare for Web 3.0. You’ll need a secure, verified
-        wallet for making crypto purchases and accepting rewards and NFTs from brands like ours.</>,
+        wallet for making crypto purchases and accepting rewards and NFTs from brands like ours. Once you have
+        completed your first purchase we will verify that you are a unique user and send instructions for claiming
+        your first VoT NFT.</>,
         <>While many browsers are beginning to integrate things like wallet extensions and dApp
         support, <a className='link underline' href='https://brave.com/download/' target="_blank"
         rel="noreferrer">Brave Browser</a> is already preloaded with a full suite of Web 3.0 integrated
@@ -264,13 +263,11 @@ const FaqContent = () => {
     {
       "question": "Where can I report bugs?",
       "answer": [
-        <>Please visit our GitHub repository
-        <Link href="https://github.com/gravyhtx/village-of-thousands"><a className="link underline"
-        target="_blank"
+        <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">
+        <a className="link underline" target="_blank"
         rel="noreferrer">here</a></Link> or message our developers on Instagram
         (<Link href="https://www.instagram.com/gravydesignco/"><a className="link underline" target="_blank"
-        rel="noreferrer">@gravydesignco</a></Link>
-        or <Link href="https://www.instagram.com/villageofthousands/">
+        rel="noreferrer">@gravydesignco</a></Link> or <Link href="https://www.instagram.com/villageofthousands/">
         <a className="link underline"target="_blank" rel="noreferrer">@villageofthousands</a></Link>) to report
         any bugs or issues with our website.</>
       ]

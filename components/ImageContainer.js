@@ -11,7 +11,7 @@ const ImageContainer = ({ width, containerClasses, imgClasses, layout, descripti
     svg = svg ? svg : false;
     blur = blur ? "blur" : "";
     drag = drag ? drag : false;
-    contain = contain ? " contain" : ""
+    contain = contain ? " contain" : "";
 
     return (
       <div className={"image-container"+containerClasses+contain}>

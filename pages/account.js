@@ -6,7 +6,7 @@ import AccountContainer from "../components/AccountContainer";
 // import BackToTop from "../components/BackToTop";
 
 import Auth from '../utils/auth';
-
+import withAuth from "../utils/withAuth";
 
 const Account = () => {
 
@@ -16,21 +16,16 @@ const Account = () => {
       <h1 className="account-header">Account</h1>
       <AccountContainer />
       <div className="account-logout">
-        <Button
-          node="button"
-          style={{
-            width: '250px'
-          }}
-          waves="light"
+        <button
           className="logout-btn"
           onClick={Auth.logout}
         >
           LOG OUT
-        </Button>
+        </button>
       </div>
     </div>
     </DefaultLayout>
   )
 }
 
-export default Account;
+export default withAuth(Account);
