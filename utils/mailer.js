@@ -11,7 +11,7 @@ exports.sendConfirmationEmail = function({ toUser, hash }) {
         })
 
         const message = {
-            from: process.env.GOOGLE_USER,
+            from: process.env.EMAIL_GOOGLE,
             to: toUser.email,
             subject: 'Welcome to the Vilage! Confirm your Account',
             html: `
