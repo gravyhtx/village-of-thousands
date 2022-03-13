@@ -25,44 +25,5 @@ export default async (req, res) => {
         res.status(400).json({ success: false, message: 'User Creation Error' });
       }
       break;
-    // case 'POST':
-    //   try {
-    //     const pUser = await PendingUser.findOne({email: req.body.email});
-    //     const pUserCheck = await User.findOne({email: req.body.email});
-
-    //     if(pUser || pUserCheck) {
-    //       return res.status(422).json({ success: false, message: "User email already exists"})
-    //     }
-
-    //     const user = await PendingUser.create(req.body);
-    //     console.log(user._id)
-    //     const confirmation = await sendConfirmationEmail({toUser: user, hash: user._id.toString()})
-
-    //     console.log(confirmation)
-
-    //     const token = signToken(user);
-    //     res.status(201).json({ token, user, message: 'You have been registered! Please check your email for verification' });
-    //   } catch (err) {
-    //     res.status(400).json({ success: false, message: 'User Creation Error' });
-    //   }
-    //   break;
-    // case 'PUT':
-    //   try {
-    //     const authorization = await authMiddleware(req, res);
-        
-    //     if(!authorization) {
-    //       return res.status(400).json({ success: false, message: 'Unauthorized Token' })
-    //     }
-
-    //     const updatedUser =  await User.findOneAndUpdate(
-    //       {_id: authorization._id},
-    //       req.body
-    //     );
-
-    //     res.status(200).json(updatedUser)
-    //   }catch (err) {
-    //     res.status(400).json({ success: false, message: 'User Update Error' });
-    //   }
-    //   break;
   }
 }

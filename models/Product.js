@@ -1,4 +1,7 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema, model } = mongoose;
+mongoose.Promise = global.Promise;
 
 const productSchema = new Schema(
   {
@@ -11,10 +14,18 @@ const productSchema = new Schema(
       type: String,
       required: true
     },
-    product_description: {
-      type: String,
-      required: false
-    },
+    product_image: [
+      {
+        type: String,
+        required: false
+      }
+    ],
+    product_description: [
+      {
+        type: String,
+        required: false
+      }
+    ],
     product_colors: [
       {
         type: String
@@ -34,20 +45,20 @@ const productSchema = new Schema(
       type: String,
       required: false
     },
-    inventory: {
-      type: Number,
-      required: false,
-      min: 0
-    },
+    inventory: [
+      {
+        type: Number,
+        required: false,
+        min: 0
+      }
+    ],
     price: {
       type: Number,
       required: false,
       min: 0.99
     },
-    NFT_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'NFT',
-      required: false
+    NFT_include: {
+      type: Boolean
     }
   },
   {
@@ -57,6 +68,6 @@ const productSchema = new Schema(
   }
 )
 
-const Product = model('Product', productSchema);
+// const Product = model('Product', productSchema);
 
-module.exports = Product;
+module.exports =  mongoose.models.Product || model('Product', productSchema);
