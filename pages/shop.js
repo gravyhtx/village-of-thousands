@@ -38,7 +38,7 @@ const ProductsPage = () =>  {
       be featuring our VoT Logo on <b>100% organic <span className="italics">Supima®</span> cotton</b> apparel with all of our
       materials GROWN IN THE USA.
       </p><p>We believe in  a crypto future so are preparing for the Web 3.0 movement by selling our physical products with collectible
-      digital NFTs and completely integrating our website onto the blockchain by Spring 2022. For our upcoming Winter drop we will
+      digital NFTs and completely integrating our website onto the blockchain. For our upcoming drop we will
       be offering multiple payment options until we are completely on-chain.
       </p><p>If you’d like to be notified for our release then <Link className="link weight-6 underline" href="/register"><a>create
       an account</a></Link> with us today and follow us on Instagram and Twitter so we can keep you updated. Sign up with
