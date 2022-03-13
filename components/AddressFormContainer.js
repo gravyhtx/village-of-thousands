@@ -86,7 +86,9 @@ const AddressForm = () => {
       // walletAddress: "",
       // walletBalance: "",
       // completed: true
-    })
+    });
+
+    localStorage.removeItem('seed_hex');
     router.push('/');
   }
 
@@ -103,44 +105,54 @@ const AddressForm = () => {
       placeholder: 'Zip' },
   ];
 
+  const userAddress = (field) => {
+    return userData.field
+  }
+
+  console.log(userAddress(fields[0]));
+
   return (
     <>
     <div className='register-address-container container'>
       <div className="register-input-container" id="user-register-container">
       <div className="user-register-address-header">ADDRESS</div>
         {fields.map((field, index) => {
-          return <input
-            className="input-field"
-            id={"user-register-"+field.name+"_input"}
-            aria-labelledby="user-register-address"
-            name={field.name}
-            placeholder={field.placeholder}
-            // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
-            onChange={handleInputChange}
-            // value={userData.addressOne?userData.addressOne:''}
-            key={index}
-          />})
+          return (
+            <>
+            <input
+              className="input-field"
+              id={"user-register-"+field.name+"_input"}
+              aria-labelledby="user-register-address"
+              name={field.name}
+              placeholder={field.placeholder}
+              // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
+              onChange={handleInputChange}
+              // value={userData.addressOne?userData.addressOne:''}
+              key={index}
+            />
+            </>
+          )})
         }
       </div>
       {/* <AddressForm fields={fields} handleChange={handleChange} /> */}
       <br/>
-      {windowLocation === "/signup-2"
-      ?<div className='user-register-finish'>
-      <button
-        className="account-wallet-btn"
-        onClick={handleFormSubmit}
-      >
-        COMPLETE REGISTRATION
-      </button>
-      </div>
-      :<div className='user-address-edit'>
-      <button
-        className="account-wallet-btn"
-        onClick={handleFormSubmit}
-      >
-        EDIT ADDRESS
-      </button>
-      </div>}
+      {windowLocation === "/signup-2" ?
+        <div className='user-register-finish'>
+        <button
+          className="account-wallet-btn"
+          onClick={handleFormSubmit}
+        >
+          COMPLETE REGISTRATION
+        </button>
+        </div>
+        : <div className='user-address-edit'>
+        <button
+          className="account-wallet-btn"
+          onClick={handleFormSubmit}
+        >
+          EDIT ADDRESS
+        </button>
+        </div>}
     </div>
     </>
   )

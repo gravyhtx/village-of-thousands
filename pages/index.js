@@ -25,7 +25,7 @@ const Home = () => {
     p: <>
       <div className="row img-main_container">
         <div className="main-text col m12 l6 justify-text">
-          <div><span className="weight-6 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
+          <div style={{'marginTop': '20px'}}><span className="weight-6 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
           brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
           </div>
           <p>Our village is a state of mind. We believe that our dedication to <span className="weight-7 italics">sustainability</span> is

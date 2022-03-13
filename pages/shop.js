@@ -11,6 +11,7 @@ import Image1 from '../public/images/szn/001/the_movement.png';
 import SocialCircles from '../components/SocialCircles';
 
 import website from '../config/site-data.json';
+import SiteImage from '../components/SiteImage';
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -33,11 +34,11 @@ const ProductsPage = () =>  {
     textClasses: "gravy-font justify-text products-text-main",
     // h1: `Welcome to our ${website.szn} collection.`,
     p1: <>
-      <p>We are currently preparing for our first SZN, and will be dropping the first wave of product online in January 2022. We will
+      <p>We are currently preparing for our first SZN, and will be dropping the first wave of product online in 2022. We will
       be featuring our VoT Logo on <b>100% organic <span className="italics">Supima®</span> cotton</b> apparel with all of our
       materials GROWN IN THE USA.
       </p><p>We believe in  a crypto future so are preparing for the Web 3.0 movement by selling our physical products with collectible
-      digital NFTs and completely integrating our website onto the blockchain by Spring 2022. For our upcoming Winter drop we will
+      digital NFTs and completely integrating our website onto the blockchain. For our upcoming drop we will
       be offering multiple payment options until we are completely on-chain.
       </p><p>If you’d like to be notified for our release then <Link className="link weight-6 underline" href="/register"><a>create
       an account</a></Link> with us today and follow us on Instagram and Twitter so we can keep you updated. Sign up with
@@ -91,11 +92,17 @@ const ProductsPage = () =>  {
       </div>
       <div className="row product-aside box-container">
         <div className="product-aside-image col m12 l6">
-          <ImageContainer
+          {/* <ImageContainer
             containerClasses={img1.containerClasses}
             imgClasses={img1.imgClasses}
             description={img1.description}
             src={Image1}
+          /> */}
+          <SiteImage
+            containerClasses={img1.containerClasses}
+            imgClasses={img1.imgClasses}
+            description={img1.description}
+            images={Image1}
           />
         </div>
         <div className="col m12 l6">
