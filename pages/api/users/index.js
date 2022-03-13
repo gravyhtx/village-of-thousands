@@ -36,7 +36,7 @@ export default async (req, res) => {
         const token = signToken(user);
         res.status(201).json({ token, user, message: 'You have been registered! Please check your email for verification' });
       } catch (err) {
-        res.status(400).json({ success: false, message: 'User Creation Error' });
+        res.status(400).json({ success: false, message: 'User Creation Error', error: err });
       }
       break;
     case 'PUT':
