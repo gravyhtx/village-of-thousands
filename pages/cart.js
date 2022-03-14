@@ -28,10 +28,10 @@ const Cart = () => {
   return (
     <DefaultLayout>
 
-      <div>
+      {/* <div>
         yo this is a test
         <button onClick={addToCart} name="vot-test-tee">Add To Cart</button>
-      </div>
+      </div> */}
       <div className="main-conten animate__animated animate__fadeIn" id="content">
         <div className="index-section animate__animated animate__fadeIn cart-page">
           <h1 className="center cart-header">Cart</h1>

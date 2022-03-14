@@ -796,7 +796,7 @@ h2, .h2 {
 }
 
 .text-container.scroll {
-  height: 460px;
+  height: 440px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   /* Hide scrollbar for IE, Edge and Firefox */
