@@ -28,9 +28,13 @@ export default async (req, res) => {
         }
 
         const user = await PendingUser.create(req.body);
+        // const user = {
+        //   email: req.body.email,
+        //   _id: '12345678'
+        // }
         console.log(user._id)
         const confirmation = await sendConfirmationEmail({toUser: user, hash: user._id.toString()})
-
+        // const confirmation = await sendConfirmationEmail()
         console.log(confirmation)
 
         const token = signToken(user);
