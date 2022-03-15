@@ -3,17 +3,16 @@ const nodemailer = require('nodemailer');
 exports.sendConfirmationEmail = function({ toUser, hash }) {
     return new Promise((res, rej) => {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
+            host: 'smtp.ethereal.email',
+            port: 587,
             auth: {
-                user: process.env.EMAIL_GOOGLE,
-                pass: process.env.EMAIL_GOOGLE_PW
+                user: 'joyce.spencer72@ethereal.email',
+                pass: '7RJkd1vTWMEQFce2B5'
             }
-        })
+        });
 
         const message = {
-            from: process.env.EMAIL_GOOGLE,
+            from: "villageofthousands@gmail.com",
             to: toUser.email,
             subject: 'Welcome to the Vilage! Confirm your Account',
             html: `
