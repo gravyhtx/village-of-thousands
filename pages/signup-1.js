@@ -198,7 +198,7 @@ const UserMnemonic = () => {
             <ErrorMessage />
             <FormControlLabel
               label="I have saved my seed phrase."
-              control={<Checkbox checked={checked} onChange={handleChange} />}
+              control={<Checkbox checked={checked} onChange={() => handleChange()} />}
             />
           </div>
           <div className="user-registration-next center">

@@ -21,7 +21,7 @@ export default function DefaultLayout({ children }) {
         <meta name="theme-color" content="#000000" />
         <meta
           name="description"
-          content="Village of Thousands is an apparel company based out of Houston, TX to promote wellness driven by an environmentally conscious lifestyle"
+          content="Village of Thousands is an apparel company based out of Houston, TX to promote wellness driven by an environmentally conscious lifestyle."
         />
       </Head>
       <ScrollToTop />
