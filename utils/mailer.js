@@ -59,7 +59,7 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
     // console.log(process.env.SENDGRID)
     const msg = {
         to: toUser.email,
-        from: "villageofthousands@gmail.com",
+        from: "andreslong92@gmail.com",
         subject: 'Welcome to the Village!',
         test: 'some text for testing',
         html: `<h1> Village ${hash} </h1>`
