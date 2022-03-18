@@ -61,7 +61,9 @@ const Header = () => {
     <>
       Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
       <span className="info-icon" id="info-icon">
+        <Link href="/faq#8"><a>
         <i className="material-icons info-icon">info_outline</i>
+        </a></Link>
       </span>
     </>;
 

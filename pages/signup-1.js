@@ -195,14 +195,27 @@ const UserMnemonic = () => {
               </div>
               <div className='download-seed-phrase container center sm' id='download' onClick={downloadTxtFile}>DOWNLOAD SEED PHRASE TO .TXT</div>
             </div>
-            <ErrorMessage />
+            {/* <ErrorMessage />
             <FormControlLabel
               label="I have saved my seed phrase."
               control={<Checkbox checked={checked} onChange={() => handleChange()} />}
-            />
+            /> */}
           </div>
           <div className="user-registration-next center">
-            <Agree />
+            {/* <Agree /> */}
+            <Button
+              node="button"
+              style={{
+                margin: '0 auto',
+                width: '250px'
+              }}
+              waves="light"
+              className="account-wallet-btn"
+              onClick={handleMnemonicSubmit}
+              suppressHydrationWarning
+            >
+              Next
+            </Button>
           </div>
           <br /><br />
         </div>
