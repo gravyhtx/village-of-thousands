@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from "next/link";
 
 const NotificationBar = ({ text, link }) =>  {
+  let component;
 
-    const component=   
-        <Link href={link} className="nav-link" id="notify-link">
-            <a>
-            <div className="notify" id="notify">
-                {text}
-            </div>
-            </a>
-        </Link>
+  useEffect(() => {
+    component=   
+    <Link href={link}>
+      <a className="nav-link" id="notify-link">
+      <div className="notify" id="notify">
+        {text}
+      </div>
+      </a>
+    </Link>
+  })
 
-    return (
-        <>{text ? component : <></>}</>
-    )
+  return (
+    <>{text ? component : <></>}</>
+  )
 }
 export default NotificationBar;

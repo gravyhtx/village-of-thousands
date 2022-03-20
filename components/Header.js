@@ -28,9 +28,9 @@ const Header = () => {
         
         const response = await getSingleUser(token);
 
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
+        // if (!response.ok) {
+        //   throw new Error('something went wrong!');
+        // }
 
         const user = await response.json();
         setUserData(user);
@@ -57,7 +57,8 @@ const Header = () => {
 
   const notificationLink = "/register"
 
-  notification =
+  useEffect(() => {
+    notification =
     <>
       Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
       <span className="info-icon" id="info-icon">
@@ -66,6 +67,7 @@ const Header = () => {
         </a></Link>
       </span>
     </>;
+  })
 
   return (
     <header className="site-header" id="site-header">
@@ -76,7 +78,7 @@ const Header = () => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {useWindowSize().width > 880
+              {useWindowSize().width > 2400
               ? <SvgContainer
                   layout="responsive"
                   src={HeaderSvg}
