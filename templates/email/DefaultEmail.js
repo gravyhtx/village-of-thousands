@@ -147,7 +147,7 @@ const DefaultEmail = ({ content }) => {
       
     </style>
     <body>
-      <table style="margin: 0px auto;height: 0px;width: 90%;padding: 0px 0px 20px;"><svg version="1.1" id="Layer_1"
+      <div style="margin: 0px auto;height: 0px;width: 90%;padding: 0px 0px 20px;"><svg version="1.1" id="Layer_1"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1100 80" preserveAspectRatio="xMidYMin
       slice" style="height: auto; width: 100%; overflow: visible; left: 0px; top: 0px;"><g
       id="Layer_2_00000054987500142603584780000006078965034674587804_"><g id="Layer_2-2"><polygon points="102.1,3.8 102.1,76.2 82.6,76.2
@@ -182,8 +182,8 @@ const DefaultEmail = ({ content }) => {
       z M432.5,59c-10.3,0-18.3-8.3-18.3-19s8.1-19,18.3-19c10.2,0,18.3,8.3,18.3,19S442.8,59,432.5,59z" style="fill: rgb(255, 255, 255);">
       </path><path d="M693.2,1.2c-22,0-38.7,16.7-38.7,38.8s16.7,38.8,38.7,38.8s38.7-16.7,38.7-38.8S715.2,1.2,693.2,1.2z
       M693.2,59c-10.3,0-18.3-8.3-18.3-19s8.1-19,18.3-19s18.3,8.3,18.3,19S703.5,59,693.2,59z" style="fill: rgb(255, 255, 255);"></path>
-      </g></g></svg></table>
-      <table>${content}</table>
+      </g></g></svg></div>
+      ${content}
       </body>
     </html>`
   )

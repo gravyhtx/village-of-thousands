@@ -15,7 +15,7 @@ import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
 import { useWindowSize } from "../modules/getWindow";
 
-const Header = () => {
+const Header = ({ images }) => {
 
   // Get User Data
   const [userData, setUserData] = useState({});
@@ -55,7 +55,29 @@ const Header = () => {
   const router = useRouter();
   const path = router.pathname;
 
-  const notificationLink = "/register"
+  const notificationLink = "/register";
+
+  const Svg = () => {
+    return (images ? images[0] :
+    <SvgContainer
+      layout="responsive"
+      src={HeaderSvg}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />)
+  }
+  
+  const Png = () => {
+    return (images ? images[1] :
+    <ImageContainer
+      layout="responsive"
+      src={HeaderImg}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />)
+  }
 
   useEffect(() => {
     notification =
@@ -78,7 +100,7 @@ const Header = () => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {useWindowSize().width > 2400
+              {/* {useWindowSize().width > 2400
               ? <SvgContainer
                   layout="responsive"
                   src={HeaderSvg}
@@ -92,7 +114,10 @@ const Header = () => {
                   id="header-img"
                   draggable="false"
                   description="Village of Thousands Logo"
-                />}
+                />} */}
+              {useWindowSize().width > 2400
+                ? <Svg />
+                : <Png />}
             </div>
           </div>
         </Link>

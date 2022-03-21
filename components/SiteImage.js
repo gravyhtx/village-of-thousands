@@ -9,27 +9,29 @@
 // import SpecialOrder from "../public/images/art/special_order.png";
 
 
-const SiteImage = ({ images, width, containerClasses, imgClasses, description }) => {
+const SiteImage = ({ images, width, containerClasses, imgClasses, description, drag }) => {
 
-    let cClass="";
-    if(containerClasses){cClass=" "+containerClasses};
-    let iClass="";
-    if(imgClasses){iClass=" "+imgClasses};
-    let imgSize = {};
-    if(width){imgSize = {maxWidth: width}};
+  let cClass="";
+  if(containerClasses){cClass=" "+containerClasses};
+  let iClass="";
+  if(imgClasses){iClass=" "+imgClasses};
+  let imgSize = {};
+  if(width){imgSize = {maxWidth: width}};
+  drag = drag ? drag : false;
 
-    const n = images ? Math.floor(Math.random()*images.length) : 0;
-    const image = Array.isArray(images) ? images[n] : images;
-    
-    return (
-        <>
-        {images?
-        <div className={"image-container"+cClass}>
-            <img style={imgSize} className={"image-class"+iClass} alt={description} src={image.src} />
-        </div>:<></>
-        }
-        </>
-    )
+  const n = images ? Math.floor(Math.random()*images.length) : 0;
+  const image = Array.isArray(images) ? images[n] : images;
+  console.log(image)
+
+  return (
+    <>
+    {images?
+    <div className={"image-container"+cClass}>
+      <img style={imgSize} className={"image-class"+iClass} alt={description} src={image.src} draggable={drag} />
+    </div>:<></>
+    }
+    </>
+  )
 }
 
 export default SiteImage;
