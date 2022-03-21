@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
-const Login = () =>  {
+const Login = ({ activation }) =>  {
 
   const router = useRouter();
 
@@ -40,12 +40,11 @@ const Login = () =>  {
 
       Auth.login(token);
 
-      router.push('/');
+      if(!activation){ router.push('/') };
 
     } catch (err) {
       console.error(err);
     }
-
     setUserFormData({
         email: '',
         password: ''

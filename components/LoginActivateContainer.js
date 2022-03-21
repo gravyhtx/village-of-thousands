@@ -25,7 +25,6 @@ const LoginContainer = ({ name, message }) =>  {
       <ErrorMessage />
         <Accordion
           className="collapsible"
-          // onChange={handleChange(container.name)}
           expanded={true}
           disableGutters
         >
@@ -33,7 +32,7 @@ const LoginContainer = ({ name, message }) =>  {
             <div className="login-header disable-highlight">{capitalize("Login")}</div>
           </AccordionSummary>
           <AccordionDetails className={"login-collapsible-item"}>
-            <Login />
+            <Login activation={true} />
           </AccordionDetails>
         </Accordion>
       </div>

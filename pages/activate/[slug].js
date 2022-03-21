@@ -87,10 +87,10 @@ const Activate = () => {
     <DefaultLayout images={images}>
       <div className="index-section animate__animated animate__fadeIn activate-page center">
         <Content />
+        <LoginContainer />
         <Link href="/"><a>
           <p className="link cart-view-products">GO HOME</p>
         </a></Link>
-        <LoginContainer />
       </div>
     </DefaultLayout>
   );
