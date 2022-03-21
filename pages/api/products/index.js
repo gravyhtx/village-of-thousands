@@ -13,7 +13,7 @@ export default async (req, res) => {
         
         res.status(200).json(products);
       } catch (err) {
-        res.status(400).json({ success: false, message: 'User Creation Error' });
+        res.status(400).json({ success: false, message: 'Product finding error' });
       }
       break;
     case 'POST':
@@ -22,7 +22,7 @@ export default async (req, res) => {
 
         res.status(201).json({ newProduct, message: 'New Product added Successfully' });
       } catch (err) {
-        res.status(400).json({ success: false, message: 'User Creation Error' });
+        res.status(400).json({ success: false, message: 'Product Creation Error' });
       }
       break;
     case 'PUT':

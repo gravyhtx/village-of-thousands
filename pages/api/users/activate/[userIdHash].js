@@ -22,7 +22,7 @@ export default async (req, res) => {
         
         res.status(200).json(user);
       } catch (err) {
-        res.status(400).json({ success: false, message: 'User Creation Error' });
+        res.status(400).json({ success: false, message: 'Activation Creation Error' });
       }
       break;
   }
