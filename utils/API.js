@@ -37,6 +37,14 @@ export const getSingleUser = (token) => {
   })
 };
 
+export const getPendingUser = (userId) => {
+  return fetch('/api/users/single/' + userId, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+};
+
 export const updateUser = (userData, token) => {
   return fetch('/api/users', {
     method: 'PUT',
@@ -45,5 +53,13 @@ export const updateUser = (userData, token) => {
       authorization: `Bearer ${token}`
     },
     body: JSON.stringify(userData)
+  })
+}
+
+export const accountActivation = (userId) => {
+  return fetch('/api/users/activate/' + userId, {
+    headers: {
+      'Content-Type': 'application/json',
+    }
   })
 }
