@@ -7,6 +7,12 @@ import votHeader from '../../public/images/header.svg';
 
 import { accountActivation, getPendingUser } from "../../utils/API";
 import withAuth from '../../utils/withAuth';
+import ImageContainer from "../../components/ImageContainer";
+import SvgContainer from "../../components/SvgContainer";
+
+import HeaderImg from './header.png';
+import HeaderSvg from './header.svg';
+import SiteImage from "../../components/SiteImage";
 
 const Activate = () => {
   // const [ activationId, setActivationId ] = useState('');
@@ -58,10 +64,26 @@ const Activate = () => {
         </>
       )
   };
+
+  const images = [
+    <SvgContainer
+      layout="responsive"
+      src={HeaderSvg}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />,
+    <SiteImage
+      images={{src:"/_next/static/media/header.fb0ffabf.png"}}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />
+  ]
   
   return (
-    <DefaultLayout>
-      <div className="index-section activation-page center">
+    <DefaultLayout images={images}>
+      <div className="index-section animate__animated animate__fadeIn activate-page center">
         <Content />
         <Link href="/"><a>
           <p className="link cart-view-products">GO HOME</p>

@@ -5,18 +5,16 @@ import Link from 'next/link';
 // import { useRouter } from 'next/router';
 
 export const sendConfirmationEmail = function({ toUser, hash }) {
-  // console.log('stuff')
   sgMail.setApiKey(process.env.SENDGRID);
-  // console.log(process.env.SENDGRID)
   const HashLink = ({ text }) => {
     return (
       <Link href={`/activate/${hash}`}>{text}</Link>
     )
   };
   const body = () => {
-      return (
-				<></>
-      )
+    return (
+      <></>
+    )
   }
   const msg = {
     to: toUser.email,
