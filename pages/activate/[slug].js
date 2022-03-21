@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import ImageContainer from "../../components/ImageContainer";
 import SvgContainer from "../../components/SvgContainer";
 
+import LoginContainer from "../../components/LoginActivateContainer";
+
 import HeaderImg from './header.png';
 import HeaderSvg from './header.svg';
 import SiteImage from "../../components/SiteImage";
@@ -55,6 +57,7 @@ const Activate = () => {
         <Link href="/"><a>
           <p className="link cart-view-products">GO HOME</p>
         </a></Link>
+        <LoginContainer />
       </div>
     </DefaultLayout>
   );
