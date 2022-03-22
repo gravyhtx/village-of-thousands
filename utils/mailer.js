@@ -9,7 +9,7 @@ import VotEmail from '../templates/email/DefaultEmail';
 export const sendConfirmationEmail = function({ toUser, hash }) {
   sgMail.setApiKey(process.env.SENDGRID);
 
-  const link = "https://villageofthousands.com/activate/"+hash
+  const link = "https://villageofthousands.com/activate/"+ hash
 
   const context = () => {
     return (
@@ -29,8 +29,9 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
     from: 'andreslong92@gmail.com',
     subject: 'Welcome to the Village!',
     test: 'some text for testing',
-    html: <VotEmail content={context} />
+    html: '<h1> Hello <h1/>'
   }
+  // html: <VotEmail content={context} />
 
   return sgMail.send(msg)
 }
