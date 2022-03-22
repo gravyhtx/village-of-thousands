@@ -86,6 +86,7 @@ const Register = () =>  {
       
       if(pass) {
         Auth.login(token);
+        localStorage.removeItem('seed_hex');
         router.push('/signup-1');
       }
 

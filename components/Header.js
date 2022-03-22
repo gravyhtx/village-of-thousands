@@ -15,7 +15,7 @@ import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
 import { useWindowSize } from "../modules/getWindow";
 
-const Header = () => {
+const Header = ({ images }) => {
 
   // Get User Data
   const [userData, setUserData] = useState({});
@@ -28,9 +28,9 @@ const Header = () => {
         
         const response = await getSingleUser(token);
 
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
+        // if (!response.ok) {
+        //   throw new Error('something went wrong!');
+        // }
 
         const user = await response.json();
         setUserData(user);
@@ -55,15 +55,41 @@ const Header = () => {
   const router = useRouter();
   const path = router.pathname;
 
-  const notificationLink = "/register"
+  const notificationLink = "/register";
 
-  notification =
+  const Svg = () => {
+    return (images ? images[0] :
+    <SvgContainer
+      layout="responsive"
+      src={HeaderSvg}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />)
+  }
+  
+  const Png = () => {
+    return (images ? images[1] :
+    <ImageContainer
+      layout="responsive"
+      src={HeaderImg}
+      id="header-img"
+      draggable="false"
+      description="Village of Thousands Logo"
+    />)
+  }
+
+  useEffect(() => {
+    notification =
     <>
       Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
       <span className="info-icon" id="info-icon">
+        <Link href="/faq#8"><a>
         <i className="material-icons info-icon">info_outline</i>
+        </a></Link>
       </span>
     </>;
+  })
 
   return (
     <header className="site-header" id="site-header">
@@ -74,7 +100,7 @@ const Header = () => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {useWindowSize().width > 880
+              {/* {useWindowSize().width > 2400
               ? <SvgContainer
                   layout="responsive"
                   src={HeaderSvg}
@@ -88,7 +114,10 @@ const Header = () => {
                   id="header-img"
                   draggable="false"
                   description="Village of Thousands Logo"
-                />}
+                />} */}
+              {useWindowSize().width > 2400
+                ? <Svg />
+                : <Png />}
             </div>
           </div>
         </Link>

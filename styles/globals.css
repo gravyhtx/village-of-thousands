@@ -1225,7 +1225,11 @@ button.btn-floating.navigation-link:focus {
 
 .nav-icon {
   color: white;
-  font-size: 1.2rem !important;
+  font-size: 1.25rem !important;
+}
+
+.css-kp9ftd-MuiIcon-root {
+  width: 100% !important;
 }
 
 /* MOBILE NAV */
@@ -1337,6 +1341,12 @@ button.btn-floating.navigation-link:focus {
   border: 2px solid var(--theme-secondary-dark-color);
   box-shadow: 0 0 15px #7fcce433;
   text-shadow: 0 0 10px #ffffff33;
+}
+
+.login-btn:hover,
+.back-btn:hover,
+.logout-btn:hover {
+  cursor: pointer !important;
 }
 
 .theme-btn.disabled-btn,

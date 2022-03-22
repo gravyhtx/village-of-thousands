@@ -119,10 +119,7 @@ const AccountContainer = () => {
 
         const response = await getSingleUser(token);
 
-        // const response = await loadAwait(token);
-
         if(!response.ok){
-          // throw new Error('something went wrong!');
           setUserData({
             email: 'Pending User'
           })
