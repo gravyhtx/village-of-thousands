@@ -46,11 +46,11 @@ const Header = ({ images }) => {
   // const getWallet = localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses');
 
   let siteName = SiteData.name;
-  let notification;
 
   // const { asPath, pathname } = withRouter();
   // console.log(asPath); // '/blog/xyz'
   // console.log(pathname); // '/blog/[slug]'
+  // console.log(user.walletAddress)
 
   const router = useRouter();
   const path = router.pathname;
@@ -79,8 +79,7 @@ const Header = ({ images }) => {
     />)
   }
 
-  useEffect(() => {
-    notification =
+  const notificationText =
     <>
       Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
       <span className="info-icon" id="info-icon">
@@ -89,7 +88,6 @@ const Header = ({ images }) => {
         </a></Link>
       </span>
     </>;
-  })
 
   return (
     <header className="site-header" id="site-header">
@@ -121,9 +119,9 @@ const Header = ({ images }) => {
             </div>
           </div>
         </Link>
-        {userData.walletAddress
-          ? <></>
-          : <div id="notification-bar"><NotificationBar text={notification} link={notificationLink} /></div>
+        {!userData.walletAddress
+          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} /></div>
+          : <></>
         }
       </div>
     </header>
