@@ -11,7 +11,6 @@ export default async (req, res) => {
     case 'GET':
       try {
         const pUser = await PendingUser.findOne({_id: req.query.userIdHash});
-        console.log(pUser)
 
         const user = await User.create({
             email: pUser.email,

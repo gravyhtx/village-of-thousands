@@ -32,7 +32,6 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
     reader.onload = async (e) => { 
       success = true;
       data = (e.target.result);
-      console.log(data);
       setUploadData(data);
       // useEffect(() => {
       //   localStorage.setItem('upload_data', data);

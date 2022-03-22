@@ -9,7 +9,6 @@ export const createProduct = (productData) => {
 }
 
 export const resendConfirmationFetch = (user) => {
-  console.log(user)
   return fetch('/api/users/activate/resend', {
     method: 'POST',
     headers: {

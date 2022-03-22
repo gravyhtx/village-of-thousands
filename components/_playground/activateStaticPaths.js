@@ -16,9 +16,6 @@ export const getStaticPaths = async () => {
       params: { id: user.id.toString() }
     }
   });
-
-  // console.log(data); // SHOWS IN CONSOLE ONLY
-
   return {
     paths,
     fallback: false
@@ -30,8 +27,6 @@ export const getStaticProps = async (context) => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users/' + id)
   const data = await res.json();
 
-  // console.log(data);
-
   return {
     props: { user: data }
   }
@@ -39,7 +34,6 @@ export const getStaticProps = async (context) => {
 
 const Activate = ({ user }) => {
 
-  console.log(user.name);
   const router = useRouter();
   const { pid } = router.query;
 

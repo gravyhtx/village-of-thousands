@@ -35,32 +35,28 @@ const Activate = () => {
     }
 
     checkLogged();
-    console.log(slug)
 
     if(activateStatus) {
       setTimeout(function(){
         router.push('/')
       }, 15000);
     }
-    console.log(activateStatus)
   }, [])
 
   const activatePendingUser = async () => {
 
     const userExists = await getPendingUser(router.query.slug);
-    console.log(userExists);
 
     if (!userExists) {
-      console.log('user does not exist')
+      //user did not exist, get out
       return
     }
     const user = await userExists.json()
-    // console.log(user)
     const activate = await accountActivation(router.query.slug);
 
 
     if (!activate) {
-      console.log('activation error at slug js')
+      //activation failed, get dunked
       return
     }
 

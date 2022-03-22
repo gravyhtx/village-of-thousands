@@ -45,7 +45,6 @@ export const UserDataProvider = props => {
     };
 
     fetchUser();
-    // console.log(user)
   }, []);
 
   // const providerValue = useMemo(() => {(userData, setUserData)}, [userData, setUserData]);

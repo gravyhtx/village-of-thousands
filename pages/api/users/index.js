@@ -9,6 +9,8 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //Example of a get request for referencial purposes
+
     // case 'GET':
     //   try {
     //     const user = await User.find({});
@@ -28,14 +30,8 @@ export default async (req, res) => {
         }
 
         const user = await PendingUser.create(req.body);
-        // const user = {
-        //   email: req.body.email,
-        //   _id: '12345678'
-        // }
-        console.log(user._id)
+
         const confirmation = await sendConfirmationEmail({toUser: user, hash: user._id.toString()})
-        // const confirmation = await sendConfirmationEmail()
-        console.log(confirmation)
 
         const token = signToken(user);
         res.status(201).json({ token, user, message: 'You have been registered! Please check your email for verification' });
