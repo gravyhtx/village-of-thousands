@@ -18,12 +18,6 @@ import SiteImage from "../../components/SiteImage";
 
 const Activate = () => {
   const router = useRouter();
-<<<<<<< HEAD
-  const [slug, setSlug] = useState("");
-  
-  // const slug = router.query.slug;
-=======
->>>>>>> 95ad9b93cb5d1babed4fd1c39052543d0ab2724d
 
   const [pendingUser, setPendingUser] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
@@ -116,14 +110,6 @@ const Activate = () => {
           </>
         ) : 
         (
-<<<<<<< HEAD
-          <>
-            <div>yolo</div>
-            {/* <Link href="/"><a>
-              <p className="link cart-view-products">GO HOME</p>
-            </a></Link> */}
-          </>
-=======
           <div>
             {!activateStatus ? (
               <button onClick={activatePendingUser} >You will press me to activate</button>
@@ -131,7 +117,6 @@ const Activate = () => {
               <h1>CONGRATS ON ACTIVATING YOUR ACCOUNT NERD</h1>
             )}
           </div>
->>>>>>> 95ad9b93cb5d1babed4fd1c39052543d0ab2724d
         )
         }
       </div>
