@@ -17,7 +17,7 @@ const TopNav = () => {
     <div className="top-nav disable-highlight row">
       {navlinks.map((item, index) =>
         <div className="col s3 nav-top-col" key={index}>
-          <Link href={item.link}><a>
+          <Link href={item.link}><a suppressHydrationWarning>
             <button
               color="inherit"
               className={"btn-floating btn-floating navigation-link nav-"+item.name}

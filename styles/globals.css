@@ -434,11 +434,11 @@ input.input-error {
 }
 
 .loading {
-  cursor: progress;
+  cursor: progress !important;
 }
 
 .waiting {
-  cursor: wait;
+  cursor: wait !important;
 }
 
 .not-a-button,
@@ -729,6 +729,9 @@ input:focus { border-bottom: 1px solid #7fcce4 !important; }
   color: #7fcce4 !important;
   text-shadow: 0 0 10px #7fcce4;
   margin-bottom: 5px;
+}
+.glow {
+  text-shadow: 0 0 8px var(--theme-disabled-color);
 }
 
 /*
@@ -1291,6 +1294,7 @@ button.btn-floating.navigation-link:focus {
 
 .login-input-container {
   margin-bottom: 80px;
+  text-align: left;
 }
 
 .login-input-label {
@@ -1592,6 +1596,120 @@ label#upload-label:hover {
 .user-registration-next {
   margin-bottom: 20px;
 }
+
+
+/* ACTIVATE ACCOUNT */
+
+.activate-page {
+  color: rgb(245, 245, 245);
+  min-height: 85vh;
+  padding: 10px 25px 0;
+}
+
+.activate-page .signup-collapsible {
+  margin-bottom: 20px;
+}
+
+.activate-zen {
+  font-size: var(--theme-font-size-xs);
+  margin-bottom: 30px;
+}
+
+.activate-login .login-input-container {
+    margin-bottom: 30px;
+}
+
+.activate-button {
+  margin: 0 auto;
+  width: 60vw;
+  padding: 0 2.5% 2% 2.5%;
+}
+
+.activate-button .content {
+  padding: 0;
+}
+
+.activate-content {
+  margin-top: 10px;
+}
+
+.activate-header {
+  font-size: 8rem;
+}
+
+.activated-header {
+}
+
+.activate-header,
+.activated-header {
+  font-weight: 800;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.activated-congrats {
+  font-size: 6rem;
+  line-height: 6rem;
+}
+.activated-is-activated {
+  font-size: 2.8rem;
+}
+
+.activate-click-me_broh {
+  font-size: 1.5rem;
+}
+
+.activate-here {
+  letter-spacing: 1.2;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.activate_or-here {
+  font-size: 1.2rem;
+  color: #666666;
+  margin-top: 10vh;
+}
+
+.activate_here-too {
+  font-size: 1rem;
+  color: #333333;
+  margin-top: 25vh;
+}
+
+.activate-almost-there_broh {
+  margin: 0 auto;
+  width: 300px;
+  padding-bottom: 35px;
+  color: #eeeeee;
+  font-size: 1rem;
+  filter: blur(1.5px);
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  cursor: default !important;
+}
+
+.activate-almost-there_broh:hover {
+  font-size: 5px;
+  width: 400px;
+  filter: blur(0);
+  -webkit-transition: .1s ease;
+  transition: .1s ease;
+}
+
+.activated-emoji {
+  margin-top: 10px;
+  color: #bbbbbb;
+  font-size: .8rem;
+}
+
+.activated-image {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+/* PASSWORD RECOVERY */
 
 .pw-recovery-input-container {
   max-width: 1080px;
@@ -2138,7 +2256,8 @@ label#upload-label:hover {
   to {border: 4px solid #7fcce4;}
 }
 
-.blockie-colors {
+.blockie-colors,
+.resend-confirmation {
   color: var(--theme-primary-medium-color);
   font-size: var(--theme-font-size-xxs);
   background-color: #00000010;
@@ -2151,7 +2270,8 @@ label#upload-label:hover {
   transition: 1s ease-out;
 }
 
-.blockie-colors:hover {
+.blockie-colors:hover,
+.resend-confirmation:hover {
   text-shadow: 0 0 10px #777777;
   color: #cccccc;
   /* color: white; */
@@ -2164,7 +2284,8 @@ label#upload-label:hover {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
-.blockie-colors-text:hover {
+.blockie-colors-text:hover,
+.resend-confirmation-text:hover {
   -webkit-animation: flicker 3s infinite;
   animation: flicker 3s infinite;
 }
@@ -2536,6 +2657,17 @@ label#upload-label:hover {
   .faq-image {
     width: 50vw;
   }
+  .activate-button {
+    width: 65vw;
+    padding-bottom: 5%;
+    margin-bottom: 1vh;
+  }
+  .activate-header {
+    font-size: 7rem;
+  }
+  .activated-header {
+    font-size: 2.65rem;
+  }
 }
 
 @media only screen and (max-width: 1124px) {
@@ -2551,6 +2683,13 @@ label#upload-label:hover {
   .scroll-box {
     font-size: 1.12rem;
   }
+  .activate-header {
+    font-size: 7rem;
+  }
+  .activate-button {
+    padding-bottom: 10%;
+    margin-bottom: 2vh;
+  }
 }
 
 @media only screen and (max-width: 1080px) {
@@ -2563,6 +2702,9 @@ label#upload-label:hover {
   .signup-error.error-message {
     /* text-align: left; */
     font-size: 0.75rem;
+  }
+  .activate-header {
+    font-size: 6.5rem;
   }
 }
 
@@ -2583,6 +2725,10 @@ label#upload-label:hover {
   .faq-image {
     width: 66.6vw;
   }
+  .activate-button {
+    padding-bottom: 7.5%;
+    margin-bottom: 2.5vh;
+  }
 }
 
 @media only screen and (max-width: 880px) {
@@ -2593,6 +2739,13 @@ label#upload-label:hover {
   }
   .signup-error.error-message {
     font-size: 0.7rem;
+  }
+  .activate-header {
+    font-size: 6rem;
+  }
+  .activate-button {
+    padding-bottom: 10%;
+    margin-bottom: 3vh;
   }
 }
 
@@ -2723,6 +2876,26 @@ label#upload-label:hover {
 
   .forgot-password, .forgot-password-link {
     font-size: var(--theme-font-size-xs);
+  }
+
+  .activate-page .signup-collapsible {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .activate-header {
+    margin-top: 20px;
+    font-size: 5rem;
+  }
+
+  .activate-button {
+    width: 80vw;
+    padding-bottom: 8%;
+    margin-bottom: 5vh;
+  }
+
+  .activated-image {
+    width: 80vw;
   }
 
   .account-container {
@@ -2865,6 +3038,30 @@ label#upload-label:hover {
   }
   .account-wallet .wallet-info {
     font-size: 16px;
+  }
+  .activate-page {
+    min-height: 80vh;
+  }
+  .activate-page .signup-collapsible {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  .activate-header {
+    font-size: 4rem;
+  }
+  .activate-button {
+    padding-bottom: 15%;
+    margin-bottom: 6.5vh;
+  }
+  .activated-content {
+    min-height: 55vh;
+  }
+  .activated-congrats {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+  .activated-is-activated {
+    font-size: 2.5rem;
   }
 }
 

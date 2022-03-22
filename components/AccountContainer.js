@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
-import { getSingleUser } from '../utils/API';
+import { getSingleUser, resendConfirmationFetch } from '../utils/API';
 
 import Web3Wallet from "./Web3Wallet.tsx";
 
@@ -17,6 +17,7 @@ const AccountContainer = () => {
   const router = useRouter();
 
   const [wallet, setWallet] = useState('');
+  const [isUser, setIsUser] = useState(false);
   // const [colors, setColors] = useState('');
 
   useEffect(() => {
@@ -110,8 +111,17 @@ const AccountContainer = () => {
   }
   const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
   const [userData, setUserData] = useState([]);
-  // const userDataLength = Object.keys(userData).length;
+  const userDataLength = Object.keys(userData).length;
   
+  const resendConfirmation = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    const profile = token ? Auth.getProfile() : null;
+
+    console.log(profile)
+    resendConfirmationFetch(profile)
+  }
+
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -119,11 +129,8 @@ const AccountContainer = () => {
 
         const response = await getSingleUser(token);
 
-        if(!response.ok){
-          setUserData({
-            email: 'Pending User'
-          })
-          return
+        if(response.ok) {
+          setIsUser(true);
         }
 
         const user = await response.json();
@@ -142,7 +149,8 @@ const AccountContainer = () => {
     getUserData();
     // console.log(userData);
   // }, [userDataLength]);
-  }, []);
+  }, [userDataLength]);
+
   // var canvas = userData.walletAddress?blockie:<></>
   // var blockieCanvas = document.getElementById('blockie-canvas');
   // const blockieUrl = blockieCanvas.toDataURL()
@@ -159,27 +167,38 @@ const AccountContainer = () => {
 
   return (
     <>
-    <div className={userData.walletAddress ? "account-container" : "vot-account-container"} id="account-container">
-      <br/>
-      <div className="blockie-container">
-        <AccountAvatar/>
+      <div className={userData.walletAddress ? "account-container" : "vot-account-container"} id="account-container">
+        <br/>
+        <div className="blockie-container">
+          <AccountAvatar/>
+        </div>
+        {/* {userData.walletAddress
+          ?<button
+            className="blockie-colors not-a-button monospace"
+            onClick={setScheme}>
+            <span className="blockie-colors-text">[CHANGE COLORS]</span>
+          </button>
+          :<></>} */}
+        <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
+        <div className="account-info-email">
+          <div className="account-info-email_text">
+            {isUser ?
+              userData.email :
+              <><div className="italics">** Pending User **</div>
+              <button
+                className="resend-confirmation not-a-button monospace"
+                onClick={resendConfirmation}>
+                <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
+              </button></>
+            }
+          </div>
+        </div>
+        <div className="account-wallet">
+          <div className="user-wallet-header">WALLET</div>
+          <Web3Wallet />
+        </div>
       </div>
-      {/* {userData.walletAddress
-        ?<button
-          className="blockie-colors not-a-button monospace"
-          onClick={setScheme}>
-          <span className="blockie-colors-text">[CHANGE COLORS]</span>
-        </button>
-        :<></>} */}
-      <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
-      <div className="account-info-email"><span className="account-info-email_text">{userData.email}</span></div>
-
-      <div className="account-wallet">
-      <div className="user-wallet-header">WALLET</div>
-      <Web3Wallet />
-      </div>
-    </div>
-    <AddressFormContainer />
+      <AddressFormContainer />
     </>
   )
 }
