@@ -21,7 +21,6 @@ const SiteImage = ({ images, width, containerClasses, imgClasses, description, d
 
   const n = images ? Math.floor(Math.random()*images.length) : 0;
   const image = Array.isArray(images) ? images[n] : images;
-  console.log(image)
 
   return (
     <>
