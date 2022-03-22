@@ -40,7 +40,7 @@ const Activate = () => {
     if(activateStatus) {
       setTimeout(function(){
         router.push('/')
-      }, 6000);
+      }, 15000);
     }
     console.log(activateStatus)
   }, [])
@@ -64,7 +64,6 @@ const Activate = () => {
       return
     }
 
-    setActivateStatus(true)
     setPendingUser(userExists);
   }
 
@@ -84,6 +83,8 @@ const Activate = () => {
     />
   ];
 
+  const activateHeader = "SUPPP, BROH?!";
+
   return (
     <DefaultLayout headerImages={headerImages}>
       <div className="activate-page center container animate__animated animate__fadeIn">
@@ -96,11 +97,18 @@ const Activate = () => {
           <div className="activate-content">
             {!activateStatus ? (
               <>
-                <h1 className="activate-header">SUPPP, BROH?!</h1>
+                <h1 className="activate-header">
+                  {activateHeader.split("").map((letter, index)=> {
+                    return <span key={index}>{letter}</span>
+                  })}
+                </h1>
                 <button className="activate-button not-a-button" onClick={activatePendingUser}>
                   <div className="content">
                     <div>
-                      <p className="activate-click-me_broh"><b className="activate-here italics cursor-pointer">[Click here]</b> to activate your account.</p>
+                      <p className="activate-click-me_broh">
+                        <b className="activate-here italics cursor-pointer">
+                        [Click here]</b> to activate your account.
+                      </p>
                     </div>
                     <div className="activate_or-here right cursor-pointer">...or here, even</div>
                     <div className="activate_here-too left cursor-pointer">here too...</div>
@@ -121,7 +129,7 @@ const Activate = () => {
                     draggable="false"
                     description="You activated your account, broh."
                   />
-                  <div className="activated-emoji monospace">[INSERT AGE APPROPRIATE EMOJI]</div>
+                  <div className="activated-emoji monospace">[INSERT APPROPRIATE EMOJI]</div>
                 </div>
               </>
             )}
