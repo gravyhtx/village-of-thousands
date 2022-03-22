@@ -17,13 +17,12 @@ import HeaderSvg from './header.svg';
 import SiteImage from "../../components/SiteImage";
 
 const Activate = () => {
-  // const [ activationId, setActivationId ] = useState('');
   const router = useRouter();
-  // const slug = router.query.slug;
 
   const [pendingUser, setPendingUser] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
-  // const [slug, setSlug] = useState("")
+  const [activateStatus, setActivateStatus] = useState(false);
+
   useEffect(() => {
     const checkLogged = async () => {
       try {
@@ -31,10 +30,7 @@ const Activate = () => {
 
         if (token) {
           setIsLogged(true);
-          // setSlug(router.query.slug);
-          // setTimeout(() => {
-            activatePendingUser();
-          // }, 2000);
+          // activatePendingUser();
         }
       } catch (err) {
         console.error(err)
@@ -42,6 +38,12 @@ const Activate = () => {
     }
 
     checkLogged();
+
+    if(activateStatus) {
+      setTimeout(function(){
+        router.push('/')
+      }, 6000);
+    }
   }, [])
 
   const activatePendingUser = async () => {
@@ -63,6 +65,7 @@ const Activate = () => {
       return
     }
 
+    setActivateStatus(true)
     setPendingUser(userExists);
   }
 
@@ -110,7 +113,13 @@ const Activate = () => {
           </>
         ) : 
         (
-          <div>yolo</div>
+          <div>
+            {!activateStatus ? (
+              <button onClick={activatePendingUser} >You will press me to activate</button>
+            ): (
+              <h1>CONGRATS ON ACTIVATING YOUR ACCOUNT NERD</h1>
+            )}
+          </div>
         )
         }
       </div>
