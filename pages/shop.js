@@ -3,11 +3,9 @@ import Link from 'next/link';
 import DefaultLayout from '../templates/DefaultLayout';
 
 import TextContainer from '../components/TextContainer';
-import ImageContainer from '../components/ImageContainer';
 import ProductGridItem from '../components/ProductGridItem';
 
 import LogoTeeBlack from "../public/images/szn/001/products/vot-logo_tee-black.png";
-import Image1 from '../public/images/szn/001/the_movement.png';
 import SocialCircles from '../components/SocialCircles';
 
 import website from '../config/site-data.json';
@@ -92,17 +90,11 @@ const ProductsPage = () =>  {
       </div>
       <div className="row product-aside box-container">
         <div className="product-aside-image col m12 l6">
-          {/* <ImageContainer
-            containerClasses={img1.containerClasses}
-            imgClasses={img1.imgClasses}
-            description={img1.description}
-            src={Image1}
-          /> */}
           <SiteImage
             containerClasses={img1.containerClasses}
             imgClasses={img1.imgClasses}
             description={img1.description}
-            images={Image1}
+            siteImage={"The Movement"}
           />
         </div>
         <div className="col m12 l6">

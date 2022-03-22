@@ -23,7 +23,6 @@ const UserRegistration = () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if(!token) {
-          // router.push('/');
           return false;
         }
 
@@ -56,14 +55,10 @@ const UserRegistration = () => {
       <div className='user-registration-account-header'>ACCOUNT INFORMATION</div>
       <div className='user-registration-info container'>
         <div className="user-register-email-header">USER</div>
-        {/* {userData.email? */}
-        <><div className='user-registration-email container'>{userData.email}</div>
+        <div className='user-registration-email container'>{userData.email}</div>
         <div className='user-registration-wallet'>
           <Web3Wallet />
-        </div></>
-        {/* : */}
-        {/* <div className='user-registration-email important container'>SIGNUP ERROR! Seems like we're missing some information. Please try creating your account again or
-        contact us for support on Instagram (@villageofthousands).</div>} */}
+        </div>
       </div>
       <div className="user-registration-forms">
         <AddressFormContainer />

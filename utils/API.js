@@ -8,6 +8,17 @@ export const createProduct = (productData) => {
   })
 }
 
+export const resendConfirmationFetch = (user) => {
+  console.log(user)
+  return fetch('/api/users/activate/resend', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user.data)
+  })
+}
+
 export const loginUser = (userData) => {
   return fetch('/api/users/login', {
     method: 'POST',
