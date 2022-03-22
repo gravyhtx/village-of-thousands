@@ -7,16 +7,22 @@ const NotificationBar = ({ text, link }) =>  {
   useEffect(() => {
     component=   
     <Link href={link}>
-      <a className="nav-link" id="notify-link">
+      <a className="notify-link" id="notify-link">
       <div className="notify" id="notify">
-        {text}
+        <>{text}</>
       </div>
       </a>
     </Link>
   })
 
   return (
-    <>{text ? component : <></>}</>
+    <Link href={link}>
+      <a className="notify-link" id="notify-link">
+      <div className="notify" id="notify">
+        <>{text}</>
+      </div>
+      </a>
+    </Link>
   )
 }
 export default NotificationBar;

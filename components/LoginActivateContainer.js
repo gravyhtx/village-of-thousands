@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { Accordion, AccordionDetails, capitalize } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
-import DefaultLayout from '../templates/DefaultLayout';
 import Login from '../components/Login';
-import Register from '../components/Register';
 import RandomQuote from '../components/dynamic-content/RandomQuote';
 
 const LoginContainer = ({ name, message }) =>  {
@@ -31,12 +29,12 @@ const LoginContainer = ({ name, message }) =>  {
           <AccordionSummary className="collapsible-header center" id="login-header">
             <div className="login-header disable-highlight">{capitalize("Login")}</div>
           </AccordionSummary>
-          <AccordionDetails className={"login-collapsible-item"}>
+          <AccordionDetails className="activate-login login-collapsible-item">
             <Login activation={true} />
           </AccordionDetails>
         </Accordion>
       </div>
-      <div className="center-text italics"><RandomQuote className="center-text login-zen" type="zen" /></div>
+      <div className="center-text italics"><RandomQuote className="center-text activate-zen" type="zen" /></div>
     </>
   )
 }

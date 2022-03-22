@@ -434,11 +434,11 @@ input.input-error {
 }
 
 .loading {
-  cursor: progress;
+  cursor: progress !important;
 }
 
 .waiting {
-  cursor: wait;
+  cursor: wait !important;
 }
 
 .not-a-button,
@@ -729,6 +729,9 @@ input:focus { border-bottom: 1px solid #7fcce4 !important; }
   color: #7fcce4 !important;
   text-shadow: 0 0 10px #7fcce4;
   margin-bottom: 5px;
+}
+.glow {
+  text-shadow: 0 0 8px var(--theme-disabled-color);
 }
 
 /*
@@ -1139,10 +1142,11 @@ h2, .h2 {
   margin: 0 auto;
   padding: 4px;
   text-align: center;
-  font-size: var(--theme-font-size-sm);
+  font-size: .8rem;
   color: var(--notify-color);
   border-top: var(--notify-border);
   background-color: var(--notify-bkg);
+  width: 100vw;
   /* AFTER ACCOUNT CREATION... (JS) */
     /* display:none; */
 }
@@ -1291,6 +1295,7 @@ button.btn-floating.navigation-link:focus {
 
 .login-input-container {
   margin-bottom: 80px;
+  text-align: left;
 }
 
 .login-input-label {
@@ -1592,6 +1597,424 @@ label#upload-label:hover {
 .user-registration-next {
   margin-bottom: 20px;
 }
+
+
+/* ACTIVATE ACCOUNT */
+
+.activate-page {
+  color: rgb(245, 245, 245);
+  min-height: 85vh;
+  padding: 20px 25px 0;
+}
+
+.activate-page .signup-collapsible {
+  margin-bottom: 20px;
+}
+
+.activate-zen {
+  font-size: var(--theme-font-size-xs);
+  margin-bottom: 30px;
+}
+
+.activate-login .login-input-container {
+    margin-bottom: 25px;
+}
+
+.activate-button {
+  margin: 0 auto;
+  width: 60vw;
+  padding: 0 2.5% 2% 2.5%;
+}
+
+.activate-button .content {
+  padding: 0;
+}
+
+.activate-content {
+  margin-top: 0px;
+}
+
+.activate-header {
+  font-size: 7rem;
+}
+
+.activate-header {
+  -webkit-animation: tiltShift 8s alternate infinite ease-in-out;
+  -moz-animation: tiltShift 8s alternate infinite ease-in-out;
+  -o-animation: tiltShift 8s alternate infinite ease-in-out;
+  animation: tiltShift 8s alternate infinite ease-in-out;
+}
+
+.activate-header span:nth-of-type(1) {
+  animation: wave-text 1s ease-in-out infinite;
+  /* animation-delay: 0.0s; */
+}
+.activate-header span:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+.activate-header span:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+.activate-header span:nth-of-type(4) {
+  animation-delay: 0.3s;
+}
+.activate-header span:nth-of-type(5) {
+  animation-delay: 0.5s;
+}
+.activate-header span:nth-of-type(6) {
+  animation-delay: 0.5s;
+}
+.activate-header span:nth-of-type(7) {
+  animation-delay: 0.6s;
+}
+.activate-header span:nth-of-type(8) {
+  animation-delay: 0.7s;
+}
+.activate-header span:nth-of-type(9) {
+  animation-delay: 0.8s;
+}
+.activate-header span:nth-of-type(10) {
+  animation-delay: 0.9s;
+}
+.activate-header span:nth-of-type(11) {
+  animation-delay: 0.10s;
+}
+.activate-header span:nth-of-type(12) {
+  animation-delay: 0.11s;
+}
+.activate-header span:nth-of-type(13) {
+  animation-delay: 0.12s;
+}
+
+.activated-header {
+}
+
+.activate-header,
+.activated-header {
+  font-weight: 800;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.activate-click-me_broh {
+  font-size: 1.5rem;
+  -webkit-animation: tiltFlash 5s alternate infinite ease-in-out;
+  -moz-animation: tiltFlash 5s alternate infinite ease-in-out;
+  -o-animation: tiltFlash 5s alternate infinite ease-in-out;
+  animation: tiltFlash 5s alternate infinite ease-in-out;
+}
+
+.activate-here {
+  letter-spacing: 1.2;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.activate_or-here {
+  font-size: 1.2rem;
+  color: #454545;
+  margin-top: 10vh;
+  transition: .5s ease;
+  -webkit-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
+  -moz-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
+  -o-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
+  animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
+}
+
+.activate_here-too {
+  font-size: 1rem;
+  color: #333333;
+  margin-top: 25vh;
+  transition: .5s ease;
+  -webkit-animation: tiltFlash 5s alternate infinite ease-in-out;
+  -moz-animation: tiltFlash 5s alternate infinite ease-in-out;
+  -o-animation: tiltFlash 5s alternate infinite ease-in-out;
+  animation: tiltFlash 5s alternate infinite ease-in-out;
+}
+
+.activate_or-here:hover {
+  transition: .5s ease;
+  transform: skew(-10deg, -2.5deg);
+}
+
+.activate_here-too:hover {
+  transition: .5s ease;
+  transform: skew(20deg, 2.5deg);
+}
+
+.activate-almost-there_broh {
+  margin: 0 auto;
+  width: 300px;
+  padding-bottom: 35px;
+  color: #eeeeee;
+  font-size: 1rem;
+  filter: blur(0px);
+  -webkit-transition: 5s ease;
+  transition: 5s ease;
+  cursor: default !important;
+  -webkit-animation: moveUpAndDown 1.5s alternate infinite ease-in-out;
+  -moz-animation: moveUpAndDown 1.5s alternate infinite ease-in-out;
+  -o-animation: moveUpAndDown 1.5s alternate infinite ease-in-out;
+  animation: moveUpAndDown 1.5s alternate infinite ease-in-out;
+}
+
+.activate-almost-there_broh:hover {
+  font-size: 1.1rem;
+  width: 400px;
+  filter: blur(1px);
+  -webkit-transition: 2.5s ease;
+  transition: 2.5s ease;
+  animation-duration: .25s;
+  -webkit-animation: moveUpAndDown .01s alternate-reverse infinite ease-in-out;
+  -moz-animation: moveUpAndDown .01s alternate-reverse infinite ease-in-out;
+  -o-animation: moveUpAndDown .01s alternate-reverse infinite ease-in-out;
+  animation: moveUpAndDown .01s alternate-reverse infinite ease-in-out;
+}
+
+.activated-congrats {
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 6rem;
+  line-height: 6rem;
+  transition: 2.5s;
+  filter: blur(0px);
+  -webkit-animation: tiltLeft .666s alternate infinite ease-in;
+  -moz-animation: tiltLeft .666s alternate infinite ease-in;
+  -o-animation: tiltLeft .666s alternate infinite ease-in;
+  animation: tiltLeft .666s alternate infinite ease-in;
+}
+
+.activated-congrats:hover {
+  transition: 5s;
+  filter: blur(3px);
+  -webkit-animation: tiltLeftFlash .1s alternate infinite ease-in;
+  -moz-animation: tiltLeftFlash .1s alternate infinite ease-in;
+  -o-animation: tiltLeftFlash .1s alternate infinite ease-in;
+  animation: tiltLeftFlash .1s alternate infinite ease-in;
+}
+
+.activated-is-activated {
+  font-size: 2.8rem;
+  -webkit-animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
+  -moz-animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
+  -o-animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
+  animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
+}
+
+.activated-emoji {
+  margin-top: 10px;
+  color: #bbbbbb;
+  font-size: .8rem;
+}
+
+.activated-image {
+  margin: 0 auto;
+  max-width: 360px;
+  -webkit-animation: tiltFlash 4s alternate infinite ease-in-out;
+  -moz-animation: tiltFlash 4s alternate infinite ease-in-out;
+  -o-animation: tiltFlash 4s alternate infinite ease-in-out;
+  animation: tiltFlash 4s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes moveUpAndDown {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 8px);
+  }
+}
+@keyframes moveUpAndDown {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 8px);
+  }
+}
+
+@-webkit-keyframes tiltShift {
+  0% {
+    transform: rotate(.5deg) scale(1) skew(-4deg, -1deg);
+  }
+  33% {
+    transform: scale(1.02) skew(0deg, 0deg);
+  }
+  50% {
+    transform: scale(1) rotate(-.5deg) skew(10deg, 0deg);
+  }
+  67% {
+    transform: scale(.98) skew(0deg, 0deg);
+  }
+  95% {
+    transform: scale(1.05) skew(0deg, 0deg);
+  }
+  100% {
+    transform: scale(-1.02) rotate(.5deg) skew(-4deg, -1deg);
+  }
+}
+@keyframes tiltShift {
+  0% {
+    transform: rotate(.5deg) scale(1) skew(-4deg, -1deg);
+  }
+  25% {
+    transform: skew(5deg, 1deg);
+  }
+  33% {
+    transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1) rotate(-.5deg) skew(-4deg, -1deg);
+  }
+  67% {
+    transform: scale(.98);
+  }
+  75% {
+    transform: skew(5deg, 1deg);
+  }
+  95% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(-1.02) rotate(.5deg) skew(-4deg, -1deg);
+  }
+}
+
+@-webkit-keyframes tiltLeft {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+@keyframes tiltLeft {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+
+@-webkit-keyframes tiltFlash {
+  0% {
+    transform: rotate(-.5deg) scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .98;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(.777deg);
+    opacity: .95;
+  }
+  85% {
+    opacity: 1;
+  }
+  95% {
+    opacity: .95;
+  }
+  100% {
+    transform: rotate(-.5deg) scale(1.01) translate(0, 5px);
+    opacity: 1;
+  }
+}
+@keyframes tiltFlash {
+  0% {
+    transform: rotate(-.5deg) scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .98;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(.777deg);
+    opacity: .95;
+  }
+  85% {
+    opacity: 1;
+  }
+  95% {
+    opacity: .95;
+  }
+  100% {
+    transform: rotate(-.5deg) scale(1.01) translate(0, 5px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes tiltLeftFlash {
+  0% {
+    transform: rotate(-1deg) scale(1);
+    opacity: .8;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .8;
+  }
+  100% {
+    transform: rotate(-2deg) scale(1.75);
+    opacity: 1;
+  }
+}
+@keyframes tiltLeftFlash {
+  0% {
+    transform: rotate(-1deg) scale(1);
+    opacity: .8;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .8;
+  }
+  100% {
+    transform: rotate(-2deg) scale(1.75);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes wave-text{
+  00%{
+    transform: translateY(0em);
+  }
+  60%{
+    transform: translateY(-0.6em);
+  }
+  100%{
+    transform: translateY(0em);
+  }
+}
+
+@keyframes wave-text{
+  00%{
+    transform: translateY(0em);
+  }
+  60%{
+    transform: translateY(-0.6em);
+  }
+  100%{
+    transform: translateY(0em);
+  }
+}
+
+/* PASSWORD RECOVERY */
 
 .pw-recovery-input-container {
   max-width: 1080px;
@@ -2138,7 +2561,8 @@ label#upload-label:hover {
   to {border: 4px solid #7fcce4;}
 }
 
-.blockie-colors {
+.blockie-colors,
+.resend-confirmation {
   color: var(--theme-primary-medium-color);
   font-size: var(--theme-font-size-xxs);
   background-color: #00000010;
@@ -2151,7 +2575,8 @@ label#upload-label:hover {
   transition: 1s ease-out;
 }
 
-.blockie-colors:hover {
+.blockie-colors:hover,
+.resend-confirmation:hover {
   text-shadow: 0 0 10px #777777;
   color: #cccccc;
   /* color: white; */
@@ -2164,7 +2589,8 @@ label#upload-label:hover {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
-.blockie-colors-text:hover {
+.blockie-colors-text:hover,
+.resend-confirmation-text:hover {
   -webkit-animation: flicker 3s infinite;
   animation: flicker 3s infinite;
 }
@@ -2536,6 +2962,17 @@ label#upload-label:hover {
   .faq-image {
     width: 50vw;
   }
+  .activate-button {
+    width: 65vw;
+    padding-bottom: 5%;
+    margin-bottom: 1vh;
+  }
+  .activate-header {
+    font-size: 7rem;
+  }
+  .activated-header {
+    font-size: 2.65rem;
+  }
 }
 
 @media only screen and (max-width: 1124px) {
@@ -2551,6 +2988,13 @@ label#upload-label:hover {
   .scroll-box {
     font-size: 1.12rem;
   }
+  .activate-header {
+    font-size: 7rem;
+  }
+  .activate-button {
+    padding-bottom: 10%;
+    margin-bottom: 2vh;
+  }
 }
 
 @media only screen and (max-width: 1080px) {
@@ -2563,6 +3007,9 @@ label#upload-label:hover {
   .signup-error.error-message {
     /* text-align: left; */
     font-size: 0.75rem;
+  }
+  .activate-header {
+    font-size: 6.5rem;
   }
 }
 
@@ -2583,6 +3030,10 @@ label#upload-label:hover {
   .faq-image {
     width: 66.6vw;
   }
+  .activate-button {
+    padding-bottom: 7.5%;
+    margin-bottom: 2.5vh;
+  }
 }
 
 @media only screen and (max-width: 880px) {
@@ -2593,6 +3044,13 @@ label#upload-label:hover {
   }
   .signup-error.error-message {
     font-size: 0.7rem;
+  }
+  .activate-header {
+    font-size: 6rem;
+  }
+  .activate-button {
+    padding-bottom: 10%;
+    margin-bottom: 3vh;
   }
 }
 
@@ -2723,6 +3181,26 @@ label#upload-label:hover {
 
   .forgot-password, .forgot-password-link {
     font-size: var(--theme-font-size-xs);
+  }
+
+  .activate-page .signup-collapsible {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .activate-header {
+    margin-top: 20px;
+    font-size: 5rem;
+  }
+
+  .activate-button {
+    width: 80vw;
+    padding-bottom: 8%;
+    margin-bottom: 5vh;
+  }
+
+  .activated-image {
+    width: 75vw;
   }
 
   .account-container {
@@ -2865,6 +3343,30 @@ label#upload-label:hover {
   }
   .account-wallet .wallet-info {
     font-size: 16px;
+  }
+  .activate-page {
+    min-height: 80vh;
+  }
+  .activate-page .signup-collapsible {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  .activate-header {
+    font-size: 4rem;
+  }
+  .activate-button {
+    padding-bottom: 15%;
+    margin-bottom: 6.5vh;
+  }
+  .activated-content {
+    min-height: 55vh;
+  }
+  .activated-congrats {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+  .activated-is-activated {
+    font-size: 2.5rem;
   }
 }
 

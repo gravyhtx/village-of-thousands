@@ -10,22 +10,29 @@ import ScrollToTop from '../components/ScrollToTop';
 import { useEffect, useState } from 'react';
 import NavDesktop from '../components/NavDesktop';
 
-export default function DefaultLayout({ images, children }) {
+export default function DefaultLayout({ headerImages, title, children }) {
+
+  title = title ? title : "Village of Thousands";
+
   return (
   <UserDataProvider>
   <div className="animate__animated animate__fadeIn" id="layout">
     <Head>
     <meta charset="utf-8" />
-    <title>Village of Thousands</title>
+    <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Village of Thousands is an apparel company based out of Houston, TX to promote wellness driven by an environmentally conscious lifestyle."
     />
+    <meta property="og:url" content="https://villageofthousands.io" />
+    <meta property="og:type" content="email" />
+    <meta property="og:description" content="Village of Thousands is an apparel company based out of Houston, TX to promote wellness driven by an environmentally conscious lifestyle." />
+    <meta property="og:title" content={title} />
     </Head>
     <ScrollToTop />
-    {images ? <Header images={images} /> : <Header />}
+    {headerImages ? <Header images={headerImages} /> : <Header />}
     <TopNav />
     {/* {useWindowSize().width < 770 ? <TopNav /> : <></>} */}
     {/* <NavMobile /> */}
