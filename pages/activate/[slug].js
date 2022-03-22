@@ -17,15 +17,18 @@ import HeaderSvg from './header.svg';
 import SiteImage from "../../components/SiteImage";
 
 const Activate = () => {
-  // const [ activationId, setActivationId ] = useState('');
   const router = useRouter();
+<<<<<<< HEAD
   const [slug, setSlug] = useState("");
   
   // const slug = router.query.slug;
+=======
+>>>>>>> 95ad9b93cb5d1babed4fd1c39052543d0ab2724d
 
   const [pendingUser, setPendingUser] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
-  // const [slug, setSlug] = useState("")
+  const [activateStatus, setActivateStatus] = useState(false);
+
   useEffect(() => {
     const checkLogged = async () => {
       try {
@@ -33,10 +36,7 @@ const Activate = () => {
 
         if (token) {
           setIsLogged(true);
-          // setSlug(router.query.slug);
-          // setTimeout(() => {
-            activatePendingUser();
-          // }, 2000);
+          // activatePendingUser();
         }
       } catch (err) {
         console.error(err)
@@ -44,6 +44,12 @@ const Activate = () => {
     }
 
     checkLogged();
+
+    if(activateStatus) {
+      setTimeout(function(){
+        router.push('/')
+      }, 6000);
+    }
   }, [])
 
   const activatePendingUser = async () => {
@@ -65,6 +71,7 @@ const Activate = () => {
       return
     }
 
+    setActivateStatus(true)
     setPendingUser(userExists);
   }
 
@@ -109,12 +116,22 @@ const Activate = () => {
           </>
         ) : 
         (
+<<<<<<< HEAD
           <>
             <div>yolo</div>
             {/* <Link href="/"><a>
               <p className="link cart-view-products">GO HOME</p>
             </a></Link> */}
           </>
+=======
+          <div>
+            {!activateStatus ? (
+              <button onClick={activatePendingUser} >You will press me to activate</button>
+            ): (
+              <h1>CONGRATS ON ACTIVATING YOUR ACCOUNT NERD</h1>
+            )}
+          </div>
+>>>>>>> 95ad9b93cb5d1babed4fd1c39052543d0ab2724d
         )
         }
       </div>
