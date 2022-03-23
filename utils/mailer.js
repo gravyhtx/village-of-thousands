@@ -30,7 +30,7 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
     subject: 'Welcome to the Village!',
     text: 'some text for testing',
     html: '<h1> yo </h1>',
-    template_id: process.env.SENDGRID,
+    template_id: process.env.SENDGRID_TEMPLATE,
     dynamic_template_data: {
         link: link
     }
