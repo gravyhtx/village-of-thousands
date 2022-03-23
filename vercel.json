@@ -1,16 +1,12 @@
 {
     "rewrites": [
-        {
-            "source": "/activate/:hash",
-            "destination": "/activate/[hash]"
+        { 
+            "source": "/(.*)",
+            "destination": "/" 
         },
         {
             "source": "/faq",
             "destination": "/faq"
-        },
-        { 
-            "source": "/(.*)",
-            "destination": "/" 
         }
     ]
 }
