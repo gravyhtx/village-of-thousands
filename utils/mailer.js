@@ -4,7 +4,6 @@ import sgMail from '@sendgrid/mail';
 import Link from 'next/link';
 
 import VotEmail from '../templates/email/DefaultEmail';
-// import { useRouter } from 'next/router';
 
 export const sendConfirmationEmail = function({ toUser, hash }) {
 
@@ -29,9 +28,21 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
     to: toUser.email,
     from: 'andreslong92@gmail.com',
     subject: 'Welcome to the Village!',
-    test: 'some text for testing',
-    html: VotEmail(context)
-  };
+    text: 'some text for testing',
+    html: '<h1> yo </h1>',
+    template_id: process.env.SENDGRID,
+    dynamic_template_data: {
+        link: link
+    }
+};
+//   const msg = {
+//     to: toUser.email,
+//     from: 'andreslong92@gmail.com',
+//     subject: 'Welcome to the Village!',
+//     text: 'some text for testing',
+//     html: '<h1> yo <h1/>'
+// };
+// html: VotEmail(context)
 
   return sgMail.send(msg);
 
