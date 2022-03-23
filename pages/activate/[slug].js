@@ -46,11 +46,6 @@ const Activate = () => {
   const activatePendingUser = async () => {
 
     const userExists = await getPendingUser(router.query.slug);
-<<<<<<< HEAD
-    console.log(userExists);
-    setActivateStatus(true);
-=======
->>>>>>> be71e62c98a6f18cb6c26265d9ff216c9e8e31dd
 
     if (!userExists) {
       //user did not exist, get out
