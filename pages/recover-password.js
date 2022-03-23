@@ -34,7 +34,6 @@ const UserPasswordRecovery = () => {
     }
   };
   getUserData();
-  // console.log(userData);
   }, [userDataLength]);
 
   // Get Seed Phrase Hex from Database
@@ -58,7 +57,6 @@ const UserPasswordRecovery = () => {
   let seed = "";
   let [pass, setPass] = useState(false);
   let [reset, setReset] = useState(false);
-  console.log(pass);
 
   let seedPhrase;
   let submitButton;
@@ -93,10 +91,6 @@ const UserPasswordRecovery = () => {
     }
     seed = seedArr.join(' ').toLowerCase();
     // txtSeed = localStorage.getItem('upload_data')
-    console.log("seed: "+ seed);
-    console.log("txtSeed: "+ txtSeed);
-    console.log("Email (Data): "+userData.email);
-    console.log("Email (Value): "+email.value);
     if ((seed === phrase && seedArr.length ===  9 && email.value === userData.email) || (txtSeed === phrase && email.value === userData.email)) {
       setPass(true)
       container.style.borderColor = '#222224';
@@ -131,8 +125,6 @@ const UserPasswordRecovery = () => {
     }
     return inputs;
   }
-
-  console.log(txtSeed);
 
   seedPhrase = SeedPhraseInput();
 

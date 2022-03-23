@@ -5,6 +5,8 @@ import Instagram from '../public/images/icons/instagram_social-circles.svg';
 import Twitter from '../public/images/icons/twitter_social-circles.svg';
 import Discord from '../public/images/icons/discord_social-circles.svg';
 
+import website from '../config/site-data.json';
+
 const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, icon4, icon1link, icon2link, icon3link, icon4link, icon1alt, icon2alt, icon3alt, icon4alt }) => {
 
   iClass=iClass?" "+iClass:" svg-color-light";
@@ -16,15 +18,15 @@ const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, ic
   icon3=icon3?icon3:Discord;
   icon4=icon4?icon4:Github;
 
-  icon1link=icon1link?icon1link:"https://instagram.com/VillageOfThousands/";
-  icon2link=icon2link?icon2link:"https://twitter.com/VoThousands/";
-  icon3link=icon3link?icon3link:"https://discord.gg/EmCMFcJXbZ";
-  icon4link=icon4link?icon4link:"https://github.com/gravyhtx/village-of-thousands";
+  icon1link=icon1link?icon1link:website.instagramUrl;
+  icon2link=icon2link?icon2link:website.twitterUrl;
+  icon3link=icon3link?icon3link:website.discordUrl;
+  icon4link=icon4link?icon4link:website.githubUrl;
 
-  icon1alt=icon1alt?icon1alt:"Village of Thousands // Instagram";
-  icon2alt=icon2alt?icon2alt:"Village of Thousands // Twitter";
-  icon3alt=icon3alt?icon3alt:"Village of Thousands // Discord";
-  icon4alt=icon4alt?icon4alt:"Village of Thousands // Github";
+  icon1alt=icon1alt?icon1alt:website.title+" // Instagram";
+  icon2alt=icon2alt?icon2alt:website.title+" // Twitter";
+  icon3alt=icon3alt?icon3alt:website.title+" // Discord";
+  icon4alt=icon4alt?icon4alt:website.title+" // Github";
 
   const icons = [
     {

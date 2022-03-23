@@ -33,6 +33,8 @@ export const UserDataProvider = props => {
   // the value that will be given to the context
   const [user, setUser] = useState(null);
 
+<<<<<<< HEAD:components/_playground/UserDataContext.js
+=======
   // fetch a user from a fake backend API
   useEffect(() => {
     const fetchUser = () => {
@@ -45,9 +47,9 @@ export const UserDataProvider = props => {
     };
 
     fetchUser();
-    // console.log(user)
   }, []);
 
+>>>>>>> be71e62c98a6f18cb6c26265d9ff216c9e8e31dd:components/context/UserDataContext.js
   // const providerValue = useMemo(() => {(userData, setUserData)}, [userData, setUserData]);
 
   useEffect(() => {

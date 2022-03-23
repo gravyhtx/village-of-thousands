@@ -1636,6 +1636,7 @@ label#upload-label:hover {
 
 .activate-header {
   font-size: 7rem;
+  text-shadow: 4px 2px 8px #444444;
 }
 
 .activate-header {
@@ -1687,6 +1688,7 @@ label#upload-label:hover {
 }
 
 .activated-header {
+  text-shadow: 4px 2px 6px #555555;
 }
 
 .activate-header,
@@ -1699,6 +1701,7 @@ label#upload-label:hover {
 
 .activate-click-me_broh {
   font-size: 1.5rem;
+  text-shadow: 4px 2px 6px #555555;
   -webkit-animation: tiltFlash 5s alternate infinite ease-in-out;
   -moz-animation: tiltFlash 5s alternate infinite ease-in-out;
   -o-animation: tiltFlash 5s alternate infinite ease-in-out;
@@ -1709,6 +1712,10 @@ label#upload-label:hover {
   letter-spacing: 1.2;
   font-style: normal;
   text-decoration: none;
+  -webkit-animation: tiltFlash 7s alternate infinite ease-in-out;
+  -moz-animation: tiltFlash 7s alternate infinite ease-in-out;
+  -o-animation: tiltFlash 7s alternate infinite ease-in-out;
+  animation: tiltFlash 7s alternate infinite ease-in-out;
 }
 
 .activate_or-here {
@@ -1716,6 +1723,7 @@ label#upload-label:hover {
   color: #454545;
   margin-top: 10vh;
   transition: .5s ease;
+  text-shadow: 4px 2px 6px black;
   -webkit-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
   -moz-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
   -o-animation: tiltFlash 6s alternate-reverse infinite ease-in-out;
@@ -1727,6 +1735,7 @@ label#upload-label:hover {
   color: #333333;
   margin-top: 25vh;
   transition: .5s ease;
+  text-shadow: -4px 2px 6px black;
   -webkit-animation: tiltFlash 5s alternate infinite ease-in-out;
   -moz-animation: tiltFlash 5s alternate infinite ease-in-out;
   -o-animation: tiltFlash 5s alternate infinite ease-in-out;
@@ -1735,12 +1744,10 @@ label#upload-label:hover {
 
 .activate_or-here:hover {
   transition: .5s ease;
-  transform: skew(-10deg, -2.5deg);
 }
 
 .activate_here-too:hover {
   transition: .5s ease;
-  transform: skew(20deg, 2.5deg);
 }
 
 .activate-almost-there_broh {
@@ -1792,6 +1799,7 @@ label#upload-label:hover {
   -moz-animation: tiltLeftFlash .1s alternate infinite ease-in;
   -o-animation: tiltLeftFlash .1s alternate infinite ease-in;
   animation: tiltLeftFlash .1s alternate infinite ease-in;
+  text-shadow: 4px 2px 6px black;
 }
 
 .activated-is-activated {
@@ -1806,6 +1814,7 @@ label#upload-label:hover {
   margin-top: 10px;
   color: #bbbbbb;
   font-size: .8rem;
+  text-shadow: 4px 2px 6px black;
 }
 
 .activated-image {

@@ -44,8 +44,6 @@ const AccountContainer = () => {
     }
   }
 
-  // console.log(themeSchema("vot", themeColors))
-
   let color1 = themeColors[0];
   let color2 = themeColors[1];
   let color3 = themeColors[2];
@@ -55,19 +53,16 @@ const AccountContainer = () => {
     const setColors = (n) => localStorage.setItem('blockie-color', n);
     if (scheme < 1) {
       setColors(scheme);
-      // console.log("Scheme:",scheme);
       color1 = themeColors[0];
       color2 = themeColors[1];
       color3 = themeColors[2];
     } else if (scheme > 1) {
       setColors(scheme);
-      // console.log("Scheme:",scheme);
       color1 = themeColors[2];
       color2 = themeColors[0];
       color3 = themeColors[1];
     } else {
       setColors(scheme);
-      // console.log("Scheme:",scheme);
       color1 = themeColors[1];
       color2 = themeColors[2];
       color3 = themeColors[0];
@@ -75,22 +70,17 @@ const AccountContainer = () => {
   });
 
   const setScheme = () => {
-    console.log('click')
     if (scheme === 1) {
       scheme++;
       setColors(scheme);
-      console.log(scheme);
     } else if (scheme > 1) {
       scheme = 0;
       setColors(scheme);
-      console.log(scheme);
     } else {
       scheme++;
       setColors(scheme);
-      console.log(scheme);
     }
     router.reload();
-    // window.location.reload();
   }
   
   const [ avatar, setAvatar ] = useState(<></>);
@@ -118,7 +108,6 @@ const AccountContainer = () => {
     
     const profile = token ? Auth.getProfile() : null;
 
-    console.log(profile)
     resendConfirmationFetch(profile)
   }
 
@@ -134,7 +123,6 @@ const AccountContainer = () => {
         }
 
         const user = await response.json();
-        // console.log(user)
         setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
@@ -147,22 +135,17 @@ const AccountContainer = () => {
     };
 
     getUserData();
-    // console.log(userData);
-  // }, [userDataLength]);
   }, [userDataLength]);
 
   // var canvas = userData.walletAddress?blockie:<></>
   // var blockieCanvas = document.getElementById('blockie-canvas');
   // const blockieUrl = blockieCanvas.toDataURL()
-  // console.log(blockieUrl);
   // const dataURL = () => {
   //   let url = blockieCanvas.toDataURL()
   //   return(url)
   // }
   // const blockiePng = document.write('<img src="'+dataURL+'"/>');
-  // console.log(dataURL);
   // var dataURL = canvas.toDataURL();
-  // console.log(dataURL);
   // const blockie = document.write('<img src="'+img+'"/>');
 
   return (

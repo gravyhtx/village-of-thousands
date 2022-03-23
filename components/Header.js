@@ -28,10 +28,6 @@ const Header = ({ images }) => {
         
         const response = await getSingleUser(token);
 
-        // if (!response.ok) {
-        //   throw new Error('something went wrong!');
-        // }
-
         const user = await response.json();
         setUserData(user);
 
@@ -39,18 +35,10 @@ const Header = ({ images }) => {
         console.error(err);
       }
     };
-    // console.log(userData)
     getUserData();
   }, [userDataLength]);
 
-  // const getWallet = localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses');
-
   let siteName = SiteData.name;
-
-  // const { asPath, pathname } = withRouter();
-  // console.log(asPath); // '/blog/xyz'
-  // console.log(pathname); // '/blog/[slug]'
-  // console.log(user.walletAddress)
 
   const router = useRouter();
   const path = router.pathname;
@@ -79,15 +67,13 @@ const Header = ({ images }) => {
     />)
   }
 
-  const notificationText =
-    <>
-      Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
-      <span className="info-icon" id="info-icon">
-        <Link href="/faq#8"><a>
-        <i className="material-icons info-icon">info_outline</i>
-        </a></Link>
-      </span>
-    </>;
+  const notificationText = <>Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
+  const helpLink =
+    <span className="info-icon" id="info-icon">
+      <Link href="/faq#8"><a>
+      <i className="material-icons info-icon">info_outline</i>
+      </a></Link>
+    </span>
 
   return (
     <header className="site-header" id="site-header">
@@ -98,21 +84,6 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* {useWindowSize().width > 2400
-              ? <SvgContainer
-                  layout="responsive"
-                  src={HeaderSvg}
-                  id="header-img"
-                  draggable="false"
-                  description="Village of Thousands Logo"
-                />
-              : <ImageContainer
-                  layout="responsive"
-                  src={HeaderImg}
-                  id="header-img"
-                  draggable="false"
-                  description="Village of Thousands Logo"
-                />} */}
               {useWindowSize().width > 2400
                 ? <Svg />
                 : <Png />}
@@ -120,9 +91,8 @@ const Header = ({ images }) => {
           </div>
         </Link>
         {!userData.walletAddress
-          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} /></div>
-          : <></>
-        }
+          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={helpLink} /></div>
+          : <></>}
       </div>
     </header>
 

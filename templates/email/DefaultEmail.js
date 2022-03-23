@@ -1,6 +1,6 @@
 import RandomQuote from '../../components/dynamic-content/RandomQuote';
 
-const VotEmail = ({ title, style, description, content, script }) => {
+const VotEmail = ({ content, title, style, description, script }) => {
 
   script = script ? `<script>${script}</script>` : null;
   title = title ? `Village of Thousands | ${title.toUpperCase()}` : `Village of Thousands | EMAIL`;

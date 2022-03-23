@@ -38,7 +38,6 @@ const UserMnemonic = () => {
     };
 
     getUserData();
-    // console.log(userData);
   }, [userDataLength]);
 
   // Add Seed Phrase Hex
@@ -51,10 +50,8 @@ const UserMnemonic = () => {
     const getMnemonic=localStorage.getItem('seed_hex');
     if (getMnemonic) {
       setSeedHex(getMnemonic);
-      console.log(getMnemonic);
     } else {
       localStorage.setItem('seed_hex', seedHex);
-      console.log('hmmmm')
     }
   }, []);
 

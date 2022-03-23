@@ -35,36 +35,33 @@ const Activate = () => {
     }
 
     checkLogged();
-    console.log(slug)
 
     if(activateStatus) {
       setTimeout(function(){
         router.push('/')
       }, 15000);
     }
-    console.log(activateStatus)
   }, [])
 
   const activatePendingUser = async () => {
 
     const userExists = await getPendingUser(router.query.slug);
-    console.log(userExists);
 
     if (!userExists) {
-      console.log('user does not exist')
+      //user did not exist, get out
       return
     }
     const user = await userExists.json()
-    // console.log(user)
     const activate = await accountActivation(router.query.slug);
 
 
     if (!activate) {
-      console.log('activation error at slug js')
+      //activation failed, get dunked
       return
     }
 
-    setPendingUser(userExists);
+    setPendingUser(user)
+    setActivateStatus(true);
   }
 
   const headerImages = [
@@ -87,55 +84,57 @@ const Activate = () => {
 
   return (
     <DefaultLayout headerImages={headerImages}>
-      <div className="activate-page center container animate__animated animate__fadeIn">
-        {!isLogged ? (
-          <>
-            <LoginContainer />
-          </>
-        ) : 
-        (
-          <div className="activate-content">
-            {!activateStatus ? (
-              <>
-                <h1 className="activate-header">
-                  {activateHeader.split("").map((letter, index)=> {
-                    return <span key={index}>{letter}</span>
-                  })}
-                </h1>
-                <button className="activate-button not-a-button" onClick={activatePendingUser}>
-                  <div className="content">
-                    <div>
-                      <p className="activate-click-me_broh">
-                        <b className="activate-here italics cursor-pointer">
-                        [Click here]</b> to activate your account.
-                      </p>
+      <div id="content" className="main-content">
+        <div className="activate-page center container animate__animated animate__fadeIn">
+          {!isLogged ? (
+            <>
+              <LoginContainer />
+            </>
+          ) : 
+          (
+            <div className="activate-content">
+              {!activateStatus ? (
+                <>
+                  <h1 className="activate-header">
+                    {activateHeader.split("").map((letter, index)=> {
+                      return <span key={index}>{letter}</span>
+                    })}
+                  </h1>
+                  <button className="activate-button not-a-button" onClick={activatePendingUser}>
+                    <div className="content">
+                      <div>
+                        <p className="activate-click-me_broh">
+                          <b className="activate-here italics cursor-pointer">
+                          [Click here]</b> to activate your account.
+                        </p>
+                      </div>
+                      <div className="activate_or-here right cursor-pointer">...or here, even</div>
+                      <div className="activate_here-too left cursor-pointer">here too...</div>
                     </div>
-                    <div className="activate_or-here right cursor-pointer">...or here, even</div>
-                    <div className="activate_here-too left cursor-pointer">here too...</div>
-                  </div>
-                </button>
-                <p className="activate-almost-there_broh monospace glow">[ You're almost there, dood. ]</p>
-              </>
-            ): (
-              <>
-                <h1 className="activated-header">
-                  <div className="activated-congrats glow">CONGRATS!</div>
-                  <div className="activated-is-activated">YOUR ACCOUNT IS ACTIVE, DAWG!</div>
-                </h1>
-                <div className="activated-content">
-                  <SiteImage
-                    containerClasses="activated-image"
-                    siteImage="Bro"
-                    draggable="false"
-                    description="You activated your account, broh."
-                  />
-                  <div className="activated-emoji monospace">[INSERT APPROPRIATE EMOJI]</div>
-                </div>
-              </>
-            )}
-          </div>
-        )
-        }
+                  </button>
+                  <p className="activate-almost-there_broh monospace glow">[ You're almost there, dood. ]</p>
+                </>
+              ): (
+                <>
+                  <Link href="/"><a><h1 className="activated-header">
+                    <div className="activated-congrats glow">CONGRATS!</div>
+                    <div className="activated-is-activated">YOUR ACCOUNT IS ACTIVE, DAWG!</div>
+                  </h1>
+                  <div className="activated-content">
+                    <SiteImage
+                      containerClasses="activated-image"
+                      siteImage="Bro"
+                      draggable="false"
+                      description="You activated your account, broh."
+                    />
+                    <div className="activated-emoji monospace">[INSERT APPROPRIATE EMOJI]</div>
+                  </div></a></Link>
+                </>
+              )}
+            </div>
+          )
+          }
+        </div>
       </div>
     </DefaultLayout>
   );

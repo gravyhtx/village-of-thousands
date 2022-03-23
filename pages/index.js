@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import DefaultLayout from '../templates/DefaultLayout';
 
 import Hero from '../components/Hero';
