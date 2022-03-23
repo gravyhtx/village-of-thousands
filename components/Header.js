@@ -79,15 +79,13 @@ const Header = ({ images }) => {
     />)
   }
 
-  const notificationText =
-    <>
-      Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;
-      <span className="info-icon" id="info-icon">
-        <Link href="/faq#8"><a>
-        <i className="material-icons info-icon">info_outline</i>
-        </a></Link>
-      </span>
-    </>;
+  const notificationText = <>Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
+  const helpLink =
+    <span className="info-icon" id="info-icon">
+      <Link href="/faq#8"><a>
+      <i className="material-icons info-icon">info_outline</i>
+      </a></Link>
+    </span>
 
   return (
     <header className="site-header" id="site-header">
@@ -98,21 +96,6 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* {useWindowSize().width > 2400
-              ? <SvgContainer
-                  layout="responsive"
-                  src={HeaderSvg}
-                  id="header-img"
-                  draggable="false"
-                  description="Village of Thousands Logo"
-                />
-              : <ImageContainer
-                  layout="responsive"
-                  src={HeaderImg}
-                  id="header-img"
-                  draggable="false"
-                  description="Village of Thousands Logo"
-                />} */}
               {useWindowSize().width > 2400
                 ? <Svg />
                 : <Png />}
@@ -120,9 +103,8 @@ const Header = ({ images }) => {
           </div>
         </Link>
         {!userData.walletAddress
-          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} /></div>
-          : <></>
-        }
+          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={helpLink} /></div>
+          : <></>}
       </div>
     </header>
 

@@ -1,11 +1,15 @@
 {
-  "website": "https://villageofthousands.io/",
+  "url": "https://villageofthousands.io/",
   "name": "Village of Thousands",
+  "description": "Village of Thousands is a skateboard culture brand based out of Houston, TX producing some of the higest quality,sustainable NFT-authenticated products and streetwear grown in the USA. Our community promotes and encourages a wellness driven, environmentally conscious lifestyle attainable to all that join us on our journey to greatness.",
   "abbreviation": "VoT",
   "drop": 1,
   "szn": "Spring 2022",
-  "github": "https://github.com/gravyhtx/village-of-thousands",
-  "instagram": "@Village_of_Thousands",
-  "twitter": "@VoThousands",
-  "discord": "https://discord.gg/ZyNsT2y7"
+  "githubUrl": "https://github.com/gravyhtx/village-of-thousands",
+  "instagramHandle": "@VillageOfThousands",
+  "instagramUrl": "https://instagram.com/VillageOfThousands",
+  "twitterHandle": "@VoThousands",
+  "twitterUrl": "https://twitter.com/VoThousands",
+  "discordServerId": "921834272082509874",
+  "discordUrl": "https://discord.gg/ZyNsT2y7"
 }
