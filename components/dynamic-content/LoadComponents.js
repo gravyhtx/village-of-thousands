@@ -25,7 +25,6 @@ export default function LoadComponents({ preLoadComponent, loadedComponent, inte
   useEffect(() => {
     // Update  'component' to the 'loadedComponent' when state updates.
     const updateComponent = async () => {
-      console.log(classes)
       try {
         // Set timeout delay if parameters are entered (correctly).
         if (typeof interval === 'number' && interval !== 0) {

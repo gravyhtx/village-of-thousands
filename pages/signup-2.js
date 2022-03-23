@@ -40,7 +40,6 @@ const UserRegistration = () => {
     };
 
     getUserData();
-    // console.log(userData);
   }, [userDataLength]);
 
   return (

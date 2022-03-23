@@ -23,7 +23,6 @@ const AddressForm = () => {
 
         const response = await getSingleUser(token);
 
-        // console.log(token);
         if(!response.ok){
           throw new Error('Something went wrong!');
         }
@@ -108,8 +107,6 @@ const AddressForm = () => {
   const userAddress = (field) => {
     return userData.field
   }
-
-  console.log(userAddress(fields[0]));
 
   return (
     <>

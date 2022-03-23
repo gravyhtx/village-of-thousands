@@ -33,6 +33,23 @@ export const UserDataProvider = props => {
   // the value that will be given to the context
   const [user, setUser] = useState(null);
 
+<<<<<<< HEAD:components/_playground/UserDataContext.js
+=======
+  // fetch a user from a fake backend API
+  useEffect(() => {
+    const fetchUser = () => {
+      // this would usually be your own backend, or localStorage
+      // for example
+      fetch('https://randomuser.me/api/')
+        .then((response) => response.json())
+        .then((result) => setUser(result.results[0]))
+        .catch((error) => console.log('An error occurred'))
+    };
+
+    fetchUser();
+  }, []);
+
+>>>>>>> be71e62c98a6f18cb6c26265d9ff216c9e8e31dd:components/context/UserDataContext.js
   // const providerValue = useMemo(() => {(userData, setUserData)}, [userData, setUserData]);
 
   useEffect(() => {

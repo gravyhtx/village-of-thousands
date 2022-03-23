@@ -28,10 +28,6 @@ const Header = ({ images }) => {
         
         const response = await getSingleUser(token);
 
-        // if (!response.ok) {
-        //   throw new Error('something went wrong!');
-        // }
-
         const user = await response.json();
         setUserData(user);
 
@@ -39,18 +35,10 @@ const Header = ({ images }) => {
         console.error(err);
       }
     };
-    // console.log(userData)
     getUserData();
   }, [userDataLength]);
 
-  // const getWallet = localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses');
-
   let siteName = SiteData.name;
-
-  // const { asPath, pathname } = withRouter();
-  // console.log(asPath); // '/blog/xyz'
-  // console.log(pathname); // '/blog/[slug]'
-  // console.log(user.walletAddress)
 
   const router = useRouter();
   const path = router.pathname;

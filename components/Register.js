@@ -43,9 +43,7 @@ const Register = () =>  {
 
     if (emailFormat.test(email) && pwFormat.test(password) && pwFormatSpaces.test(password)) {
       setPass(true);
-      // console.log('passing statements have been activated')
     } else {
-      // console.log('failing statements have been activated')
       setPass(false);
     }
     setFormError({
@@ -65,13 +63,9 @@ const Register = () =>  {
 
   const handleFormSubmit = async () => {
 
-    // event.preventDefault();
-    // event.stopPropagation();
-
     if(!pass) {
       return 
     }
-    // if(formError.email === errorElements[0] || formError.password === errorElements[1]) {
 
     try {
       const response = await createUser(userFormData);
@@ -81,8 +75,6 @@ const Register = () =>  {
       }
 
       const { token, user } = await response.json();
-      // console.log(user.length);
-      console.log(pass);
       
       if(pass) {
         Auth.login(token);

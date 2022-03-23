@@ -10,7 +10,6 @@ const Cart = () => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
       setCart(cart)
-      console.log(cart)
     }
 
     if(!cart.length) {

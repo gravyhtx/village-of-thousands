@@ -30,7 +30,6 @@ export default function getUserData(fn,tokenRoute) {
       }
   };
   userData();
-  // console.log(userData);
   }, [userDataLength]);
   return userData;
 }

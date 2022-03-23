@@ -27,8 +27,7 @@ class Blockie extends React.Component {
   }
   render() {
     const blockieCanvas = <canvas className='blockie-canvas' ref={canvas => this.canvas = canvas} id="blockie-canvas"/>
-    // const blockieUrl = blockieCanvas.toDataURL();
-    // console.log(blockieUrl)
+    
     return (<div className='blockie-box animate__animated animate__fadeIn'>{blockieCanvas}</div>)
   }
 }

@@ -32,7 +32,6 @@ const NewPassword = () => {
     }
   };
   getUserData();
-  // console.log(userData);
   }, [userDataLength]);
   
   const [userFormData, setUserFormData] = useState({password: ''})

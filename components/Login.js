@@ -36,7 +36,6 @@ const Login = ({ activation }) =>  {
       }
 
       const { token, user } = await response.json();
-      // console.log(user);
 
       Auth.login(token);
 
