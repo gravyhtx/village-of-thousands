@@ -17,6 +17,7 @@ module.exports = {
     const paths = {
       '/': { page: '/' },
       '/faq': { page: '/faq' },
+      '/shop': { page: '/shop' },
     };
     return paths;
   }
