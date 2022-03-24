@@ -17,6 +17,6 @@ module.exports = {
     const paths = {
       '/': { page: '/' }
     };
-    return paths; //<--this was missing previously
+    return paths;
   }
 }

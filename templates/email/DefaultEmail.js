@@ -1,14 +1,13 @@
 import RandomQuote from '../../components/dynamic-content/RandomQuote';
 
-const VotEmail = ({ content, title, style, description, script }) => {
+const VotEmail = ( content, title, style, description, script ) => {
 
   script = script ? `<script>${script}</script>` : null;
   title = title ? `Village of Thousands | ${title.toUpperCase()}` : `Village of Thousands | EMAIL`;
   description = description ? description : null;
   metaDescription = description ? `<meta property="og:description" content="${description}" />` : `<meta property="og:description" content="Sup, dood?" />`;
   
-  return (
-    `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie"><![endif]-->
     <!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]-->
     <head>
@@ -226,7 +225,6 @@ const VotEmail = ({ content, title, style, description, script }) => {
       ${script}
       </body>
     </html>`
-  )
 }
 
 export default VotEmail;

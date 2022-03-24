@@ -39,7 +39,8 @@ const Login = ({ activation }) =>  {
 
       Auth.login(token);
 
-      if(!activation){ router.push('/') };
+      if(!activation){ router.push('/') }
+      else{ router.reload(window.location.pathname) };
 
     } catch (err) {
       console.error(err);

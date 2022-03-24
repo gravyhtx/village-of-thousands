@@ -51,6 +51,7 @@ const Activate = () => {
       //user did not exist, get out
       return
     }
+    
     const user = await userExists.json()
     const activate = await accountActivation(router.query.slug);
 

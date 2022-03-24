@@ -29,7 +29,11 @@ export default async (req, res) => {
           return res.status(422).json({ success: false, message: "User email already exists"})
         }
 
-        const user = await PendingUser.create(req.body);
+        // const user = await PendingUser.create(req.body);
+        const user = {
+          email: "godisgravy@gmail.com",
+          _id: 123
+        };
 
         const confirmation = await sendConfirmationEmail({toUser: user, hash: user._id.toString()})
         console.log(confirmation)
