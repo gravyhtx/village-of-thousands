@@ -18,6 +18,10 @@ module.exports = {
       '/': { page: '/' },
       '/faq': { page: '/faq' },
       '/shop': { page: '/shop' },
+      '/cart': { page: '/cart' },
+      '/activate': { page: '/activate' },
+      '/activate/:path*': { page: '/activate/:path*' },
+      '/404': { page: '/404' },
     };
     return paths;
   }
