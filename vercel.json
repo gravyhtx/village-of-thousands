@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/activate/:hash",
+            "destination": "/activate/[hash]"
+        },
+        {
+            "source": "/faq",
+            "destination": "/faq"
+        },
+        { 
+            "source": "/(.*)",
+            "destination": "/" 
+        }
+    ]
+}
