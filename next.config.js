@@ -9,13 +9,14 @@ module.exports = {
       {
         source: '/qr',
         destination: '/',
-        permanent: true,
+        permanent: false,
       },
     ]
   },
   exportPathMap: async function() {
     const paths = {
-      '/': { page: '/' }
+      '/': { page: '/' },
+      '/faq': { page: '/faq' },
     };
     return paths;
   }
