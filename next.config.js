@@ -20,7 +20,6 @@ module.exports = {
       '/shop': { page: '/shop' },
       '/cart': { page: '/cart' },
       '/activate': { page: '/activate' },
-      '/activate/:slug*': { page: '/activate/:slug' },
       '/404': { page: '/404' },
     };
     return paths;
