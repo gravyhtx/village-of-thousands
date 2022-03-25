@@ -84,7 +84,7 @@ const Activate = () => {
   const activateHeader = "SUPPP, BROH?!";
 
   return (
-    <DefaultLayout headerImages={headerImages}>
+    <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
       <div id="content" className="main-content">
         <div className="activate-page center container animate__animated animate__fadeIn">
           {!isLogged ? (
