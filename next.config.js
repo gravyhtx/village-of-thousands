@@ -12,16 +12,5 @@ module.exports = {
         permanent: false,
       },
     ]
-  },
-  exportPathMap: async function() {
-    const paths = {
-      '/': { page: '/' },
-      '/faq': { page: '/faq' },
-      '/shop': { page: '/shop' },
-      '/cart': { page: '/cart' },
-      '/activate': { page: '/activate' },
-      '/404': { page: '/404' },
-    };
-    return paths;
   }
 }
