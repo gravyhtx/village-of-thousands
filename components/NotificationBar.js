@@ -1,28 +1,25 @@
 import React, { useEffect } from 'react';
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const NotificationBar = ({ text, link, ext }) =>  {
-  let component;
+const NotificationBar = ({ text, link, ext, extLink }) =>  {
+  const router = useRouter();
 
   useEffect(() => {
-    component=   
-    <Link href={link}>
-      <a className="notify-link" id="notify-link">
-      <div className="notify" id="notify">
-        <>{text}</>
-      </div>
-      </a>
-    </Link>
-  })
+    if(!document.getElementById('ext-link').matches(':hover')) {
+      document.getElementById('notify').addEventListener('click', () => {
+        router.push(link);
+      });
+    }
+    document.getElementById('ext-link').addEventListener('click', () => {
+      router.push(extLink);
+    });
+  });
 
   return (
     <div className="notify" id="notify">
-      <Link href={link}>
-        <a className="notify-link" id="notify-link">
-          {text}
-        </a>
-      </Link>
-      {ext}
+      {text}
+      {ext ? <span id="ext-link">{ext}</span> : <></>}
     </div>
   )
 }

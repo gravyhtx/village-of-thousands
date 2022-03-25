@@ -68,12 +68,52 @@ const Header = ({ images }) => {
   }
 
   const notificationText = <>Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
-  const helpLink =
+
+  const helpLink = "/faq#8"
+  const help =
     <span className="info-icon" id="info-icon">
-      <Link href="/faq#8"><a>
+      <Link href={helpLink}><a>
       <i className="material-icons info-icon">info_outline</i>
       </a></Link>
     </span>
+
+  const fallbackStyles = {
+    position: 'absolute',
+    inset: '0px',
+    boxSizing: 'border-box',
+    padding: '0px',
+    border: 'none',
+    margin: 'auto',
+    display: 'block',
+    width: '0px',
+    height: '0px',
+    minWidth: '100%',
+    maxWidth: '100%',
+    minHeight: '100%',
+    maxHeight: '100%'
+  }
+  const fallbackImage =
+    <img alt="Village of Thousands Logo" id="header-img" draggable="false" sizes="100vw"
+      srcset="
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1080 1080w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1200 1200w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1920 1920w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
+        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
+      src="https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840"
+      decoding="async" data-nimg="responsive" class="image-class"
+      style={fallbackStyles}/>
+  
+  const fallback =
+    <div className="image-container">
+      <span style={{ boxSizing: 'border-box', display: 'block', overflow: 'hidden', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px', position: 'relative'}}>
+      <span style={{ boxSizing: 'border-box', display: 'block', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '7.45% 0px 0px'}}></span>
+      { fallbackImage }
+      </span>
+    </div>
 
   return (
     <header className="site-header" id="site-header">
@@ -84,14 +124,15 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {useWindowSize().width > 2400
+              {/* {useWindowSize().width > 2400
                 ? <Svg />
-                : <Png />}
+                : <Png />} */}
+              { fallback }
             </div>
           </div>
         </Link>
         {!userData.walletAddress
-          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={helpLink} /></div>
+          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>
           : <></>}
       </div>
     </header>

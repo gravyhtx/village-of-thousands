@@ -17,6 +17,18 @@ const LoginContainer = ({ name, message }) =>  {
 
   const signupContainers = [{name:'login', component: <Login/>}, {name:'register', component: <Register/>}];
 
+  const headerStyle = () => {
+    if(!expanded) {
+      return {
+        color: "#ebebeb'"
+      }
+    } else {
+      return {
+        color: "#787878"
+      }
+    }
+  };
+
   const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
 
   return (
@@ -33,7 +45,11 @@ const LoginContainer = ({ name, message }) =>  {
             key={index}
           >
             <AccordionSummary className="collapsible-header center" id="login-header">
-              <div className="login-header disable-highlight">{capitalize(container.name)}</div>
+              <div
+                style={headerStyle()}
+                className="login-header disable-highlight">
+                {capitalize(container.name)}
+              </div>
             </AccordionSummary>
             <AccordionDetails className={container.name+"-collapsible-item"}>
               {container.component}

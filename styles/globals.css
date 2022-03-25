@@ -941,7 +941,7 @@ h2, .h2 {
   transform: translateY(100px);
 
   /* and a transition */
-  transition: all .25s ease;
+  transition: all .25s ease-in-out;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -1149,10 +1149,18 @@ h2, .h2 {
   width: 100vw;
   /* AFTER ACCOUNT CREATION... (JS) */
     /* display:none; */
+  cursor: pointer;
+}
+
+.notify a {
+  -webkit-transition: 250ms ease-in-out;
+  transition: 250ms ease-in-out;
 }
 
 .notify:hover, .info-icon:hover {
   color: var(--notify-hover-color);
+  -webkit-transition: 250ms ease-in-out;
+  transition: 250ms ease-in-out;
 }
 
 .info-icon i {
@@ -3612,13 +3620,6 @@ input.input-field {
 }
 
 .waves-effect.waves-light .waves-ripple { background-color:#87b1d852 }
-
-.collapsible-header,
-.collapsible-header:active,
-.collapsible-header:focus-visible {
-  /* border-top: 2px solid white !important; */
-  /* border-bottom: 2px solid white !important; */
-}
 
 
 /* ANIMATIONS */

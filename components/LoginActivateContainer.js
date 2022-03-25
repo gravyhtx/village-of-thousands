@@ -13,6 +13,18 @@ const LoginContainer = ({ name, message }) =>  {
     setExpanded(newExpanded ? panel : false);
   };
 
+  const headerStyle = () => {
+    if(!expanded) {
+      return {
+        color: "#ebebeb'"
+      }
+    } else {
+      return {
+        color: "#787878"
+      }
+    }
+  };
+
   // const signupContainers = [{name:'login', component: <Login/>}, {name:'register', component: <Register/>}];
 
   const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
@@ -27,7 +39,11 @@ const LoginContainer = ({ name, message }) =>  {
           disableGutters
         >
           <AccordionSummary className="collapsible-header center" id="login-header">
-            <div className="login-header disable-highlight">{capitalize("Login")}</div>
+            <div
+              style={headerStyle()}
+              className="login-header disable-highlight">
+                {capitalize("Login")}
+            </div>
           </AccordionSummary>
           <AccordionDetails className="activate-login login-collapsible-item">
             <Login activation={true} />
