@@ -21,7 +21,7 @@ const Register = () =>  {
   const errorElements = [
     <div className='signup-error error-message italics' id='email-error'>Please enter a valid email address.</div>,
     <span className='signup-error error-message italics' id='password-error'>Password must be between 6 to 20
-    characters withat least one numeric digit, one uppercase, and one lowercase letter.</span>,
+    characters with at least one numeric digit, one uppercase, and one lowercase letter.</span>,
     <span className='signup-error error-message italics' id='password-error'>Password cannot contain spaces.</span>
   ]
 

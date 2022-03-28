@@ -67,4 +67,4 @@ const UserRegistration = () => {
   )
 }
 
-export default UserRegistration;
+export default withAuth(UserRegistration);
