@@ -18,9 +18,9 @@ const LoginContainer = ({ name, message }) =>  {
   const signupContainers = [{name:'login', component: <Login/>}, {name:'register', component: <Register/>}];
 
   const headerStyle = () => {
-    if(!expanded) {
+    if(h = 'login') {
       return {
-        color: "#ebebeb'"
+        color: "#ebebeb"
       }
     } else {
       return {
@@ -46,7 +46,7 @@ const LoginContainer = ({ name, message }) =>  {
           >
             <AccordionSummary className="collapsible-header center" id="login-header">
               <div
-                style={headerStyle()}
+                style={expanded === container.name ? {color: '#ebebeb'} : {color: '#787878'}}
                 className="login-header disable-highlight">
                 {capitalize(container.name)}
               </div>

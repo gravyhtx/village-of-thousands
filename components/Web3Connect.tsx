@@ -91,7 +91,6 @@ function Account() {
     const user = await response.json();
     setUserAddress(user.walletAddress);
   }
-  getUser();
   try {
     let updateObj = {
       walletAddress: userAccount
@@ -101,6 +100,7 @@ function Account() {
       if(!response.ok) {
           throw new Error('something went wrong!');
       }
+      getUser();
     });
     // const response = await updateUser(updateObj, token);
 
@@ -113,7 +113,7 @@ function Account() {
     console.error(err);
   }
 
-  return (userAddress ? userAddress : 'null')
+  return (userAddress ? userAddress : "")
 }
 
 function Balance() {
@@ -329,7 +329,7 @@ function App() {
   const web3activate = async () => {
     setActivatingConnector(currentConnector)
     const activeWallet = await activate(injected)
-    submitWallet()
+    // submitWallet();
     // submitWallet()
     // if (window.location.pathname === '/account') {
     //   window.location.reload()
