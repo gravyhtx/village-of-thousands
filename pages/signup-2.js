@@ -10,6 +10,8 @@ import Web3Wallet from '../components/Web3Wallet.tsx';
 import Auth from '../utils/auth';
 import {getSingleUser} from '../utils/API';
 
+import withAuth from '../utils/withAuth';
+
 const UserRegistration = () => {
     
   let router = useRouter();
