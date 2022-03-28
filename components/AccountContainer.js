@@ -90,12 +90,12 @@ const AccountContainer = () => {
       onClick={setScheme}
       className="blockie-nav"
       opts={{
-        seed: wallet || userData.walletAddress ? wallet : "Claire Richard",
+        seed: userData.walletAddress ? userData.walletAddress : "Claire Richard",
         color: color1,
-        bgcolor: color2,
+        bgcolor: color3,
         size: 9,
         scale: 7,
-        spotcolor: color3
+        spotcolor: color2
     }}/>)
   }
   const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }

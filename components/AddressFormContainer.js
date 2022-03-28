@@ -104,10 +104,6 @@ const AddressForm = () => {
       placeholder: 'Zip' },
   ];
 
-  const userAddress = (field) => {
-    return userData.field
-  }
-
   return (
     <>
     <div className='register-address-container container'>
@@ -116,17 +112,20 @@ const AddressForm = () => {
         {fields.map((field, index) => {
           return (
             <>
-            <input
-              className="input-field"
-              id={"user-register-"+field.name+"_input"}
-              aria-labelledby="user-register-address"
-              name={field.name}
-              placeholder={field.placeholder}
-              // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
-              onChange={handleInputChange}
-              // value={userData.addressOne?userData.addressOne:''}
-              key={index}
-            />
+            {userData.field ?
+              <div>{userData.field}</div> :
+              <input
+                className="input-field"
+                id={"user-register-"+field.name+"_input"}
+                aria-labelledby="user-register-address"
+                name={field.name}
+                placeholder={userData.field ? userData.field : field.placeholder}
+                // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
+                onChange={handleInputChange}
+                // value={userData.addressOne?userData.addressOne:''}
+                key={index}
+              />
+            }
             </>
           )})
         }
