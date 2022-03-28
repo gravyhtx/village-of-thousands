@@ -4,6 +4,7 @@ import DefaultLayout from '../templates/DefaultLayout';
 import Mnemonic from "../components/Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
+import withAuth from '../utils/withAuth';
 import { updateUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 
