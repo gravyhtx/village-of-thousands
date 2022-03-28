@@ -80,16 +80,18 @@ function BlockNumber() {
 }
 function Account() {
   const { account } = useWeb3React()
-  const userAccount = account === null? '-': account? account: ''
-  // console.log(userAccount)
+  const userAccount = account === null ? '-': account ? account: ''
+  const [userAddress, setUserAddress] = useState('')
+  console.log(useWeb3React())
 
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  // if (!token) {
-  //     // window.location.assign('/404');
-  //     return false;
-  // }
-
+  const getUser = async () => {
+    const response = await getSingleUser(token);
+    const user = await response.json();
+    setUserAddress(user.walletAddress);
+  }
+  getUser();
   try {
     let updateObj = {
       walletAddress: userAccount
@@ -99,7 +101,6 @@ function Account() {
       if(!response.ok) {
           throw new Error('something went wrong!');
       }
-
     });
     // const response = await updateUser(updateObj, token);
 
@@ -112,7 +113,7 @@ function Account() {
     console.error(err);
   }
 
-  return (userAccount)
+  return (userAddress ? userAddress : 'null')
 }
 
 function Balance() {
@@ -286,6 +287,28 @@ function App() {
   const [userWallet, setUserWallet] = useState({walletAddress: "", walletBalance: ""})
 
   const submitWallet = async () => {
+    
+    const { account } = useWeb3React()
+    const userAccount = account === null ? '-': account ? account: '';
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    try {
+      let updateObj = {
+        walletAddress: userAccount
+      }
+      updateUser(updateObj, token)
+      .then(response => {
+        if(!response.ok) {
+            throw new Error('something went wrong!');
+        }
+      });
+
+
+    } catch (err) {
+      console.error(err);
+    }
+
       // event.preventDefault();
       // const wallAddress = Account()
       // // const form = event.currentTarget;

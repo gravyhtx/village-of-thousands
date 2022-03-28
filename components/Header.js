@@ -104,16 +104,18 @@ const Header = ({ images }) => {
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
       src="https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840"
-      decoding="async" data-nimg="responsive" class="image-class"
+      decoding="async" data-nimg="responsive" classname="image-class"
       style={fallbackStyles}/>
   
-  const fallback =
+  const Fallback = () => {
+    return (
     <div className="image-container">
       <span style={{ boxSizing: 'border-box', display: 'block', overflow: 'hidden', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px', position: 'relative'}}>
       <span style={{ boxSizing: 'border-box', display: 'block', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '7.45% 0px 0px'}}></span>
       { fallbackImage }
       </span>
-    </div>
+    </div>)
+  }
 
   return (
     <header className="site-header" id="site-header">
@@ -124,10 +126,9 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* {useWindowSize().width > 2400
+              {useWindowSize().width > 2400
                 ? <Svg />
-                : <Png />} */}
-              { fallback }
+                : <Fallback />}
             </div>
           </div>
         </Link>

@@ -117,7 +117,7 @@ const Activate = () => {
                 </>
               ): (
                 <>
-                  <Link href="/"><a><h1 className="activated-header">
+                  <Link href="/"><a style={{cursor: 'pointer'}}><h1 className="activated-header">
                     <div className="activated-congrats glow">CONGRATS!</div>
                     <div className="activated-is-activated">YOUR ACCOUNT IS ACTIVE, DAWG!</div>
                   </h1>

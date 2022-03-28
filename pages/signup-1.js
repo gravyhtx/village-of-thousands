@@ -221,4 +221,4 @@ const UserMnemonic = () => {
   // } else { return (<></>) }
 }
 
-export default UserMnemonic;
+export default withAuth(UserMnemonic);

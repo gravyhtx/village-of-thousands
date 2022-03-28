@@ -9,7 +9,7 @@ import website from '../config/site-data.json';
 
 export default function DefaultLayout({ headerImages, title, description, children }) {
 
-  title = title ? title : website.title;
+  title = title ? title : website.name;
   description = description ? description : website.description;
 
   return (

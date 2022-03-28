@@ -1,7 +1,5 @@
 import DefaultLayout from "../templates/DefaultLayout";
 
-import { Button } from "@mui/material";
-
 import AccountContainer from "../components/AccountContainer";
 // import BackToTop from "../components/BackToTop";
 
@@ -13,7 +11,7 @@ const Account = () => {
   return(
     <DefaultLayout>
     <div className="account">
-      <h1 className="account-header">Account</h1>
+      <h1 className="account-header center">Account</h1>
       <AccountContainer />
       <div className="account-logout">
         <button

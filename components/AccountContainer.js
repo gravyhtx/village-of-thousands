@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Button } from "@mui/material";
 
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
@@ -123,6 +122,7 @@ const AccountContainer = () => {
         }
 
         const user = await response.json();
+        
         setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
@@ -150,7 +150,7 @@ const AccountContainer = () => {
 
   return (
     <>
-      <div className={userData.walletAddress ? "account-container" : "vot-account-container"} id="account-container">
+      <div className={userData.walletAddress ? "account-container center" : "vot-account-container center"} id="account-container">
         <br/>
         <div className="blockie-container">
           <AccountAvatar/>
@@ -165,14 +165,14 @@ const AccountContainer = () => {
         <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {isUser ?
-              userData.email :
+            {!isUser ?
               <><div className="italics">** Pending User **</div>
               <button
                 className="resend-confirmation not-a-button monospace"
                 onClick={resendConfirmation}>
                 <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button></>
+              </button></> :
+              userData.email
             }
           </div>
         </div>

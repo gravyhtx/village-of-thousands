@@ -18,8 +18,10 @@ const NotificationBar = ({ text, link, ext, extLink }) =>  {
 
   return (
     <div className="notify" id="notify">
-      {text}
-      {ext ? <span id="ext-link">{ext}</span> : <></>}
+      <div className="notify-container">
+        {text}
+        {ext ? <span id="ext-link">{ext}</span> : <></>}
+      </div>
     </div>
   )
 }
