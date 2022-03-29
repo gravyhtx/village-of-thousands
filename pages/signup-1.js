@@ -8,7 +8,7 @@ import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
 // import withAuth from '../utils/withAuth';
 import authCheck from '../utils/authCheck';
-import { updatePendingUser, getPendingUserToken } from '../utils/API';
+import { updatePendingUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
@@ -27,7 +27,7 @@ const UserMnemonic = () => {
           router.push('/login')
         }
 
-        const response = await getPendingUserToken(token);
+        const response = await getSingleUser(token);
 
         if (!response.ok) {
           throw new Error('something went wrong!');

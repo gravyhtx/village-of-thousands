@@ -103,13 +103,20 @@ const AccountContainer = () => {
 
         const response = await getSingleUser(token);
 
-        if(response.ok) {
-          setIsUser(true);
+        if(!response.ok) {
+          return;
+        }
+        
+        const user = await response.json();
+        console.log(user)
+        
+        if(user.pending) {
+          setIsUser(false)
+          return;
         }
 
-        const user = await response.json();
-        
-        setUserData(user);
+        setIsUser(true)
+        setUserData(user.foundUser);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
         } else {
