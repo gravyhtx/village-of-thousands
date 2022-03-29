@@ -21,9 +21,6 @@ const Faq = () => {
   const [scrollLoad, setScrollLoad] = useState(true);
   const accordElem = useRef(null);
 
-  const Test = "test";
-  console.log(Test)
-
   const scroll = () => {
     // scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
     scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : null);

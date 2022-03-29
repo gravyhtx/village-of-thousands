@@ -35,8 +35,18 @@ const Cart = () => {
         <div className="index-section animate__animated animate__fadeIn cart-page">
           <h1 className="center cart-header">Cart</h1>
           <div className="cart center">
-            <div classname="empty-cart center">
-              <p>Your cart is currently empty.</p>
+            <div className="empty-cart center">
+              {cart.length ? (
+                <div>
+                  {cart.map((item, index) => 
+                    (
+                      <h1 key={index}>{item.product}</h1>
+                    )
+                  )}
+                </div>
+              ): (
+                <p>Your cart is currently empty.</p>
+              )}
               <Link href="/shop"><a>
               <p className="link cart-view-products">VIEW PRODUCTS</p>
               </a></Link>

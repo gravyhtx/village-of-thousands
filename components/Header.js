@@ -26,6 +26,10 @@ const Header = ({ images }) => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         
+        if(!token) {
+          return
+        }
+
         const response = await getSingleUser(token);
 
         const user = await response.json();
@@ -35,6 +39,7 @@ const Header = ({ images }) => {
         console.error(err);
       }
     };
+    
     getUserData();
   }, [userDataLength]);
 
@@ -94,7 +99,7 @@ const Header = ({ images }) => {
   }
   const fallbackImage =
     <img alt="Village of Thousands Logo" id="header-img" draggable="false" sizes="100vw"
-      srcset="
+      srcSet="
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
@@ -104,7 +109,7 @@ const Header = ({ images }) => {
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
         https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
       src="https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840"
-      decoding="async" data-nimg="responsive" classname="image-class"
+      decoding="async" data-nimg="responsive" className="image-class"
       style={fallbackStyles}/>
   
   const Fallback = () => {
