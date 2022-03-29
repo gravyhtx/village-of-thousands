@@ -27,23 +27,15 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
     
   const msg = {
     to: toUser.email,
-    from: 'andreslong92@gmail.com',
+    from: 'villageofthousands@gmail.com',
     subject: 'Welcome to the Village!',
     text: 'Welcome to the Village!',
     html: '<h1> Village of Thousands </h1>',
     template_id: process.env.SENDGRID_TEMPLATE,
     dynamic_template_data: {
         link: link
-    }
-};
-//   const msg = {
-//     to: toUser.email,
-//     from: 'andreslong92@gmail.com',
-//     subject: 'Welcome to the Village!',
-//     text: 'some text for testing',
-//     html: '<h1> yo <h1/>'
-// };
-// html: VotEmail(context)
+      }
+    };
 
   return sgMail.send(msg);
 
