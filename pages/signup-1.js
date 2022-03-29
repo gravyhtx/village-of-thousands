@@ -7,7 +7,7 @@ import Mnemonic from "../components/Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
 import withAuth from '../utils/withAuth';
-import { updateUser, getSingleUser } from '../utils/API';
+import { updatePendingUser, getPendingUserToken } from '../utils/API';
 import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
@@ -22,12 +22,11 @@ const UserMnemonic = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        // if ((token && userData.email && userData.mnemonic) || !token) {
-        //   router.push('/')
-        //   return false
-        // }
+        if(!token) {
+          return
+        }
 
-        const response = await getSingleUser(token);
+        const response = await getPendingUserToken(token);
 
         if (!response.ok) {
           throw new Error('something went wrong!');
@@ -64,6 +63,7 @@ const UserMnemonic = () => {
 
   // Handle Agreement
   let [checked, setChecked] = useState(false);
+
   const handleChange = () => {
     handleAgreement();
     setChecked(!checked);
@@ -90,14 +90,12 @@ const UserMnemonic = () => {
         seedHex: seedHex
       }
       console.log(updateObj)
-      updateUser(updateObj, token)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('something went wrong!');
-          }
-        });
-        console.log(userData)
-
+      updatePendingUser(updateObj, token)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('something went wrong!');
+        }
+      });
 
     } catch (err) {
       console.error(err);

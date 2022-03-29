@@ -47,6 +47,15 @@ export const getSingleUser = (token) => {
   })
 };
 
+export const getPendingUserToken = (token) => {
+  return fetch('/api/users/single/pendingToken', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    }
+  })
+};
+
 export const getPendingUser = (userId) => {
   return fetch('/api/users/single/' + userId, {
     headers: {
@@ -57,6 +66,17 @@ export const getPendingUser = (userId) => {
 
 export const updateUser = (userData, token) => {
   return fetch('/api/users', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
+
+export const updatePendingUser = (userData, token) => {
+  return fetch('/api/users/pending', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
