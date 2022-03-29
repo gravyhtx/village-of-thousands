@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
-import { getSingleUser, resendConfirmationFetch } from '../utils/API';
+import { updateUser, getSingleUser, resendConfirmationFetch } from '../utils/API';
 
 import Web3Wallet from "./Web3Wallet.tsx";
 
@@ -83,24 +83,10 @@ const AccountContainer = () => {
   }
   
   const [ avatar, setAvatar ] = useState(<></>);
-  let AccountAvatar = () => { return avatar };
-  const UserBlockie = () => {
-    return (
-    <Blockie
-      onClick={setScheme}
-      className="blockie-nav"
-      opts={{
-        seed: userData.walletAddress ? userData.walletAddress : "Claire Richard",
-        color: color1,
-        bgcolor: color3,
-        size: 9,
-        scale: 7,
-        spotcolor: color2
-    }}/>)
-  }
-  const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
   const [userData, setUserData] = useState([]);
   const userDataLength = Object.keys(userData).length;
+
+  const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
   
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -135,7 +121,27 @@ const AccountContainer = () => {
     };
 
     getUserData();
+    console.log('SEED', userData.seedHex)
+    
   }, [userDataLength]);
+
+  
+  
+  let AccountAvatar = () => { return avatar };
+  const UserBlockie = () => {
+    return (
+    <Blockie
+      onClick={setScheme}
+      className="blockie-nav"
+      opts={{
+        seed: userData.walletAddress ? userData.walletAddress : "",
+        color: color1,
+        bgcolor: color3,
+        size: 9,
+        scale: 7,
+        spotcolor: color2
+    }}/>)
+  }
 
   // var canvas = userData.walletAddress?blockie:<></>
   // var blockieCanvas = document.getElementById('blockie-canvas');

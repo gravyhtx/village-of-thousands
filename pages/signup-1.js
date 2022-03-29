@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import DefaultLayout from '../templates/DefaultLayout';
 import Mnemonic from "../components/Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
@@ -54,6 +56,7 @@ const UserMnemonic = () => {
     } else {
       localStorage.setItem('seed_hex', seedHex);
     }
+    handleMnemonicSubmit();
   }, []);
 
   let getHex = Mnemonic.fromHex(seedHex);
@@ -74,8 +77,7 @@ const UserMnemonic = () => {
   };
 
   // Store Seed Phrase Hex  
-  const handleMnemonicSubmit = async (event) => {
-    event.preventDefault();
+  const handleMnemonicSubmit = async () => {
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -85,24 +87,24 @@ const UserMnemonic = () => {
 
     try {
       let updateObj = {
-        seedHex: seedHex,
-        completeRegistration: true
+        seedHex: seedHex
       }
+      console.log(updateObj)
       updateUser(updateObj, token)
         .then(response => {
           if (!response.ok) {
             throw new Error('something went wrong!');
-          } else {
-            // window.location.assign('/signup-2');
-            router.push('/signup-2')
           }
         });
+        console.log(userData)
+
 
     } catch (err) {
       console.error(err);
     }
   }
 
+  handleMnemonicSubmit();
   const ErrorMessage = () => {
     if (!checked && !refresh) {
       return (
@@ -113,43 +115,43 @@ const UserMnemonic = () => {
     }
 }
 
-  const Agree = () => {
-    if (!checked) {  // ENABLE "NEXT" BUTTON
-      checked = true;
-      return (
-        <Button
-          node="button"
-          style={{
-            margin: '0 auto',
-            width: '250px'
-          }}
-          waves="light"
-          className="account-wallet-btn"
-          onClick={handleMnemonicSubmit}
-          suppressHydrationWarning
-        >
-          Next
-        </Button>
-      )
-    } else {  // DISABLE "NEXT" AND DISPLAY ERROR MESSAGE IF AGREEMENT IS UNCHECKED
-      checked = false;
-      return (
-        <Button
-          node="button"
-          style={{
-            margin: '0 auto',
-            width: '250px'
-          }}
-          waves="light"
-          className="theme-btn disabled-btn"
-          onClick={handleAgreement}
-          suppressHydrationWarning
-        >
-          Next
-        </Button>
-      )
-    }
-  }
+  // const Agree = () => {
+  //   if (!checked) {  // ENABLE "NEXT" BUTTON
+  //     checked = true;
+  //     return (
+  //       <Button
+  //         node="button"
+  //         style={{
+  //           margin: '0 auto',
+  //           width: '250px'
+  //         }}
+  //         waves="light"
+  //         className="account-wallet-btn"
+  //         onClick={handleMnemonicSubmit}
+  //         suppressHydrationWarning
+  //       >
+  //         Next
+  //       </Button>
+  //     )
+  //   } else {  // DISABLE "NEXT" AND DISPLAY ERROR MESSAGE IF AGREEMENT IS UNCHECKED
+  //     checked = false;
+  //     return (
+  //       <Button
+  //         node="button"
+  //         style={{
+  //           margin: '0 auto',
+  //           width: '250px'
+  //         }}
+  //         waves="light"
+  //         className="theme-btn disabled-btn"
+  //         onClick={handleAgreement}
+  //         suppressHydrationWarning
+  //       >
+  //         Next
+  //       </Button>
+  //     )
+  //   }
+  // }
   const seedTxt = () => {
     const text = phrase.join(' ')
     return (text)
@@ -201,7 +203,7 @@ const UserMnemonic = () => {
           </div>
           <div className="user-registration-next center">
             {/* <Agree /> */}
-            <Button
+            <Link href="/signup-2"><a><Button
               node="button"
               style={{
                 margin: '0 auto',
@@ -209,11 +211,11 @@ const UserMnemonic = () => {
               }}
               waves="light"
               className="account-wallet-btn"
-              onClick={handleMnemonicSubmit}
+              // onClick={handleMnemonicSubmit}
               suppressHydrationWarning
             >
               Next
-            </Button>
+            </Button></a></Link>
           </div>
           <br /><br />
         </div>

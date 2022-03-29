@@ -13,7 +13,7 @@ import { getSingleUser, updateUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 
-const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] })
+const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
 
 function getErrorMessage(error: Error) {
   if (error instanceof NoEthereumProviderError) {
@@ -82,7 +82,7 @@ function Account() {
   const { account } = useWeb3React()
   const userAccount = account === null ? '-': account ? account: ''
   const [userAddress, setUserAddress] = useState('')
-  console.log(useWeb3React())
+  // console.log(useWeb3React())
 
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -91,6 +91,7 @@ function Account() {
     const user = await response.json();
     setUserAddress(user.walletAddress);
   }
+  
   try {
     let updateObj = {
       walletAddress: userAccount

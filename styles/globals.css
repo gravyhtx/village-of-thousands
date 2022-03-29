@@ -1620,6 +1620,11 @@ label#upload-label:hover {
   margin-bottom: 20px;
 }
 
+.did-you-register:hover {
+  color: #ebebeb !important;
+  cursor: pointer !important;
+}
+
 .activate-zen {
   font-size: var(--theme-font-size-xs);
   margin-bottom: 30px;
@@ -1819,9 +1824,10 @@ label#upload-label:hover {
   animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
 }
 
-.activated-emoji {
-  margin-top: 10px;
+.activated-emoji,
+.did-you-register {
   color: #bbbbbb;
+  margin-top: 10px;
   font-size: .8rem;
   text-shadow: 4px 2px 6px black;
 }
@@ -3157,7 +3163,8 @@ label#upload-label:hover {
   }
 
   .signup-container {
-    height: 90vh;
+    height: 800px;
+    min-height: 90vh !important;
     padding: 20px 10px;
   }
 
@@ -3206,6 +3213,10 @@ label#upload-label:hover {
     margin-bottom: 30px;
   }
 
+  .did-you-register {
+    font-size: .6rem;
+  }
+
   .activate-header {
     margin-top: 20px;
     font-size: 5rem;
@@ -3233,9 +3244,9 @@ label#upload-label:hover {
     word-spacing: 0px;
   }
 
-  .faq-collapsible .collapsible .collapsible-header {
-    font-size: var(--theme-font-size);
-    padding: 0.5rem 1rem;
+  .faq-collapsible .collapsible .faq-question-header {
+    font-size: var(--theme-font-size) !important;
+    padding: 1rem 1rem !important;
   }
 
   .collapsible .faq-body {
@@ -3363,7 +3374,8 @@ label#upload-label:hover {
     font-size: 16px;
   }
   .activate-page {
-    min-height: 80vh;
+    height: 700px;
+    min-height: 80vh !important;
   }
   .activate-page .signup-collapsible {
     margin-top: 30px;
@@ -3711,5 +3723,10 @@ input.input-field {
   text-align: center;
   flex: 1 1 33.33%;
 }
-  
+
+.css-1n11r91,
+.css-11betqn-MuiAccordionSummary-content {
+  margin: 0;
+}
+
 /* MADE WITH LOVE BY GRÄVY DESIGN CO. */

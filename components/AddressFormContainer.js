@@ -87,7 +87,6 @@ const AddressForm = () => {
       // completed: true
     });
 
-    localStorage.removeItem('seed_hex');
     router.push('/');
   }
 

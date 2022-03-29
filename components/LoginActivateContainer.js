@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from "next/link";
 
 import { Accordion, AccordionDetails, capitalize } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -40,13 +41,17 @@ const LoginContainer = ({ name, message }) =>  {
         >
           <AccordionSummary className="collapsible-header center" id="login-header">
             <div
-              style={headerStyle()}
+              style={{color: '#ebebeb'}}
               className="login-header disable-highlight">
                 {capitalize("Login")}
             </div>
           </AccordionSummary>
           <AccordionDetails className="activate-login login-collapsible-item">
             <Login activation={true} />
+            <Link href="/register"><a className="did-you-register">
+              <div class="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
+            </a></Link>
+            <br/>
           </AccordionDetails>
         </Accordion>
       </div>
