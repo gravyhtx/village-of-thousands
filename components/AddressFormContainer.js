@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
-
-import FormInputs from './FormInputs';
 
 import Auth from '../utils/auth';
 import { useRouter } from 'next/router';
@@ -65,6 +62,7 @@ const AddressForm = () => {
       if(!response.ok) {
         throw new Error('something went wrong!');
       }
+      console.log(userData)
 
     } catch (err) {
       console.error(err);
@@ -87,7 +85,10 @@ const AddressForm = () => {
       // completed: true
     });
 
-    router.push('/');
+    console.log(userData)
+
+    // router.push('/');
+    // router.reload()
   }
 
   const fields = [
@@ -111,14 +112,14 @@ const AddressForm = () => {
         {fields.map((field, index) => {
           return (
             <>
-            {userData.field ?
-              <div>{userData.field}</div> :
+            {userData[field] ?
+              <div key={key}>{userData[field]}</div> :
               <input
                 className="input-field"
                 id={"user-register-"+field.name+"_input"}
                 aria-labelledby="user-register-address"
                 name={field.name}
-                placeholder={userData.field ? userData.field : field.placeholder}
+                placeholder={userData[field] ? userData[field] : field.placeholder}
                 // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
                 onChange={handleInputChange}
                 // value={userData.addressOne?userData.addressOne:''}
