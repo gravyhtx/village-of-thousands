@@ -47,15 +47,6 @@ export const getSingleUser = (token) => {
   })
 };
 
-export const getPendingUserToken = (token) => {
-  return fetch('/api/users/single/pendingToken', {
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${token}`
-    }
-  })
-};
-
 export const getPendingUser = (userId) => {
   return fetch('/api/users/single/' + userId, {
     headers: {

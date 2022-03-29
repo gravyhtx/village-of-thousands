@@ -7,7 +7,7 @@ import Mnemonic from "../components/Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
 import withAuth from '../utils/withAuth';
-import { updatePendingUser, getPendingUserToken } from '../utils/API';
+import { updatePendingUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
@@ -26,7 +26,7 @@ const UserMnemonic = () => {
           return
         }
 
-        const response = await getPendingUserToken(token);
+        const response = await getSingleUser(token);
 
         if (!response.ok) {
           throw new Error('something went wrong!');
