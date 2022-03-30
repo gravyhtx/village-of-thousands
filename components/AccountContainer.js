@@ -95,7 +95,7 @@ const AccountContainer = () => {
     return iconArr[n]
   }
 
-  const Fingerprint = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
+  const pendingIcon = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
 
   const Logo = () => { return <SvgContainer src={Avatar} classes="no-avatar" /> }
   
@@ -108,7 +108,7 @@ const AccountContainer = () => {
   }
 
   useEffect(() => {
-    setAvatar(Fingerprint)
+    setAvatar(pendingIcon)
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -159,6 +159,23 @@ const AccountContainer = () => {
     }}/>)
   }
 
+  const pending = () => {
+    if(isUser) {
+      return <>{userData.email}</>
+    } else {
+      return (
+      <>
+        <div className="italics">** Pending User **</div>
+        <button
+          className="resend-confirmation not-a-button monospace"
+          onClick={resendConfirmation}>
+          <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
+        </button>
+        <br/>
+      </>)
+    }
+  }
+
   // var canvas = userData.walletAddress?blockie:<></>
   // var blockieCanvas = document.getElementById('blockie-canvas');
   // const blockieUrl = blockieCanvas.toDataURL()
@@ -187,17 +204,7 @@ const AccountContainer = () => {
         <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {!isUser ?
-              <><div className="italics">** Pending User **</div>
-              <button
-                className="resend-confirmation not-a-button monospace"
-                onClick={resendConfirmation}>
-                <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button>
-              <br/>
-              Activate your account to complete registration.<br/>Check your email!</> :
-              userData.email
-            }
+            {pending()}
           </div>
         </div>
         {!isUser ?
