@@ -184,7 +184,9 @@ const AccountContainer = () => {
                 className="resend-confirmation not-a-button monospace"
                 onClick={resendConfirmation}>
                 <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button></> :
+              </button>
+              <br/>
+              Activate your account to complete registration.<br/>Check your email!</> :
               userData.email
             }
           </div>

@@ -24,9 +24,6 @@ export default function DefaultLayout({ headerImages, title, description, withAu
     }
   })
 
-
-  console.log(authCheck())
-
   return (
     <div className="animate__animated animate__fadeIn" id="layout">
       <Head>
