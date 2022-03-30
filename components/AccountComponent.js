@@ -103,20 +103,13 @@ const AccountContainer = () => {
 
         const response = await getSingleUser(token);
 
-        if(!response.ok) {
-          return;
-        }
-        
-        const user = await response.json();
-        console.log(user)
-        
-        if(user.pending) {
-          setIsUser(false)
-          return;
+        if(response.ok) {
+          setIsUser(true);
         }
 
-        setIsUser(true)
-        setUserData(user.foundUser);
+        const user = await response.json();
+        
+        setUserData(user);
         if (user.walletAddress) {
           setAvatar(UserBlockie);
         } else {
@@ -184,24 +177,17 @@ const AccountContainer = () => {
                 className="resend-confirmation not-a-button monospace"
                 onClick={resendConfirmation}>
                 <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button>
-              <br/>
-              Activate your account to complete registration.<br/>Check your email!</> :
+              </button></> :
               userData.email
             }
           </div>
         </div>
-        {!isUser ?
-          <></> :
-          <div className="account-wallet">
-            <div className="user-wallet-header">WALLET</div>
-            <Web3Wallet />
-          </div>}
+        <div className="account-wallet">
+          <div className="user-wallet-header">WALLET</div>
+          <Web3Wallet />
+        </div>
       </div>
-      {!isUser ?
-        <></> :
-        <AddressFormContainer />}
-
+      <AddressFormContainer />
     </>
   )
 }

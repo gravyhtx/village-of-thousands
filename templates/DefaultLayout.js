@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 // import { useWindowSize, screenWidth } from '../modules/getWindow';
 import Head from 'next/head'
 import TopNav from '../components/TopNav';
@@ -7,10 +8,21 @@ import ScrollToTop from '../components/ScrollToTop';
 
 import website from '../config/site-data.json';
 
-export default function DefaultLayout({ headerImages, title, description, children }) {
+import authCheck from '../utils/authCheck';
+import { useEffect } from 'react';
+
+export default function DefaultLayout({ headerImages, title, description, withAuth, children }) {
 
   title = title ? title : website.name;
   description = description ? description : website.description;
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if(withAuth && (authCheck() === false)) {
+      window.location.href='/login';
+    }
+  })
 
   return (
     <div className="animate__animated animate__fadeIn" id="layout">
@@ -31,7 +43,7 @@ export default function DefaultLayout({ headerImages, title, description, childr
       {headerImages ? <Header images={headerImages} /> : <Header />}
       <TopNav />
         <div id="content" className="main-content">
-          {children}
+          {withAuth && authCheck() || !withAuth ? children : <></>}
         </div>
       <Footer />
     </div>

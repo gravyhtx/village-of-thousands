@@ -89,7 +89,6 @@ const Register = () =>  {
     setUserFormData({
       email: '',
       password: '',
-      mnemonic: 'false'
     })
   }
 

@@ -66,6 +66,17 @@ export const updateUser = (userData, token) => {
   })
 }
 
+export const updatePendingUser = (userData, token) => {
+  return fetch('/api/users/pending', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
+
 export const accountActivation = (userId) => {
   return fetch('/api/users/activate/' + userId, {
     headers: {
