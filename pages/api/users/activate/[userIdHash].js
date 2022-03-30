@@ -14,7 +14,8 @@ export default async (req, res) => {
 
         const user = await User.create({
             email: pUser.email,
-            password: pUser.password
+            password: pUser.password,
+            seedHex: pUser.seedHex
         })
 
         await PendingUser.findOneAndDelete({_id: req.query.userIdHash});
