@@ -137,7 +137,7 @@ const Header = ({ images }) => {
             </div>
           </div>
         </Link>
-        {!userData.walletAddress
+        {!userData.foundUser.walletAddress
           ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>
           : <></>}
       </div>

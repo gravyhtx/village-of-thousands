@@ -79,7 +79,8 @@ function getLibrary(provider: any): Web3Provider {
 //   console.log("Block Number: "+userBlocknumber)
 // }
 function Account() {
-  const { account } = useWeb3React()
+  const { account } = useWeb3React();
+  console.log(useWeb3React())
   const userAccount = account === null ? '-': account ? account: ''
   const [userAddress, setUserAddress] = useState('')
   // console.log(useWeb3React())
@@ -90,7 +91,7 @@ function Account() {
     const response = await getSingleUser(token);
     const user = await response.json();
     setUserAddress(user.foundUser.walletAddress);
-    console.log(user)
+    // console.log(user)
   }
   
   try {
@@ -105,7 +106,7 @@ function Account() {
       }
       getUser();
     });
-    console.log(token)
+    // console.log(token)
   } catch (err) {
     console.error(err);
   }
