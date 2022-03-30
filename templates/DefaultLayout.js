@@ -28,7 +28,7 @@ export default function DefaultLayout({ headerImages, title, description, withAu
     <div className="animate__animated animate__fadeIn" id="layout">
       <Head>
       <title>{title}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <meta name="theme-color" content="#000000" />
       <meta
         name="description"
