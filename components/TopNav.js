@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon } from '@mui/material';
 import Auth from '../utils/auth';
+import { useEffect, useState } from "react";
 
 const TopNav = () => {
 
@@ -16,14 +17,14 @@ const TopNav = () => {
   return (
     <div className="top-nav disable-highlight row">
       {navlinks.map((item, index) =>
-        <div className="col s3 nav-top-col" key={index}>
-          <Link href={item.link}><a suppressHydrationWarning>
-            <button
-              color="inherit"
-              className={"btn-floating btn-floating navigation-link nav-"+item.name}
-            ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
-          </a></Link>
-        </div>
+          <div className="col s3 nav-top-col" key={index}>
+            <Link href={item.link}><a suppressHydrationWarning>
+              <button
+                color="inherit"
+                className={"btn-floating btn-floating navigation-link nav-"+item.name}
+              ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
+            </a></Link>
+          </div>
       )}
     </div>
   );

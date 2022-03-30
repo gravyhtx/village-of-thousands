@@ -21,6 +21,8 @@ const Header = ({ images }) => {
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
 
+  const [wallet, setWallet] = useState();
+
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -34,6 +36,7 @@ const Header = ({ images }) => {
 
         const user = await response.json();
         setUserData(user);
+        setWallet(user.foundUser.walletAddress);
 
       } catch (err) {
         console.error(err);
@@ -137,9 +140,9 @@ const Header = ({ images }) => {
             </div>
           </div>
         </Link>
-        {!userData.foundUser.walletAddress
-          ? <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>
-          : <></>}
+        {wallet
+          ? <></>
+          : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>}
       </div>
     </header>
 
