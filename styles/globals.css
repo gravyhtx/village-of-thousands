@@ -1325,7 +1325,7 @@ button.btn-floating.navigation-link:focus {
 .account-wallet-btn:focus,
 .theme-btn,
 .theme-btn:focus {
-  width: 250px;
+  width: 250px !important;
   height: 50px;
   background-color: var(--button-bg-darker) !important;
   color: var(--theme-primary-light-color) !important;
@@ -2637,6 +2637,29 @@ label#upload-label:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.user-not-found {
+  font-size: 70px;
+  color: #000;
+  text-shadow: 0 0 10px #7fcce450;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 2s;
+  animation: bigger .5s linear;
+}
+
+.user-not-found:hover {
+  color:  #bbb;
+  transition: 2s;
+  text-shadow: 0 0 10px #666;
+}
+
+@keyframes bigger {
+  from {font-size: 10px;}
+  to {font-size: 70px;}
 }
 
 .account_user-info {

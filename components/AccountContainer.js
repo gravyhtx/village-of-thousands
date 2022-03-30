@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+import { Icon } from "@mui/material";
+
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
 import { updateUser, getSingleUser, resendConfirmationFetch } from '../utils/API';
@@ -86,7 +88,16 @@ const AccountContainer = () => {
   const [userData, setUserData] = useState([]);
   const userDataLength = Object.keys(userData).length;
 
-  const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
+  const iconArr = ["fingerprint", "code", "do_not_disturb_alt", "outlet", "person_off", "self_improvement"];
+
+  const randomIcon = () => {
+    const n = Math.floor(Math.random() * iconArr.length);
+    return iconArr[n]
+  }
+
+  const Fingerprint = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
+
+  const Logo = () => { return <SvgContainer src={Avatar} classes="no-avatar" /> }
   
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -97,6 +108,7 @@ const AccountContainer = () => {
   }
 
   useEffect(() => {
+    setAvatar(Fingerprint)
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -108,7 +120,6 @@ const AccountContainer = () => {
         }
         
         const user = await response.json();
-        console.log(user)
         
         if(user.pending) {
           setIsUser(false)
@@ -117,7 +128,7 @@ const AccountContainer = () => {
 
         setIsUser(true)
         setUserData(user.foundUser);
-        if (user.walletAddress) {
+        if (user.foundUser.walletAddress) {
           setAvatar(UserBlockie);
         } else {
           setAvatar(Logo);
@@ -127,9 +138,7 @@ const AccountContainer = () => {
       }
     };
 
-    getUserData();
-    console.log('SEED', userData.seedHex)
-    
+    getUserData();    
   }, [userDataLength]);
 
   

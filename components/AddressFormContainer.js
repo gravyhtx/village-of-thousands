@@ -25,7 +25,7 @@ const AddressForm = () => {
         }
 
         const user = await response.json();
-        setUserData(user);
+        setUserData(user.foundUser);
       } catch (err) {
         console.error(err);
       }
