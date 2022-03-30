@@ -88,7 +88,7 @@ const AccountContainer = () => {
   const [userData, setUserData] = useState([]);
   const userDataLength = Object.keys(userData).length;
 
-  const iconArr = ["fingerprint", "code", "do_not_disturb_alt", "outlet", "person_off", "self_improvement"];
+  const iconArr = ["fingerprint", "code", "outlet", "person_outline", "self_improvement"];
 
   const randomIcon = () => {
     const n = Math.floor(Math.random() * iconArr.length);
