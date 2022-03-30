@@ -3471,6 +3471,12 @@ label#upload-label:hover {
   .account-wallet .wallet-info {
     font-size: 12px;
   }
+  .activate-page {
+    padding: 25px 0 0;
+  }
+  .activated-congrats {
+    font-size: 3.5rem;
+  }
 }
 
 @media only screen and (max-width: 300px) {
