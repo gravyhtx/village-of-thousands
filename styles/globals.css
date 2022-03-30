@@ -1325,7 +1325,7 @@ button.btn-floating.navigation-link:focus {
 .account-wallet-btn:focus,
 .theme-btn,
 .theme-btn:focus {
-  width: 250px;
+  width: 250px !important;
   height: 50px;
   background-color: var(--button-bg-darker) !important;
   color: var(--theme-primary-light-color) !important;
@@ -1566,6 +1566,9 @@ label#upload-label:hover {
 .user-registration-details {
   text-align: center;
   font-size: var(--theme-font-size);
+  color: white;
+  text-shadow: 0 0 10px #7fcce47a;
+  margin-bottom: 20px;
 }
 
 .user-registration-email {
@@ -1574,8 +1577,7 @@ label#upload-label:hover {
   text-decoration: underline;
 }
 
-.user-registration-wallet .wallet-info,
-.user-registration-details {
+.user-registration-wallet .wallet-info {
   color: var(--theme-secondary-light-color);
   text-shadow: 0 0 10px #7fcce47a;
 }
@@ -1618,6 +1620,11 @@ label#upload-label:hover {
 
 .activate-page .signup-collapsible {
   margin-bottom: 20px;
+}
+
+.did-you-register:hover {
+  color: #ebebeb !important;
+  cursor: pointer !important;
 }
 
 .activate-zen {
@@ -1819,9 +1826,10 @@ label#upload-label:hover {
   animation: moveUpAndDown 3s alternate-reverse infinite ease-in-out;
 }
 
-.activated-emoji {
-  margin-top: 10px;
+.activated-emoji,
+.did-you-register {
   color: #bbbbbb;
+  margin-top: 10px;
   font-size: .8rem;
   text-shadow: 4px 2px 6px black;
 }
@@ -2607,10 +2615,17 @@ label#upload-label:hover {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
+
 .blockie-colors-text:hover,
 .resend-confirmation-text:hover {
   -webkit-animation: flicker 3s infinite;
   animation: flicker 3s infinite;
+}
+
+
+
+.resend-confirmation {
+  margin-bottom: 20px;
 }
 
 .no-avatar {
@@ -2622,6 +2637,29 @@ label#upload-label:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.user-not-found {
+  font-size: 70px;
+  color: #000;
+  text-shadow: 0 0 10px #7fcce450;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 2s;
+  animation: bigger .5s linear;
+}
+
+.user-not-found:hover {
+  color:  #bbb;
+  transition: 2s;
+  text-shadow: 0 0 10px #666;
+}
+
+@keyframes bigger {
+  from {font-size: 10px;}
+  to {font-size: 70px;}
 }
 
 .account_user-info {
@@ -3157,7 +3195,8 @@ label#upload-label:hover {
   }
 
   .signup-container {
-    height: 90vh;
+    height: 800px;
+    min-height: 90vh !important;
     padding: 20px 10px;
   }
 
@@ -3182,7 +3221,6 @@ label#upload-label:hover {
 
   .login-cointainer, .register-cointainer {
     padding: 25px 40px 40px;
-
   }
 
   .login-header {
@@ -3204,6 +3242,22 @@ label#upload-label:hover {
   .activate-page .signup-collapsible {
     margin-top: 20px;
     margin-bottom: 30px;
+  }
+
+  .seed-phrase-container {
+    padding: 18px 10px 0;
+  }
+
+  .seed-word-container {
+    padding: 4px !important;
+  }
+
+  .row .col.seed-word-number {
+    padding: 0 !important;
+  }
+
+  .did-you-register {
+    font-size: .6rem;
   }
 
   .activate-header {
@@ -3233,9 +3287,9 @@ label#upload-label:hover {
     word-spacing: 0px;
   }
 
-  .faq-collapsible .collapsible .collapsible-header {
-    font-size: var(--theme-font-size);
-    padding: 0.5rem 1rem;
+  .faq-collapsible .collapsible .faq-question-header {
+    font-size: var(--theme-font-size) !important;
+    padding: 1rem 1rem !important;
   }
 
   .collapsible .faq-body {
@@ -3363,7 +3417,8 @@ label#upload-label:hover {
     font-size: 16px;
   }
   .activate-page {
-    min-height: 80vh;
+    height: 700px;
+    min-height: 80vh !important;
   }
   .activate-page .signup-collapsible {
     margin-top: 30px;
@@ -3711,5 +3766,10 @@ input.input-field {
   text-align: center;
   flex: 1 1 33.33%;
 }
-  
+
+.css-1n11r91,
+.css-11betqn-MuiAccordionSummary-content {
+  margin: 0;
+}
+
 /* MADE WITH LOVE BY GRÄVY DESIGN CO. */

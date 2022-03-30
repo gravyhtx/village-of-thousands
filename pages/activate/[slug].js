@@ -85,57 +85,55 @@ const Activate = () => {
 
   return (
     <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
-      <div id="content" className="main-content">
-        <div className="activate-page center container animate__animated animate__fadeIn">
-          {!isLogged ? (
-            <>
-              <LoginContainer />
-            </>
-          ) : 
-          (
-            <div className="activate-content">
-              {!activateStatus ? (
-                <>
-                  <h1 className="activate-header">
-                    {activateHeader.split("").map((letter, index)=> {
-                      return <span key={index}>{letter}</span>
-                    })}
-                  </h1>
-                  <button className="activate-button not-a-button" onClick={activatePendingUser}>
-                    <div className="content">
-                      <div>
-                        <p className="activate-click-me_broh">
-                          <b className="activate-here italics cursor-pointer">
-                          [Click here]</b> to activate your account.
-                        </p>
-                      </div>
-                      <div className="activate_or-here right cursor-pointer">...or here, even</div>
-                      <div className="activate_here-too left cursor-pointer">here too...</div>
+      <div className="activate-page center container animate__animated animate__fadeIn">
+        {!isLogged ? (
+          <>
+            <LoginContainer />
+          </>
+        ) : 
+        (
+          <div className="activate-content">
+            {!activateStatus ? (
+              <>
+                <h1 className="activate-header">
+                  {activateHeader.split("").map((letter, index)=> {
+                    return <span key={index}>{letter}</span>
+                  })}
+                </h1>
+                <button className="activate-button not-a-button" onClick={activatePendingUser}>
+                  <div className="content">
+                    <div>
+                      <p className="activate-click-me_broh">
+                        <b className="activate-here italics cursor-pointer">
+                        [Click here]</b> to activate your account.
+                      </p>
                     </div>
-                  </button>
-                  <p className="activate-almost-there_broh monospace glow">[ You're almost there, dood. ]</p>
-                </>
-              ): (
-                <>
-                  <Link href="/"><a style={{cursor: 'pointer'}}><h1 className="activated-header">
-                    <div className="activated-congrats glow">CONGRATS!</div>
-                    <div className="activated-is-activated">YOUR ACCOUNT IS ACTIVE, DAWG!</div>
-                  </h1>
-                  <div className="activated-content">
-                    <SiteImage
-                      containerClasses="activated-image"
-                      siteImage="Bro"
-                      draggable="false"
-                      description="You activated your account, broh."
-                    />
-                    <div className="activated-emoji monospace">[INSERT APPROPRIATE EMOJI]</div>
-                  </div></a></Link>
-                </>
-              )}
-            </div>
-          )
-          }
-        </div>
+                    <div className="activate_or-here right cursor-pointer">...or here, even</div>
+                    <div className="activate_here-too left cursor-pointer">here too...</div>
+                  </div>
+                </button>
+                <p className="activate-almost-there_broh monospace glow">[ You're almost there, dood. ]</p>
+              </>
+            ): (
+              <>
+                <Link href="/"><a style={{cursor: 'pointer'}}><h1 className="activated-header">
+                  <div className="activated-congrats glow">CONGRATS!</div>
+                  <div className="activated-is-activated">YOUR ACCOUNT IS ACTIVE, DAWG!</div>
+                </h1>
+                <div className="activated-content">
+                  <SiteImage
+                    containerClasses="activated-image"
+                    siteImage="Bro"
+                    draggable="false"
+                    description="You activated your account, broh."
+                  />
+                  <div className="activated-emoji monospace">[INSERT APPROPRIATE EMOJI]</div>
+                </div></a></Link>
+              </>
+            )}
+          </div>
+        )
+        }
       </div>
     </DefaultLayout>
   );

@@ -4,12 +4,12 @@ import AccountContainer from "../components/AccountContainer";
 // import BackToTop from "../components/BackToTop";
 
 import Auth from '../utils/auth';
-import withAuth from "../utils/withAuth";
+// import withAuth from "../utils/withAuth";
 
 const Account = () => {
 
   return(
-    <DefaultLayout>
+    <DefaultLayout withAuth={true}>
     <div className="account">
       <h1 className="account-header center">Account</h1>
       <AccountContainer />
@@ -26,4 +26,4 @@ const Account = () => {
   )
 }
 
-export default withAuth(Account);
+export default Account;

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Auth from '../utils/auth';
 import LoginContainer from '../components/LoginContainer';
 
@@ -11,6 +12,7 @@ const withAuth = Component => {
       return (
         <LoginContainer state="login" />
       );
+      // Router.push('login')
     }
     // If user is logged in, return original component
     return (
@@ -18,10 +20,10 @@ const withAuth = Component => {
     );
   };
 
-  // Copy getInitial props so it will run as well
-  if (Component.getInitialProps) {
-    Render.getInitialProps = Component.getInitialProps;
-  }
+  // // Copy getInitial props so it will run as well
+  // if (Component.getInitialProps) {
+  //   Render.getInitialProps = Component.getInitialProps;
+  // }
 
   return Render;
 };

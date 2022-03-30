@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
-
-import FormInputs from './FormInputs';
 
 import Auth from '../utils/auth';
 import { useRouter } from 'next/router';
@@ -28,7 +25,7 @@ const AddressForm = () => {
         }
 
         const user = await response.json();
-        setUserData(user);
+        setUserData(user.foundUser);
       } catch (err) {
         console.error(err);
       }
@@ -41,6 +38,7 @@ const AddressForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({...userFormData, [name]: value });
+    console.log(userFormData)
   }
 
   const handleFormSubmit = async (event) => {
@@ -65,6 +63,7 @@ const AddressForm = () => {
       if(!response.ok) {
         throw new Error('something went wrong!');
       }
+      console.log(userData)
 
     } catch (err) {
       console.error(err);
@@ -87,8 +86,10 @@ const AddressForm = () => {
       // completed: true
     });
 
-    localStorage.removeItem('seed_hex');
-    router.push('/');
+    console.log(userFormData)
+
+    // router.push('/');
+    // router.reload()
   }
 
   const fields = [
@@ -108,18 +109,18 @@ const AddressForm = () => {
     <>
     <div className='register-address-container container'>
       <div className="register-input-container" id="user-register-container">
-      <div className="user-register-address-header">ADDRESS</div>
+      <div className="user-register-address-header">SHIPPING ADDRESS</div>
         {fields.map((field, index) => {
           return (
             <>
-            {userData.field ?
-              <div>{userData.field}</div> :
+            {userData[field] ?
+              <div key={key}>{userData[field]}</div> :
               <input
                 className="input-field"
                 id={"user-register-"+field.name+"_input"}
                 aria-labelledby="user-register-address"
                 name={field.name}
-                placeholder={userData.field ? userData.field : field.placeholder}
+                placeholder={userData[field] ? userData[field] : field.placeholder}
                 // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
                 onChange={handleInputChange}
                 // value={userData.addressOne?userData.addressOne:''}

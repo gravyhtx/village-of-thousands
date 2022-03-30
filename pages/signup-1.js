@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import DefaultLayout from '../templates/DefaultLayout';
 import Mnemonic from "../components/Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
-import withAuth from '../utils/withAuth';
-import { updateUser, getSingleUser } from '../utils/API';
+// import withAuth from '../utils/withAuth';
+import { updatePendingUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
@@ -20,10 +22,9 @@ const UserMnemonic = () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        // if ((token && userData.email && userData.mnemonic) || !token) {
-        //   router.push('/')
-        //   return false
-        // }
+        if(!token) {
+          router.push('/login')
+        }
 
         const response = await getSingleUser(token);
 
@@ -54,6 +55,7 @@ const UserMnemonic = () => {
     } else {
       localStorage.setItem('seed_hex', seedHex);
     }
+    handleMnemonicSubmit();
   }, []);
 
   let getHex = Mnemonic.fromHex(seedHex);
@@ -61,6 +63,7 @@ const UserMnemonic = () => {
 
   // Handle Agreement
   let [checked, setChecked] = useState(false);
+
   const handleChange = () => {
     handleAgreement();
     setChecked(!checked);
@@ -74,35 +77,29 @@ const UserMnemonic = () => {
   };
 
   // Store Seed Phrase Hex  
-  const handleMnemonicSubmit = async (event) => {
-    event.preventDefault();
+  const handleMnemonicSubmit = async () => {
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
-
     try {
       let updateObj = {
-        seedHex: seedHex,
-        completeRegistration: true
+        seedHex: seedHex
       }
-      updateUser(updateObj, token)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('something went wrong!');
-          } else {
-            // window.location.assign('/signup-2');
-            router.push('/signup-2')
-          }
-        });
+      console.log(updateObj)
+      updatePendingUser(updateObj, token)
+      .then(response => {
+        if (!response.ok) {
+          // throw new Error('something went wrong!');
+          router.push('/login');
+        }
+      });
 
     } catch (err) {
       console.error(err);
     }
   }
 
+  handleMnemonicSubmit();
   const ErrorMessage = () => {
     if (!checked && !refresh) {
       return (
@@ -113,43 +110,43 @@ const UserMnemonic = () => {
     }
 }
 
-  const Agree = () => {
-    if (!checked) {  // ENABLE "NEXT" BUTTON
-      checked = true;
-      return (
-        <Button
-          node="button"
-          style={{
-            margin: '0 auto',
-            width: '250px'
-          }}
-          waves="light"
-          className="account-wallet-btn"
-          onClick={handleMnemonicSubmit}
-          suppressHydrationWarning
-        >
-          Next
-        </Button>
-      )
-    } else {  // DISABLE "NEXT" AND DISPLAY ERROR MESSAGE IF AGREEMENT IS UNCHECKED
-      checked = false;
-      return (
-        <Button
-          node="button"
-          style={{
-            margin: '0 auto',
-            width: '250px'
-          }}
-          waves="light"
-          className="theme-btn disabled-btn"
-          onClick={handleAgreement}
-          suppressHydrationWarning
-        >
-          Next
-        </Button>
-      )
-    }
-  }
+  // const Agree = () => {
+  //   if (!checked) {  // ENABLE "NEXT" BUTTON
+  //     checked = true;
+  //     return (
+  //       <Button
+  //         node="button"
+  //         style={{
+  //           margin: '0 auto',
+  //           width: '250px'
+  //         }}
+  //         waves="light"
+  //         className="account-wallet-btn"
+  //         onClick={handleMnemonicSubmit}
+  //         suppressHydrationWarning
+  //       >
+  //         Next
+  //       </Button>
+  //     )
+  //   } else {  // DISABLE "NEXT" AND DISPLAY ERROR MESSAGE IF AGREEMENT IS UNCHECKED
+  //     checked = false;
+  //     return (
+  //       <Button
+  //         node="button"
+  //         style={{
+  //           margin: '0 auto',
+  //           width: '250px'
+  //         }}
+  //         waves="light"
+  //         className="theme-btn disabled-btn"
+  //         onClick={handleAgreement}
+  //         suppressHydrationWarning
+  //       >
+  //         Next
+  //       </Button>
+  //     )
+  //   }
+  // }
   const seedTxt = () => {
     const text = phrase.join(' ')
     return (text)
@@ -164,62 +161,60 @@ const UserMnemonic = () => {
     textData.click();
   }
 
-  // if (userData.email && userData.password && !userData.mnemonic) {
-    return (
-      <DefaultLayout>
-        <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
-          <h1 className="user-registration-header center">Complete Your Registration</h1>
-          <div className="seed-phrase">
-            {/* <h2 className="center">Seed Phrase</h2> */}
-            <br />
-            <div className="seed-phrase-container center container row" id="seed-phrase">
-              {phrase.map((word, index) =>
-                <div className="seed-word-container center col s4" key={index}>
-                  <div className="row">
-                    <div className="seed-word-number col s2 disable-highlight">{index + 1}.&nbsp;</div>
-                    <div className="seed-word col s10" suppressHydrationWarning>{word}</div>
-                  </div>
+  return (
+    <DefaultLayout withAuth={true}>
+      <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
+        <h1 className="user-registration-header center">Complete Your Registration</h1>
+        <div className="seed-phrase">
+          {/* <h2 className="center">Seed Phrase</h2> */}
+          <br />
+          <div className="seed-phrase-container center container row" id="seed-phrase">
+            {phrase.map((word, index) =>
+              <div className="seed-word-container center col s4" key={index}>
+                <div className="row">
+                  <div className="seed-word-number col s2 disable-highlight">{index + 1}.&nbsp;</div>
+                  <div className="seed-word col s10" suppressHydrationWarning>{word}</div>
                 </div>
-              )}
-            </div>
-          </div>
-          <div className="seed-phrase-checkbox center">
-            <div className="container">
-              <div className="important">IMPORTANT!</div>
-              <div className="seed-phrase-reminder container">
-                This is the "seed phrase" (aka mnemonic) associated with your account. If you lose your password or want to change it
-                in the future, entering your seed phrase is the only method of recovery. Please take a second to write down and/or save this
-                phrase and keep it safe to avoid losing access to your account!
               </div>
-              <div className='download-seed-phrase container center sm' id='download' onClick={downloadTxtFile}>DOWNLOAD SEED PHRASE TO .TXT</div>
-            </div>
-            {/* <ErrorMessage />
-            <FormControlLabel
-              label="I have saved my seed phrase."
-              control={<Checkbox checked={checked} onChange={() => handleChange()} />}
-            /> */}
+            )}
           </div>
-          <div className="user-registration-next center">
-            {/* <Agree /> */}
-            <Button
-              node="button"
-              style={{
-                margin: '0 auto',
-                width: '250px'
-              }}
-              waves="light"
-              className="account-wallet-btn"
-              onClick={handleMnemonicSubmit}
-              suppressHydrationWarning
-            >
-              Next
-            </Button>
-          </div>
-          <br /><br />
         </div>
-      </DefaultLayout>
-    )
-  // } else { return (<></>) }
+        <div className="seed-phrase-checkbox center">
+          <div className="container">
+            <div className="important">IMPORTANT!</div>
+            <div className="seed-phrase-reminder container">
+              This is the "seed phrase" (aka mnemonic) associated with your account. If you lose your password or want to change it
+              in the future, entering your seed phrase is the only method of recovery. Please take a second to write down and/or save this
+              phrase and keep it safe to avoid losing access to your account!
+            </div>
+            <div className='download-seed-phrase container center sm' id='download' onClick={downloadTxtFile}>DOWNLOAD SEED PHRASE TO .TXT</div>
+          </div>
+          {/* <ErrorMessage />
+          <FormControlLabel
+            label="I have saved my seed phrase."
+            control={<Checkbox checked={checked} onChange={() => handleChange()} />}
+          /> */}
+        </div>
+        <div className="user-registration-next center">
+          {/* <Agree /> */}
+          <Link href="/signup-2"><a><Button
+            node="button"
+            style={{
+              margin: '0 auto',
+              width: '250px'
+            }}
+            waves="light"
+            className="account-wallet-btn"
+            // onClick={handleMnemonicSubmit}
+            suppressHydrationWarning
+          >
+            Next
+          </Button></a></Link>
+        </div>
+        <br /><br />
+      </div>
+    </DefaultLayout>
+  )
 }
 
-export default withAuth(UserMnemonic);
+export default UserMnemonic;

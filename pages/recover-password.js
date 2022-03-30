@@ -17,30 +17,30 @@ const UserPasswordRecovery = () => {
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-  const getUserData = async () => {
-    try {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const getUserData = async () => {
+      try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-      const response = await getSingleUser(token);
+        const response = await getSingleUser(token);
 
-      if(!response.ok){
-        throw new Error('something went wrong!');
+        if(!response.ok){
+          throw new Error('something went wrong!');
+        }
+
+        const user = await response.json();
+        setUserData(user);
+      } catch (err) {
+        console.error(err);
       }
-
-      const user = await response.json();
-      setUserData(user);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  getUserData();
+    };
+    getUserData();
   }, [userDataLength]);
 
   // Get Seed Phrase Hex from Database
   let seedHex = '';
   let getMnemonic;
   useEffect(() => {
-    getMnemonic = localStorage.getItem('seed_hex');
+    getMnemonic = userData.seedHex;
   })
   if (getMnemonic) {
     seedHex = getMnemonic;
