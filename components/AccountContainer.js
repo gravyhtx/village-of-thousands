@@ -189,12 +189,17 @@ const AccountContainer = () => {
             }
           </div>
         </div>
-        <div className="account-wallet">
-          <div className="user-wallet-header">WALLET</div>
-          <Web3Wallet />
-        </div>
+        {!isUser ?
+          <></> :
+          <div className="account-wallet">
+            <div className="user-wallet-header">WALLET</div>
+            <Web3Wallet />
+          </div>}
       </div>
-      <AddressFormContainer />
+      {!isUser ?
+        <></> :
+        <AddressFormContainer />}
+
     </>
   )
 }

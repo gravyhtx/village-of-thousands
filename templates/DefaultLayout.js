@@ -9,6 +9,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import website from '../config/site-data.json';
 
 import authCheck from '../utils/authCheck';
+import { useEffect } from 'react';
 
 export default function DefaultLayout({ headerImages, title, description, withAuth, children }) {
 
@@ -17,9 +18,14 @@ export default function DefaultLayout({ headerImages, title, description, withAu
 
   const router = useRouter();
 
-  if(withAuth && !authCheck) {
-    router.push('/login');
-  }
+  useEffect(() => {
+    if(withAuth && (authCheck() === false)) {
+      window.location.href='/login';
+    }
+  })
+
+
+  console.log(authCheck())
 
   return (
     <div className="animate__animated animate__fadeIn" id="layout">
@@ -40,7 +46,7 @@ export default function DefaultLayout({ headerImages, title, description, withAu
       {headerImages ? <Header images={headerImages} /> : <Header />}
       <TopNav />
         <div id="content" className="main-content">
-          {withAuth && authCheck || !withAuth ? children : <></>}
+          {withAuth && authCheck() || !withAuth ? children : <></>}
         </div>
       <Footer />
     </div>

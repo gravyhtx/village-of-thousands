@@ -108,7 +108,7 @@ const AddressForm = () => {
     <>
     <div className='register-address-container container'>
       <div className="register-input-container" id="user-register-container">
-      <div className="user-register-address-header">ADDRESS</div>
+      <div className="user-register-address-header">SHIPPING ADDRESS</div>
         {fields.map((field, index) => {
           return (
             <>

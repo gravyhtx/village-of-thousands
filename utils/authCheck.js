@@ -5,9 +5,9 @@ import Auth from '../utils/auth';
 
 const authCheck = () => {
   const token = Auth.loggedIn();
-  const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
-  console.log(token);
-  return isLoggedIn;
+  const authorized = token ? true : false;
+  console.log(authorized);
+  return authorized;
 };
 
 export default authCheck;

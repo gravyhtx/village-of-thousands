@@ -8,25 +8,6 @@ import Login from '../components/Login';
 import RandomQuote from '../components/dynamic-content/RandomQuote';
 
 const LoginContainer = ({ name, message }) =>  {
-  const [expanded, setExpanded] = useState(name || 'login');
-
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
-
-  const headerStyle = () => {
-    if(!expanded) {
-      return {
-        color: "#ebebeb'"
-      }
-    } else {
-      return {
-        color: "#787878"
-      }
-    }
-  };
-
-  // const signupContainers = [{name:'login', component: <Login/>}, {name:'register', component: <Register/>}];
 
   const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
 
