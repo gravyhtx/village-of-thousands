@@ -68,7 +68,12 @@ const Register = () =>  {
     }
 
     try {
-      const response = await createUser(userFormData);
+      const response = await createUser(
+        {
+          email: userFormData.email.toLowerCase(),
+          password: userFormData.password
+        }
+      );
 
       if(!response.ok) {
         throw new Error('something went wrong!');
