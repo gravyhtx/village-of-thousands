@@ -36,50 +36,51 @@ function getLibrary(provider: any): Web3Provider {
   return library
 }
 
-function ChainId() {
-  const { chainId } = useWeb3React()
-  const userChainId = chainId ?? ''
-  console.log("Chain ID: "+userChainId)
-}
+// function ChainId() {
+//   const { chainId } = useWeb3React()
+//   const userChainId = chainId ?? ''
+//   console.log("Chain ID: "+userChainId)
+// }
 
-function BlockNumber() {
-  const { chainId, library } = useWeb3React()
+// function BlockNumber() {
+//   const { chainId, library } = useWeb3React()
 
-  const [blockNumber, setBlockNumber] = React.useState<number>()
-  React.useEffect((): any => {
-    if (!!library) {
-      let stale = false
+//   const [blockNumber, setBlockNumber] = React.useState<number>()
+//   React.useEffect((): any => {
+//     if (!!library) {
+//       let stale = false
 
-      library
-        .getBlockNumber()
-        .then((blockNumber: number) => {
-          if (!stale) {
-            setBlockNumber(blockNumber)
-          }
-        })
-        .catch(() => {
-          if (!stale) {
-            setBlockNumber(null)
-          }
-        })
+//       library
+//         .getBlockNumber()
+//         .then((blockNumber: number) => {
+//           if (!stale) {
+//             setBlockNumber(blockNumber)
+//           }
+//         })
+//         .catch(() => {
+//           if (!stale) {
+//             setBlockNumber(null)
+//           }
+//         })
 
-      const updateBlockNumber = (blockNumber: number) => {
-        setBlockNumber(blockNumber)
-      }
-      library.on('block', updateBlockNumber)
+//       const updateBlockNumber = (blockNumber: number) => {
+//         setBlockNumber(blockNumber)
+//       }
+//       library.on('block', updateBlockNumber)
 
-      return () => {
-        stale = true
-        library.removeListener('block', updateBlockNumber)
-        setBlockNumber(undefined)
-      }
-    }
-  }, [library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
-  const userBlocknumber = blockNumber === null ? 'Error' : blockNumber ?? ''
-  console.log("Block Number: "+userBlocknumber)
-}
+//       return () => {
+//         stale = true
+//         library.removeListener('block', updateBlockNumber)
+//         setBlockNumber(undefined)
+//       }
+//     }
+//   }, [library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
+//   const userBlocknumber = blockNumber === null ? 'Error' : blockNumber ?? ''
+//   console.log("Block Number: "+userBlocknumber)
+// }
 function Account() {
-  const { account } = useWeb3React()
+  const { account } = useWeb3React();
+  console.log(useWeb3React())
   const userAccount = account === null ? '-': account ? account: ''
   const [userAddress, setUserAddress] = useState('')
   // console.log(useWeb3React())
@@ -89,13 +90,15 @@ function Account() {
   const getUser = async () => {
     const response = await getSingleUser(token);
     const user = await response.json();
-    setUserAddress(user.walletAddress);
+    setUserAddress(user.foundUser.walletAddress);
+    // console.log(user)
   }
   
   try {
     let updateObj = {
       walletAddress: userAccount
     }
+    console.log(updateObj)
     updateUser(updateObj, token)
     .then(response => {
       if(!response.ok) {
@@ -103,13 +106,7 @@ function Account() {
       }
       getUser();
     });
-    // const response = await updateUser(updateObj, token);
-
-    // if(!response.ok) {
-    //   throw new Error('something went wrong!');
-    // }
-
-
+    // console.log(token)
   } catch (err) {
     console.error(err);
   }
@@ -117,36 +114,36 @@ function Account() {
   return (userAddress ? userAddress : "")
 }
 
-function Balance() {
-  const { account, library, chainId } = useWeb3React()
+// function Balance() {
+//   const { account, library, chainId } = useWeb3React()
 
-  const [balance, setBalance] = React.useState()
-  React.useEffect((): any => {
-    if (!!account && !!library) {
-      let stale = false
+//   const [balance, setBalance] = React.useState()
+//   React.useEffect((): any => {
+//     if (!!account && !!library) {
+//       let stale = false
 
-      library
-        .getBalance(account)
-        .then((balance: any) => {
-          if (!stale) {
-            setBalance(balance)
-          }
-        })
-        .catch(() => {
-          if (!stale) {
-            setBalance(null)
-          }
-        })
+//       library
+//         .getBalance(account)
+//         .then((balance: any) => {
+//           if (!stale) {
+//             setBalance(balance)
+//           }
+//         })
+//         .catch(() => {
+//           if (!stale) {
+//             setBalance(null)
+//           }
+//         })
 
-      return () => {
-        stale = true
-        setBalance(undefined)
-      }
-    }
-  }, [account, library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
-  const userBalance = balance === null ? 'Error' : balance ? formatEther(balance) : ''
-  console.log(userBalance+" ETH")
-}
+//       return () => {
+//         stale = true
+//         setBalance(undefined)
+//       }
+//     }
+//   }, [account, library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
+//   const userBalance = balance === null ? 'Error' : balance ? formatEther(balance) : ''
+//   console.log(userBalance+" ETH")
+// }
 
 export default function() {
   return (
@@ -289,7 +286,7 @@ function App() {
 
   const submitWallet = async () => {
     
-    const { account } = useWeb3React()
+    // const { account } = useWeb3React();
     const userAccount = account === null ? '-': account ? account: '';
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -330,7 +327,7 @@ function App() {
   const web3activate = async () => {
     setActivatingConnector(currentConnector)
     const activeWallet = await activate(injected)
-    // submitWallet();
+    submitWallet();
     // submitWallet()
     // if (window.location.pathname === '/account') {
     //   window.location.reload()

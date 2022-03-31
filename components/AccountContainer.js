@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+import { Icon } from "@mui/material";
+
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
 import { updateUser, getSingleUser, resendConfirmationFetch } from '../utils/API';
@@ -86,7 +88,16 @@ const AccountContainer = () => {
   const [userData, setUserData] = useState([]);
   const userDataLength = Object.keys(userData).length;
 
-  const Logo = () => { return (<SvgContainer src={Avatar} classes="no-avatar" />) }
+  const iconArr = ["fingerprint", "code", "outlet", "person_outline", "self_improvement"];
+
+  const randomIcon = () => {
+    const n = Math.floor(Math.random() * iconArr.length);
+    return iconArr[n]
+  }
+
+  const pendingIcon = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
+
+  const Logo = () => { return <SvgContainer src={Avatar} classes="no-avatar" /> }
   
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -97,6 +108,7 @@ const AccountContainer = () => {
   }
 
   useEffect(() => {
+    setAvatar(pendingIcon)
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -108,7 +120,6 @@ const AccountContainer = () => {
         }
         
         const user = await response.json();
-        console.log(user)
         
         if(user.pending) {
           setIsUser(false)
@@ -117,7 +128,7 @@ const AccountContainer = () => {
 
         setIsUser(true)
         setUserData(user.foundUser);
-        if (user.walletAddress) {
+        if (user.foundUser.walletAddress) {
           setAvatar(UserBlockie);
         } else {
           setAvatar(Logo);
@@ -127,9 +138,7 @@ const AccountContainer = () => {
       }
     };
 
-    getUserData();
-    console.log('SEED', userData.seedHex)
-    
+    getUserData();    
   }, [userDataLength]);
 
   
@@ -148,6 +157,23 @@ const AccountContainer = () => {
         scale: 7,
         spotcolor: color2
     }}/>)
+  }
+
+  const pending = () => {
+    if(isUser) {
+      return <>{userData.email}</>
+    } else {
+      return (
+      <>
+        <div className="italics">** Pending User **</div>
+        <button
+          className="resend-confirmation not-a-button monospace"
+          onClick={resendConfirmation}>
+          <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
+        </button>
+        <br/>
+      </>)
+    }
   }
 
   // var canvas = userData.walletAddress?blockie:<></>
@@ -178,17 +204,7 @@ const AccountContainer = () => {
         <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {!isUser ?
-              <><div className="italics">** Pending User **</div>
-              <button
-                className="resend-confirmation not-a-button monospace"
-                onClick={resendConfirmation}>
-                <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button>
-              <br/>
-              Activate your account to complete registration.<br/>Check your email!</> :
-              userData.email
-            }
+            {pending()}
           </div>
         </div>
         {!isUser ?
@@ -198,9 +214,9 @@ const AccountContainer = () => {
             <Web3Wallet />
           </div>}
       </div>
-      {!isUser ?
+      {/* {!isUser ?
         <></> :
-        <AddressFormContainer />}
+        <AddressFormContainer />} */}
 
     </>
   )

@@ -69,10 +69,11 @@ const Login = ({ activation }) =>  {
     </div>
     <div className="login-input-container" id="user-login-container">
       <div className='login-input-label' id="user-login-password">
-      Password&nbsp;
+      Password
+      {/* &nbsp;
       <Link href="/recover-password"><a>
       <span className="forgot-password">{"// "}<u className='forgot-password-link'>Forgot password?</u></span>
-      </a></Link>
+      </a></Link> */}
       </div>
       <div className='input-field col'>
         <input 

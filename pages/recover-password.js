@@ -40,7 +40,7 @@ const UserPasswordRecovery = () => {
   let seedHex = '';
   let getMnemonic;
   useEffect(() => {
-    getMnemonic = localStorage.getItem('seed_hex');
+    getMnemonic = userData.seedHex;
   })
   if (getMnemonic) {
     seedHex = getMnemonic;
