@@ -50,6 +50,15 @@ class AuthService {
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
+
+  activationLogout() {
+    // Clear user token and profile data from localStorage
+    if(!ISSERVER) {
+    localStorage.removeItem('id_token');
+    };
+    // this will reload the page and reset the state of the application
+    // window.location.assign('/');
+  }
 }
 
 export default new AuthService();

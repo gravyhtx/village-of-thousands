@@ -20,17 +20,18 @@ const Cart = () => {
   const addToCart = (event) => {
     const val = event.target.name
     idbPromise('cart', 'put', {
-      product: val
+      product: val,
+      quantity: 1
     })
   }
 
   return (
     <DefaultLayout>
 
-      {/* <div>
+      <div>
         yo this is a test
         <button onClick={addToCart} name="vot-test-tee">Add To Cart</button>
-      </div> */}
+      </div>
       <div className="main-content animate__animated animate__fadeIn" id="content">
         <div className="index-section animate__animated animate__fadeIn cart-page">
           <h1 className="center cart-header">Cart</h1>
@@ -43,6 +44,7 @@ const Cart = () => {
                       <h1 key={index}>{item.product}</h1>
                     )
                   )}
+                  <h2>Total Price: 69.420$</h2>
                 </div>
               ): (
                 <p>Your cart is currently empty.</p>

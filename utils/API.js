@@ -66,6 +66,17 @@ export const updateUser = (userData, token) => {
   })
 }
 
+export const updateUserWallet = (userData, token) => {
+  return fetch('/api/users/wallet', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
+
 export const updatePendingUser = (userData, token) => {
   return fetch('/api/users/pending', {
     method: 'PUT',
