@@ -17,14 +17,14 @@ const AccountContainer = () => {
 
   const router = useRouter();
 
-  const [wallet, setWallet] = useState('');
+  // const [wallet, setWallet] = useState();
   const [isUser, setIsUser] = useState(false);
   // const [colors, setColors] = useState('');
 
-  useEffect(() => {
-    setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
-    // setColors(localStorage.getItem('blockie-color'));
-  })
+  // useEffect(() => {
+  //   setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
+  //   // setColors(localStorage.getItem('blockie-color'));
+  // })
 
   const themeVot = ['#111111','#3b4954','#7FCCE4'];
 
@@ -126,9 +126,9 @@ const AccountContainer = () => {
           return;
         }
 
-        setIsUser(true)
+        setIsUser(true);
         setUserData(user.foundUser);
-        if (user.foundUser.walletAddress) {
+        if (user.walletAddress) {
           setAvatar(UserBlockie);
         } else {
           setAvatar(Logo);
@@ -141,7 +141,7 @@ const AccountContainer = () => {
     getUserData();    
   }, [userDataLength]);
 
-  
+  console.log(userData)
   
   let AccountAvatar = () => { return avatar };
   const UserBlockie = () => {
@@ -150,7 +150,7 @@ const AccountContainer = () => {
       onClick={setScheme}
       className="blockie-nav"
       opts={{
-        seed: userData.walletAddress ? userData.walletAddress : "",
+        seed: userData.walletAddress[0] ? userData.walletAddress[0] : "Claire Richard",
         color: color1,
         bgcolor: color3,
         size: 9,
@@ -175,17 +175,6 @@ const AccountContainer = () => {
       </>)
     }
   }
-
-  // var canvas = userData.walletAddress?blockie:<></>
-  // var blockieCanvas = document.getElementById('blockie-canvas');
-  // const blockieUrl = blockieCanvas.toDataURL()
-  // const dataURL = () => {
-  //   let url = blockieCanvas.toDataURL()
-  //   return(url)
-  // }
-  // const blockiePng = document.write('<img src="'+dataURL+'"/>');
-  // var dataURL = canvas.toDataURL();
-  // const blockie = document.write('<img src="'+img+'"/>');
 
   return (
     <>

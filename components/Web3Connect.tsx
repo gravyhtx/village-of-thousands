@@ -36,114 +36,122 @@ function getLibrary(provider: any): Web3Provider {
   return library
 }
 
-// function ChainId() {
-//   const { chainId } = useWeb3React()
-//   const userChainId = chainId ?? ''
-//   console.log("Chain ID: "+userChainId)
-// }
-
-// function BlockNumber() {
-//   const { chainId, library } = useWeb3React()
-
-//   const [blockNumber, setBlockNumber] = React.useState<number>()
-//   React.useEffect((): any => {
-//     if (!!library) {
-//       let stale = false
-
-//       library
-//         .getBlockNumber()
-//         .then((blockNumber: number) => {
-//           if (!stale) {
-//             setBlockNumber(blockNumber)
-//           }
-//         })
-//         .catch(() => {
-//           if (!stale) {
-//             setBlockNumber(null)
-//           }
-//         })
-
-//       const updateBlockNumber = (blockNumber: number) => {
-//         setBlockNumber(blockNumber)
-//       }
-//       library.on('block', updateBlockNumber)
-
-//       return () => {
-//         stale = true
-//         library.removeListener('block', updateBlockNumber)
-//         setBlockNumber(undefined)
-//       }
-//     }
-//   }, [library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
-//   const userBlocknumber = blockNumber === null ? 'Error' : blockNumber ?? ''
-//   console.log("Block Number: "+userBlocknumber)
-// }
-function Account() {
-  const { account } = useWeb3React();
-  console.log(useWeb3React())
-  const userAccount = account === null ? '-': account ? account: ''
-  const [userAddress, setUserAddress] = useState('')
-  // console.log(useWeb3React())
-
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  const getUser = async () => {
-    const response = await getSingleUser(token);
-    const user = await response.json();
-    setUserAddress(user.foundUser.walletAddress);
-    // console.log(user)
-  }
-  
-  try {
-    let updateObj = {
-      walletAddress: userAccount
-    }
-    console.log(updateObj)
-    updateUser(updateObj, token)
-    .then(response => {
-      if(!response.ok) {
-          throw new Error('something went wrong!');
-      }
-      getUser();
-    });
-    // console.log(token)
-  } catch (err) {
-    console.error(err);
-  }
-
-  return (userAddress ? userAddress : "")
+function ChainId() {
+  const { chainId } = useWeb3React()
+  const userChainId = chainId ?? '';
+  // const [isSet, setIsSet] = useState(false);
+  // useEffect(() => {
+  //   localStorage.setItem('userWalletChainId', userChainId.toString());
+  //   setIsSet(true);
+  // }, [!isSet])
+  // console.log(isSet)
+  return userChainId;
 }
 
-// function Balance() {
-//   const { account, library, chainId } = useWeb3React()
+function BlockNumber() {
+  const { chainId, library } = useWeb3React();
+  const [blockNumber, setBlockNumber] = React.useState<number>();
 
-//   const [balance, setBalance] = React.useState()
-//   React.useEffect((): any => {
-//     if (!!account && !!library) {
-//       let stale = false
+  React.useEffect((): any => {
+    if (!!library) {
+      let stale = false
 
-//       library
-//         .getBalance(account)
-//         .then((balance: any) => {
-//           if (!stale) {
-//             setBalance(balance)
-//           }
-//         })
-//         .catch(() => {
-//           if (!stale) {
-//             setBalance(null)
-//           }
-//         })
+      library
+        .getBlockNumber()
+        .then((blockNumber: number) => {
+          if (!stale) {
+            setBlockNumber(blockNumber)
+          }
+        })
+        .catch(() => {
+          if (!stale) {
+            setBlockNumber(null)
+          }
+        })
 
-//       return () => {
-//         stale = true
-//         setBalance(undefined)
-//       }
-//     }
-//   }, [account, library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
-//   const userBalance = balance === null ? 'Error' : balance ? formatEther(balance) : ''
-//   console.log(userBalance+" ETH")
-// }
+      const updateBlockNumber = (blockNumber: number) => {
+        setBlockNumber(blockNumber)
+      }
+      library.on('block', updateBlockNumber)
+
+      return () => {
+        stale = true
+        library.removeListener('block', updateBlockNumber)
+        setBlockNumber(undefined)
+      }
+    }
+  }, [library, chainId]); // ensures refresh if referential identity of library doesn't change across chainIds
+
+  const userBlocknumber = blockNumber === null ? 'Error' : blockNumber ?? '';
+
+  return userBlocknumber;
+}
+
+
+function Account() {
+  const { account } = useWeb3React();
+  const userAccount = account === null ? '-': account ? account: ''
+  // const [userAddress, setUserAddress] = useState('')
+  // console.log(useWeb3React())
+
+  // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+  // const getUser = async () => {
+  //   const response = await getSingleUser(token);
+  //   const user = await response.json();
+  //   setUserAddress(user.foundUser.walletAddress);
+  //   // console.log(user)
+  // }
+  
+  // try {
+  //   let updateObj = {
+  //     walletAddress: userAccount
+  //   }
+  //   console.log(updateObj)
+  //   updateUser(updateObj, token)
+  //   .then(response => {
+  //     if(!response.ok) {
+  //         throw new Error('something went wrong!');
+  //     }
+  //     setUserAddress(userAccount);
+  //   });
+  //   // console.log(token)
+  // } catch (err) {
+  //   console.error(err);
+  // }
+  return (userAccount ?? '');
+}
+
+function Balance() {
+  const { account, library, chainId } = useWeb3React()
+
+  const [balance, setBalance] = React.useState()
+  React.useEffect((): any => {
+    if (!!account && !!library) {
+      let stale = false
+
+      library
+        .getBalance(account)
+        .then((balance: any) => {
+          if (!stale) {
+            setBalance(balance)
+          }
+        })
+        .catch(() => {
+          if (!stale) {
+            setBalance(null)
+          }
+        })
+
+      return () => {
+        stale = true
+        setBalance(undefined)
+      }
+    }
+  }, [account, library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
+  const userBalance = balance === null ? 'Error' : balance ? formatEther(balance) : ''
+  return userBalance;
+}
 
 export default function() {
   return (
@@ -153,83 +161,11 @@ export default function() {
   )
 }
 
-// const AddWallet = (walletAddress, walletBalance) => {
-//   // Get User Data
-//   const [userData, setUserData] = useState({});
-//   const userDataLength = Object.keys(userData).length;
-
-//   useEffect(() => {
-//   const getUserData = async () => {
-//       try {
-//           const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//           const response = await getSingleUser(token);
-
-//           if(!response.ok){
-//               throw new Error('something went wrong!');
-//           }
-
-//           const user = await response.json();
-//           setUserData(user);
-//       } catch (err) {
-//           console.error(err);
-//       }
-//   };
-//   getUserData();
-//   // console.log(userData);
-//   }, [userDataLength]);
-
-//   const [userWallet, setUserWallet] = useState({walletAddress:'', walletBalance:''})
-
-//   const submitWallet = async (event) => {
-//       event.preventDefault();
-
-//       const form = event.currentTarget;
-//       if(form.checkValidity() === false) {
-//           event.preventDefault();
-//           event.stopPropagation();
-//       }
-
-//       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//       if (!token) {
-//           window.location.assign('/404');
-//           return false;
-//       }
-
-//       try {
-//           const response = await updateUser(userWallet, token);
-
-//           if(!response.ok) {
-//               throw new Error('something went wrong!');
-//           }
-
-//       } catch (err) {
-//           console.error(err);
-//       }
-
-//       setUserWallet({
-//           walletAddress: walletAddress,
-//           walletBalance: walletBalance
-//       })
-
-//       window.location.assign('/');
-//   }
-// }
-
-// ChainId();
-// BlockNumber();
-// Balance();
-
 function Header() {
   // const { active, error } = useWeb3React()
   return (
     <div className='wallet-info'>
-      {/* <h1 style={{ margin: '1rem', textAlign: 'right' }}>{active ? '🟢' : error ? '🔴' : '🟠'}</h1> */}
-        {/* <div>{ChainId()}</div>
-        <div>{BlockNumber()}</div> */}
         <div>{Account()}</div>
-        {/* <div>{Balance()}</div> */}
     </div>
   )
 }
@@ -262,76 +198,58 @@ function App() {
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-  const getUserData = async () => {
+    const getUserData = async () => {
       try {
-          const token = Auth.loggedIn() ? Auth.getToken() : null;
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-          const response = await getSingleUser(token);
+        const response = await getSingleUser(token);
 
-          if(!response.ok){
-              throw new Error('something went wrong!');
-          }
+        if(!response.ok){
+            throw new Error('something went wrong!');
+        }
 
-          const user = await response.json();
-          setUserData(user);
+        const user = await response.json();
+        setUserData(user);
       } catch (err) {
-          console.error(err);
+        console.error(err);
       }
-  };
-  getUserData();
-  // console.log(userData);
+    };
+    getUserData();
   }, [userDataLength]);
 
-  const [userWallet, setUserWallet] = useState({walletAddress: "", walletBalance: ""})
+  const userWallet = {
+    walletAddress: Account(),
+    chainId: ChainId(),
+    blockNumber: BlockNumber()
+  }
+
+  console.log(userWallet);
 
   const submitWallet = async () => {
-    
-    // const { account } = useWeb3React();
-    const userAccount = account === null ? '-': account ? account: '';
-
+    // const userAccount = account === null ? '-': account ? account: '';
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     try {
-      let updateObj = {
-        walletAddress: userAccount
-      }
-      updateUser(updateObj, token)
+      updateUser(userWallet, token)
       .then(response => {
         if(!response.ok) {
             throw new Error('something went wrong!');
         }
       });
 
-
     } catch (err) {
       console.error(err);
     }
-
-      // event.preventDefault();
-      // const wallAddress = Account()
-      // // const form = event.currentTarget;
-      // // if(form.checkValidity() === false) {
-      // //     event.preventDefault();
-      // //     event.stopPropagation();
-      // // }
-      // console.log(wallAddress)
-     
-      // setUserWallet({
-      //     walletAddress: getAddress,
-      //     walletBalance: getBalance
-      // })
-
-      // window.location.assign('/');
   }
 
   const web3activate = async () => {
     setActivatingConnector(currentConnector)
     const activeWallet = await activate(injected)
     submitWallet();
-    // submitWallet()
-    // if (window.location.pathname === '/account') {
-    //   window.location.reload()
-    // }
+  }
+
+  const web3deactivate = async () => {
+    deactivate();
   }
 
   return (
@@ -343,11 +261,10 @@ function App() {
           className='btn waves-effect waves-light account-wallet-btn'
           disabled={disabled}
           onClick={() => {
-            web3activate()
+            web3activate();
           }}
         >
           <div>
-            {/* {activating && <Spinner color={'black'} style={{ height: '25%', marginLeft: '-1rem' }} />} */}
             {connected}
           </div>
           ADD WALLET
@@ -359,7 +276,7 @@ function App() {
           <button
             className='btn waves-effect waves-light account-wallet-btn'
             onClick={() => {
-              deactivate();
+              web3deactivate();
             }}
           >
             DEACTIVATE WALLET

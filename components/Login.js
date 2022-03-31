@@ -11,10 +11,13 @@ const Login = ({ activation }) =>  {
   const router = useRouter();
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [formError, setFormError] = useState({ email: [], password: []});
+  const [errorClass, setErrorClass] = useState({ email: '', password: '' });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({...userFormData, [name]: value });
+    setErrorClass({ email: '', password: '' })
   }
 
   const handleFormSubmit = async (event) => {
@@ -30,17 +33,23 @@ const Login = ({ activation }) =>  {
     try {
 
       const response = await loginUser(userFormData);
+      console.log(response);
+
+      setErrorClass({
+        email: response.ok ? '' : ' input-error',
+        password: response.ok ? '' : ' input-error',
+      });
 
       if(!response.ok) {
-          throw new Error('something went wrong!');
+        throw new Error('something went wrong!');
       }
 
       const { token, user } = await response.json();
 
       Auth.login(token);
 
-      if(!activation){ router.push('/') }
-      else{ router.reload(window.location.pathname) };
+      if(!activation){ router.push('/'); }
+      else{ router.reload(window.location.pathname); }
 
     } catch (err) {
       console.error(err);
@@ -48,7 +57,7 @@ const Login = ({ activation }) =>  {
     setUserFormData({
         email: '',
         password: ''
-    })
+    });
   }
 
   return (
@@ -58,7 +67,7 @@ const Login = ({ activation }) =>  {
       <div className='input-field col'>
         <input
           type='email'
-          className='input-field' 
+          className={'input-field' + errorClass.email}
           id='user-login-email_input'
           aria-labelledby='user-login-email'
           name='email'
@@ -78,7 +87,7 @@ const Login = ({ activation }) =>  {
       <div className='input-field col'>
         <input 
           type='password'
-          className='input-field' 
+          className={'input-field' + errorClass.password} 
           id='user-login-password_input'
           aria-labelledby='user-login-password'
           autoComplete="current-password"
