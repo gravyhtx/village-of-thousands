@@ -35,12 +35,6 @@ export default async (req, res) => {
         if(!authorization) {
           return res.status(400).json({ success: false, message: 'Unauthorized Token' })
         }
-
-        // const schemaWallet = new WalletAddress({
-        //     userId: authorization._id,
-        //     userEmail: authorization.email,
-        //     ...req.body
-        // })
         
         const newWallet = await WalletAddress.create({
             userId: authorization._id,
