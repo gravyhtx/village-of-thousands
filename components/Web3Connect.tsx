@@ -9,7 +9,7 @@ import { formatEther } from '@ethersproject/units';
 import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
-import { getSingleUser, updateUser } from '../utils/API';
+import { getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 
@@ -99,13 +99,13 @@ function Account() {
       walletAddress: userAccount
     }
     console.log(updateObj)
-    updateUser(updateObj, token)
-    .then(response => {
-      if(!response.ok) {
-          throw new Error('something went wrong!');
-      }
-      getUser();
-    });
+    // updateUser(updateObj, token)
+    // .then(response => {
+    //   if(!response.ok) {
+    //       throw new Error('something went wrong!');
+    //   }
+    //   getUser();
+    // });
     // console.log(token)
   } catch (err) {
     console.error(err);
@@ -295,12 +295,12 @@ function App() {
       let updateObj = {
         walletAddress: userAccount
       }
-      updateUser(updateObj, token)
-      .then(response => {
-        if(!response.ok) {
-            throw new Error('something went wrong!');
-        }
-      });
+      // updateUser(updateObj, token)
+      // .then(response => {
+      //   if(!response.ok) {
+      //       throw new Error('something went wrong!');
+      //   }
+      // });
 
 
     } catch (err) {

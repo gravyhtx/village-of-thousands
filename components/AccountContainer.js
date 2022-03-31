@@ -5,7 +5,7 @@ import { Icon } from "@mui/material";
 
 import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
-import { updateUser, getSingleUser, resendConfirmationFetch } from '../utils/API';
+import { getSingleUser, resendConfirmationFetch } from '../utils/API';
 
 import Web3Wallet from "./Web3Wallet.tsx";
 
