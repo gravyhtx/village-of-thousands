@@ -61,7 +61,8 @@ const Activate = () => {
       return
     }
 
-    setPendingUser(user)
+    setPendingUser(user);
+    Auth.activationLogout();
     setActivateStatus(true);
   }
 

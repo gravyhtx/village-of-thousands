@@ -1,6 +1,7 @@
 import dbConnect from "../../../../utils/dbConnect";
 import { signToken } from "../../../../utils/jwAuth";
 import User from '../../../../models/User';
+import SessionInformation from '../../../../models/SessionInformation';
 import PendingUser from '../../../../models/PendingUser';
 
 dbConnect();
@@ -32,6 +33,11 @@ export default async (req, res) => {
         let token = {};
 
         if (user) {
+          await SessionInformation.findOneAndUpdate({_id: user.sessionInformation.toString()}, 
+          {
+            $push: { loggedInDates: Date.now()}
+          }
+          )
           token = signToken(user);
         }else {
           token = signToken(pUser);
