@@ -125,7 +125,7 @@ const AccountContainer = () => {
           setIsUser(false)
           return;
         }
-
+        console.log(user)
         setIsUser(true);
         setUserData(user.foundUser);
         if (user.walletAddress) {
@@ -137,11 +137,11 @@ const AccountContainer = () => {
         console.error(err);
       }
     };
-
     getUserData();    
+    console.log(userData)
   }, [userDataLength]);
 
-  console.log(userData)
+  // console.log(userData)
   
   let AccountAvatar = () => { return avatar };
   const UserBlockie = () => {
