@@ -221,7 +221,7 @@ function App() {
   }, [userDataLength]);
 
   // const userDataWallet = userData.foundUser.walletAddress[0];
-  console.log(userData)
+  // console.log(userData)
 
   const userWallet = () => {
     if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
@@ -248,14 +248,14 @@ function App() {
       console.error(err);
     }
   }
-  console.log(userData.foundUser.walletAddress[0].walletAddress)
+  // console.log(userData.foundUser.walletAddress[0].walletAddress)
 
   const web3deactivate = async () => {
     deactivate();
   }
 
-  const getAddress = userData.foundUser.walletAddress[0];
-  const walletAddress = getAddress ?? getAddress.walletAddress
+  // const getAddress = userData.foundUser.walletAddress[0];
+  // const walletAddress = getAddress ?? getAddress.walletAddress
 
   return (
     <>
