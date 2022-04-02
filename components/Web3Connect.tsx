@@ -36,15 +36,10 @@ function getLibrary(provider: any): Web3Provider {
   return library
 }
 
+
 function ChainId() {
-  const { chainId } = useWeb3React()
+  const { chainId } = useWeb3React();
   const userChainId = chainId ?? '';
-  // const [isSet, setIsSet] = useState(false);
-  // useEffect(() => {
-  //   localStorage.setItem('userWalletChainId', userChainId.toString());
-  //   setIsSet(true);
-  // }, [!isSet])
-  // console.log(isSet)
   return userChainId;
 }
 
@@ -54,30 +49,30 @@ function BlockNumber() {
 
   React.useEffect((): any => {
     if (!!library) {
-      let stale = false
+      let stale = false;
 
       library
         .getBlockNumber()
         .then((blockNumber: number) => {
           if (!stale) {
-            setBlockNumber(blockNumber)
+            setBlockNumber(blockNumber);
           }
         })
         .catch(() => {
           if (!stale) {
-            setBlockNumber(null)
+            setBlockNumber(null);
           }
         })
 
       const updateBlockNumber = (blockNumber: number) => {
-        setBlockNumber(blockNumber)
+        setBlockNumber(blockNumber);
       }
-      library.on('block', updateBlockNumber)
+      library.on('block', updateBlockNumber);
 
       return () => {
-        stale = true
-        library.removeListener('block', updateBlockNumber)
-        setBlockNumber(undefined)
+        stale = true;
+        library.removeListener('block', updateBlockNumber);
+        setBlockNumber(undefined);
       }
     }
   }, [library, chainId]); // ensures refresh if referential identity of library doesn't change across chainIds
@@ -90,7 +85,7 @@ function BlockNumber() {
 
 function Account() {
   const { account } = useWeb3React();
-  const userAccount = account === null ? '-': account ? account: ''
+  const userAccount = account === null ? '-': account ? account: '';
   // const [userAddress, setUserAddress] = useState('')
   // console.log(useWeb3React())
 
@@ -154,6 +149,7 @@ function Balance() {
 }
 
 export default function() {
+  ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <App />
@@ -217,35 +213,29 @@ function App() {
     getUserData();
   }, [userDataLength]);
 
-  const userWallet = {
-    walletAddress: Account(),
-    chainId: ChainId(),
-    blockNumber: BlockNumber()
-  }
+  // const userDataWallet = userData.foundUser.walletAddress[0];
+  console.log(userData)
 
-  // console.log(userWallet);
+  const userWallet = { walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase() }
 
-  const submitWallet = async () => {
-    // const userAccount = account === null ? '-': account ? account: '';
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+  const web3activate = async () => {
     try {
-      updateUserWallet(userWallet, token)
-      .then(response => {
-        if(!response.ok) {
-            throw new Error('something went wrong!');
-        }
-      });
+
+      setActivatingConnector(currentConnector);
+
+      const activeWallet = await activate(injected);
+
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+      const response = await updateUserWallet(userWallet, token);
+
+      if(!response.ok) {
+          throw new Error('something went wrong!');
+      }
 
     } catch (err) {
       console.error(err);
     }
-  }
-
-  const web3activate = async () => {
-    setActivatingConnector(currentConnector)
-    const activeWallet = await activate(injected)
-    submitWallet();
   }
 
   const web3deactivate = async () => {
@@ -254,7 +244,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      {(active || error) && (<Header />)}
       {(!active) && (
       <div>
         <button
@@ -284,33 +274,6 @@ function App() {
         {!!error && <h4 style={{ marginTop: '1rem', marginBottom: '0' }}>{getErrorMessage(error)}</h4>}
       </div>
       )}
-
-      {/* <hr style={{ margin: '2rem' }} /> */}
-
-      {/* <div> */}
-        {/* {!!(library && account) && (
-          <button
-            style={{
-              height: '3rem',
-              borderRadius: '1rem',
-              cursor: 'pointer'
-            }}
-            onClick={() => {
-              library
-                .getSigner(account)
-                .signMessage('👋')
-                .then((signature: any) => {
-                  window.alert(`Success!\n\n${signature}`)
-                })
-                .catch((error: any) => {
-                  window.alert('Failure!' + (error && error.message ? `\n\n${error.message}` : ''))
-                })
-            }}
-          >
-            Sign Message
-          </button>
-        )} */}
-      {/* </div> */}
     </>
   )
 }

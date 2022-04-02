@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import { Icon } from "@mui/material";
 
-import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
 import { getSingleUser, resendConfirmationFetch } from '../utils/API';
 
@@ -12,6 +11,8 @@ import Web3Wallet from "./Web3Wallet.tsx";
 import Blockie from "./Blockie";
 import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
+
+import { isLoaded } from "../utils/isLoaded";
 
 const AccountContainer = () => {
 
@@ -160,7 +161,7 @@ const AccountContainer = () => {
   }
 
   const pending = () => {
-    if(isUser) {
+    if(isUser && isLoaded) {
       return <>{userData.email}</>
     } else {
       return (

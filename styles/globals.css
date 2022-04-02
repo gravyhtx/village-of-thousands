@@ -3204,6 +3204,11 @@ label#upload-label:hover {
     font-size: 1rem;
   }
 
+  .register-collapsible-item .input-field.col,
+  .login-collapsible-item .input-field.col {
+    padding: 0;
+  }
+
   .signup-col {
     padding: 30px 25px !important;
   }
