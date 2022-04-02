@@ -2507,6 +2507,11 @@ label#upload-label:hover {
   text-overflow: ellipsis;
 }
 
+.account-wallet div h4 {
+	font-size: 1rem;
+	padding: 0 40px;
+}
+
 .blockie-container {
   position: relative;
   width: 140px;

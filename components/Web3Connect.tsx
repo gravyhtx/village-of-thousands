@@ -190,7 +190,14 @@ function App() {
   const disabled = !triedEager || !!activatingConnector || connected || !!error
 
   // Get User Data
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    foundUser: {
+      walletAddress: [{
+        walletAddress: ''
+      }]
+    },
+    pending: false
+  });
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
@@ -241,14 +248,18 @@ function App() {
       console.error(err);
     }
   }
+  console.log(userData.foundUser.walletAddress[0].walletAddress)
 
   const web3deactivate = async () => {
     deactivate();
   }
 
+  const getAddress = userData.foundUser.walletAddress[0];
+  const walletAddress = getAddress ?? getAddress.walletAddress
+
   return (
     <>
-      {(active || error) && (<Header />)}
+      {(active || error) && (Header())}
       {(!active) && (
       <div>
         <button
