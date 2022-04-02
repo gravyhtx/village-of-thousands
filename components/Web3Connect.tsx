@@ -216,7 +216,11 @@ function App() {
   // const userDataWallet = userData.foundUser.walletAddress[0];
   console.log(userData)
 
-  const userWallet = { walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase() }
+  const userWallet = () => {
+    if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
+      return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
+    }
+  }
 
   const web3activate = async () => {
     try {
@@ -227,7 +231,7 @@ function App() {
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-      const response = await updateUserWallet(userWallet, token);
+      const response = await updateUserWallet(userWallet(), token);
 
       if(!response.ok) {
           throw new Error('something went wrong!');
