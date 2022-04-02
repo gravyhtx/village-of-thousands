@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise;
 
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
+const WalletAddress = require('./WalletAddress');
 
 const userSchema = new Schema(
   {
@@ -56,27 +57,27 @@ const userSchema = new Schema(
       type: String,
       required: false
     },
-    walletAddress: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    walletBalance: {
-      type: Number,
-      required: false,
-      default: 0
-    },
-    completeRegistration: {
-      type: Boolean,
-      default: true
-    },
     blockie: {
       type: String,
       required: false,
       default: ""
     },
     colorScheme: [String],
-    orders: [Order.schema]
+    walletAddress: [WalletAddress.schema],
+    orders: [Order.schema],
+    completeRegistration: {
+      type: Boolean,
+      default: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
+    sessionInformation: {
+      type: Schema.Types.ObjectId,
+      ref: 'SessionInformation',
+      required: true
+    }
   },
   {
     toJSON: {

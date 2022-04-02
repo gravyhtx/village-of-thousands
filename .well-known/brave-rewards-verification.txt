@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: villageofthousands.com
-Token: 3296fbcea872af00894d831e0f5dcf4d3d9d91565715a80885e76da54f2ab46c

@@ -38,7 +38,7 @@ const AddressForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({...userFormData, [name]: value });
-    console.log(userFormData)
+    // console.log(userFormData)
   }
 
   const handleFormSubmit = async (event) => {
@@ -63,7 +63,7 @@ const AddressForm = () => {
       if(!response.ok) {
         throw new Error('something went wrong!');
       }
-      console.log(userData)
+      // console.log(userData)
 
     } catch (err) {
       console.error(err);
@@ -86,7 +86,7 @@ const AddressForm = () => {
       // completed: true
     });
 
-    console.log(userFormData)
+    // console.log(userFormData)
 
     // router.push('/');
     // router.reload()

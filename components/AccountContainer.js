@@ -3,9 +3,8 @@ import { useRouter } from "next/router";
 
 import { Icon } from "@mui/material";
 
-import AddressFormContainer from "./AddressFormContainer";
 import Auth from '../utils/auth';
-import { updateUser, getSingleUser, resendConfirmationFetch } from '../utils/API';
+import { getSingleUser, resendConfirmationFetch } from '../utils/API';
 
 import Web3Wallet from "./Web3Wallet.tsx";
 
@@ -13,18 +12,20 @@ import Blockie from "./Blockie";
 import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
 
+import { isLoaded } from "../utils/isLoaded";
+
 const AccountContainer = () => {
 
   const router = useRouter();
 
-  const [wallet, setWallet] = useState('');
+  // const [wallet, setWallet] = useState();
   const [isUser, setIsUser] = useState(false);
   // const [colors, setColors] = useState('');
 
-  useEffect(() => {
-    setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
-    // setColors(localStorage.getItem('blockie-color'));
-  })
+  // useEffect(() => {
+  //   setWallet(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses'));
+  //   // setColors(localStorage.getItem('blockie-color'));
+  // })
 
   const themeVot = ['#111111','#3b4954','#7FCCE4'];
 
@@ -95,7 +96,7 @@ const AccountContainer = () => {
     return iconArr[n]
   }
 
-  const Fingerprint = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
+  const pendingIcon = () => { return <Icon className="user-not-found">{randomIcon()}</Icon> };
 
   const Logo = () => { return <SvgContainer src={Avatar} classes="no-avatar" /> }
   
@@ -108,7 +109,7 @@ const AccountContainer = () => {
   }
 
   useEffect(() => {
-    setAvatar(Fingerprint)
+    setAvatar(pendingIcon)
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -125,10 +126,10 @@ const AccountContainer = () => {
           setIsUser(false)
           return;
         }
-
-        setIsUser(true)
+        console.log(user)
+        setIsUser(true);
         setUserData(user.foundUser);
-        if (user.foundUser.walletAddress) {
+        if (user.walletAddress) {
           setAvatar(UserBlockie);
         } else {
           setAvatar(Logo);
@@ -137,11 +138,11 @@ const AccountContainer = () => {
         console.error(err);
       }
     };
-
     getUserData();    
+    console.log(userData)
   }, [userDataLength]);
 
-  
+  // console.log(userData)
   
   let AccountAvatar = () => { return avatar };
   const UserBlockie = () => {
@@ -150,7 +151,7 @@ const AccountContainer = () => {
       onClick={setScheme}
       className="blockie-nav"
       opts={{
-        seed: userData.walletAddress ? userData.walletAddress : "",
+        seed: userData.walletAddress[0] ? userData.walletAddress[0] : "Claire Richard",
         color: color1,
         bgcolor: color3,
         size: 9,
@@ -159,16 +160,22 @@ const AccountContainer = () => {
     }}/>)
   }
 
-  // var canvas = userData.walletAddress?blockie:<></>
-  // var blockieCanvas = document.getElementById('blockie-canvas');
-  // const blockieUrl = blockieCanvas.toDataURL()
-  // const dataURL = () => {
-  //   let url = blockieCanvas.toDataURL()
-  //   return(url)
-  // }
-  // const blockiePng = document.write('<img src="'+dataURL+'"/>');
-  // var dataURL = canvas.toDataURL();
-  // const blockie = document.write('<img src="'+img+'"/>');
+  const pending = () => {
+    if(isUser && isLoaded) {
+      return <>{userData.email}</>
+    } else {
+      return (
+      <>
+        <div className="italics">** Pending User **</div>
+        <button
+          className="resend-confirmation not-a-button monospace"
+          onClick={resendConfirmation}>
+          <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
+        </button>
+        <br/>
+      </>)
+    }
+  }
 
   return (
     <>
@@ -187,17 +194,7 @@ const AccountContainer = () => {
         <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div>
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {!isUser ?
-              <><div className="italics">** Pending User **</div>
-              <button
-                className="resend-confirmation not-a-button monospace"
-                onClick={resendConfirmation}>
-                <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-              </button>
-              <br/>
-              Activate your account to complete registration.<br/>Check your email!</> :
-              userData.email
-            }
+            {pending()}
           </div>
         </div>
         {!isUser ?

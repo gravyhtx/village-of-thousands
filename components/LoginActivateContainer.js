@@ -30,7 +30,7 @@ const LoginContainer = ({ name, message }) =>  {
           <AccordionDetails className="activate-login login-collapsible-item">
             <Login activation={true} />
             <Link href="/register"><a className="did-you-register">
-              <div class="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
+              <div className="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
             </a></Link>
             <br/>
           </AccordionDetails>
