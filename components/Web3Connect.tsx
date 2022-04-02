@@ -223,7 +223,7 @@ function App() {
     blockNumber: BlockNumber()
   }
 
-  console.log(userWallet);
+  // console.log(userWallet);
 
   const submitWallet = async () => {
     // const userAccount = account === null ? '-': account ? account: '';

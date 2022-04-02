@@ -33,7 +33,7 @@ const Login = ({ activation }) =>  {
     try {
 
       const response = await loginUser(userFormData);
-      console.log(response);
+      // console.log(response);
 
       setErrorClass({
         email: response.ok ? '' : ' input-error',
