@@ -9,7 +9,7 @@ import { formatEther } from '@ethersproject/units';
 import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
-import { getSingleUser } from '../utils/API';
+import { getSingleUser, updateUserWallet } from '../utils/API';
 import Auth from '../utils/auth';
 
 
@@ -229,17 +229,17 @@ function App() {
     // const userAccount = account === null ? '-': account ? account: '';
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // try {
-    //   updateUser(userWallet, token)
-    //   .then(response => {
-    //     if(!response.ok) {
-    //         throw new Error('something went wrong!');
-    //     }
-    //   });
+    try {
+      updateUserWallet(userWallet, token)
+      .then(response => {
+        if(!response.ok) {
+            throw new Error('something went wrong!');
+        }
+      });
 
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const web3activate = async () => {
