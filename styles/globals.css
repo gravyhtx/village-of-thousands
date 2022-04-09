@@ -282,7 +282,7 @@ body {
 }
 
 .main-content {
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 code {
@@ -1179,10 +1179,11 @@ h2, .h2 {
 .navigation-link:focus,
 .navigation-link:focus-visible {
   /* color: #aaaaaa; */
-  background-color: transparent;
+  background-color: transparent !important;
   padding: 0;
   box-shadow: none !important;
   line-height: 40px;
+  transition: 1s !important;
 }
 
 .action-nav,
@@ -1284,6 +1285,11 @@ button.btn-floating.navigation-link:focus {
 
 .signup-collapsible .collapsible {
   border: 2px solid white;
+  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .signup-error.error-message {

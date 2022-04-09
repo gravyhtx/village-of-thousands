@@ -69,8 +69,8 @@ const FaqContent = () => {
         locally. The best way to be a part of the community right now is to follow our social media
         accounts, buy our apparel when our first SZN drops, and rep our brand.</>,
         <>You can be an early VoT Enthusiast and create your account with an integrated crypto wallet so
-        you can be ready for our Web 3.0 expansion. We will announce a date in early 2022 and VoT Enthusiasts
-        with verified wallets added to their accounts will receive rewards and airdrops as soon as that
+        you can be ready for our Web 3.0 expansion. We will announce a date in 2022 and VoT Enthusiasts
+        with verified wallets added to their accounts will b able to receive rewards and airdrops as soon as that
         date arrives.</>,
         <>Follow us on our socials to stay updated and be part of the community we're building for and
         with our fellow Enthusiasts.</>,
@@ -101,7 +101,7 @@ const FaqContent = () => {
       ]
     },
     {
-      "question": "What is a decentralized application (DApp)?",
+      "question": "What is a decentralized application (dApp)?",
       "answer": [
         <>DApps are, simply put, the future of websites and how customers form and build a relationship with
         brands. They offer the security and privacy of the blockchain network while using transparent
@@ -126,7 +126,7 @@ const FaqContent = () => {
         <>We will be continually upgrading and updating the website as well as hand selecting any other additional
         web services and choosing the ones that are most in alignment with our ethos. This site is built
         by our developers, line-by-line, in order to provide a sustainable decentralized platform for the
-        future of our brand. This takes a bit more work than click-and-drag websites, but we are able to
+        future of our brand. Because of this process we are able to
         carefully select every service we use and organically grow with Web 3.0 without restriction.</>,
         // <>Village of Thousands also has our very own, <a className='link underline'
         // href='https://ethereum.org/en/developers/docs/standards/tokens/erc-20/' target="_blank"
@@ -194,7 +194,7 @@ const FaqContent = () => {
         of your account info but if you choose to save the info digitally we recommend that you store it
         locally and/or separately on an external flash drive as a screenshot or in a text file.</>,
         <>MetaMask is a Web 3.0 account manager in a browser extension which, as Brave Browser’s website
-        states, provides a “bridge to explore and handle decentralized applications (DApps) from a web
+        states, provides a “bridge to explore and handle decentralized applications (dApps) from a web
         browser.”</>,
         <><a className='link underline' href='https://metamask.io/download' target="_blank"
         rel="noreferrer">Download MetaMask</a> and follow all instructions carefully while documenting all
@@ -216,8 +216,8 @@ const FaqContent = () => {
       "question": "How will I be receiving my free limited-edition NFT?",
       "answer": [
         <>We are going to release and send the first 200 customers a limited edition NFT from our first digital
-        collection directly to their verified wallets when our Web 3.0 site is ready in 2022. Your NFT
-        will go directly into your wallet and any files you receive will be available to download directly
+        collection to their verified wallets when our Web 3.0 site is ready in 2022. Your NFT
+        will go directly into your wallet and any files you receive will be available to download
         from your Village of Thousands user account. This set of NFTs will vary and rarity and be randomly
         distributed amongst participating VoT Enthusiasts.</>,
         <>In order to receive the NFT you’ll need a wallet connected to your account so we’ve made it easy for

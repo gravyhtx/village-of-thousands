@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isLoaded } from "../utils/isLoaded";
 
 const UploadFile = ( data, success, instructions, instructionsClasses, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
 
@@ -8,6 +9,9 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
   let buttonElement;
 
   useEffect(() => {
+    if(!isLoaded){
+      localStorage.removeItem('upload_data')
+    }
     fileNameElement = document.getElementById('file-name');
     buttonElement = document.getElementById('upload-label');
   })
@@ -25,6 +29,10 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
   }
 
   const [uploadData, setUploadData] = useState();
+  
+  useEffect(() => {
+    localStorage.setItem('upload_data', uploadData);
+  })
 
   const upload = async (e) => { // Get Seed Phrase from User Files
     e.preventDefault();
@@ -33,9 +41,6 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
       success = true;
       data = (e.target.result);
       setUploadData(data);
-      // useEffect(() => {
-      //   localStorage.setItem('upload_data', data);
-      // })
     };
     if (e.target.files[0]){
       reader.readAsText(e.target.files[0]);
@@ -51,7 +56,7 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
     <div className={containerClasses?"upload-file-container container center sm "+containerClasses:"upload-file-container container center sm"}>
     <input className={inputClasses?"upload-file-input "+inputClasses:"upload-file-input"} type="file" onChange={upload} id="upload" hidden />
     <span className="upload-btn-container">
-    <label className={labelClasses?"upload-file-label "+labelClasses:"upload-file-label"} for="upload" id="upload-label"></label>
+    <label className={labelClasses?"upload-file-label "+labelClasses:"upload-file-label"} htmlFor="upload" id="upload-label"></label>
     </span>
     <span className={fileNameClasses?"upload-file-name "+fileNameClasses:"upload-file-name"} id="file-name">{fileName}</span>
     </div>

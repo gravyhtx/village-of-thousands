@@ -16,7 +16,7 @@ const ScrollToTop = () => {
     : rootEl.scrollIntoView({behavior: "smooth", block: "start"});
   }
   setTimeout(() => {
-    scrollPosition()},350);
+    scrollPosition()},500);
   }, [pathname]);
   return null;
 };

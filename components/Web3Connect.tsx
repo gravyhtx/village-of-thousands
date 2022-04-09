@@ -86,34 +86,6 @@ function BlockNumber() {
 function Account() {
   const { account } = useWeb3React();
   const userAccount = account === null ? '-': account ? account: '';
-  // const [userAddress, setUserAddress] = useState('')
-  // console.log(useWeb3React())
-
-  // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  // const getUser = async () => {
-  //   const response = await getSingleUser(token);
-  //   const user = await response.json();
-  //   setUserAddress(user.foundUser.walletAddress);
-  //   // console.log(user)
-  // }
-  
-  // try {
-  //   let updateObj = {
-  //     walletAddress: userAccount
-  //   }
-  //   console.log(updateObj)
-  //   updateUser(updateObj, token)
-  //   .then(response => {
-  //     if(!response.ok) {
-  //         throw new Error('something went wrong!');
-  //     }
-  //     setUserAddress(userAccount);
-  //   });
-  //   // console.log(token)
-  // } catch (err) {
-  //   console.error(err);
-  // }
   return (userAccount ?? '');
 }
 
@@ -157,11 +129,12 @@ export default function() {
   )
 }
 
-function Header() {
+function Header(walletAddress: any) {
   // const { active, error } = useWeb3React()
   return (
     <div className='wallet-info'>
-        <div>{Account()}</div>
+        {/* <div>{Account()}</div> */}
+        <div>{walletAddress ? walletAddress : Account()}</div>
     </div>
   )
 }
@@ -198,7 +171,9 @@ function App() {
     },
     pending: false
   });
+
   const userDataLength = Object.keys(userData).length;
+  const walletAddress = userData.foundUser.walletAddress[0] ? userData.foundUser.walletAddress[0].walletAddress : '';
 
   useEffect(() => {
     const getUserData = async () => {
@@ -254,13 +229,10 @@ function App() {
     deactivate();
   }
 
-  // const getAddress = userData.foundUser.walletAddress[0];
-  // const walletAddress = getAddress ?? getAddress.walletAddress
-
   return (
     <>
-      {(active || error) && (Header())}
-      {(!active) && (
+      {((active || error) && walletAddress) && (Header(walletAddress))}
+      {(!active || !walletAddress) && (
       <div>
         <button
           className='btn waves-effect waves-light account-wallet-btn'
@@ -276,7 +248,7 @@ function App() {
         </button>          
       </div>
       )}
-      {(active || error) && (
+      {((active || error) && walletAddress) && (
       <div>
           <button
             className='btn waves-effect waves-light account-wallet-btn'
