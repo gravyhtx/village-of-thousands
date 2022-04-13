@@ -16,21 +16,5 @@ export default async (req, res) => {
         res.status(400).json({ success: false, message: 'Product finding error' });
       }
       break;
-    case 'POST':
-      try {
-        const newProduct = await Product.create(req.body);
-
-        res.status(201).json({ newProduct, message: 'New Product added Successfully' });
-      } catch (err) {
-        res.status(400).json({ success: false, message: 'Product Creation Error' });
-      }
-      break;
-    case 'PUT':
-      try {
-        res.status(200).json('updatedUser')
-      }catch (err) {
-        res.status(400).json({ success: false, message: 'User Update Error' });
-      }
-      break;
   }
 }
