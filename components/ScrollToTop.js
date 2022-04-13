@@ -12,8 +12,8 @@ const ScrollToTop = () => {
     const scrollEl = document.getElementById('scrollToEl-'+qId);
     const scrollPosition = () => {
     scrollEl
-    ? scrollEl.scrollIntoView({behavior: "smooth", block: "start"})
-    : rootEl.scrollIntoView({behavior: "smooth", block: "start"});
+    ? scrollEl.scrollIntoView({ behavior: "smooth", block: "start" })
+    : rootEl.scrollIntoView({ behavior: "smooth", block: "start" });
   }
   setTimeout(() => {
     scrollPosition()},500);
