@@ -10,28 +10,24 @@ const NewPassword = () => {
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-  const getUserData = async () => {
-    try {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
+    localStorage.removeItem('upload_data');
+    const getUserData = async () => {
+      try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-      // if(!token) {
-      //   window.location.assign('/login');
-      //   return false
-      // }
+        const response = await getSingleUser(token);
 
-      const response = await getSingleUser(token);
+        if(!response.ok){
+          throw new Error('something went wrong!');
+        }
 
-      if(!response.ok){
-        throw new Error('something went wrong!');
+        const user = await response.json();
+        setUserData(user);
+      } catch (err) {
+        console.error(err);
       }
-
-      const user = await response.json();
-      setUserData(user);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  getUserData();
+    };
+    getUserData();
   }, [userDataLength]);
   
   const [userFormData, setUserFormData] = useState({password: ''})
@@ -44,17 +40,13 @@ const NewPassword = () => {
     event.preventDefault();
 
     const form = event.currentTarget;
+
     if(form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   window.location.assign('/404');
-    //   return false;
-    // }
 
     try {
       const response = await updateUser(userFormData, token);
@@ -78,40 +70,42 @@ const NewPassword = () => {
     <>
     <div className="pw-recovery-input-container new-password-container row">
       <div className="new-password-label-1">ENTER NEW PASSWORD</div>
-      <TextField 
-      className='new-password' 
-      id='new-password-1'
-      aria-labelledby='new-password-label-1'
-      type='password'
-      name='password'
-      onChange={handleInputChange}
-      value={userFormData.passwordOne}
+      <input 
+        className='new-password center'
+        style={{color: 'white'}}
+        id='new-password-1'
+        aria-labelledby='new-password-label-1'
+        type='password'
+        name='password'
+        onChange={handleInputChange}
+        value={userFormData.passwordOne}
       />
 
       <div className="new-password-label-2">RE-ENTER NEW PASSWORD</div>
-      <TextField 
-      className='new-password'
-      id='new-password-1'
-      aria-labelledby='new-password-label-2'
-      type='password'
-      name='password'
-      onChange={handleInputChange}
-      value={userFormData.passwordTwo}
+      <input 
+        className='new-password center'
+        style={{color: 'white'}}
+        id='new-password-2'
+        aria-labelledby='new-password-label-2'
+        type='password'
+        name='password'
+        onChange={handleInputChange}
+        value={userFormData.passwordTwo}
       />
       
     </div>
     <div className="new-password-submit">
     <br/>
       <Button
-      node="button"
-      style={{
-        margin: '0 auto',
-        width: '250px'
-      }}
-      waves="light"
-      className="theme-btn"
-      onClick={handleSubmit}
-      id="submit"
+        node="button"
+        style={{
+          margin: '0 auto',
+          width: '250px'
+        }}
+        waves="light"
+        className="theme-btn"
+        onClick={handleSubmit}
+        id="submit"
       >CREATE NEW PASSWORD</Button>
     </div>
     </>
