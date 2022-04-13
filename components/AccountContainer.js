@@ -11,6 +11,7 @@ import Web3Wallet from "./Web3Wallet.tsx";
 import Blockie from "./Blockie";
 import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
+import AddressFormContainer from "./AddressFormContainer";
 
 import { isLoaded } from "../utils/isLoaded";
 
@@ -126,7 +127,6 @@ const AccountContainer = () => {
           setIsUser(false)
           return;
         }
-        console.log(user)
         setIsUser(true);
         setUserData(user.foundUser);
         if (user.walletAddress) {
@@ -139,7 +139,6 @@ const AccountContainer = () => {
       }
     };
     getUserData();    
-    console.log(userData)
   }, [userDataLength]);
 
   // console.log(userData)
@@ -206,7 +205,7 @@ const AccountContainer = () => {
       </div>
       {/* {!isUser ?
         <></> :
-        <AddressFormContainer />} */}
+        <AddressFormContainer activeUser={userData} />} */}
 
     </>
   )
