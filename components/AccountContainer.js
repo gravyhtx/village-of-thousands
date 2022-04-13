@@ -15,11 +15,21 @@ import SvgContainer from "../components/SvgContainer";
 import { isLoaded } from "../utils/isLoaded";
 
 const AccountContainer = () => {
-
+  
   const router = useRouter();
-
-  // const [wallet, setWallet] = useState();
-  const [isUser, setIsUser] = useState(false);
+  
+  const [wallet, setWallet] = useState('');
+  const [isUser, setIsUser] = useState(null);
+  const [userData, setUserData] = useState({
+    foundUser: {
+      email: '',
+      walletAddress: [{
+        walletAddress: ''
+      }]
+    },
+    pending: null
+  });
+  const userDataLength = Object.keys(userData).length;
   // const [colors, setColors] = useState('');
 
   // useEffect(() => {
@@ -69,6 +79,9 @@ const AccountContainer = () => {
       color2 = themeColors[2];
       color3 = themeColors[0];
     }
+    // if(userData.foundUser.walletAddress[0].walletAddress && !wallet) {
+    //   setWallet(userData.foundUser.walletAddress[0].walletAddress);
+    // }
   });
 
   const setScheme = () => {
@@ -86,8 +99,6 @@ const AccountContainer = () => {
   }
   
   const [ avatar, setAvatar ] = useState(<></>);
-  const [userData, setUserData] = useState([]);
-  const userDataLength = Object.keys(userData).length;
 
   const iconArr = ["fingerprint", "code", "outlet", "person_outline", "self_improvement"];
 
@@ -110,6 +121,7 @@ const AccountContainer = () => {
 
   useEffect(() => {
     setAvatar(pendingIcon)
+    // if(!avatar){ setAvatar(pendingIcon) }
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -122,18 +134,21 @@ const AccountContainer = () => {
         
         const user = await response.json();
         
-        if(user.pending) {
-          setIsUser(false)
-          return;
-        }
-        // console.log(user)
-        setIsUser(true);
-        setUserData(user.foundUser);
-        if (user.walletAddress) {
-          setAvatar(UserBlockie);
-        } else {
-          setAvatar(Logo);
-        }
+        console.log(isUser)
+        
+        setUserData(user);
+        // if(user.foundUser.walletAddress[0].walletAddress){
+          // };
+          if(userData.pending) {
+            setIsUser(false)
+            return;
+          }
+          if(!userData.pending) {
+            setIsUser(true)
+          }
+          setWallet(user.foundUser.walletAddress[0].walletAddress)
+          console(user.foundUser.walletAddress[0].walletAddress)
+        
       } catch (err) {
         console.error(err);
       }
@@ -142,7 +157,12 @@ const AccountContainer = () => {
     // console.log(userData)
   }, [userDataLength]);
 
-  // console.log(userData)
+  useEffect(() => {
+    setAvatar(Logo);
+    if (wallet) {
+      setAvatar(UserBlockie);
+    }
+  }, [wallet]);
   
   let AccountAvatar = () => { return avatar };
   const UserBlockie = () => {
@@ -151,7 +171,7 @@ const AccountContainer = () => {
       onClick={setScheme}
       className="blockie-nav"
       opts={{
-        seed: userData.walletAddress[0] ? userData.walletAddress[0] : "Claire Richard",
+        seed: wallet ? wallet : "Claire Richard",
         color: color1,
         bgcolor: color3,
         size: 9,
@@ -161,9 +181,7 @@ const AccountContainer = () => {
   }
 
   const pending = () => {
-    if(isUser && isLoaded) {
-      return <>{userData.email}</>
-    } else {
+    if(!isUser && isLoaded) {
       return (
       <>
         <div className="italics">** Pending User **</div>
@@ -174,12 +192,14 @@ const AccountContainer = () => {
         </button>
         <br/>
       </>)
+    } else {
+      return <>{userData.foundUser.email}</>
     }
   }
 
   return (
     <>
-      <div className={userData.walletAddress ? "account-container center" : "vot-account-container center"} id="account-container">
+      <div className={wallet ? "account-container center" : "vot-account-container center"} id="account-container">
         <br/>
         <div className="blockie-container">
           <AccountAvatar/>

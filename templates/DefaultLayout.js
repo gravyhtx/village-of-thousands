@@ -34,10 +34,25 @@ export default function DefaultLayout({ headerImages, title, description, withAu
         name="description"
         content={description}
       />
+
+      <meta property="og:site_name" content={title} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={website.url} />
+      <meta property="og:image" content={website.hero} />
+
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:type" content="website" />
+      <meta property="twitter:url" content={website.url} />
+      <meta property="twitter:image" content={website.hero} />
+
+      <meta name="twitter:site" content={website.twitterHandle} />
+      <meta name="twitter:creator" content={website.twitterHandle} />
+      <meta name="twitter:image:alt" content={website.motto} />
+      <meta name="twitter:card" content={website.twitterCard} />
+
       </Head>
       <ScrollToTop />
       {headerImages ? <Header images={headerImages} /> : <Header />}

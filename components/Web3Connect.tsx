@@ -11,7 +11,7 @@ import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
 import { getSingleUser, updateUserWallet } from '../utils/API';
 import Auth from '../utils/auth';
-
+import { useRouter } from 'next/router';
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
 
@@ -140,6 +140,7 @@ function Header(walletAddress: any) {
 }
 
 function App() {
+  const router = useRouter();
   const context = useWeb3React<Web3Provider>()
   const { connector, library, account, activate, deactivate, active, error } = context
 
@@ -164,16 +165,13 @@ function App() {
 
   // Get User Data
   const [userData, setUserData] = useState({
-    foundUser: {
-      walletAddress: [{
-        walletAddress: ''
-      }]
-    },
-    pending: false
+    walletAddress: [{
+      walletAddress: ''
+    }]
   });
 
   const userDataLength = Object.keys(userData).length;
-  const walletAddress = userData.foundUser.walletAddress[0] ? userData.foundUser.walletAddress[0].walletAddress : '';
+  const [walletAddress, setWalletAddress] = useState('');
 
   useEffect(() => {
     const getUserData = async () => {
@@ -187,7 +185,11 @@ function App() {
         }
 
         const user = await response.json();
-        setUserData(user);
+        setUserData(user.foundUser);
+        if(userData.walletAddress[0].walletAddress) {
+          setWalletAddress(userData.walletAddress[0].walletAddress);
+        }
+        console.log(user)
       } catch (err) {
         console.error(err);
       }
@@ -195,7 +197,7 @@ function App() {
     getUserData();
   }, [userDataLength]);
 
-  // const userDataWallet = userData.foundUser.walletAddress[0];
+  // const userDataWallet = userData.walletAddress[0];
   // console.log(userData)
 
   const userWallet = () => {
@@ -203,6 +205,12 @@ function App() {
       return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
     }
   }
+
+  // const [isActiveWallet, setIsActiveWallet] = useState(false);
+
+  // if(wallet) {
+  //   setIsActiveWallet(true);
+  // }
 
   const web3activate = async () => {
     try {
@@ -213,7 +221,11 @@ function App() {
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+      console.log(userWallet())
+
       const response = await updateUserWallet(userWallet(), token);
+
+      router.reload();
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -223,9 +235,33 @@ function App() {
       console.error(err);
     }
   }
-  // console.log(userData.foundUser.walletAddress[0].walletAddress)
+
+  // useEffect(() => {
+  //   const web3activate = async () => {
+  //     try {
+  
+  //       setActivatingConnector(currentConnector);
+  
+  //       const activeWallet = await activate(injected);
+  
+  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
+  
+  //       const response = await updateUserWallet(userWallet(), token);
+  
+  //       if(!response.ok) {
+  //           throw new Error('something went wrong!');
+  //       }
+  
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  //   web3activate();
+  // }, [isActiveWallet])
+  // console.log(userData.walletAddress[0].walletAddress)
 
   const web3deactivate = async () => {
+    // setIsActiveWallet(false);
     deactivate();
   }
 
