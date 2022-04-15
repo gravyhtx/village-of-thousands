@@ -10,20 +10,20 @@ import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
+import { isLoaded } from "../utils/isLoaded";
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
 import { useWindowSize } from "../modules/getWindow";
 
+
 const Header = ({ images }) => {
 
   // Get User Data
   const [userData, setUserData] = useState({
-    foundUser: {
-      walletAddress: [{
-        walletAddress: ''
-      }]
-    }
+    walletAddress: [{
+      walletAddress: ''
+    }]
   });
   const userDataLength = Object.keys(userData).length;
 
@@ -42,15 +42,18 @@ const Header = ({ images }) => {
 
         const user = await response.json();
         setUserData(user);
-        setWallet(user.foundUser.walletAddress[0].walletAddress ? user.foundUser.walletAddress[0].walletAddress : '');
-
+        // setWallet(isLoaded && user.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
       } catch (err) {
         console.error(err);
       }
     };
     
     getUserData();
-  }, [userDataLength]);
+  }, []);
+
+  useEffect(() => {
+    setWallet(isLoaded && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
+  }, [wallet])
 
   let siteName = SiteData.name;
 

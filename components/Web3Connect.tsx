@@ -141,7 +141,17 @@ function Header(walletAddress: any) {
 
 function App() {
   const router = useRouter();
-  const context = useWeb3React<Web3Provider>()
+  const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
+    account: undefined,
+    activate: () => {},
+    active: false,
+    chainId: undefined,
+    connector: undefined,
+    deactivate: () => {},
+    error: undefined,
+    library: undefined,
+    setError: () => {}
+  }
   const { connector, library, account, activate, deactivate, active, error } = context
 
   // handle logic to recognize the connector currently being activated
@@ -186,16 +196,16 @@ function App() {
 
         const user = await response.json();
         setUserData(user.foundUser);
-        if(userData.walletAddress[0].walletAddress) {
-          setWalletAddress(userData.walletAddress[0].walletAddress);
-        }
-        // console.log(user)
       } catch (err) {
         console.error(err);
       }
     };
     getUserData();
   }, [userDataLength]);
+  
+  useEffect(() => {
+    setWalletAddress(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
+  }, [walletAddress])
 
   // const userDataWallet = userData.walletAddress[0];
   // console.log(userData)
@@ -235,30 +245,6 @@ function App() {
       console.error(err);
     }
   }
-
-  // useEffect(() => {
-  //   const web3activate = async () => {
-  //     try {
-  
-  //       setActivatingConnector(currentConnector);
-  
-  //       const activeWallet = await activate(injected);
-  
-  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
-  
-  //       const response = await updateUserWallet(userWallet(), token);
-  
-  //       if(!response.ok) {
-  //           throw new Error('something went wrong!');
-  //       }
-  
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  //   web3activate();
-  // }, [isActiveWallet])
-  // console.log(userData.walletAddress[0].walletAddress)
 
   const web3deactivate = async () => {
     // setIsActiveWallet(false);

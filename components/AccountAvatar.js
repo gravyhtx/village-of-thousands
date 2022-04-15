@@ -11,21 +11,18 @@ import SvgContainer from "../components/SvgContainer";
 import { useRouter } from "next/router";
 
 import { isLoaded } from "../utils/isLoaded";
+import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
 const AccountAvatar = () => {
 
   const router = useRouter();
   const [wallet, setWallet] = useState('');
-  const [isUser, setIsUser] = useState(null);
   const [userData, setUserData] = useState({
-    foundUser: {
-      colorScheme: [],
-      walletAddress: [{
-        walletAddress: ''
-      }]
-    },
-    pending: null
+    colorScheme: '',
+    walletAddress: [{
+      walletAddress: ''
+    }]
   });
   const userDataLength = Object.keys(userData).length;
   
@@ -47,21 +44,6 @@ const AccountAvatar = () => {
       if(!response.ok) {
         throw new Error('something went wrong!');
       }
-      setAvatar(<div className="blockie-loading"><SvgContainer src={Avatar} classes="no-avatar" /></div>);
-      // setAvatar(
-      //   <>
-      //     {userData.foundUser.colorScheme ? <div onClick={setColorScheme}><Blockie
-      //       className="blockie-nav"
-      //       opts={{
-      //         seed: wallet ? wallet : "Claire Richard",
-      //         color: userData.foundUser.colorScheme[0],
-      //         bgcolor: userData.foundUser.colorScheme[2],
-      //         size: 9,
-      //         scale: 7,
-      //         spotcolor: userData.foundUser.colorScheme[1]
-      //     }}/></div> : <></>}
-      //   </>
-      // )
       router.reload();
     } catch (err) {
       console.error(err);
@@ -70,7 +52,11 @@ const AccountAvatar = () => {
 
 
   // SET AVATAR
-  const [ avatar, setAvatar ] = useState(<></>);
+  const [ avatar, setAvatar ] = useState(null);
+
+  // useEffect(() => {
+  //   setAvatar(<div className="blockie-loading"><SvgContainer src={Avatar} classes="no-avatar" /></div>);
+  // }, [avatar])
 
   const iconArr = ["fingerprint", "code", "outlet", "person_outline", "self_improvement"];
   const randomIcon = () => {
@@ -86,17 +72,16 @@ const AccountAvatar = () => {
         className="blockie-nav"
         opts={{
           seed: wallet ? wallet : "Claire Richard",
-          color: userData.foundUser.colorScheme ? userData.foundUser.colorScheme[0] : themeColors[0],
-          bgcolor: userData.foundUser.colorScheme ? userData.foundUser.colorScheme[1] : themeColors[1],
+          color: userData.colorScheme ? userData.colorScheme[0] : themeColors[0],
+          bgcolor: userData.colorScheme ? userData.colorScheme[1] : themeColors[1],
           size: 9,
           scale: 7,
-          spotcolor: userData.foundUser.colorScheme ? userData.foundUser.colorScheme[2] : themeColors[2]
+          spotcolor: userData.colorScheme ? userData.colorScheme[2] : themeColors[2]
       }}/></div>
     )
   }
 
   useEffect(() => {
-    setAvatar(pendingIcon)
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -108,16 +93,9 @@ const AccountAvatar = () => {
         }
         
         const user = await response.json();
-        setUserData(user);
-        if(userData.pending) {
-          setIsUser(false)
-          return;
-        }
-        if(!userData.pending) {
-          setIsUser(true)
-        }
-        setThemeColors(userData.foundUser.colorScheme);
-        setWallet(user.foundUser.walletAddress[0].walletAddress);
+        setUserData(user.foundUser);
+        setThemeColors(userData.colorScheme);
+        // setWallet(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
       } catch (err) {
         console.error(err);
       }
@@ -126,8 +104,14 @@ const AccountAvatar = () => {
   }, [userDataLength]);
 
   useEffect(() => {
-    if(isLoaded){ setAvatar(Logo) }
-    if(wallet){ setAvatar(UserBlockie) }
+    if(!avatar){ setAvatar(pendingIcon) };
+  }, [avatar])
+
+  useEffect(() => {
+    setWallet(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
+    if(isLoaded && !wallet && isUser()){ setAvatar(Logo) }
+    if(isLoaded && wallet && isUser()){ setAvatar(UserBlockie) }
+    if(!wallet && !isUser && !avatar()){ setAvatar(pendingIcon) }
   }, [wallet]);
 
   let RenderAvatar = () => { return avatar };

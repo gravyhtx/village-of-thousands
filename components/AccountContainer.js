@@ -15,12 +15,9 @@ const AccountContainer = () => {
   
   const [wallet, setWallet] = useState('');
   const [userData, setUserData] = useState({
-    foundUser: {
-      email: '',
-      walletAddress: [{
-        walletAddress: ''
-      }]
-    }
+    walletAddress: [{
+      walletAddress: ''
+    }]
   });
   const userDataLength = Object.keys(userData).length;
   
@@ -41,19 +38,26 @@ const AccountContainer = () => {
           return;
         }
         const user = await response.json();
-        setUserData(user);
-        setWallet(user.foundUser.walletAddress[0].walletAddress);
-        
+        setUserData(user.foundUser);
       } catch (err) {
         console.error(err);
       }
     };
-    getUserData();    
+    getUserData();
     // console.log(userData)
   }, [userDataLength]);
+  
+  // console.log(isUser())
+
+  useEffect(() => {
+    setWallet(userData && (userData.walletAddress[0].walletAddress) ? userData.walletAddress[0].walletAddress : '');
+  }, [wallet]);
 
   const pending = () => {
-    if(!isUser && isLoaded) {
+    if (!isLoaded) {
+      return <></>;
+    }
+    if(!isUser() && isLoaded) {
       return (
       <>
         <div className="italics">** Pending User **</div>
@@ -64,9 +68,10 @@ const AccountContainer = () => {
         </button>
         <br/>
       </>)
-    } else {
-      return <>{userData.foundUser.email}</>
+    } else if (isUser() && isLoaded) {
+      return <>{userData.email}</>
     }
+
   }
 
   return (
@@ -77,10 +82,10 @@ const AccountContainer = () => {
         {/* <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div> */}
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {pending()}
+            {!isUser() && isLoaded ? pending() : <></> }
           </div>
         </div>
-        {!isUser ?
+        {!isUser() && isLoaded ?
           <></> :
           <div className="account-wallet">
             <div className="user-wallet-header">WALLET</div>
