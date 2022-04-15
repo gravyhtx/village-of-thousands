@@ -189,7 +189,7 @@ function App() {
         if(userData.walletAddress[0].walletAddress) {
           setWalletAddress(userData.walletAddress[0].walletAddress);
         }
-        console.log(user)
+        // console.log(user)
       } catch (err) {
         console.error(err);
       }

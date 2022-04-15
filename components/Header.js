@@ -18,7 +18,13 @@ import { useWindowSize } from "../modules/getWindow";
 const Header = ({ images }) => {
 
   // Get User Data
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    foundUser: {
+      walletAddress: [{
+        walletAddress: ''
+      }]
+    }
+  });
   const userDataLength = Object.keys(userData).length;
 
   const [wallet, setWallet] = useState();
@@ -36,7 +42,7 @@ const Header = ({ images }) => {
 
         const user = await response.json();
         setUserData(user);
-        setWallet(user.foundUser.walletAddress);
+        setWallet(user.foundUser.walletAddress[0].walletAddress ? user.foundUser.walletAddress[0].walletAddress : '');
 
       } catch (err) {
         console.error(err);
@@ -134,6 +140,7 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
+              {/* <Svg /> */}
               {useWindowSize().width > 2400
                 ? <Svg />
                 : <Fallback />}

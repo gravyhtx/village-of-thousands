@@ -85,7 +85,7 @@ const UserMnemonic = () => {
       let updateObj = {
         seedHex: seedHex
       }
-      console.log(updateObj)
+      // console.log(updateObj)
       updatePendingUser(updateObj, token)
       .then(response => {
         if (!response.ok) {
