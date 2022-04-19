@@ -2610,9 +2610,8 @@ label#upload-label:hover {
 }
 
 .blockie-colors,
-.resend-confirmation
- {
-  color: var(--theme-primary-medium-color);
+.resend-confirmation {
+  color: #999999;
   font-size: var(--theme-font-size-xxs);
   background-color: #00000010;
   margin: 15px 0;

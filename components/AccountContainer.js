@@ -7,13 +7,8 @@ import Web3Wallet from "./Web3Wallet.tsx";
 
 import AccountAvatar from "./AccountAvatar";
 
-import { isLoaded } from "../utils/isLoaded";
-
-import { isUser } from "../utils/isUser";
-
 const AccountContainer = () => {
-  
-  const [wallet, setWallet] = useState('');
+  const [loaded, setLoaded] = useState(false)
   const [userData, setUserData] = useState({
     walletAddress: [{
       walletAddress: ''
@@ -39,6 +34,8 @@ const AccountContainer = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
+        setLoaded(true)
+        console.log(userData)
       } catch (err) {
         console.error(err);
       }
@@ -47,52 +44,63 @@ const AccountContainer = () => {
     // console.log(userData)
   }, [userDataLength]);
   
-  // console.log(isUser())
+  // console.log('load',loaded)
+
+  const [userCheck, setUserCheck] = useState();
+  const [acctContainer, setAcctContainer] = useState();
+  const [walletContainer, setWalletContainer] = useState();
+  const [containerClasses, setContainerClasses] = useState();
+  const [wallet, setWallet] = useState('');
 
   useEffect(() => {
-    setWallet(userData && (userData.walletAddress[0].walletAddress) ? userData.walletAddress[0].walletAddress : '');
-  }, [wallet]);
+    if(!wallet && userData){ setWallet(userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '') };
+  }, [wallet])
+
+  useEffect(() => {
+    setUserCheck(userData.completeRegistration ? true : false);
+    setContainerClasses(wallet ? "account-container center" : "vot-account-container center");
+    setAcctContainer(<></>);
+    setWalletContainer(<></>);
+    if(userCheck && loaded) {
+      setAcctContainer(<>{userData.email}</>);
+      setWalletContainer(<div className="account-wallet">
+          <div className="user-wallet-header">WALLET</div>
+          <Web3Wallet />
+        </div>);
+    }
+    if(!userCheck && loaded) {
+      setAcctContainer(pending());
+    }
+    // console.log(userCheck)
+  }, [userData])
 
   const pending = () => {
-    if (!isLoaded) {
-      return <></>;
-    }
-    if(!isUser() && isLoaded) {
-      return (
-      <>
-        <div className="italics">** Pending User **</div>
-        <button
-          className="resend-confirmation not-a-button monospace"
-          onClick={resendConfirmation}>
-          <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
-        </button>
-        <br/>
-      </>)
-    } else if (isUser() && isLoaded) {
-      return <>{userData.email}</>
-    }
-
+    return (
+    <>
+      <div className="italics">** Pending User **</div>
+      <button
+        className="resend-confirmation not-a-button monospace"
+        onClick={resendConfirmation}>
+        <span className="resend-confirmation-text">[RESEND CONFIRMATION EMAIL]</span>
+      </button>
+      <br/>
+    </>)
   }
 
   return (
     <>
-      <div className={wallet ? "account-container center" : "vot-account-container center"} id="account-container">
+      <div className={ containerClasses } id="account-container">
         <br/>
         <AccountAvatar/>
         {/* <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div> */}
         <div className="account-info-email">
           <div className="account-info-email_text">
-            {!isUser() && isLoaded ? pending() : <></> }
+            { loaded ? acctContainer : <></> }
           </div>
         </div>
-        {!isUser() && isLoaded ?
-          <></> :
-          <div className="account-wallet">
-            <div className="user-wallet-header">WALLET</div>
-            <Web3Wallet />
-          </div>}
+        { loaded ? walletContainer : <></> }
       </div>
-      {/* {!isUser ?
+      {/* {!userCheck ?
         <></> :
         <AddressFormContainer activeUser={userData} />} */}
     </>

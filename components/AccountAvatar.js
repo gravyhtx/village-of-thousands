@@ -11,12 +11,13 @@ import SvgContainer from "../components/SvgContainer";
 import { useRouter } from "next/router";
 
 import { isLoaded } from "../utils/isLoaded";
-import { isUser } from "../utils/isUser";
+// import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
 const AccountAvatar = () => {
 
   const router = useRouter();
+  const [userCheck, setUserCheck] = useState();
   const [wallet, setWallet] = useState('');
   const [userData, setUserData] = useState({
     colorScheme: '',
@@ -105,21 +106,25 @@ const AccountAvatar = () => {
 
   useEffect(() => {
     if(!avatar){ setAvatar(pendingIcon) };
-  }, [avatar])
+  }, [avatar]);
 
   useEffect(() => {
-    setWallet(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
-    if(isLoaded && !wallet && isUser()){ setAvatar(Logo) }
-    if(isLoaded && wallet && isUser()){ setAvatar(UserBlockie) }
-    if(!wallet && !isUser && !avatar()){ setAvatar(pendingIcon) }
-  }, [wallet]);
+    if(!wallet && userData){ setWallet(userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '') };
+  }, [wallet])
+
+  useEffect(() => {
+    setUserCheck(userData.completeRegistration ? true : false);
+    if(isLoaded && !wallet && userCheck){ setAvatar(Logo) }
+    if(isLoaded && wallet && userCheck){ setAvatar(UserBlockie) }
+    if(!wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
+  }, [userData]);
 
   let RenderAvatar = () => { return avatar };
 
   return (
     <>
       <div className="blockie-container">
-        {isLoaded ? <RenderAvatar/> : <></>}
+        { isLoaded() ? <RenderAvatar/> : <></> }
       </div>
       {wallet ?
         <button
