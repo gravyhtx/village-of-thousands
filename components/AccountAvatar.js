@@ -14,7 +14,7 @@ import { isLoaded } from "../utils/isLoaded";
 // import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
-const AccountAvatar = () => {
+const AccountAvatar = (props) => {
 
   const router = useRouter();
   const [userCheck, setUserCheck] = useState();

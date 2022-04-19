@@ -93,7 +93,7 @@ const AccountContainer = () => {
     <>
       <div className={ containerClasses } id="account-container">
         <br/>
-        <AccountAvatar/>
+        <AccountAvatar wallet={userData.walletAddress} />
         {/* <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div> */}
         <div className="account-info-email">
           <div className="account-info-email_text">
