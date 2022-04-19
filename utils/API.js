@@ -79,7 +79,7 @@ export const updateUserWallet = (userData, token) => {
 
 export const deleteUserWallet = (userData, token) => {
   return fetch('/api/users/wallet', {
-    method: 'PUT',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`
@@ -112,6 +112,14 @@ export const updatePendingUser = (userData, token) => {
 
 export const accountActivation = (userId) => {
   return fetch('/api/users/activate/' + userId, {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
+
+export const searchUserByEmail = (userEmail) => {
+  return fetch('/api/users/activate/' + userEmail, {
     headers: {
       'Content-Type': 'application/json',
     }

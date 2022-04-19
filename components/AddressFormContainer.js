@@ -4,34 +4,34 @@ import Auth from '../utils/auth';
 import { useRouter } from 'next/router';
 import { updateUser, getSingleUser } from '../utils/API';
 
-const AddressForm = () => {
+const AddressForm = (props) => {
   // Get User Data
-  const [userData, setUserData] = useState({});
-  const userDataLength = Object.keys(userData).length;
+  // const [userData, setUserData] = useState({});
+  // const userDataLength = Object.keys(userData).length;
   const [windowLocation, setWindowLocation] = useState('');
 
   let router = useRouter();
 
-  useEffect(() => {
-    const getUserData = async () => {
-      setWindowLocation(router.pathname);
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     setWindowLocation(router.pathname);
+  //     try {
+  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        const response = await getSingleUser(token);
+  //       const response = await getSingleUser(token);
 
-        if(!response.ok){
-          throw new Error('Something went wrong!');
-        }
+  //       if(!response.ok){
+  //         throw new Error('Something went wrong!');
+  //       }
 
-        const user = await response.json();
-        setUserData(user.foundUser);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getUserData();
-  }, [userDataLength]);
+  //       const user = await response.json();
+  //       setUserData(user.foundUser);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   getUserData();
+  // }, [userDataLength]);
 
   const [userFormData, setUserFormData] = useState({})
 
@@ -113,14 +113,24 @@ const AddressForm = () => {
         {fields.map((field, index) => {
           return (
             <>
-            {userData[field] ?
-              <div key={key}>{userData[field]}</div> :
+            {props.activeUser[field.name] ?
+              <input
+              className="input-field"
+              id={"user-register-"+field.name+"_input"}
+              aria-labelledby="user-register-address"
+              name={field.name}
+              placeholder={props.activeUser[field.name] ? props.activeUser[field.name] : field.placeholder}
+              // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
+              onChange={handleInputChange}
+              // value={userData.addressOne?userData.addressOne:''}
+              key={index}
+            /> :
               <input
                 className="input-field"
                 id={"user-register-"+field.name+"_input"}
                 aria-labelledby="user-register-address"
                 name={field.name}
-                placeholder={userData[field] ? userData[field] : field.placeholder}
+                placeholder={props.activeUser[field.name] ? props.activeUser[field] : field.placeholder}
                 // placeholder={userData.addressOne?userData.addressOne:'Address Line 1'}
                 onChange={handleInputChange}
                 // value={userData.addressOne?userData.addressOne:''}

@@ -3,12 +3,35 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 mongoose.Promise = global.Promise;
 
+const detailSchema = new Schema(
+  {
+    //SKU, size, abbr size, qty
+    SKU: {
+      type: String
+    },
+    product_size: {
+      type: String
+    },
+    product_abbreviated_size: {
+      type: String
+    },
+    product_inventory: {
+      type: Number
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    },
+    id: false
+  }
+)
+
 const productSchema = new Schema(
   {
     product_name: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     product_path: {
       type: String,
@@ -26,38 +49,23 @@ const productSchema = new Schema(
         required: false
       }
     ],
-    product_colors: [
+    product_colors: 
       {
         type: String
       }
-    ],
+    ,
     product_genders: [
       {
         type: String
       }
     ],
-    product_sizes: [
-      {
-        type: String
-      }
-    ],
-    SKU: {
-      type: String,
-      required: false
-    },
-    inventory: [
-      {
-        type: Number,
-        required: false,
-        min: 0
-      }
-    ],
+    product_information: [detailSchema],
     price: {
       type: Number,
       required: false,
       min: 0.99
     },
-    NFT_include: {
+    NFT_included: {
       type: Boolean
     }
   },

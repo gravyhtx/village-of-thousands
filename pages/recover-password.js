@@ -13,8 +13,16 @@ import Auth from '../utils/auth';
 const UserPasswordRecovery = () => {
 
   // Get User Data
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    foundUser: {
+      seedHex: ''
+    },
+    pending: false
+  });
+
   const userDataLength = Object.keys(userData).length;
+
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -29,31 +37,41 @@ const UserPasswordRecovery = () => {
 
         const user = await response.json();
         setUserData(user);
+
+        if(userData){
+          setIsLogged(true);
+        }
+        
       } catch (err) {
         console.error(err);
       }
     };
     getUserData();
+    console.log(isLogged);
   }, [userDataLength]);
-
+  
   // Get Seed Phrase Hex from Database
-  let seedHex = '';
-  let getMnemonic;
-  useEffect(() => {
-    getMnemonic = userData.seedHex;
-  })
-  if (getMnemonic) {
-    seedHex = getMnemonic;
-  }
+  let seedHex = userData.foundUser.seedHex;
+
   // Verify Seed Phrase
   const getHex = Mnemonic.fromHex(seedHex);
   const phraseArr = getHex.toWords();
   let phrase = phraseArr.join(' ');
   let seedArr = [];
+  // console.log(phrase);
+
+  const [pwCheck, setPwCheck] = useState(false);
+
+  const [txtSeed, setTxtSeed] = useState('');
+
   useEffect(() => {
-    localStorage.removeItem('upload_data');
+    setTxtSeed(localStorage.getItem('upload_data'));
+    // console.log(txtSeed);
+    if(phrase === txtSeed) {
+      setPwCheck(true);
+    }
   })
-  let [txtSeed, setTextSeed] = '';
+
   let seed = "";
   let [pass, setPass] = useState(false);
   let [reset, setReset] = useState(false);
@@ -63,17 +81,21 @@ const UserPasswordRecovery = () => {
   let emailInput;
 
   let email;
+  let [emailVal, setEmailVal] = useState('');
   let button;
   let container;
 
   useEffect(() => {
-    // Checks and Handle Submit
-    // const captcha = localStorage.getItem('hCaptcha_token');
+    console.log(emailVal);
     email = document.getElementById('email');
+    if(userData.foundUser.email){
+      setEmailVal(userData.foundUser.email);
+    }
     button = document.getElementById('submit');
     container = document.getElementById('seed-container');
   });
-  const handleChange = () => {
+
+  const clearStyles = () => {
     if(!pass && reset) {
       setReset(false);
       container.style.borderColor = '#222224';
@@ -81,6 +103,16 @@ const UserPasswordRecovery = () => {
       button.style.borderColor = '#7FCCE4';
       button.style.backgroundColor = '#111111';
     }
+  }
+
+  const handleSeedChange = () => {
+    clearStyles();
+  }
+
+  const handleEmailChange = () => {
+    clearStyles();
+    console.log(emailVal);
+    setEmailVal(document.getElementById('email') !== null ? email.value : userData.foundUser.email);
   }
   
   const handleSubmit = () => {
@@ -90,14 +122,16 @@ const UserPasswordRecovery = () => {
       seedArr.push(input);
     }
     seed = seedArr.join(' ').toLowerCase();
+    console.log(seed)
+    console.log(emailVal)
     // txtSeed = localStorage.getItem('upload_data')
-    if ((seed === phrase && seedArr.length ===  9 && email.value === userData.email) || (txtSeed === phrase && email.value === userData.email)) {
+    if ((seed === phrase && seedArr.length ===  9 && emailVal === userData.foundUser.email) || (txtSeed === phrase && emailVal === userData.foundUser.email)) {
       setPass(true)
       container.style.borderColor = '#222224';
       email.style.borderColor = '#9e9e9e';
       button.style.borderColor = '#7FCCE4';
       button.style.backgroundColor = '#111111';
-    } else if (email.value !== userData.email) {
+    } else if (emailVal !== userData.email) {
       setReset(true);
       email.style.borderColor = '#D24B4B';
       button.style.borderColor = '#D24B4B';
@@ -120,7 +154,7 @@ const UserPasswordRecovery = () => {
     let inputs = [];
     for (let i=0; i < 9; i++) {
       inputs[i] = <div className="pw-recovery-input col s4" id="pw-recovery-input" key={i}>
-              <input name={"input-"+i} id={"pw-"+i} placeholder={i+1} onChange={handleChange} />
+              <input name={"input-"+i} id={"pw-"+i} placeholder={i+1} onChange={handleSeedChange} />
             </div>
     }
     return inputs;
@@ -134,7 +168,10 @@ const UserPasswordRecovery = () => {
     id="submit"
     >SUBMIT</button>
 
-  emailInput = <div name="email" className="pw-recovery-email" id="pw-recovery-email"><input className="center" id="email" onChange={handleChange} /></div>
+  emailInput =
+    <div name="email" className="pw-recovery-email" id="pw-recovery-email">
+      <input className="center" id="email" value={emailVal} onChange={handleEmailChange} />
+    </div>
 
   const instructions = "GET SEED PHRASE FROM .TXT FILE";
 
@@ -144,30 +181,29 @@ const UserPasswordRecovery = () => {
     <h1 className="pw-recovery-header center">Recover Password</h1>
     <div className="pw-recovery-container center">
     {!pass
-    ? <div>
-    <p className="pw-recovery-message container sm">
-    Please enter your account email address and seed phrase. If you downloaded the .txt file when you created your account, you may
-    choose to upload the seed phrase file instead.
-    </p>
-    <br/>
-    <div className="pw-recovery-input-container row">
-      <div className="pw-recovery-section-header">EMAIL</div>
-      {emailInput}
-    </div>
+      ? <div>
+      <p className="pw-recovery-message container sm">
+      Please enter your account email address and seed phrase. If you downloaded the .txt file when you created your account, you may
+      choose to upload the seed phrase file instead.
+      </p>
       <br/>
-    <div className="pw-recovery-input-container row" id='seed-container'>
-      <div className="pw-recovery-section-header">SEED PHRASE</div>
-      {seedPhrase}
-    </div>
-    <div className="upload-file-instructions upload-seed-phrase sm">{instructions}</div>
-    <UploadFile
-      data={txtSeed}
-      containerClasses="upload-seed-phrase"
-     />
-    <div className="big-spacer" />
-    {submitButton}
-    </div>
-    : <NewPassword />
+      <div className="pw-recovery-input-container row">
+        <div className="pw-recovery-section-header">EMAIL</div>
+        {emailInput}
+      </div>
+        <br/>
+      <div className="pw-recovery-input-container row" id='seed-container'>
+        <div className="pw-recovery-section-header">SEED PHRASE</div>
+        {seedPhrase}
+      </div>
+      <div className="upload-file-instructions upload-seed-phrase sm">{instructions}</div>
+      <UploadFile
+        containerClasses="upload-seed-phrase"
+      />
+      <div className="big-spacer" />
+      {submitButton}
+      </div>
+      : <NewPassword />
     }
     </div>
     </div>

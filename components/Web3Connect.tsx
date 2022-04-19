@@ -9,9 +9,9 @@ import { formatEther } from '@ethersproject/units';
 import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
-import { getSingleUser, updateUserWallet } from '../utils/API';
+import { deleteUserWallet, getSingleUser, updateUserWallet } from '../utils/API';
 import Auth from '../utils/auth';
-
+import { useRouter } from 'next/router';
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
 
@@ -86,34 +86,6 @@ function BlockNumber() {
 function Account() {
   const { account } = useWeb3React();
   const userAccount = account === null ? '-': account ? account: '';
-  // const [userAddress, setUserAddress] = useState('')
-  // console.log(useWeb3React())
-
-  // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  // const getUser = async () => {
-  //   const response = await getSingleUser(token);
-  //   const user = await response.json();
-  //   setUserAddress(user.foundUser.walletAddress);
-  //   // console.log(user)
-  // }
-  
-  // try {
-  //   let updateObj = {
-  //     walletAddress: userAccount
-  //   }
-  //   console.log(updateObj)
-  //   updateUser(updateObj, token)
-  //   .then(response => {
-  //     if(!response.ok) {
-  //         throw new Error('something went wrong!');
-  //     }
-  //     setUserAddress(userAccount);
-  //   });
-  //   // console.log(token)
-  // } catch (err) {
-  //   console.error(err);
-  // }
   return (userAccount ?? '');
 }
 
@@ -148,26 +120,38 @@ function Balance() {
   return userBalance;
 }
 
-export default function() {
+export default function(props: any) {
+  // console.log(props)
   ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <App />
+      <App walletInfo={props.wallet} />
     </Web3ReactProvider>
   )
 }
 
-function Header() {
-  // const { active, error } = useWeb3React()
+function Header(walletAddress: any) {
   return (
     <div className='wallet-info'>
-        <div>{Account()}</div>
+        <div>{walletAddress ? walletAddress : Account()}</div>
     </div>
   )
 }
 
-function App() {
-  const context = useWeb3React<Web3Provider>()
+function App(props: any) {
+  // console.log(props)
+  const router = useRouter();
+  const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
+    account: undefined,
+    activate: () => {},
+    active: false,
+    chainId: undefined,
+    connector: undefined,
+    deactivate: () => {},
+    error: undefined,
+    library: undefined,
+    setError: () => {}
+  }
   const { connector, library, account, activate, deactivate, active, error } = context
 
   // handle logic to recognize the connector currently being activated
@@ -191,14 +175,13 @@ function App() {
 
   // Get User Data
   const [userData, setUserData] = useState({
-    foundUser: {
-      walletAddress: [{
-        walletAddress: ''
-      }]
-    },
-    pending: false
+    walletAddress: [{
+      walletAddress: ''
+    }]
   });
+
   const userDataLength = Object.keys(userData).length;
+  const [walletAddress, setWalletAddress] = useState('');
 
   useEffect(() => {
     const getUserData = async () => {
@@ -212,16 +195,13 @@ function App() {
         }
 
         const user = await response.json();
-        setUserData(user);
+        setUserData(user.foundUser);
       } catch (err) {
         console.error(err);
       }
     };
     getUserData();
   }, [userDataLength]);
-
-  // const userDataWallet = userData.foundUser.walletAddress[0];
-  // console.log(userData)
 
   const userWallet = () => {
     if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
@@ -238,7 +218,11 @@ function App() {
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+      console.log(userWallet())
+
       const response = await updateUserWallet(userWallet(), token);
+
+      router.reload();
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -248,19 +232,35 @@ function App() {
       console.error(err);
     }
   }
-  // console.log(userData.foundUser.walletAddress[0].walletAddress)
 
-  const web3deactivate = async () => {
+  const web3deactivate = async (e: any) => {
+    console.log(e.target.dataset.value)
+    try {
+
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      const deleteObj = {
+        walletAddress: e.target.dataset.value
+      }
+
+      const response = await deleteUserWallet(deleteObj, token);
+
+      router.reload();
+
+      if(!response.ok) {
+          throw new Error('something went wrong!');
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
     deactivate();
   }
 
-  // const getAddress = userData.foundUser.walletAddress[0];
-  // const walletAddress = getAddress ?? getAddress.walletAddress
-
   return (
     <>
-      {(active || error) && (Header())}
-      {(!active) && (
+      {/* {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))} */}
+      {(props.walletInfo.length) ? Header(props.walletInfo[0].walletAddress) : ""}
+      {(!props.walletInfo.length) ? (
       <div>
         <button
           className='btn waves-effect waves-light account-wallet-btn'
@@ -275,14 +275,15 @@ function App() {
           ADD WALLET
         </button>          
       </div>
-      )}
-      {(active || error) && (
+      ) :
+      (
       <div>
           <button
             className='btn waves-effect waves-light account-wallet-btn'
-            onClick={() => {
-              web3deactivate();
+            onClick={(e: any) => {
+              web3deactivate(e);
             }}
+            data-value={props.walletInfo[0].walletAddress}
           >
             DEACTIVATE WALLET
           </button>
