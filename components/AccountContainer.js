@@ -79,7 +79,7 @@ const AccountContainer = () => {
     <>
       <div className="italics">** Pending User **</div>
       <div className="pending-instructions">Please activate your account by clicking the link in the
-      welcome email sent to <span className="underline italics">{userData.email}s</span>.</div>
+      welcome email sent to <span className="underline italics">{userData.email}</span>.</div>
       <button
         className="resend-confirmation not-a-button monospace"
         onClick={resendConfirmation}>
