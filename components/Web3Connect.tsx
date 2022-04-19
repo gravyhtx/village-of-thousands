@@ -120,11 +120,12 @@ function Balance() {
   return userBalance;
 }
 
-export default function() {
+export default function(props: any) {
+  console.log(props)
   ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <App />
+      <App walletInfo={props.wallet} />
     </Web3ReactProvider>
   )
 }
@@ -139,7 +140,8 @@ function Header(walletAddress: any) {
   )
 }
 
-function App() {
+function App(props: any) {
+  console.log(props)
   const router = useRouter();
   const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
     account: undefined,
@@ -205,7 +207,8 @@ function App() {
   
   useEffect(() => {
     setWalletAddress(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
-  }, [walletAddress])
+  }, [walletAddress]);
+  console.log(walletAddress)
 
   // const userDataWallet = userData.walletAddress[0];
   // console.log(userData)
@@ -235,7 +238,7 @@ function App() {
 
       const response = await updateUserWallet(userWallet(), token);
 
-      router.reload();
+      // router.reload();
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -253,8 +256,8 @@ function App() {
 
   return (
     <>
-      {((active || error) && walletAddress) && (Header(walletAddress))}
-      {(!active || !walletAddress) && (
+      {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))}
+      {(!active || !props.walletInfo) && (
       <div>
         <button
           className='btn waves-effect waves-light account-wallet-btn'
@@ -270,7 +273,7 @@ function App() {
         </button>          
       </div>
       )}
-      {((active || error) && walletAddress) && (
+      {((active || error) && props.walletInfo) && (
       <div>
           <button
             className='btn waves-effect waves-light account-wallet-btn'

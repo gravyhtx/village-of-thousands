@@ -2686,6 +2686,12 @@ label#upload-label:hover {
   to {font-size: 70px;}
 }
 
+.pending-instructions {
+  font-size: 1rem;
+  width: 50vw;
+  margin: 10px auto;
+}
+
 .account_user-info {
   margin-bottom: 5px;
 }
@@ -3133,6 +3139,11 @@ label#upload-label:hover {
   .activate-button {
     padding-bottom: 10%;
     margin-bottom: 3vh;
+  }
+  .pending-instructions {
+    font-size: .9rem;
+    width: 70vw;
+    margin: 10px auto;
   }
 }
 

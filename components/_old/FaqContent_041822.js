@@ -8,10 +8,9 @@ const FaqContent = () => {
       "question": "Who is the “Village of Thousands”?",
       "answer": [
         <><span className="italics h2"><b>WELCOME TO THE VOT DIGITAL HQ!</b></span></>,
-        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle skateboard culture
-        and lifestyle brand that sells high quality, sustainable, NFT-authenticated apparel and products.
-        Our village is built with the foundation of true lifestyle brand. We offer an opportunity for us all to participate in a
-        community of thousands in both the physical and digital space.</>,
+        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle brand
+        rooted in skateboard culture that sells high quality, sustainable, NFT-authenticated apparel and products.
+        We’re a true lifestyle brand, offering an opportunity for us all to build a community of thousands.</>,
         <>VoT was born in Colombia and grown in the USA. The company was formed in 2021 lead by lifelong skateboarder,
         Juancarlos Villamil, with a passion for aesthetics and a commitment to provide the highest quality sustainable
         apparel and products, all grown here in the USA. The team is based out of Houston, TX with contributors from

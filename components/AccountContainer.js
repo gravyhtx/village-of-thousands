@@ -53,7 +53,7 @@ const AccountContainer = () => {
   const [wallet, setWallet] = useState('');
 
   useEffect(() => {
-    if(!wallet && userData){ setWallet(userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '') };
+    if(!wallet && userData){ setWallet(userData.walletAddress ? userData.walletAddress[0].walletAddress : '') };
   }, [wallet])
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const AccountContainer = () => {
       setAcctContainer(<>{userData.email}</>);
       setWalletContainer(<div className="account-wallet">
           <div className="user-wallet-header">WALLET</div>
-          <Web3Wallet />
+          <Web3Wallet wallet={userData.walletAddress}/>
         </div>);
     }
     if(!userCheck && loaded) {
@@ -78,6 +78,8 @@ const AccountContainer = () => {
     return (
     <>
       <div className="italics">** Pending User **</div>
+      <div className="pending-instructions">Please activate your account by clicking the link in the
+      welcome email sent to <span className="underline italics">{userData.email}s</span>.</div>
       <button
         className="resend-confirmation not-a-button monospace"
         onClick={resendConfirmation}>
