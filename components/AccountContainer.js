@@ -39,7 +39,7 @@ const AccountContainer = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
-        setWalletAddress(userData.walletAddress ? userData.walletAddress[0].walletAddress : '');
+        setWalletAddress(user.walletAddress ? user.walletAddress[0].walletAddress : '');
         setLoaded(true);
         // console.log(userData)
       } catch (err) {
