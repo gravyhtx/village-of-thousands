@@ -79,7 +79,7 @@ export const updateUserWallet = (userData, token) => {
 
 export const deleteUserWallet = (userData, token) => {
   return fetch('/api/users/wallet', {
-    method: 'PUT',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`

@@ -926,6 +926,8 @@ h2, .h2 {
     .text-container.borders.reverse.thin { border: 2px solid var(--text-container-shadow-color); }
   .text-container.borders.thick { border: 4px solid var(--text-container-border-color); }
     .text-container.borders.reverse.thick { border: 4px solid var(--text-container-shadow-color); }
+
+  .text-container.scroll { height: 380px; }
 }
 
 /* BACK TO TOP */
@@ -1348,6 +1350,7 @@ button.btn-floating.navigation-link:focus {
   outline: 0;
   -webkit-transition: 750ms ease-in-out;
   transition: 750ms ease-in-out;
+  cursor: pointer !important;
 }
 
 .login-btn:hover,
@@ -1357,10 +1360,11 @@ button.btn-floating.navigation-link:focus {
 .theme-btn:hover {
   -webkit-transition: 750ms ease-in-out;
   transition: 750ms ease-in-out;
-  background-color: #3b495425;
+  background-color: #3b495450;
   border: 2px solid var(--theme-secondary-dark-color);
-  box-shadow: 0 0 15px #7fcce433;
-  text-shadow: 0 0 10px #ffffff33;
+  box-shadow: 0 0 15px #7fcce450;
+  text-shadow: 0 0 10px #ffffff50;
+  cursor: pointer !important;
 }
 
 .login-btn:hover,
@@ -2485,7 +2489,8 @@ label#upload-label:hover {
   border-radius: 50px;
   margin: 25px auto 50px;
   padding: 40px 20px;
-  box-shadow: 4px 5px #353535;
+  box-shadow: 4px 5px #000000;
+  cursor: default;
 }
 
 .account-avatar {
@@ -2504,13 +2509,22 @@ label#upload-label:hover {
 }
 
 .account-wallet {
-  margin: 40px 0;
+  margin: 40px auto 20px;
+  /* padding: 10px;
+  width: 60vw;
+  border: 1px solid white;
+  border-radius: 50px;
+  background-color: #000; */
 }
 
 .account-wallet .wallet-info {
   cursor: default;
   color: var(--theme-disabled-color);
   text-overflow: ellipsis;
+}
+
+.wallet-info {
+  margin-bottom: 10px;
 }
 
 .account-wallet div h4 {
@@ -2708,10 +2722,11 @@ label#upload-label:hover {
 }
 
 .account-info-email {
-  font-size: var(--theme-font-size-md);
+  font-size: 1.6rem;
   margin-top: 10px;
   text-shadow: 0 0 8px var(--theme-disabled-color);
   transition: 500ms ease-in-out;
+  cursor: default;
 }
 
 .account-info-email_text div:hover {
@@ -3400,6 +3415,11 @@ label#upload-label:hover {
   .account-wallet .wallet-info {
     font-size: 18px;
   }
+
+  /* .account-wallet {
+    padding: 10px;
+    width: 90vw;
+  } */
 
 }
 @media only screen and (max-width: 700px) {

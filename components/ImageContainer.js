@@ -22,17 +22,6 @@ const ImageContainer = ({ width, containerClasses, imgClasses, layout, descripti
   });
 
   const dataLength = Object.keys(imageData).length;
-    
-  // containerClasses = containerClasses ? ' '+containerClasses : '';
-  // imgClasses = imgClasses ? ' '+imgClasses : '';
-  // width = width ? {maxWidth: width} : '';
-  // layout = layout ? layout : 'responsive';
-  // id = id ? id : '';
-  // priority = priority ? priority : '';
-  // svg = svg ? svg : false;
-  // blur = blur ? "blur" : "";
-  // drag = drag ? drag : false;
-  // contain = contain ? " contain" : "";
 
   useEffect(() => {
     setImageData({

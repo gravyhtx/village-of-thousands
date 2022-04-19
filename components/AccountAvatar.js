@@ -17,8 +17,9 @@ import { shuffleArr, randomize } from "../utils/generator";
 const AccountAvatar = (props) => {
 
   const router = useRouter();
+  const [loaded, setLoaded] = useState(false);
   const [userCheck, setUserCheck] = useState();
-  const [wallet, setWallet] = useState('');
+  // const [wallet, setWallet] = useState('');
   const [userData, setUserData] = useState({
     colorScheme: '',
     walletAddress: [{
@@ -55,10 +56,6 @@ const AccountAvatar = (props) => {
   // SET AVATAR
   const [ avatar, setAvatar ] = useState(null);
 
-  // useEffect(() => {
-  //   setAvatar(<div className="blockie-loading"><SvgContainer src={Avatar} classes="no-avatar" /></div>);
-  // }, [avatar])
-
   const iconArr = ["fingerprint", "code", "outlet", "person_outline", "self_improvement"];
   const randomIcon = () => {
     const n = randomize(iconArr.length);
@@ -72,7 +69,7 @@ const AccountAvatar = (props) => {
       <div onClick={setColorScheme}><Blockie
         className="blockie-nav"
         opts={{
-          seed: wallet ? wallet : "Claire Richard",
+          seed: props.wallet ? props.wallet[0].walletAddress : "Claire Richard",
           color: userData.colorScheme ? userData.colorScheme[0] : themeColors[0],
           bgcolor: userData.colorScheme ? userData.colorScheme[1] : themeColors[1],
           size: 9,
@@ -95,6 +92,7 @@ const AccountAvatar = (props) => {
         
         const user = await response.json();
         setUserData(user.foundUser);
+        setLoaded(true)
         setThemeColors(userData.colorScheme);
         // setWallet(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
       } catch (err) {
@@ -108,15 +106,17 @@ const AccountAvatar = (props) => {
     if(!avatar){ setAvatar(pendingIcon) };
   }, [avatar]);
 
-  useEffect(() => {
-    if(!wallet && userData){ setWallet(userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '') };
-  }, [wallet])
+  // useEffect(() => {
+  //   if(!wallet && userData){ setWallet(props.wallet ? props.wallet[0].walletAddress : '') };
+  //   // console.log(props.wallet[0].walletAddress)
+  // }, [wallet])
 
   useEffect(() => {
     setUserCheck(userData.completeRegistration ? true : false);
-    if(isLoaded && !wallet && userCheck){ setAvatar(Logo) }
-    if(isLoaded && wallet && userCheck){ setAvatar(UserBlockie) }
-    if(!wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
+    // console.log(wallet);
+    if(loaded && props.wallet){ setAvatar(UserBlockie) }
+    else if (loaded && !props.wallet){ setAvatar(Logo) }
+    if(!props.wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
   }, [userData]);
 
   let RenderAvatar = () => { return avatar };
@@ -124,9 +124,9 @@ const AccountAvatar = (props) => {
   return (
     <>
       <div className="blockie-container">
-        { isLoaded() ? <RenderAvatar/> : <></> }
+        { loaded ? <RenderAvatar/> : <></> }
       </div>
-      {wallet ?
+      {props.wallet ?
         <button
           className="blockie-colors not-a-button monospace"
           onClick={setColorScheme}>

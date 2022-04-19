@@ -8,7 +8,7 @@ import Web3Wallet from "./Web3Wallet.tsx";
 import AccountAvatar from "./AccountAvatar";
 
 const AccountContainer = () => {
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   const [userData, setUserData] = useState({
     walletAddress: [{
       walletAddress: ''
@@ -35,7 +35,7 @@ const AccountContainer = () => {
         const user = await response.json();
         setUserData(user.foundUser);
         setLoaded(true)
-        console.log(userData)
+        // console.log(userData)
       } catch (err) {
         console.error(err);
       }
@@ -58,7 +58,7 @@ const AccountContainer = () => {
 
   useEffect(() => {
     setUserCheck(userData.completeRegistration ? true : false);
-    setContainerClasses(wallet ? "account-container center" : "vot-account-container center");
+    setContainerClasses(userData.walletAddress ? "account-container center" : "vot-account-container center");
     setAcctContainer(<></>);
     setWalletContainer(<></>);
     if(userCheck && loaded) {

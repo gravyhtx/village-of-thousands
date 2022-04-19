@@ -9,7 +9,7 @@ import { formatEther } from '@ethersproject/units';
 import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
-import { getSingleUser, updateUserWallet } from '../utils/API';
+import { deleteUserWallet, getSingleUser, updateUserWallet } from '../utils/API';
 import Auth from '../utils/auth';
 import { useRouter } from 'next/router';
 
@@ -121,7 +121,7 @@ function Balance() {
 }
 
 export default function(props: any) {
-  console.log(props)
+  // console.log(props)
   ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
@@ -139,7 +139,7 @@ function Header(walletAddress: any) {
 }
 
 function App(props: any) {
-  console.log(props)
+  // console.log(props)
   const router = useRouter();
   const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
     account: undefined,
@@ -202,13 +202,6 @@ function App(props: any) {
     };
     getUserData();
   }, [userDataLength]);
-  
-  // useEffect(() => {
-  //   setWalletAddress(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
-  // }, [walletAddress]);
-  // console.log(walletAddress)
-
-  // console.log(userData)
 
   const userWallet = () => {
     if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
@@ -229,7 +222,7 @@ function App(props: any) {
 
       const response = await updateUserWallet(userWallet(), token);
 
-      // router.reload();
+      router.reload();
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -240,7 +233,26 @@ function App(props: any) {
     }
   }
 
-  const web3deactivate = async () => {
+  const web3deactivate = async (e: any) => {
+    console.log(e.target.dataset.value)
+    try {
+
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      const deleteObj = {
+        walletAddress: e.target.dataset.value
+      }
+
+      const response = await deleteUserWallet(deleteObj, token);
+
+      router.reload();
+
+      if(!response.ok) {
+          throw new Error('something went wrong!');
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
     deactivate();
   }
 
@@ -268,9 +280,10 @@ function App(props: any) {
       <div>
           <button
             className='btn waves-effect waves-light account-wallet-btn'
-            onClick={() => {
-              web3deactivate();
+            onClick={(e: any) => {
+              web3deactivate(e);
             }}
+            data-value={props.walletInfo[0].walletAddress}
           >
             DEACTIVATE WALLET
           </button>
