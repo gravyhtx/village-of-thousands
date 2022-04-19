@@ -131,10 +131,8 @@ export default function(props: any) {
 }
 
 function Header(walletAddress: any) {
-  // const { active, error } = useWeb3React()
   return (
     <div className='wallet-info'>
-        {/* <div>{Account()}</div> */}
         <div>{walletAddress ? walletAddress : Account()}</div>
     </div>
   )
@@ -210,7 +208,6 @@ function App(props: any) {
   }, [walletAddress]);
   console.log(walletAddress)
 
-  // const userDataWallet = userData.walletAddress[0];
   // console.log(userData)
 
   const userWallet = () => {
@@ -218,12 +215,6 @@ function App(props: any) {
       return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
     }
   }
-
-  // const [isActiveWallet, setIsActiveWallet] = useState(false);
-
-  // if(wallet) {
-  //   setIsActiveWallet(true);
-  // }
 
   const web3activate = async () => {
     try {
@@ -250,7 +241,6 @@ function App(props: any) {
   }
 
   const web3deactivate = async () => {
-    // setIsActiveWallet(false);
     deactivate();
   }
 
