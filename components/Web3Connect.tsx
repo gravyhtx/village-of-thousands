@@ -180,8 +180,9 @@ function App(props: any) {
     }]
   });
 
-  const userDataLength = Object.keys(userData).length;
   const [walletAddress, setWalletAddress] = useState('');
+
+  const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
     const getUserData = async () => {
@@ -202,6 +203,10 @@ function App(props: any) {
     };
     getUserData();
   }, [userDataLength]);
+
+  useEffect(() => {
+    setWalletAddress(props.walletInfo ? props.walletInfo : '')
+  }, [props.walletInfo])
 
   const userWallet = () => {
     if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
@@ -255,11 +260,12 @@ function App(props: any) {
     }
     deactivate();
   }
+  // console.log(props)
 
   return (
     <>
       {/* {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))} */}
-      {(props.walletInfo.length) ? Header(props.walletInfo[0].walletAddress) : ""}
+      {(props.walletInfo.length) ? Header(walletAddress) : ""}
       {(!props.walletInfo.length) ? (
       <div>
         <button
@@ -283,7 +289,7 @@ function App(props: any) {
             onClick={(e: any) => {
               web3deactivate(e);
             }}
-            data-value={props.walletInfo[0].walletAddress}
+            data-value={walletAddress}
           >
             DEACTIVATE WALLET
           </button>
