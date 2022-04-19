@@ -205,10 +205,10 @@ function App(props: any) {
     getUserData();
   }, [userDataLength]);
   
-  useEffect(() => {
-    setWalletAddress(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
-  }, [walletAddress]);
-  console.log(walletAddress)
+  // useEffect(() => {
+  //   setWalletAddress(userData && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
+  // }, [walletAddress]);
+  // console.log(walletAddress)
 
   // const userDataWallet = userData.walletAddress[0];
   // console.log(userData)
@@ -256,8 +256,9 @@ function App(props: any) {
 
   return (
     <>
-      {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))}
-      {(!active || !props.walletInfo) && (
+      {/* {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))} */}
+      {(props.walletInfo.length) ? Header(props.walletInfo[0].walletAddress) : ""}
+      {(!props.walletInfo.length) ? (
       <div>
         <button
           className='btn waves-effect waves-light account-wallet-btn'
@@ -272,8 +273,8 @@ function App(props: any) {
           ADD WALLET
         </button>          
       </div>
-      )}
-      {((active || error) && props.walletInfo) && (
+      ) :
+      (
       <div>
           <button
             className='btn waves-effect waves-light account-wallet-btn'
