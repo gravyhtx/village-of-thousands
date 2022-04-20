@@ -10,6 +10,7 @@ export default async (req, res) => {
   const { method } = req;
 
   switch (method) {
+    //Logs you into the app regardless if you're a pending user or an active user
     case 'POST':
       try {
         const user = await User.findOne({ $or: [{ email: req.body.email }] });
@@ -33,6 +34,7 @@ export default async (req, res) => {
         let token = {};
 
         if (user) {
+          //makes sure to update the session information with the date in which they logged in
           await SessionInformation.findOneAndUpdate({_id: user.sessionInformation.toString()}, 
           {
             $push: { loggedInDates: Date.now()}

@@ -8,6 +8,7 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //updates pending user information, used to give the pending user a seedhex
     case 'PUT':
       try {
         const authorization = await authMiddleware(req, res);

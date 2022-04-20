@@ -7,6 +7,7 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //get me a specific product, might change to SKU identifier
     case 'GET':
       try {
         const product = await Product.findOne({product_path: req.query.productPath});

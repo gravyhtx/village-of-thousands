@@ -19,14 +19,6 @@ import { useWindowSize } from "../modules/getWindow";
 
 const Header = ({ images }) => {
 
-  // Get User Data
-  const [userData, setUserData] = useState({
-    walletAddress: [{
-      walletAddress: ''
-    }]
-  });
-  const userDataLength = Object.keys(userData).length;
-
   const [wallet, setWallet] = useState();
 
   useEffect(() => {
@@ -41,8 +33,9 @@ const Header = ({ images }) => {
         const response = await getSingleUser(token);
 
         const user = await response.json();
-        setUserData(user);
-        // setWallet(isLoaded && user.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
+        !user.pending
+        ? setWallet(isLoaded && user.foundUser.walletAddress.length ? user.foundUser.walletAddress[0].walletAddress : '')
+        : setWallet('')
       } catch (err) {
         console.error(err);
       }
@@ -50,10 +43,6 @@ const Header = ({ images }) => {
     
     getUserData();
   }, []);
-
-  useEffect(() => {
-    setWallet(isLoaded && userData.walletAddress[0].walletAddress ? userData.walletAddress[0].walletAddress : '');
-  }, [wallet])
 
   let siteName = SiteData.name;
 

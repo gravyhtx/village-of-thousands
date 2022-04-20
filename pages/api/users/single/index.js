@@ -9,6 +9,8 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //gets the current user that's logged in, regardless of whether it's pending
+    //or active, returns the found user with a boolean for whether it's still pending
     case 'GET':
       try {
         const authorization = await authMiddleware(req, res);

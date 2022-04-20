@@ -15,9 +15,7 @@ import HeaderSvg from './header.svg';
 
 const Activate = () => {
   const router = useRouter();
-  const slug = router.query.slug;
 
-  const [pendingUser, setPendingUser] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const [activateStatus, setActivateStatus] = useState(false);
 
@@ -52,16 +50,13 @@ const Activate = () => {
       return
     }
     
-    const user = await userExists.json()
     const activate = await accountActivation(router.query.slug);
-
 
     if (!activate) {
       //activation failed, get dunked
       return
     }
 
-    setPendingUser(user);
     Auth.activationLogout();
     setActivateStatus(true);
   }

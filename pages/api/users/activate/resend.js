@@ -4,9 +4,10 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //resends confirmation email to the user
     case 'POST':
       try {
-        const confirmation = await sendConfirmationEmail({ toUser: req.body, hash: req.body._id.toString() });
+        await sendConfirmationEmail({ toUser: req.body, hash: req.body._id.toString() });
 
         res.status(200).json({ success: true, message: 'Resent confirmation code!' });
       }catch (err) {

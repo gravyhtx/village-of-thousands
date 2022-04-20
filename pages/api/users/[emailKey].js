@@ -1,5 +1,4 @@
 import dbConnect from "../../../utils/dbConnect";
-// import { authMiddleware } from "../../../../utils/jwAuth";
 import User from '../../../models/User';
 
 dbConnect();
@@ -8,6 +7,9 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+
+    // Finds user by email, possible use case: password recovery when comparing seedHex
+
     case 'GET':
       try {
         const foundUser =  await User.findOne({email: req.query.emailKey}, "id email seedHex");
