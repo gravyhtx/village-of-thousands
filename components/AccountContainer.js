@@ -15,11 +15,9 @@ const AccountContainer = () => {
     }]
   });
   const userDataLength = Object.keys(userData).length;
-  
-  // const [wallet, setWallet] = useState('');
-  const [walletAddress, setWalletAddress] = useState('');
-  // const userDataWallet = userData.walletAddress ? userData.walletAddress : false;
-  // const userDataWalletAddress = userData.walletAddress ? userData.walletAddress[0].walletAddress : '';
+
+  const userDataWalletAddress = userData.walletAddress ? userData.walletAddress[0].walletAddress : '';
+  const userDataWallet = userData.walletAddress ? userData.walletAddress : { walletAddress: [{walletAddress: ''}] };
   
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -39,42 +37,45 @@ const AccountContainer = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
-        setWalletAddress(user.walletAddress ? user.walletAddress[0].walletAddress : '');
-        setLoaded(true);
+        setLoaded(true)
         // console.log(userData)
       } catch (err) {
         console.error(err);
-        setLoaded(true);
       }
     };
     getUserData();
+    // console.log(userData)
   }, [userDataLength]);
+  
+  // console.log('load',loaded)
 
   const [userCheck, setUserCheck] = useState();
   const [acctContainer, setAcctContainer] = useState();
   const [walletContainer, setWalletContainer] = useState();
   const [containerClasses, setContainerClasses] = useState();
+  const [wallet, setWallet] = useState('');
+
+  useEffect(() => {
+    if(!wallet && userData){ setWallet(userData.walletAddress ? userData.walletAddress[0].walletAddress : '') };
+  }, [wallet])
 
   useEffect(() => {
     setUserCheck(userData.completeRegistration ? true : false);
-    setContainerClasses(walletAddress ? "account-container center" : "vot-account-container center");
+    setContainerClasses(userData.walletAddress ? "account-container center" : "vot-account-container center");
     setAcctContainer(<></>);
     setWalletContainer(<></>);
-    if(!userCheck && loaded) {
-      setAcctContainer(pending());
-    }
-    // console.log(userCheck)
-  }, [userData]);
-  
-  useEffect(() => {
     if(userCheck && loaded) {
       setAcctContainer(<>{userData.email}</>);
       setWalletContainer(<div className="account-wallet">
           <div className="user-wallet-header">WALLET</div>
-          <Web3Wallet wallet={walletAddress}/>
+          <Web3Wallet wallet={userData.walletAddress ? userData.walletAddress : ''}/>
         </div>);
     }
-  }, [walletAddress])
+    if(!userCheck && loaded) {
+      setAcctContainer(pending());
+    }
+    // console.log(userCheck)
+  }, [userData])
 
   const pending = () => {
     return (
@@ -95,7 +96,7 @@ const AccountContainer = () => {
     <>
       <div className={ containerClasses } id="account-container">
         <br/>
-        <AccountAvatar wallet={walletAddress} />
+        <AccountAvatar wallet={userData.walletAddress} />
         {/* <div className="account-info-name">{(userData.first_name && userData.last_name)?userData.first_name+" "+userData.last_name:""}</div> */}
         <div className="account-info-email">
           <div className="account-info-email_text">

@@ -121,7 +121,7 @@ function Balance() {
 }
 
 export default function(props: any) {
-  // console.log(props)
+  console.log(props)
   ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
@@ -139,7 +139,7 @@ function Header(walletAddress: any) {
 }
 
 function App(props: any) {
-  // console.log(props)
+  console.log(props)
   const router = useRouter();
   const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
     account: undefined,
@@ -180,9 +180,8 @@ function App(props: any) {
     }]
   });
 
-  const [walletAddress, setWalletAddress] = useState('');
-
   const userDataLength = Object.keys(userData).length;
+  const [walletAddress, setWalletAddress] = useState('');
 
   useEffect(() => {
     const getUserData = async () => {
@@ -203,10 +202,6 @@ function App(props: any) {
     };
     getUserData();
   }, [userDataLength]);
-
-  useEffect(() => {
-    setWalletAddress(props.walletInfo ? props.walletInfo : '')
-  }, [props.walletInfo])
 
   const userWallet = () => {
     if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
@@ -260,12 +255,11 @@ function App(props: any) {
     }
     deactivate();
   }
-  // console.log(props)
 
   return (
     <>
       {/* {((active || error) && props.walletInfo) && (Header(props.walletInfo[0].walletAddress))} */}
-      {(props.walletInfo.length) ? Header(walletAddress) : ""}
+      {(props.walletInfo.length) ? Header(props.walletInfo[0].walletAddress) : ""}
       {(!props.walletInfo.length) ? (
       <div>
         <button
@@ -289,7 +283,7 @@ function App(props: any) {
             onClick={(e: any) => {
               web3deactivate(e);
             }}
-            data-value={walletAddress}
+            data-value={props.walletInfo[0].walletAddress}
           >
             DEACTIVATE WALLET
           </button>
