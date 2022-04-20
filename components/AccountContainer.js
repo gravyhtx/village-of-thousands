@@ -16,8 +16,8 @@ const AccountContainer = () => {
   });
   const userDataLength = Object.keys(userData).length;
 
-  const userDataWalletAddress = userData.walletAddress ? userData.walletAddress[0].walletAddress : '';
-  const userDataWallet = userData.walletAddress ? userData.walletAddress : { walletAddress: [{walletAddress: ''}] };
+  // const userDataWalletAddress = userData.walletAddress ? userData.walletAddress[0].walletAddress : '';
+  // const userDataWallet = userData.walletAddress ? userData.walletAddress : { walletAddress: [{walletAddress: ''}] };
   
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -55,9 +55,9 @@ const AccountContainer = () => {
   const [containerClasses, setContainerClasses] = useState();
   const [wallet, setWallet] = useState('');
 
-  useEffect(() => {
-    if(!wallet && userData){ setWallet(userData.walletAddress ? userData.walletAddress[0].walletAddress : '') };
-  }, [wallet])
+  // useEffect(() => {
+  //   if(!wallet && userData){ setWallet(userData.walletAddress ? userData.walletAddress[0].walletAddress : '') };
+  // }, [wallet])
 
   useEffect(() => {
     setUserCheck(userData.completeRegistration ? true : false);

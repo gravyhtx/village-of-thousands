@@ -15,7 +15,7 @@ function getLibrary(provider: any): Web3Provider {
 const Web3Wallet = (props: any) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <Web3Connect user={props.wallet}/>
+      <Web3Connect wallet={props.wallet}/>
     </Web3ReactProvider>
   )
 }
