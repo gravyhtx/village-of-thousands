@@ -70,7 +70,7 @@ const AccountAvatar = (props) => {
       <div onClick={setColorScheme}><Blockie
         className="blockie-nav"
         opts={{
-          seed: props.wallet ? props.wallet : "Claire Richard",
+          seed: props.wallet ? props.wallet[0].walletAddress : "Claire Richard",
           color: userData.colorScheme ? userData.colorScheme[0] : themeColors[0],
           bgcolor: userData.colorScheme ? userData.colorScheme[1] : themeColors[1],
           size: 9,
