@@ -121,7 +121,7 @@ const AccountContainer = () => {
     };
 
     getUserData();
-    console.log('SEED', userData.seedHex)
+    // console.log('SEED', userData.seedHex)
     
   }, [userDataLength]);
 

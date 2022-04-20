@@ -86,7 +86,6 @@ const UserPasswordRecovery = () => {
   let container;
 
   useEffect(() => {
-    console.log(emailVal);
     email = document.getElementById('email');
     if(userData.foundUser.email){
       setEmailVal(userData.foundUser.email);
@@ -111,7 +110,6 @@ const UserPasswordRecovery = () => {
 
   const handleEmailChange = () => {
     clearStyles();
-    console.log(emailVal);
     setEmailVal(document.getElementById('email') !== null ? email.value : userData.foundUser.email);
   }
   
@@ -122,8 +120,7 @@ const UserPasswordRecovery = () => {
       seedArr.push(input);
     }
     seed = seedArr.join(' ').toLowerCase();
-    console.log(seed)
-    console.log(emailVal)
+
     // txtSeed = localStorage.getItem('upload_data')
     if ((seed === phrase && seedArr.length ===  9 && emailVal === userData.foundUser.email) || (txtSeed === phrase && emailVal === userData.foundUser.email)) {
       setPass(true)

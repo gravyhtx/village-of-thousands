@@ -121,7 +121,6 @@ function Balance() {
 }
 
 export default function(props: any) {
-  console.log(props)
   ChainId();
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
@@ -139,7 +138,6 @@ function Header(walletAddress: any) {
 }
 
 function App(props: any) {
-  console.log(props)
   const router = useRouter();
   const context = useWeb3React<Web3Provider>() ? useWeb3React<Web3Provider>() : {
     account: undefined,
@@ -218,8 +216,6 @@ function App(props: any) {
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-      console.log(userWallet())
-
       const response = await updateUserWallet(userWallet(), token);
 
       router.reload();
@@ -234,7 +230,6 @@ function App(props: any) {
   }
 
   const web3deactivate = async (e: any) => {
-    console.log(e.target.dataset.value)
     try {
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
