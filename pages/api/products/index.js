@@ -7,6 +7,7 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //get me all products
     case 'GET':
       try {
         const products = await Product.find({});

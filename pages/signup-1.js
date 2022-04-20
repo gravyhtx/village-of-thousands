@@ -85,11 +85,9 @@ const UserMnemonic = () => {
       let updateObj = {
         seedHex: seedHex
       }
-      // console.log(updateObj)
       updatePendingUser(updateObj, token)
       .then(response => {
         if (!response.ok) {
-          // throw new Error('something went wrong!');
           router.push('/login');
         }
       });

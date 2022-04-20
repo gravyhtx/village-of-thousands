@@ -2,15 +2,17 @@ import dbConnect from "../../../../utils/dbConnect";
 import { authMiddleware } from "../../../../utils/jwAuth";
 import User from '../../../../models/User';
 import WalletAddress from '../../../../models/WalletAddress';
-import WalletAddressGiveaway from '../../../../models/WalletAddressGiveaway';
 dbConnect();
 
 export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //Updates the wallet array to have the 'main' wallet be at position 0 in the array,
+    //this will be the default wallet that gets charged in the future.
     case 'PUT':
       try {
+        //Makes sure that the account is logged in and valid
         const authorization = await authMiddleware(req, res);
         
         if(!authorization) {
@@ -19,6 +21,7 @@ export default async (req, res) => {
 
         const wallet = await WalletAddress.find({walletAddress: req.body.walletAddress})
 
+        //Pulls the wallet off the index in which is exists
         await User.findOneAndUpdate(
           {_id: authorization._id},
           {
@@ -26,6 +29,7 @@ export default async (req, res) => {
           }
         );
 
+        //Pushes the wallet back into the first index of the array
         const updatedUser = await User.findOneAndUpdate(
           {_id: authorization._id},
           {

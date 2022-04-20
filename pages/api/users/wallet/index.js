@@ -9,6 +9,7 @@ export default async (req, res) => {
   const { method } = req;
 
   switch ( method ) {
+    //Logic to delete wallets
     case 'DELETE':
       try {
         const authorization = await authMiddleware(req, res);
@@ -40,28 +41,35 @@ export default async (req, res) => {
         res.status(400).json({ success: false, message: 'Issue Deleting a wallet' });
       }
       break;
+    //Logic to add a new wallet
     case 'PUT':
       try {
+        //Checks if the user is logged in
         const authorization = await authMiddleware(req, res);
         
         if(!authorization) {
           return res.status(400).json({ success: false, message: 'Unauthorized Token, try logging in again' })
         }
 
+        //checks if the wallet is already an active wallet on any account
         const walletExists = await WalletAddress.find({walletAddress: req.body.walletAddress})
         
+        //if the wallet is an active wallet in any account, returns a 400 error
         if(walletExists.length !== 0) {
             return res.status(400).json({ success: false, message: 'A wallet with this specific Address already exists. Contact support if problem persists.'})
         }
 
+        //creates a new wallet in the active wallet address
         const newWallet = await WalletAddress.create({
             userId: authorization._id,
             userEmail: authorization.email,
             ...req.body
         });
 
+        //checks if the wallet has existed in the history of the site
         const giveawayExists = await WalletAddressGiveaway.find({walletAddress: req.body.walletAddress})
 
+        //if it has not existed in the history of the site it adds it to the giveaway database
         if(giveawayExists.length === 0) {
           await WalletAddressGiveaway.create({
               walletAddress: newWallet.walletAddress,
@@ -71,6 +79,7 @@ export default async (req, res) => {
           });
         }
 
+        //assigns the new wallet to the user's wallet array to be used in relation to the user
         const updatedUser =  await User.findOneAndUpdate(
           {_id: authorization._id},
           {
