@@ -21,8 +21,7 @@ export const isUser = () => {
       }
       const user = await response.json();
       userCheck = !user.pending;
-      // console.log(user)
-      console.log(isPending)
+
     } catch (err) {
       console.error(err);
     }

@@ -44,7 +44,6 @@ export default function() {
 
 function ChainId() {
   const { chainId } = useWeb3React()
-  console.log("Chain ID", chainId)
   return (
     <>
       <span>Chain Id</span>

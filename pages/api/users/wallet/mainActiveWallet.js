@@ -26,7 +26,6 @@ export default async (req, res) => {
           }
         );
 
-        console.log(wallet)
         const updatedUser = await User.findOneAndUpdate(
           {_id: authorization._id},
           {
@@ -38,7 +37,6 @@ export default async (req, res) => {
             },
           }
           );
-          console.log(wallet)
 
         res.status(200).json(updatedUser)
       }catch (err) {
