@@ -1268,6 +1268,7 @@ button.btn-floating.navigation-link:focus {
 /* LOGIN */
 
 .signup-container {
+  max-width: 1080px;
   padding: 25px 25px 0;
 }
 

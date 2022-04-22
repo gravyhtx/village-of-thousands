@@ -10,7 +10,7 @@ import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
 import { useRouter } from "next/router";
 
-import { isLoaded } from "../utils/isLoaded";
+// import { isLoaded } from "../utils/isLoaded";
 // import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
@@ -18,7 +18,6 @@ const AccountAvatar = (props) => {
 
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-  const [userCheck, setUserCheck] = useState();
   const [userData, setUserData] = useState({
     colorScheme: '',
     walletAddress: [{
@@ -93,6 +92,7 @@ const AccountAvatar = (props) => {
         
         const user = await response.json();
         setUserData(user.foundUser);
+        setAvatar(pendingIcon);
         setThemeColors(userData.colorScheme);
         setWallet(props.wallet);
         setLoaded(true);
@@ -106,22 +106,11 @@ const AccountAvatar = (props) => {
   }, [userDataLength]);
 
   useEffect(() => {
-    if(!avatar){ setAvatar(pendingIcon) };
-  }, [avatar]);
-
-  useEffect(() => {
+    // console.log(props.wallet)
     if(!wallet){ setWallet(props.wallet) };
+    if(loaded && !props.wallet){ setAvatar(Logo) }
     if(loaded && props.wallet){ setAvatar(UserBlockie) }
-    else if (loaded && !props.wallet){ setAvatar(Logo) }
-    if(!props.wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
   }, [props.wallet]);
-
-  useEffect(() => {
-    setUserCheck(userData.completeRegistration ? true : false);
-    // if(loaded && props.wallet){ setAvatar(UserBlockie) }
-    // else if (loaded && !props.wallet){ setAvatar(Logo) }
-    // if(!props.wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
-  }, [userData]);
 
   let RenderAvatar = () => { return avatar };
 
