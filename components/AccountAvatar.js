@@ -109,7 +109,8 @@ const AccountAvatar = (props) => {
 
   useEffect(() => {
     // setAvatar(props.wallet ? UserBlockie : Logo)
-    if(loaded){ setAvatar(props.wallet.length ? UserBlockie : Logo) }
+    if(loaded && props.wallet.length){ setAvatar(UserBlockie) }
+    if(loaded && !props.wallet.length){ setAvatar(Logo) }
   }, [userData.colorScheme]);
 
   let RenderAvatar = () => { return avatar };

@@ -206,7 +206,7 @@ function App(props: any) {
       return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
     }
   }
-  console.log(active);
+  // console.log(active);
 
   const web3activate = async () => {
     try {
