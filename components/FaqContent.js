@@ -8,13 +8,14 @@ const FaqContent = () => {
       "question": "Who is the “Village of Thousands”?",
       "answer": [
         <><span className="italics h2"><b>WELCOME TO THE VOT DIGITAL HQ!</b></span></>,
-        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle skateboard culture
-        and lifestyle brand that sells high quality, sustainable, NFT-authenticated apparel and products.
-        Our village is built with the foundation of true lifestyle brand. We offer an opportunity for us all to participate in a
+        <><span className="weight-6 special-text">[Village of Thousands]</span> is a Web 3.0 ready lifestyle brand, with the
+        aspiration and drive to become one of the biggest household names in the skateboard realm. From day one, VoT has embarked
+        on its journey to greatness, offering some of the highest quality apparel and products in the streetwear market.
+        Our village is built with the foundation of a true lifestyle brand. We offer an opportunity for us all to participate in a
         community of thousands in both the physical and digital space.</>,
         <>VoT was born in Colombia and grown in the USA. The company was formed in 2021 lead by lifelong skateboarder,
         Juancarlos Villamil, with a passion for aesthetics and a commitment to provide the highest quality sustainable
-        apparel and products, all grown here in the USA. The team is based out of Houston, TX with contributors from
+        apparel and products available, all grown here in the USA. The team is based out of Houston, TX with contributors from
         around the globe, ready to push forward with a dynamic Web 3.0 brand, built to grow for
         and with our community.</>,
         <>We believe our success relies on the successes we share together as a community. Our constantly
@@ -22,7 +23,7 @@ const FaqContent = () => {
         future</b></span> with the <span className="italics"><b>ability to sustain.</b></span></>,
         <>We encourage discussion so we thought we'd begin here. And since nobody really frequently has been asking us
         questions quite yet, we're using this FAQ to ask our community to <span className="italics"><b>"Frequently Ask
-        Questions"</b></span> with us as we grow as a brand and truly discover who we are and what we can be.</>,
+        Questions"</b></span> with us as we grow as a brand  and truly discover who we are and what we can be.</>,
         <>Village of Thousands intends to achieve our collective vision through our brand’s platform and
         utilize our diversity, creativity, and passion to participate in a more sustainable future.</>
       ]

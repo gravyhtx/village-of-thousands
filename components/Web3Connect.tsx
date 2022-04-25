@@ -206,10 +206,10 @@ function App(props: any) {
       return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
     }
   }
+  // console.log(active);
 
   const web3activate = async () => {
     try {
-
       setActivatingConnector(currentConnector);
 
       const activeWallet = await activate(injected);
@@ -218,7 +218,9 @@ function App(props: any) {
 
       const response = await updateUserWallet(userWallet(), token);
 
-      router.reload();
+      if(active) {
+        router.reload();
+      }
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -236,19 +238,18 @@ function App(props: any) {
       const deleteObj = {
         walletAddress: e.target.dataset.value
       }
-
       const response = await deleteUserWallet(deleteObj, token);
 
-      router.reload();
-
       if(!response.ok) {
-          throw new Error('something went wrong!');
+        throw new Error('something went wrong!');
       }
-
+      
     } catch (err) {
       console.error(err);
+      router.reload();
     }
     deactivate();
+    router.reload();
   }
 
   return (

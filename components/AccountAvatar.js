@@ -10,7 +10,7 @@ import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
 import { useRouter } from "next/router";
 
-import { isLoaded } from "../utils/isLoaded";
+// import { isLoaded } from "../utils/isLoaded";
 // import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
@@ -18,7 +18,6 @@ const AccountAvatar = (props) => {
 
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-  const [userCheck, setUserCheck] = useState();
   const [userData, setUserData] = useState({
     colorScheme: '',
     walletAddress: [{
@@ -82,6 +81,9 @@ const AccountAvatar = (props) => {
 
   useEffect(() => {
     const getUserData = async () => {
+
+      setAvatar(pendingIcon);
+
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -95,7 +97,7 @@ const AccountAvatar = (props) => {
         setUserData(user.foundUser);
         setThemeColors(userData.colorScheme);
         setWallet(props.wallet);
-        setLoaded(true);
+        setLoaded(true);        
       } catch (err) {
         console.error(err);
         setLoaded(true);
@@ -106,22 +108,10 @@ const AccountAvatar = (props) => {
   }, [userDataLength]);
 
   useEffect(() => {
-    if(!avatar){ setAvatar(pendingIcon) };
-  }, [avatar]);
-
-  useEffect(() => {
-    if(!wallet){ setWallet(props.wallet) };
-    if(loaded && props.wallet){ setAvatar(UserBlockie) }
-    else if (loaded && !props.wallet){ setAvatar(Logo) }
-    if(!props.wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
-  }, [props.wallet]);
-
-  useEffect(() => {
-    setUserCheck(userData.completeRegistration ? true : false);
-    // if(loaded && props.wallet){ setAvatar(UserBlockie) }
-    // else if (loaded && !props.wallet){ setAvatar(Logo) }
-    // if(!props.wallet && !userCheck && !avatar){ setAvatar(pendingIcon) }
-  }, [userData]);
+    // setAvatar(props.wallet ? UserBlockie : Logo)
+    if(loaded && props.wallet.length){ setAvatar(UserBlockie) }
+    if(loaded && !props.wallet.length){ setAvatar(Logo) }
+  }, [userData.colorScheme]);
 
   let RenderAvatar = () => { return avatar };
 

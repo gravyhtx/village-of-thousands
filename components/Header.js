@@ -10,7 +10,7 @@ import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-import { isLoaded } from "../utils/isLoaded";
+// import { isLoaded } from "../utils/isLoaded";
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
@@ -19,7 +19,10 @@ import { useWindowSize } from "../modules/getWindow";
 
 const Header = ({ images }) => {
 
-  const [wallet, setWallet] = useState();
+  const [userData, setUserData] = useState({
+    walletAddress: []
+  });
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -33,18 +36,16 @@ const Header = ({ images }) => {
         const response = await getSingleUser(token);
 
         const user = await response.json();
-        !user.pending
-        ? setWallet(isLoaded && user.foundUser.walletAddress.length ? user.foundUser.walletAddress[0].walletAddress : '')
-        : setWallet('')
+        setUserData(user.foundUser);
+        setLoaded(true);
       } catch (err) {
         console.error(err);
+        setLoaded(true);
       }
     };
     
     getUserData();
   }, []);
-
-  let siteName = SiteData.name;
 
   const router = useRouter();
   const path = router.pathname;
@@ -133,13 +134,13 @@ const Header = ({ images }) => {
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
               {/* <Svg /> */}
-              {useWindowSize().width > 2400
+              {useWindowSize().width > 1470
                 ? <Svg />
                 : <Fallback />}
             </div>
           </div>
         </Link>
-        {wallet
+        {loaded && userData.walletAddress
           ? <></>
           : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>}
       </div>

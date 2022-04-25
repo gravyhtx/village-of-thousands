@@ -1184,7 +1184,7 @@ h2, .h2 {
   background-color: transparent !important;
   padding: 0;
   box-shadow: none !important;
-  line-height: 40px;
+  line-height: 47.5px;
   transition: 1s !important;
 }
 
@@ -1241,7 +1241,7 @@ button.btn-floating.navigation-link:focus {
 
 .nav-icon {
   color: white;
-  font-size: 1.25rem !important;
+  font-size: 1.5rem !important;
 }
 
 .css-kp9ftd-MuiIcon-root {
@@ -1268,6 +1268,7 @@ button.btn-floating.navigation-link:focus {
 /* LOGIN */
 
 .signup-container {
+  max-width: 800px;
   padding: 25px 25px 0;
 }
 
@@ -3027,6 +3028,12 @@ label#upload-label:hover {
     color: white;
     font-size: 1.2rem;
     /* filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4)); */
+  }
+  .nav-icon {
+    font-size: 1.25rem !important;
+  }
+  .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
+    line-height: 40px;
   }
   .box-container {
     max-width: 95vw;
