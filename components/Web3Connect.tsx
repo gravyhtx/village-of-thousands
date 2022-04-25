@@ -201,12 +201,12 @@ function App(props: any) {
     getUserData();
   }, [userDataLength]);
 
-  const userWallet = () => {
-    if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
-      return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
-    }
-  }
-  // console.log(active);
+  // const userWallet = () => {
+  //   if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
+  //     return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
+  //   }
+  // }
+  // console.log(account);
 
   const web3activate = async () => {
     try {
@@ -215,8 +215,8 @@ function App(props: any) {
       const activeWallet = await activate(injected);
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-      const response = await updateUserWallet(userWallet(), token);
+      const response = await updateUserWallet({walletAddress: account}, token);
+      // const response = await updateUserWallet(account, token);
 
       if(active) {
         router.reload();
