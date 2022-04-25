@@ -81,6 +81,9 @@ const AccountAvatar = (props) => {
 
   useEffect(() => {
     const getUserData = async () => {
+
+      setAvatar(pendingIcon);
+
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -92,10 +95,9 @@ const AccountAvatar = (props) => {
         
         const user = await response.json();
         setUserData(user.foundUser);
-        setAvatar(pendingIcon);
         setThemeColors(userData.colorScheme);
         setWallet(props.wallet);
-        setLoaded(true);
+        setLoaded(true);        
       } catch (err) {
         console.error(err);
         setLoaded(true);
@@ -106,11 +108,10 @@ const AccountAvatar = (props) => {
   }, [userDataLength]);
 
   useEffect(() => {
-    // console.log(props.wallet)
-    if(!wallet){ setWallet(props.wallet) };
-    if(loaded && !props.wallet){ setAvatar(Logo) }
-    if(loaded && props.wallet){ setAvatar(UserBlockie) }
-  }, [props.wallet]);
+    // setAvatar(props.wallet ? UserBlockie : Logo)
+    if(loaded && props.wallet.length){ setAvatar(UserBlockie) }
+    if(loaded && !props.wallet.length){ setAvatar(Logo) }
+  }, [userData.colorScheme]);
 
   let RenderAvatar = () => { return avatar };
 
