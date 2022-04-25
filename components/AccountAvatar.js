@@ -107,9 +107,18 @@ const AccountAvatar = (props) => {
     getUserData();
   }, [userDataLength]);
 
+  const [colorChangeButton, setColorChangeButton] = useState(<></>);
+
   useEffect(() => {
     // setAvatar(props.wallet ? UserBlockie : Logo)
-    if(loaded && props.wallet.length){ setAvatar(UserBlockie) }
+    if(loaded && props.wallet.length){
+      setAvatar(UserBlockie);
+      setColorChangeButton(<button
+        className="blockie-colors not-a-button monospace"
+        onClick={setColorScheme}>
+        <span className="blockie-colors-text">[CHANGE COLORS]</span>
+      </button>);
+    }
     if(loaded && !props.wallet.length){ setAvatar(Logo) }
   }, [userData.colorScheme]);
 
@@ -120,12 +129,7 @@ const AccountAvatar = (props) => {
       <div className="blockie-container">
         { loaded ? <RenderAvatar/> : <></> }
       </div>
-      {props.wallet ?
-        <button
-          className="blockie-colors not-a-button monospace"
-          onClick={setColorScheme}>
-          <span className="blockie-colors-text">[CHANGE COLORS]</span>
-        </button>:<></>}
+      {colorChangeButton}
     </>
   )
 }
