@@ -19,7 +19,9 @@ import { useWindowSize } from "../modules/getWindow";
 
 const Header = ({ images }) => {
 
-  const [wallet, setWallet] = useState();
+  const [userData, setUserData] = useState({
+    walletAddress: []
+  });
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -34,10 +36,8 @@ const Header = ({ images }) => {
         const response = await getSingleUser(token);
 
         const user = await response.json();
+        setUserData(user.foundUser);
         setLoaded(true);
-        !user.pending
-        ? setWallet(loaded && user.foundUser.walletAddress.length ? user.foundUser.walletAddress[0].walletAddress : '')
-        : setWallet('')
       } catch (err) {
         console.error(err);
         setLoaded(true);
@@ -140,7 +140,7 @@ const Header = ({ images }) => {
             </div>
           </div>
         </Link>
-        {wallet
+        {loaded && userData.walletAddress
           ? <></>
           : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>}
       </div>
