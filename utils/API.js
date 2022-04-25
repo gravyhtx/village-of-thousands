@@ -125,3 +125,15 @@ export const searchUserByEmail = (userEmail) => {
     }
   })
 }
+
+
+//Demo Use Only Section
+
+
+export const getDemoProducts = () => {
+  return fetch('/api/demo/products/', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+};
