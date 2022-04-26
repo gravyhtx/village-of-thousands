@@ -10,16 +10,20 @@ import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-import { isLoaded } from "../utils/isLoaded";
+// import { isLoaded } from "../utils/isLoaded";
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
 import { useWindowSize } from "../modules/getWindow";
+import { resendConfirmationFetch } from "../utils/API";
 
 
 const Header = ({ images }) => {
 
-  const [wallet, setWallet] = useState();
+  const [userData, setUserData] = useState({
+    walletAddress: []
+  });
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -33,18 +37,16 @@ const Header = ({ images }) => {
         const response = await getSingleUser(token);
 
         const user = await response.json();
-        !user.pending
-        ? setWallet(isLoaded && user.foundUser.walletAddress.length ? user.foundUser.walletAddress[0].walletAddress : '')
-        : setWallet('')
+        setUserData(user.foundUser);
+        setLoaded(true);
       } catch (err) {
         console.error(err);
+        setLoaded(true);
       }
     };
     
     getUserData();
   }, []);
-
-  let siteName = SiteData.name;
 
   const router = useRouter();
   const path = router.pathname;
@@ -73,7 +75,9 @@ const Header = ({ images }) => {
     />)
   }
 
+
   const notificationText = <>Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
+  const notificationTextWallet = <>Add your In-Browser Web3 Wallet to your account to qualify a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
 
   const helpLink = "/faq#8"
   const help =
@@ -81,6 +85,19 @@ const Header = ({ images }) => {
       <Link href={helpLink}><a>
       <i className="material-icons info-icon">info_outline</i>
       </a></Link>
+    </span>
+
+
+  const resendConfirmation = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    const profile = token ? Auth.getProfile() : null;
+
+    resendConfirmationFetch(profile)
+  }
+  const activateText =
+    <span onClick={resendConfirmation}>
+      Please activate your account. Check your email or click here if you need to resend the activation link to your email.
     </span>
 
   const fallbackStyles = {
@@ -122,7 +139,32 @@ const Header = ({ images }) => {
       </span>
     </div>)
   }
-
+  
+  const Notification = () => {
+    if(!userData.email) {
+      return (
+        <div id="notification-bar">
+        <NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} />
+        </div>
+      )
+    }
+    if(loaded && userData.email && !userData.completeRegistration) {
+      return (
+        <div id="notification-bar">
+        <NotificationBar text={activateText} />
+        </div>
+      )
+    }
+    if(loaded && userData.email && !userData.walletAddress.length) {
+      return(
+        <div id="notification-bar">
+        <NotificationBar text={notificationTextWallet} link={notificationLink} ext={help} extLink={helpLink} />
+        </div>
+      )
+    }
+    return(<></>)
+  }
+  // console.log(userData)
   return (
     <header className="site-header" id="site-header">
       <div className="navbar-container black" id="header-container">
@@ -133,15 +175,16 @@ const Header = ({ images }) => {
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
               {/* <Svg /> */}
-              {useWindowSize().width > 2400
+              {useWindowSize().width > 1470
                 ? <Svg />
                 : <Fallback />}
             </div>
           </div>
         </Link>
-        {wallet
-          ? <></>
-          : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>}
+        <Notification />
+        {/* {userData.completeRegistration
+          ? <Notification />
+          : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>} */}
       </div>
     </header>
 

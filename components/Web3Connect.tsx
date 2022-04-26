@@ -201,24 +201,26 @@ function App(props: any) {
     getUserData();
   }, [userDataLength]);
 
-  const userWallet = () => {
-    if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
-      return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
-    }
-  }
+  // const userWallet = () => {
+  //   if(localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses')) {
+  //     return ({walletAddress: localStorage.getItem('-walletlink:https://www.walletlink.org:Addresses').toLowerCase()})
+  //   }
+  // }
+  // console.log(account);
 
   const web3activate = async () => {
     try {
-
       setActivatingConnector(currentConnector);
 
       const activeWallet = await activate(injected);
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
+      const response = await updateUserWallet({walletAddress: account}, token);
+      // const response = await updateUserWallet(account, token);
 
-      const response = await updateUserWallet(userWallet(), token);
-
-      router.reload();
+      if(active) {
+        router.reload();
+      }
 
       if(!response.ok) {
           throw new Error('something went wrong!');
@@ -236,19 +238,18 @@ function App(props: any) {
       const deleteObj = {
         walletAddress: e.target.dataset.value
       }
-
       const response = await deleteUserWallet(deleteObj, token);
 
-      router.reload();
-
       if(!response.ok) {
-          throw new Error('something went wrong!');
+        throw new Error('something went wrong!');
       }
-
+      
     } catch (err) {
       console.error(err);
+      router.reload();
     }
     deactivate();
+    router.reload();
   }
 
   return (
