@@ -6,5 +6,7 @@ module.exports = {
   PendingUser: require('./PendingUser'),
   SessionInformation: require('./SessionInformation'),
   WalletAddress: require('./WalletAddress'),
-  WalletAddressGiveaway: require('./WalletAddressGiveaway')
+  WalletAddressGiveaway: require('./WalletAddressGiveaway'),
+  Drop: require("./Drop"),
+  Category: require("./Category")
 }

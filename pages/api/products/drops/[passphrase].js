@@ -17,7 +17,7 @@ export default async (req, res) => {
 
         res.status(201).json({ newDrop, message: 'New Drop added Successfully' });
       } catch (err) {
-        res.status(400).json({ success: false, message: 'Product Creation Error' });
+        res.status(400).json({ success: false, message: 'Drop Creation Error' });
       }
       break;
   }

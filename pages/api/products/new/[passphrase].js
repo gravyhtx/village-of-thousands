@@ -1,6 +1,7 @@
 import dbConnect from "../../../../utils/dbConnect";
 // import { signToken, authMiddleware } from "../../../utils/jwAuth";
 import Product from '../../../../models/Product';
+import Category from '../../../../models/Category';
 import Drop from '../../../../models/Drop';
 dbConnect();
 
@@ -14,15 +15,15 @@ export default async (req, res) => {
           return res.status(400).json({ success: false, message: "Nice Try Guy" })
         }
 
-        if(!req.body.drop_id) {
-          return res.status(400).json({ success: false, message: 'you must have a drop ID declared'})
+        if(!req.body.category_name) {
+          return res.status(400).json({ success: false, message: 'you must have a category_name declared'})
         }
 
         const newProduct = await Product.create(req.body);
 
-        await Drop.findOneAndUpdate({_id: req.body.drop_id}, {
+        await Category.findOneAndUpdate({category_name: req.body.category_name},{
           $push: {
-            product_lineup: newProduct._id
+            products: newProduct._id
           }
         })
 

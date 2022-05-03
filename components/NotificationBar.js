@@ -6,14 +6,16 @@ const NotificationBar = ({ text, link, ext, extLink }) =>  {
   const router = useRouter();
 
   useEffect(() => {
-    if(!document.getElementById('ext-link').matches(':hover')) {
-      document.getElementById('notify').addEventListener('click', () => {
-        router.push(link);
-      });
+    if(ext-link){
+      if(!document.getElementById('ext-link').matches(':hover')) {
+        document.getElementById('notify').addEventListener('click', () => {
+          if(link){ router.push(link) }
+        });
+      }
+      document.getElementById('ext-link').addEventListener('click', () => {
+        if(extLink){ router.push(extLink) }
+      })
     }
-    document.getElementById('ext-link').addEventListener('click', () => {
-      router.push(extLink);
-    });
   });
 
   return (
