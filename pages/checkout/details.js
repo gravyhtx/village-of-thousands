@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Stripe from "stripe";
 import { parseCookies, setCookie } from 'nookies';
 import { loadStripe } from "@stripe/stripe-js";
@@ -24,7 +25,7 @@ export const getServerSideProps = async (ctx) => {
     }
 
     paymentIntent = await stripe.paymentIntents.create({
-        amount: 600,
+        amount: 100,
         currency: 'usd'
     })
 
@@ -37,10 +38,11 @@ export const getServerSideProps = async (ctx) => {
     }
 }
 
-const Details = ({paymentIntent}) => (
-    <Elements stripe={stripePromise}>
-        <CheckoutForm paymentIntent={paymentIntent} />
-    </Elements>
-);
-
+const Details = ({ paymentIntent }) => {
+    return (
+        <Elements stripe={stripePromise}>
+            <CheckoutForm paymentIntent={paymentIntent} />
+        </Elements>
+    );
+}
 export default Details;

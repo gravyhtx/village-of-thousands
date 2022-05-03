@@ -31,7 +31,7 @@ export function idbPromise(storeName, method, object) {
                     record.onsuccess = function(info) {
                         console.log(record, info)
                         if(!record.result) {
-                            store.put({id: profile.data._id, cart: [object]});
+                            store.put({id: profile.data._id, cart: [object], dateUpdated: Date.now()});
                         }else {
                             let flag = false;
 
@@ -42,11 +42,12 @@ export function idbPromise(storeName, method, object) {
                                 }
                             })
                             if(flag){
-                                alert("item already in cart")
+                                alert("item already in cart");
                                 return
                             }
-                            record.result.cart.push(object)
-                            store.put(record.result)
+                            record.result.cart.push(object);
+                            record.result.dateUpdated = Date.now();
+                            store.put(record.result);
                         }
                         resolve(object);
                     }
