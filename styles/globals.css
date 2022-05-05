@@ -1296,10 +1296,10 @@ button.btn-floating.navigation-link:focus {
 }
 
 .signup-error.error-message {
-    text-align: center;
-    padding: 5px 0 10px;
-    color: var(--theme-disabled-color);
-    font-size: 0.88rem;
+  text-align: center;
+  padding: 5px 0 10px;
+  color: var(--theme-disabled-color);
+  font-size: 0.88rem;
 }
 
 /* .login-container,
@@ -1318,6 +1318,42 @@ button.btn-floating.navigation-link:focus {
 
 .login-input-label {
     font-size: 1.1rem;
+}
+
+.form-text-blink {
+  -webkit-animation: formTextBlink .5s ease-out;
+  -moz-animation: formTextBlink .5s ease-out;
+  -o-animation: formTextBlink .5s ease-out;
+  animation: formTextBlink .5s ease-out;
+}
+
+@keyframes formTextBlink {
+  0% {
+    text-shadow: 0 0 15px #ffffff80;
+    filter: blur(5px);
+  }
+  100% {
+    text-shadow: none;
+    filter: blur(0px);
+  }
+}
+
+.form-input-blink {
+  -webkit-animation: formInputBlink .25s ease-out;
+  -moz-animation: formInputBlink .25s ease-out;
+  -o-animation: formInputBlink .25s ease-out;
+  animation: formInputBlink .25s ease-out;
+}
+
+@keyframes formInputBlink {
+  0% {
+    background-color: #ffffff10;
+    box-shadow: 2px 2px 5px #ffffff50;
+  }
+  100% {
+    box-shadow: none;
+    background-color: transparent;
+  }
 }
 
 .login-col {
