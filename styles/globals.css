@@ -640,6 +640,9 @@ Some of these were generated with ~https://animista.net/~ !! */
 .weight-9, .black-weight { font-weight: 900; }
 
 /* FONT STYLES */
+.bold { font-weight: 500; }
+.bolder { font-weight: 600; }
+.thicc { font-weight: 900; }
 .italics { font-style: italic; }
 .overline { text-decoration: overline; }
 .strikethrough { text-decoration: line-through; }
@@ -2452,7 +2455,7 @@ label#upload-label:hover {
   border-right: 1px solid white;
 }
 
-.collapsible .faq-question-header {
+.collapsible .faq-question-container {
   color: #eeeeee;
   background-color: #000000;
   justify-content: left;
@@ -2462,9 +2465,18 @@ label#upload-label:hover {
   border-right: 1px solid white;
 }
 
-.collapsible.active .faq-question-header {
+.collapsible.active .faq-question-container {
   border-bottom: 1px solid white;
   color: #ffffff;
+}
+
+.faq-question-header {
+  font-size: 24px !important;
+  font-family: var(--theme-font) !important;
+  font-weight: 100 !important;
+  line-height: 1.5 !important;
+  padding: 0 !important;
+  margin: 0px !important;
 }
 
 .faq-image {
@@ -3387,9 +3399,13 @@ label#upload-label:hover {
     word-spacing: 0px;
   }
 
-  .faq-collapsible .collapsible .faq-question-header {
+  .faq-collapsible .collapsible .faq-question-container {
     font-size: var(--theme-font-size) !important;
     padding: 1rem 1rem !important;
+  }
+
+  .faq-question-header {
+    font-size: 1.2rem !important;
   }
 
   .collapsible .faq-body {

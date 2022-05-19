@@ -37,8 +37,7 @@ const AccountContainer = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
-        setLoaded(true)
-        // console.log(userData)
+        setLoaded(true);
       } catch (err) {
         console.error(err);
       }
@@ -46,8 +45,6 @@ const AccountContainer = () => {
     getUserData();
     // console.log(userData)
   }, [userDataLength]);
-  
-  // console.log('load',loaded)
 
   const [userCheck, setUserCheck] = useState();
   const [acctContainer, setAcctContainer] = useState();

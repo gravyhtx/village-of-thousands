@@ -88,12 +88,17 @@ const Register = () =>  {
     if(userFormData.password === userFormData.reEnterPassword) {
       formValidation(userFormData.email, userFormData.password)
     } else {
+      const emailValue = document.getElementById('user-register-email_input').value;
       setPwReEnter(false);
       setUserFormData({
-        email: document.getElementById('user-register-email_input').value,
+        email: emailValue,
         password: '',
         reEnterPassword: '',
       });
+      setErrorClass({
+        email: '',
+        password: ' input-error',
+      })
       setFormError({ passwordMatch: errorElements[3] })
     }
   }
