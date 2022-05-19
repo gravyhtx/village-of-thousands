@@ -21,6 +21,12 @@ export const withAuth = Component => {
   return Render;
 };
 
+export const authCheck = () => {
+  const token = Auth.loggedIn();
+  const authorized = token ? true : false;
+  return authorized;
+};
+
 export const isMobile = () => {
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       || window.matchMedia("only screen and (max-width: 760px)").matches ) {
