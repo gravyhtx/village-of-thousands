@@ -22,13 +22,12 @@ export const average = (numberArray) => {
 	const avg = (total/index);
 	return avg;
 }
-// export 
 
 // RETURN ONE ELEMENT OR SET FROM AN ARRAY OF ARRAYS
 
 // "el" is the array of arrays being sorted.
 // "array" is boolean
-//    true = entire array set // false = one element from array set
+//    true = output entire array set // false = output one element from array set
 // "opts" is an array of indexes by number.
 
 // Example (selecting only indexes 0 and 2 from array):

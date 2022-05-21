@@ -12,6 +12,7 @@ import { MetaMask } from '@web3-react/metamask';
 import { deleteUserWallet, getSingleUser, updateUserWallet } from '../utils/API';
 import Auth from '../utils/auth';
 import { useRouter } from 'next/router';
+import { isMobile } from '../utils/siteFunctions';
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
 
@@ -258,23 +259,24 @@ function App(props: any) {
       {(props.walletInfo.length) ? Header(props.walletInfo[0].walletAddress) : ""}
       {(!props.walletInfo.length) ? (
       <div>
-        <button
-          className='btn waves-effect waves-light account-wallet-btn'
-          disabled={disabled}
-          onClick={() => {
-            web3activate();
-          }}
-        >
-          <div>
-            {connected}
-          </div>
-          ADD WALLET
-        </button>          
+        {!isMobile()?
+          <button
+            className='btn waves-effect waves-light account-wallet-btn'
+            disabled={disabled}
+            onClick={() => {
+              web3activate();
+            }}
+          >
+            <div>
+              {connected}
+            </div>
+            ADD WALLET
+          </button>:<></>}
       </div>
       ) :
       (
       <div>
-          <button
+          {!isMobile()?<button
             className='btn waves-effect waves-light account-wallet-btn'
             onClick={(e: any) => {
               web3deactivate(e);
@@ -282,7 +284,7 @@ function App(props: any) {
             data-value={props.walletInfo[0].walletAddress}
           >
             DEACTIVATE WALLET
-          </button>
+          </button>:<></>}
         {!!error && <h4 style={{ marginTop: '1rem', marginBottom: '0' }}>{getErrorMessage(error)}</h4>}
       </div>
       )}

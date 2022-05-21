@@ -13,7 +13,7 @@ const Footer = () => {
   const row2 = [
     { link: "/faq", name: "FAQ" },
     { link: "/news", name: "NEWS" },
-    { link: "/faq#10", name: "CONTACT" }
+    { link: "/faq#11", name: "CONTACT" }
   ];
 
   const spacer = <> &emsp;{"//"}&emsp;</>;

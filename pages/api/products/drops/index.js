@@ -9,7 +9,7 @@ export default async (req, res) => {
   switch ( method ) {
     case 'GET':
       try {
-        const drops = await Drop.find({}).populate("product_lineup");
+        const drops = await Drop.find({}).populate("product_lineup products");
         
         res.status(200).json(drops);
       } catch (err) {

@@ -14,7 +14,7 @@ const dropSchema = new Schema(
 		product_lineup: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: 'Product'
+				ref: 'Category'
 			}
 		],
 		initial_drop_quantity: {

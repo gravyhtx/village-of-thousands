@@ -8,7 +8,9 @@ const Cart = () => {
 
   useEffect(() => {
     async function getCart() {
-      const cart = await idbPromise('cart', 'get');
+      //check for staleness here
+      const { cart } = await idbPromise('cart', 'get');
+      console.log(cart)
       setCart(cart)
     }
 
@@ -17,21 +19,15 @@ const Cart = () => {
     }
   }, [cart.length]);
 
-  const addToCart = (event) => {
-    const val = event.target.name
-    idbPromise('cart', 'put', {
-      product: val,
-      quantity: 1
-    })
+  function totalAmount(arr) {
+    const sum = arr.reduce((prev, curr) => prev + parseInt(curr.price), 0);
+
+    return sum
   }
 
   return (
     <DefaultLayout>
 
-      {/* <div>
-        yo this is a test
-        <button onClick={addToCart} name="vot-test-tee">Add To Cart</button>
-      </div> */}
       <div className="main-content animate__animated animate__fadeIn" id="content">
         <div className="index-section animate__animated animate__fadeIn cart-page">
           <h1 className="center cart-header">Cart</h1>
@@ -41,10 +37,15 @@ const Cart = () => {
                 <div>
                   {cart.map((item, index) => 
                     (
-                      <h1 key={index}>{item.product}</h1>
+                      <div key={item._id}>
+                        <img src={item.image} height="200px" width="200px"></img>
+                        <h1>{item.product}</h1>
+                      </div>
                     )
                   )}
-                  <h2>Total Price: 69.420$</h2>
+                  <h2>Price: $ {totalAmount(cart)} </h2>
+                  <h2>Tax (8.25%): $ {Math.round((totalAmount(cart) * 0.0825) * 100) / 100} </h2>
+                  <h2>Total: $ {totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
                 </div>
               ): (
                 <p>Your cart is currently empty.</p>

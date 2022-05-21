@@ -1,10 +1,12 @@
+import Auth from './auth';
+
 export function idbPromise(storeName, method, object) {
     return new Promise((resolve, reject) => {
         const request =  window.indexedDB.open('vot-shop', 1);
         let db, tx, store;
         request.onupgradeneeded = function(e) {
             const db = request.result;
-            db.createObjectStore('cart', { keyPath: 'product' });
+            db.createObjectStore('cart', { keyPath: 'id' });
         };
 
         request.onerror = function(e) { 
@@ -22,12 +24,45 @@ export function idbPromise(storeName, method, object) {
 
             switch (method) {
                 case 'put':
-                    store.put(object);
-                    resolve(object);
+                    const profile = Auth.loggedIn() ? Auth.getProfile() : null;
+
+                    const record = store.get(profile.data._id)
+                    //future: put date on creation of user
+                    record.onsuccess = function(info) {
+                        console.log(record, info)
+                        if(!record.result) {
+                            store.put({id: profile.data._id, cart: [object], dateUpdated: Date.now()});
+                        }else {
+                            let flag = false;
+
+                            record.result.cart.forEach(item => {
+                                if(item.id === object.id){
+                                    flag = true;
+                                    return
+                                }
+                            })
+                            if(flag){
+                                alert("item already in cart");
+                                return
+                            }
+                            record.result.cart.push(object);
+                            record.result.dateUpdated = Date.now();
+                            store.put(record.result);
+                        }
+                        resolve(object);
+                    }
                     break;
                 case 'get':
-                    const all = store.getAll();
+                    const user = Auth.loggedIn() ? Auth.getProfile() : null;
+
+                    const all = user ? store.get(user.data._id) : null;
+
+                    if(!all) {
+                        return
+                    }
+                    
                     all.onsuccess = function() {
+                        console.log(all)
                         resolve(all.result);
                     };
                     break;
