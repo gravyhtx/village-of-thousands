@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
-import { isLoaded } from "../utils/isLoaded";
 
-const UploadFile = ( data, success, instructions, instructionsClasses, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
+const UploadFile = ( data, success, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
 
+  const [loaded, setLoaded] = useState(false);
   let active = false;
   let fileName = "No file chosen";
-  let fileNameElement;
-  let buttonElement;
+  const fileNameElement = document.getElementById('file-name');
+  const buttonElement = document.getElementById('upload-label');
 
   useEffect(() => {
-    if(!isLoaded){
+    if(!loaded){
       localStorage.removeItem('upload_data')
+      setLoaded(true);
     }
-    fileNameElement = document.getElementById('file-name');
-    buttonElement = document.getElementById('upload-label');
   })
   const uploadStyle = () => {
     buttonElement.classList.add('active');

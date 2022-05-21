@@ -10,8 +10,6 @@ import Avatar from "../public/images/icons/vot_avatar.svg";
 import SvgContainer from "../components/SvgContainer";
 import { useRouter } from "next/router";
 
-// import { isLoaded } from "../utils/isLoaded";
-// import { isUser } from "../utils/isUser";
 import { shuffleArr, randomize } from "../utils/generator";
 
 const AccountAvatar = (props) => {
