@@ -1,5 +1,6 @@
 import Auth from '../utils/auth';
 import LoginContainer from '../components/LoginContainer';
+// import { width } from '@mui/system';
 
 
 // CLIENT SIDE CHECKS
@@ -36,6 +37,7 @@ export const isMobile = () => {
   }
 }
 
+
 // CONVERT ELEMENTS
 
 export const canvasToDataUrl = ( canvasEl ) => {
@@ -43,8 +45,8 @@ export const canvasToDataUrl = ( canvasEl ) => {
   return dataUrl;
 }
 
-export const canvasToPng = ( canvasEl, alt, classes, id ) => {
-  const dataUrl = canvasEl.toDataURL();
+export const canvasToPng = ( el, alt, classes, id ) => {
+  const dataUrl = el.toDataURL();
   const png = document.write(`<img src="${dataUrl}" className=${classes} alt=${alt} id=${id} />`);
   return png;
 }
@@ -54,8 +56,8 @@ export const canvasToPng = ( canvasEl, alt, classes, id ) => {
 
 export const cdnLink = ( filename ) => {
 
-  // USE WITH FULL FILENAME
-  //  ex: "header.fb0ffabf"
+  // USE WITH FULL FILENAME WITH EXTENSION
+  //  ex: "header.fb0ffabf.png"
 
   const path = "https://villageofthousands.com/_next/static/media/";
   return path+filename
@@ -92,7 +94,7 @@ export const ImageCDN = ( filename, fileExt, description, classes, id, allowDrag
   const styles = useFallbackStyles ? fallbackStyles + customStyles : customStyles;
 
   const widths = ["640","750","828","1080","1200","1920","2048","3840"];
-  defaultWidth = defaultWidth ? defaultWidth : "3840";
+  defaultWidth = defaultWidth ? defaultWidth : widths[7];
 
   const path = "https://villageofthousands.com/_next/static/media/";
 
