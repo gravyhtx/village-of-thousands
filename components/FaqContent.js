@@ -282,7 +282,7 @@ const FaqContent = () => {
         of relying on website builders to make the right decisions, the tradeoff being development is
         difficult and takes longer than click-and-drag sites.</>,
         <>This is going to be a forever project for us so we are preparing to grow and adapt with the
-        exciting transition into Web3 and the Metaverse. We’re learning with everyone else. If you have
+        exciting transition into Web 3.0 and the Metaverse. We’re learning with everyone else. If you have
         any recommendations or thoughts to add to this conversation we encourage you to send us a DM on
         one of our social media accounts. We want to hear directly from our VoT Enthusiasts like you so
         that we can create a safe space for everyone and focus on the good we can do together and all

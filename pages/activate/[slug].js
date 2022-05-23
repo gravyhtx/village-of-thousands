@@ -135,5 +135,4 @@ const Activate = () => {
   );
 }
 
-// export default withAuth(Activate);
 export default Activate;

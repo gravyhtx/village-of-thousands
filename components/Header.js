@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
-// import { Link, useLocation } from "react-router-dom";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 // import Logo from "../images/header.svg";
-// import Image from 'next/image';
-// import ImageContainer from "./ImageContainer";
 import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-// import { isLoaded } from "../utils/isLoaded";
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";

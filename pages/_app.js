@@ -5,8 +5,6 @@ import '../styles/animate.css';
 import '../styles/fonts.css';
 import '../styles/globals.css';
 
-import withAuth from '../utils/withAuth';
-
 function App({ Component, pageProps }) {
   return (
   <React.StrictMode>
