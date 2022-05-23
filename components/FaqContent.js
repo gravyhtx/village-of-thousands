@@ -46,7 +46,7 @@ const FaqContent = () => {
         packages when you receive some fresh new gear from us!</>,
         <>We believe sustainability goes beyond what we can provide for nature alone. It is the impact on our
         environment which includes how we treat ourselves and each other.</>,
-        <><span className="italics"><b>SUSTAINABILITY is the ABILITY to SUSTAIN.</b></span></>,
+        <><span className="italics"><b>SUSTAINABILITY with the ABILITY to SUSTAIN.</b></span></>,
         <>This is our motto. Our journey which starts from within. We believe
         that our impact and ability to give can only be as great as the work we put in to own self-care and
         the balance we maintain in our daily lives.</>,

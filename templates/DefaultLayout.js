@@ -19,7 +19,6 @@ export default function DefaultLayout({ headerImages, title, description, withAu
   description = description ? description : website.description;
 
   const router = useRouter();
-  console.log(favicon.src)
 
   useEffect(() => {
     if(withAuth && (authCheck() === false)) {

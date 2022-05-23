@@ -1145,26 +1145,32 @@ h2, .h2 {
 
 .notify {
   margin: 0 auto;
-  padding: 4px;
+  padding: 4px 8px;
   text-align: center;
   font-size: .8rem;
   color: var(--notify-color);
+  text-shadow: 1px 1px 2px black;
   border-top: var(--notify-border);
   background-color: var(--notify-bkg);
   width: 100vw;
   /* AFTER ACCOUNT CREATION... (JS) */
     /* display:none; */
   cursor: pointer;
+  -webkit-transition: 500ms ease-in-out;
+  transition: 500ms ease-in-out;
 }
 
-.notify-container,
-.notify-container:hover {
-  -webkit-transition: 250ms ease-in-out;
-  transition: 250ms ease-in-out;
+.notify-container span {
+  
+}
+
+.notify-container span:hover {
+  
 }
 
 .notify:hover, .info-icon:hover {
   color: var(--notify-hover-color);
+  text-shadow: 1px 1px 3px rgb(159, 159, 159);
   -webkit-transition: 250ms ease-in-out;
   transition: 250ms ease-in-out;
 }
@@ -1173,6 +1179,15 @@ h2, .h2 {
   color: inherit;
   font-size: 12px;
   cursor: help;
+}
+
+.notify_email-sent {
+  color: #dddddd;
+  text-shadow: 0px 0px 4px #bbbbbb;
+}
+
+.notify_sent-to {
+  color: #eeeeee;
 }
 
 
@@ -1200,9 +1215,29 @@ h2, .h2 {
   /* box-shadow: 1px 1px 10px rgba(192, 240, 240, 0.1); */
 }
 
+.navigation-link {
+  height: 34px;
+  width: 68px;
+  border-radius: 0 !important;
+  overflow: auto;
+}
+
+.navigation-link span {
+  height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
 button.btn-floating.navigation-link:hover,
 button.btn-floating.navigation-link:active,
 button.btn-floating.navigation-link:focus {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
   background-color: rgba(0, 0, 0, 0.1);
 }
 
