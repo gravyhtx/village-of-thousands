@@ -10,7 +10,7 @@ import website from '../config/site-data.json';
 
 import favicon from '../public/favicon.ico'
 
-import authCheck from '../utils/authCheck';
+import { authCheck } from '../utils/siteFunctions';
 import { useEffect } from 'react';
 
 export default function DefaultLayout({ headerImages, title, description, withAuth, children }) {

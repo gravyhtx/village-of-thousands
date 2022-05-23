@@ -12,6 +12,12 @@ export const cointoss = () => {
   return bool;
 };
 
+export const cointossPage = () => {
+  let n = Math.floor(Math.random()*2);
+  let bool = n === 0 ? true : false;
+  localStorage.setItem("cointoss", bool);
+};
+
 // GET AVERAGE OF NUMBERS IN AN ARRAY
 export const average = (numberArray) => {
   let index = numberArray.length;

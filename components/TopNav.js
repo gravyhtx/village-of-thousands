@@ -21,7 +21,7 @@ const TopNav = () => {
             <Link href={item.link}><a suppressHydrationWarning>
               <button
                 color="inherit"
-                className={"btn-floating btn-floating navigation-link nav-"+item.name}
+                className={"btn-floating navigation-link nav-"+item.name}
               ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
             </a></Link>
           </div>

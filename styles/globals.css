@@ -2717,6 +2717,7 @@ label#upload-label:hover {
   border: 1px solid var(--theme-primary-dark-color);
   box-shadow: 2px 2px black;
   height: 23px;
+  cursor: pointer !important;
   -webkit-transition: 1s ease-out;
   transition: 1s ease-out;
 }
@@ -2734,6 +2735,7 @@ label#upload-label:hover {
   border: 1px solid #7fcce47a !important;
   box-shadow: 0 0 2px #7fcce47a !important;
   height: 23px !important;
+  cursor: pointer !important;
   -webkit-transition: 1s ease-in-out !important;
   transition: 1s ease-in-out !important;
 }
