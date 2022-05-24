@@ -126,6 +126,16 @@ export const searchUserByEmail = (userEmail) => {
   })
 }
 
+export const updateAmount = (userData, token) => {
+  return fetch('/api/checkout', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
 
 //Demo Use Only Section
 
