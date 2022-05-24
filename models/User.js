@@ -58,9 +58,9 @@ const userSchema = new Schema(
       required: false
     },
     blockie: {
-      type: [String],
+      type: String,
       required: false,
-      default: ["", false]
+      default: ""
     },
     colorScheme: [String],
     walletAddress: [WalletAddress.schema],
