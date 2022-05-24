@@ -16,30 +16,30 @@ import ProductCard from "../../components/ProductCard";
 const Products = () => {
   const router = useRouter();
 
-  const [isLogged, setIsLogged] = useState(false);
-  const [activateStatus, setActivateStatus] = useState(false);
+  // const [isLogged, setIsLogged] = useState(false);
+  // const [activateStatus, setActivateStatus] = useState(false);
 
-  useEffect(() => {
-    const checkLogged = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // useEffect(() => {
+  //   const checkLogged = async () => {
+  //     try {
+  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (token) {
-          setIsLogged(true);
-        }
-      } catch (err) {
-        console.error(err)
-      }
-    }
+  //       if (token) {
+  //         setIsLogged(true);
+  //       }
+  //     } catch (err) {
+  //       console.error(err)
+  //     }
+  //   }
 
-    checkLogged();
+  //   checkLogged();
 
-    if(activateStatus) {
-      setTimeout(function(){
-        router.push('/')
-      }, 15000);
-    }
-  }, []);
+  //   if(activateStatus) {
+  //     setTimeout(function(){
+  //       router.push('/')
+  //     }, 15000);
+  //   }
+  // }, []);
 
   const [products, setProducts] = useState([]);
   const [loggedIn, setLogged] = useState(false);
@@ -61,14 +61,13 @@ const Products = () => {
           console.error(err);
       }
     }
-
-      getProductData();
+    getProductData();
   }, [])
 
   return (
     <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
       <div className="activate-page center container animate__animated animate__fadeIn">
-        {!isLogged ? (
+        {!loggedIn ? (
           <>
             <LoginContainer />
           </>

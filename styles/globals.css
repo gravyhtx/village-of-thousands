@@ -1435,9 +1435,9 @@ button.btn-floating.navigation-link:focus {
 .theme-btn:hover {
   -webkit-transition: 750ms ease-in-out;
   transition: 750ms ease-in-out;
-  background-color: #3b495450;
+  background-color: #3b495433 !important;
   border: 2px solid var(--theme-secondary-dark-color);
-  box-shadow: 0 0 15px #7fcce450;
+  box-shadow: 0 0 25px #7fcce450 !important;
   text-shadow: 0 0 10px #ffffff50;
   cursor: pointer !important;
 }
@@ -2656,6 +2656,7 @@ label#upload-label:hover {
   transform: translate(-50%, -50%);
   margin: 0 auto;
   border: 3px solid #33333333;
+  /* border-radius: 10%; */
   -webkit-transition: 1s ease;
   transition: 1s ease;
   -webkit-animation: blockiePulse 16s infinite alternate ease-in-out;
@@ -2678,7 +2679,7 @@ label#upload-label:hover {
 
 
 @keyframes blockiePulse {
-  0% {box-shadow: -2px -2px 50px #71bcdfad;}
+  0% {box-shadow: -2px -2px 50px #71bcdf6c;}
   25% {box-shadow: -2px -2px 40px #739accad;}
   40% {box-shadow: -2px -2px 50px #4f8db1ad;}
   67% {box-shadow: -2px -2px 50px #6bb7e2ad;}

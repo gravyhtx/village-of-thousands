@@ -11,34 +11,35 @@ import { idbPromise } from '../../utils/helpers';
 import DefaultLayout from "../../templates/DefaultLayout";
 
 import LoginContainer from "../../components/LoginActivateContainer";
+import ProductCard from "../../components/ProductCard";
 
 const Products = () => {
   const router = useRouter();
 
-  const [isLogged, setIsLogged] = useState(false);
-  const [activateStatus, setActivateStatus] = useState(false);
+  // const [isLogged, setIsLogged] = useState(false);
+  // const [activateStatus, setActivateStatus] = useState(false);
 
-  useEffect(() => {
-    const checkLogged = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // useEffect(() => {
+  //   const checkLogged = async () => {
+  //     try {
+  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (token) {
-          setIsLogged(true);
-        }
-      } catch (err) {
-        console.error(err)
-      }
-    }
+  //       if (token) {
+  //         setIsLogged(true);
+  //       }
+  //     } catch (err) {
+  //       console.error(err)
+  //     }
+  //   }
 
-    checkLogged();
+  //   checkLogged();
 
-    if(activateStatus) {
-      setTimeout(function(){
-        router.push('/')
-      }, 15000);
-    }
-  }, []);
+  //   if(activateStatus) {
+  //     setTimeout(function(){
+  //       router.push('/')
+  //     }, 15000);
+  //   }
+  // }, []);
 
   const [products, setProducts] = useState([]);
   const [loggedIn, setLogged] = useState(false);
@@ -60,27 +61,13 @@ const Products = () => {
           console.error(err);
       }
     }
-
-      getProductData();
+    getProductData();
   }, [])
-
-  const addToCart = (event) => {
-    idbPromise('cart', 'put', {
-      id: event.target.dataset.id,
-      path: event.target.dataset.path,
-      product: event.target.dataset.name,
-      image: event.target.dataset.image,
-      color: event.target.dataset.color,
-      price: event.target.dataset.price,
-      quantity: 1
-    })
-  }
-
 
   return (
     <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
       <div className="activate-page center container animate__animated animate__fadeIn">
-        {!isLogged ? (
+        {!loggedIn ? (
           <>
             <LoginContainer />
           </>
@@ -90,24 +77,7 @@ const Products = () => {
             products.map(productElement => {
               return (
                 <div className="col s6" key={productElement._id}>
-                  <h2>{productElement.product_name}</h2>
-                  <img src={productElement.product_image[0]} height="200px" width="200px"></img>
-                  {loggedIn ? 
-                    (<button onClick={addToCart} 
-                        data-id={productElement._id}
-                        data-path={productElement.product_path}
-                        data-name={productElement.product_name}
-                        data-image={productElement.product_image[0]}
-                        data-color={productElement.product_colors} //needs state for color
-                        // data-fit=state for fit
-                        // data-size= state for size
-                        data-price={productElement.price}
-
-                      >Add to Cart</button>
-                    ) :
-                    (
-                      <button disabled>You Must Be A Part Of The Village</button>
-                    )}
+                  <ProductCard productElement={productElement} loggedIn={loggedIn} />
               </div>)
             }) :
             (

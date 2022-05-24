@@ -29,18 +29,6 @@ const TestingCard = () => {
       getProductData();
   }, [])
 
-  const addToCart = (event) => {
-    idbPromise('cart', 'put', {
-      id: event.target.dataset.id,
-      path: event.target.dataset.path,
-      product: event.target.dataset.name,
-      image: event.target.dataset.image,
-      color: event.target.dataset.color,
-      price: event.target.dataset.price,
-      quantity: 1
-    })
-  }
-
   return (
     <div>
       { products.length ?

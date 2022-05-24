@@ -50,7 +50,6 @@ const AccountAvatar = (props) => {
     }
   }
 
-
   // SET AVATAR
   const [ avatar, setAvatar ] = useState(null);
 
@@ -64,14 +63,15 @@ const AccountAvatar = (props) => {
   const Logo = () => { return <SvgContainer src={Avatar} classes="no-avatar" /> }
   const UserBlockie = () => {
     return (
-      <div onClick={setColorScheme}><Blockie
+      <div><Blockie
         className="blockie-nav"
+        classes={""}
         opts={{
           seed: props.wallet.length ? props.wallet[0].walletAddress : "Claire Richard",
           color: userData.colorScheme ? userData.colorScheme[0] : themeColors[0],
           bgcolor: userData.colorScheme ? userData.colorScheme[1] : themeColors[1],
           size: 9,
-          scale: 7,
+          scale: 8,
           spotcolor: userData.colorScheme ? userData.colorScheme[2] : themeColors[2]
       }}/></div>
     )
