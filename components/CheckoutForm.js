@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 import { idbPromise } from "../utils/helpers";
+import { updateAmount } from "../utils/API";
+import Auth from '../utils/auth';
+// import {}
+
+// const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
 
 const CheckoutForm = ({ paymentIntent }) => {
     const stripe = useStripe();
@@ -10,7 +15,7 @@ const CheckoutForm = ({ paymentIntent }) => {
     const [checkoutSuccess, setCheckoutSuccess] = useState();
 
     const [cart, setCart] = useState([]);
-
+    // console.log(stripeObj)
     useEffect(() => {
         async function getCart() {
             //check for staleness here
@@ -22,9 +27,22 @@ const CheckoutForm = ({ paymentIntent }) => {
         if (!cart.length) {
             getCart()
         }
+        
+        async function updatePaymentIntent() {
+            const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        paymentIntent.amount = totalAmount(cart) * 100
-        console.log(paymentIntent)
+            console.log(paymentIntent)
+
+            updateAmount(
+                {
+                    amount: totalAmount(cart),
+                    stripeId: paymentIntent.id
+                },
+                token
+            )
+        }
+
+        updatePaymentIntent()
     }, [cart.length]);
 
     function totalAmount(arr) {

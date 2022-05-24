@@ -24,6 +24,8 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
+
+
     paymentIntent = await stripe.paymentIntents.create({
         amount: 100,
         currency: 'usd'
