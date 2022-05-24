@@ -1,0 +1,40 @@
+{
+  "currentDrop": {
+    "shirts": {
+      "name": "VoT Logo Tee",
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "prefix": ["VOTSR-1001-BK", "VOTSR-1001-WT", "VOTSR-1001-AQ", "VOTSR-1001-SF", "VOTSR-1001-LV"],
+      "suffix": "-001",
+      "filenames": ["vots-bk.010101", "vots-wt.010101", "vots-aq.010101", "vots-sf.010101", "vots-lv.010101"]
+    },
+    "longsleeves": {
+      "name": "VoT Logo Longsleeve",
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "prefix": ["VOLSR-1001-BK", "VOLSR-1001-WT", "VOLSR-1001-AQ", "VOLSR-1001-SF", "VOLSR-1001-LV"],
+      "suffix": "-001",
+      "filenames": ["vols-bk.010101", "vols-wt.010101", "vols-aq.010101", "vols-sf.010101", "vols-lv.010101"]
+    },
+    "hoodies": {
+      "name": "VoT Logo Hoodie",
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "prefix": ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"],
+      "suffix": "-001",
+      "filenames": ["vohd-bk.010101", "vohd-nt.010101", "vohd-aq.010101", "vohd-sf.010101", "vohd-lv.010101"]
+    },
+    "crewnecks": {
+      "name": "VoT Logo Crewneck",
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "prefix": ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"],
+      "suffix": "-001",
+      "filenames": ["vocn-bk.010101", "vocn-nt.010101", "vocn-aq.010101", "vocn-sf.010101", "vocn-lv.010101"]
+    }
+  }
+}

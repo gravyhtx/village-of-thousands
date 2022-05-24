@@ -31,7 +31,6 @@ const Faq = () => {
   };
 
   let checkId = "";
-  const qId = (checkId-1);
   useEffect(() => {
     checkId = window.location.hash ? window.location.hash.substring(1) : "";
     scrollLoad ? setExpanded(checkId-1) : null;
@@ -47,9 +46,9 @@ const Faq = () => {
           onChange={handleChange(index)}
           ref={accordElem}
           disableGutters>
-          <AccordionSummary className="faq-question-header" onClick={scroll()}>
-            <span className="faq-number">{(index+1) < 10 ? ("00"+(index+1)+"//") : ("0"+(index+1)+"//")}&emsp;</span>
-            {q.question}
+          <AccordionSummary className="faq-question-container" onClick={scroll()}>
+            <span className="faq-number">{(index+1) < 10 ? (`00${index+1}//`) : (`"0${index+1}//`)}&emsp;</span>
+            <h2 className="faq-question-header">{q.question}</h2>
           </AccordionSummary>
           <AccordionDetails className="faq-body">
             <div>

@@ -6,7 +6,7 @@ const NotificationBar = ({ text, link, ext, extLink }) =>  {
   const router = useRouter();
 
   useEffect(() => {
-    if(ext-link){
+    if(extLink){
       if(!document.getElementById('ext-link').matches(':hover')) {
         document.getElementById('notify').addEventListener('click', () => {
           if(link){ router.push(link) }

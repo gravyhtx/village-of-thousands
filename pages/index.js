@@ -85,8 +85,9 @@ const Home = () => {
           <div className="index-aside_text">
             <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
             for all emerging Web 3.0 products and services.
-            </p><p>Our company is currently preparing for a full Web 3.0 release in 2022 when we will begin selling all
-            of our products with NFTs as a means of authentication. If you’d like to join the movement, follow us on our socials
+            </p><p>Our company is currently preparing for a full Web 3.0 release in 2023 when we will begin selling
+            our products with NFTs for collection and as a means of authentication. If you’d like to join the movement,
+            follow us on our socials
             and you can get ready for our first drop by <Link href="/register"><a className="text-link">creating an
             account</a></Link> with us today.
             </p>

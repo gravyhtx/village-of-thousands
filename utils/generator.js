@@ -12,6 +12,12 @@ export const cointoss = () => {
   return bool;
 };
 
+export const cointossPage = () => {
+  let n = Math.floor(Math.random()*2);
+  let bool = n === 0 ? true : false;
+  localStorage.setItem("cointoss", bool);
+};
+
 // GET AVERAGE OF NUMBERS IN AN ARRAY
 export const average = (numberArray) => {
   let index = numberArray.length;
@@ -22,13 +28,12 @@ export const average = (numberArray) => {
 	const avg = (total/index);
 	return avg;
 }
-// export 
 
 // RETURN ONE ELEMENT OR SET FROM AN ARRAY OF ARRAYS
 
 // "el" is the array of arrays being sorted.
 // "array" is boolean
-//    true = entire array set // false = one element from array set
+//    true = output entire array set // false = output one element from array set
 // "opts" is an array of indexes by number.
 
 // Example (selecting only indexes 0 and 2 from array):

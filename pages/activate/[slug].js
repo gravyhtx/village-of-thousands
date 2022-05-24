@@ -47,6 +47,7 @@ const Activate = () => {
 
     if (!userExists) {
       //user did not exist, get out
+      //need to include different content displayed with explanation
       return
     }
     
@@ -135,5 +136,4 @@ const Activate = () => {
   );
 }
 
-// export default withAuth(Activate);
 export default Activate;

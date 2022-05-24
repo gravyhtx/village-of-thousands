@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
-// import { Link, useLocation } from "react-router-dom";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 // import Logo from "../images/header.svg";
-// import Image from 'next/image';
-// import ImageContainer from "./ImageContainer";
 import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
 import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-// import { isLoaded } from "../utils/isLoaded";
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
@@ -21,6 +17,7 @@ import { resendConfirmationFetch } from "../utils/API";
 const Header = ({ images }) => {
 
   const [userData, setUserData] = useState({
+    email: '',
     walletAddress: []
   });
   const [loaded, setLoaded] = useState(false);
@@ -87,18 +84,24 @@ const Header = ({ images }) => {
       </a></Link>
     </span>
 
+  const [emailSent, setEmailSent] = useState(false)
 
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
     const profile = token ? Auth.getProfile() : null;
-
-    resendConfirmationFetch(profile)
+    resendConfirmationFetch(profile);
+    setEmailSent(true);
   }
-  const activateText =
-    <span onClick={resendConfirmation}>
-      Please activate your account. Check your email or click here if you need to resend the activation link to your email.
-    </span>
+
+  const activateText = emailSent ?
+      <span className="notify_email-sent form-text-blink">
+        Activation email sent to <span className="notify_sent-to underline weight-4">{ userData.email }</span>.
+        Please check your "Spam" and "Promotions" folders, or DM us on Instagram if you still don't see it.
+      </span> :
+      <span onClick={resendConfirmation}>
+        Please activate your account. Check your email for instructions or click here to resend the activation link.
+      </span>
+    
 
   const fallbackStyles = {
     position: 'absolute',
@@ -168,6 +171,8 @@ const Header = ({ images }) => {
   return (
     <header className="site-header" id="site-header">
       <div className="navbar-container black" id="header-container">
+        {/* {loaded && userData.email && !userData.completeRegistration ?
+          <Notification />:<></>} */}
         <Link className="navbar-brand container" href="/" id="header-link-container">
           <div className="header-img-container" id="header-img-container">
             <div className={
