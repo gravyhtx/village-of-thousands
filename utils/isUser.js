@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
 

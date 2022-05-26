@@ -370,6 +370,9 @@ input.input-error {
   justify-content: center;
   text-align: center;
 }
+.center-img {
+  margin: 0 auto;
+}
 
 .justify-text { text-align: justify; }
 .left-text    { text-align: left; }
@@ -479,7 +482,7 @@ input.input-error {
 ////////////////
 
 
-Some of these were generated with ~https://animista.net/~ !! */
+Some of these animations were generated with ~https://animista.net/~ !! */
 
 /* TEXT */
 
@@ -591,6 +594,151 @@ Some of these were generated with ~https://animista.net/~ !! */
     opacity: 1;
   }
 }
+
+/*
+////////////////////
+// MAGICAL STYLES //
+////////////////////
+*/
+
+/* PURE SEX */
+
+.blue-outline {
+  padding: 4px 8px;
+  background-color: #0e0e0e0e;
+  font-weight: 800;
+  -webkit-text-stroke-width: 1.75px;
+  -webkit-text-stroke-color: black;
+  text-shadow: 1.2px 1.2px 0px #7FCCE4;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-outline.special-link {
+  font-size: 2.2rem;
+  padding: 5px 10px 10px;
+  margin-bottom: 10px;
+  cursor: pointer !important;
+}
+.blue-outline.special-border {
+  background-color: #00000020;
+  box-shadow: 0px 1px 2px #7fcce4;
+  border-top: 1px solid #7FCCE420;
+  border-right: 1px solid #7FCCE420;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  border-left: 1px solid #7FCCE420;
+}
+.blue-outline.blue-special-border {
+  box-shadow: 0px 1px 0px #7FCCE4;
+  border-top: 1px solid #7FCCE4;
+  border-right: 1px solid #7FCCE420;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  border-left: 1px solid #7FCCE420;
+}
+.blue-outline:hover,
+.blue-outline:focus,
+.blue-outline:active {
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.2px;
+  text-shadow: 1.2px 1.2px .75px #7FCCE4;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-outline.special-border:hover,
+.blue-outline.special-border:focus,
+.blue-outline.special-border:active {
+  /* background-color: #111111; */
+  border-top: 1px solid #96dcf1;
+  border-right: 1px solid #7FCCE480;
+  border-bottom: 1px solid white;
+  border-left: 1px solid #7FCCE4;
+  box-shadow: 0px 2px 3px #7FCCE4;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-outline.blue-special-border:hover,
+.blue-outline.blue-special-border:focus,
+.blue-outline.blue-special-border:active {
+  /* background-color: #2d2d2d2d; */
+  border: 1px solid black;
+  box-shadow: 0px 1px 3px #7FCCE4;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-outline.special-link:hover,
+.blue-outline.special-link:focus,
+.blue-outline.special-link:active {
+  -webkit-text-stroke-color: #28393e;
+  /* text-shadow: 1px 1px .25px #7FCCE4; */
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+span.special-link {
+  /* box-shadow: 1px 1px 0px white; */
+  box-shadow: 0px 1px 0px #7FCCE410;
+  background-color: transparent;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+span.special-link:hover {
+  box-shadow: 0px -2px 8px #7FCCE410;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.special-link span {
+  box-shadow: 0px 2px 0px white;
+  padding: 0 4px;
+  /* box-shadow: 0px 7px 8px transparent; */
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.special-link span:hover {
+  background-color: transparent;
+  /* box-shadow: 0px -1px 2px #7FCCE420; */
+  box-shadow: 0px 2px 0px white;
+  /* text-shadow: -1px -1px 0px #59595920; */
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+
+/* HOVERBOARDING */
+
+.glow-hover {
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.glow-hover:hover,
+.glow-hover:focus,
+.glow-hover:active {
+  text-shadow: 0 0 5px #ffffff;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-glow-hover {
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-glow-hover:hover,
+.blue-glow-hover:focus,
+.blue-glow-hover:active {
+  text-shadow: 0 0 5px #7FCCE4;
+}
+
+.blue-outline-hover {
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+.blue-outline-hover:hover,
+.blue-outline-hover:focus,
+.blue-outline-hover:active {
+  font-weight: 800;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  text-shadow: 1px 1px 1px #7FCCE4;
+  transition: 750ms ease-in-out;
+  -webkit-transition: 750ms ease-in-out;
+}
+
+
   
 
 /*
@@ -671,6 +819,18 @@ Some of these were generated with ~https://animista.net/~ !! */
   text-decoration: underline;
   text-decoration-thickness: 0.1em;
   text-underline-offset: 0.15em;
+}
+.border-underline {
+  border-bottom: 1px solid white;
+}
+.blue-border-underline {
+  border-bottom: 1px solid #7FCCE4;
+}
+.box-underline {
+  border-bottom: 1px solid white;
+}
+.blue-box-underline {
+  border-bottom: 1px solid #7FCCE4;
 }
 
 /* ICONS */
@@ -1113,6 +1273,15 @@ h2, .h2 {
   max-width: 75vw;
   padding: 15px;
   display: flex;
+}
+
+.btn-floating,
+.btn-floating:active,
+.btn-floating:focus,
+.btn-floating:focus-visible,
+.btn-floating:hover {
+  background-color: transparent !important;
+  background: none;
 }
 
 .btn-floating {
@@ -2254,7 +2423,23 @@ label#upload-label:hover {
   padding: 0 10px;
 }
 
+div.products-link_view-all {
+  height: 33.3px;
+  margin: 35px 10px;
+}
+
+span.products-link_view-all {
+  /* box-shadow: 1px 1px 0px white; */
+  line-height: 2.2;
+}
+
+.products_showcase-container {
+  min-height: 650px;
+  margin-bottom: 60px;
+}
+
 .product-carousel-header {
+  margin-bottom: 50px;
   padding: 25px;
   font-size: var(--theme-font-size-xl);
   font-weight: 600;
@@ -2265,6 +2450,15 @@ label#upload-label:hover {
 .product-aside {
   margin-bottom: 80px;
   padding: 0 20px;
+}
+
+.shop_learn-more {
+  color: #eeeeee;
+  margin-bottom: 50px;
+}
+
+.shop_learn-more:hover {
+  color: #ffffff;
 }
 
 .learn-more {
@@ -2298,13 +2492,17 @@ label#upload-label:hover {
 .products-page-content {
   /* padding: 50px; */
   border-bottom: 4px solid white;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .products-header {
   color: white;
   padding: 0 10px;
   margin: 50px 0;
+}
+
+.all-products .products-header {
+  margin: 50px 0 10px;
 }
 
 /* PRODUCT CARDS */
@@ -3335,6 +3533,10 @@ label#upload-label:hover {
     font-size: var(--theme-font-size-md);
   }
 
+  .blue-outline.special-link {
+    font-size: 1.8rem;
+  }
+
   .learn-more {
     font-size: var(--theme-font-size);
   }
@@ -3635,6 +3837,9 @@ label#upload-label:hover {
   }
   .activated-congrats {
     font-size: 3.5rem;
+  }
+  .blue-outline.special-link {
+    font-size: 1.5rem;
   }
 }
 

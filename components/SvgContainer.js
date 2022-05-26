@@ -20,13 +20,19 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
     maxWidth:maxWidth,
     styles
   }
+
+  let path;
+
+  if(src.src){ path = src.src }
+  else { path = src }
+
   return (
     <Link href={link?link:'/'} target="_blank" rel="noreferrer">
     <a target="_blank" rel="noreferrer">
     <div className={"svg-container"+svgContainer}>
       <img
         style={svgStyles ? svgStyles : {}}
-        src={src ? src.src : ""}
+        src={src ? path : ""}
         // width={width}
         className={"svg-img"+svgClass}
         id={svgId ? "svg-img_"+svgId : ""}
