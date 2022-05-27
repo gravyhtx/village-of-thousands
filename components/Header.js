@@ -50,22 +50,24 @@ const Header = ({ images }) => {
 
   const notificationLink = "/register";
 
+  const svgHeader = "/_next/static/media/header.77dc7a1a.svg"
   const Svg = () => {
     return (images ? images[0] :
     <SvgContainer
       layout="responsive"
-      src={HeaderSvg}
+      src={svgHeader}
       id="header-img"
       draggable="false"
       description="Village of Thousands Logo"
     />)
   }
-  
+  const pngHeader = "/_next/static/media/header.fb0ffabf.png"
+
   const Png = () => {
     return (images ? images[1] :
     <ImageContainer
       layout="responsive"
-      src={HeaderImg}
+      src={pngHeader}
       id="header-img"
       draggable="false"
       description="Village of Thousands Logo"
@@ -121,16 +123,16 @@ const Header = ({ images }) => {
   const fallbackImage =
     <img alt="Village of Thousands Logo" id="header-img" draggable="false" sizes="100vw"
       srcSet="
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1080 1080w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1200 1200w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1920 1920w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
-      src="https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840"
-      decoding="async" data-nimg="responsive" className="image-class"
+        /_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1080 1080w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1200 1200w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1920 1920w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
+      src="/_next/static/media/header.fb0ffabf.png?imwidth=3840"
+      decoding="async" className="image-class"
       style={fallbackStyles}/>
   
   const Fallback = () => {
@@ -179,10 +181,10 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* <Svg /> */}
-              {useWindowSize().width > 1470
+              <Svg />
+              {/* {useWindowSize().width > 1080
                 ? <Svg />
-                : <Fallback />}
+                : <Fallback />} */}
             </div>
           </div>
         </Link>

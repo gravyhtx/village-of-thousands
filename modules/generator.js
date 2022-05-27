@@ -58,7 +58,7 @@ export const compareObjects = (objA, objB) => {
 };
 
 // OBJECT ITERATION
-function objectMap(object, mapFn) {
+export const objectMap = (object, mapFn) => {
   return Object.keys(object).reduce(function(result) {
     result[key] = mapFn(object[key]);
     return result
