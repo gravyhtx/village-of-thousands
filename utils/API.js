@@ -8,6 +8,14 @@ export const createProduct = (productData) => {
   })
 }
 
+export const getAllCategories = () => {
+  return fetch('/api/products/category/', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+};
+
 export const resendConfirmationFetch = (user) => {
   return fetch('/api/users/activate/resend', {
     method: 'POST',

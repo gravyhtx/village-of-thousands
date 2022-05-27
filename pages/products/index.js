@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { accountActivation, getPendingUser } from "../../utils/API";
 import Auth from '../../utils/auth';
 
-import { getDemoProducts } from '../../utils/API';
+import { getAllCategories } from '../../utils/API';
 import { idbPromise } from '../../utils/helpers';
 
 import DefaultLayout from "../../templates/DefaultLayout";
@@ -52,7 +52,7 @@ const Products = () => {
           setLogged(true)
         }
 
-        const response = await getDemoProducts();
+        const response = await getAllCategories();
         const productInfo = await response.json();
 
         console.log(productInfo)
@@ -73,7 +73,7 @@ const Products = () => {
           </>
         ) : 
         <div className="row">
-          { products.length ?
+          {/* { products.length ?
             products.map(productElement => {
               return (
                 <div className="col s6" key={productElement._id}>
@@ -83,7 +83,7 @@ const Products = () => {
             (
               <h1>Loading</h1>
             )
-          }
+          } */}
         </div> }
       </div>
     </DefaultLayout>

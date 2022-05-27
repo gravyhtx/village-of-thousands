@@ -2,7 +2,6 @@ import dbConnect from "../../../../utils/dbConnect";
 // import { signToken, authMiddleware } from "../../../utils/jwAuth";
 import Product from '../../../../models/Product';
 import Category from '../../../../models/Category';
-import Drop from '../../../../models/Drop';
 dbConnect();
 
 export default async (req, res) => {

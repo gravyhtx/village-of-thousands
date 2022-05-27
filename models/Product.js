@@ -54,7 +54,7 @@ const productSchema = new Schema(
         type: String
       }
     ,
-    product_genders: [
+    product_style: [
       {
         type: String
       }

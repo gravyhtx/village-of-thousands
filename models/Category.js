@@ -14,6 +14,7 @@ const categorySchema = new Schema(
 				ref: 'Product'
 			}
 		],
+		tags: [String]
 	}
 );
 
