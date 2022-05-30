@@ -9,7 +9,7 @@ export default async (req, res) => {
     case 'GET':
       try {
         const categories = await Category.find({}).populate("products");
-        
+        // console.log(categories)
         res.status(200).json(categories);
       } catch (err) {
         res.status(400).json({ success: false, message: 'Category finding error' });
