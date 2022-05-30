@@ -2462,8 +2462,8 @@ span.products-link_view-all {
 }
 
 .product-image {
-  -webkit-filter: drop-shadow(0px 0px 5px #7fcce440);
-          filter: drop-shadow(0px 0px 5px #7fcce440);
+  -webkit-filter: drop-shadow(0px 0px 10px #7fcce420);
+          filter: drop-shadow(0px 0px 10px #7fcce420);
 }
 
 .product-image-grid div {

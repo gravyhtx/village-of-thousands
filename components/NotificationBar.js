@@ -11,10 +11,11 @@ const NotificationBar = ({ text, link, ext, extLink }) =>  {
         document.getElementById('notify').addEventListener('click', () => {
           if(link){ router.push(link) }
         });
+      } else {
+        document.getElementById('ext-link').addEventListener('click', () => {
+          if(extLink){ router.push(extLink) }
+        })
       }
-      document.getElementById('ext-link').addEventListener('click', () => {
-        if(extLink){ router.push(extLink) }
-      })
     }
   });
 

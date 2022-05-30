@@ -20,11 +20,10 @@ const Login = ({ activation }) =>  {
     setErrorClass({ email: '', password: '' })
   }
 
-  // const checkEmail = async (token) => {
+  // const checkEmail = async (email) => {
   //   try {
-  //     const response = searchUserByEmail(token);
+  //     const response = searchUserByEmail(email);
   //     console.log(response)
-  //     console.log(userFormData.email)
   //   } catch (err) {
   //     console.error(err);
   //   }
@@ -44,6 +43,7 @@ const Login = ({ activation }) =>  {
 
       const response = await loginUser(userFormData);
       // console.log(response);
+      // checkEmail(userFormData.email)
       
       setErrorClass({
         email: response.ok ? '' : ' input-error',
