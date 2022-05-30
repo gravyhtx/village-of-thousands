@@ -77,14 +77,31 @@ export function useWindowSize() {
   return windowSize;
 }
 
-export const screenWidth = () => {
+export function windowSize(window) {
+
+  let windowSize = {
+    width: window ? window.innerWidth : undefined,
+    height: window ? window.innerHeight : undefined
+  }
+
+  return windowSize;
+}
+
+export const useScreenWidth = () => {
   return useWindowSize().width;
 }
 
-export const screenHeight = () => {
+export const useScreenHeight = () => {
   return useWindowSize().height;
 }
 
+export const screenWidth = (window) => {
+  return windowSize(window).width;
+}
+
+export const screenHeight = (window) => {
+  return windowSize(window).height;
+}
 
 //////////////////////
 // CONVERT ELEMENTS //

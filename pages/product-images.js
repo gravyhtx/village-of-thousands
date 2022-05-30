@@ -3,7 +3,7 @@ import { productImage } from '../modules/productImages'
 
 export const ProductImage = ({ name, filename, color, width, containerClasses }) => {
 
-  filename = "vots-bk";
+  filename = "vots-wt";
 
   const size = width ? width : "400px";
   const description =

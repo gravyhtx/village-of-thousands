@@ -48,7 +48,7 @@ const FaqContent = () => {
         environment which includes how we treat ourselves and each other.</>,
         <><span className="italics"><b>SUSTAINABILITY with the ABILITY to SUSTAIN.</b></span></>,
         <>This is our motto. Our journey which starts from within. We believe
-        that our impact and ability to give can only be as great as the work we put in to own self-care and
+        that our impact and ability to give can only be as great as the work we put into our self-care and
         the balance we maintain in our daily lives.</>,
         <>We are a community of like-minded individuals with high aspirations, sharing in our common interests
         in fashion and style with a passion for skateboard culture, offering a platform to share in a
@@ -276,7 +276,7 @@ const FaqContent = () => {
         <>Our use of cookies, or any local storage method for that matter, is all related to the operations
         necessary for the website to function – such as login credentials, the Web3 Wallet app, and our
         order system. Most items are set to get deleted after a period of time as well.</>,
-        <>Furthermore, we created this website line by line so that we choose what apps and APIs are
+        <>Furthermore, we created this website line-by-line so that we choose what apps and APIs are
         connecting to this website and we know exactly what data is being collected and how it’s being
         used. We have total control over our system so that we are able to implement any changes instead
         of relying on website builders to make the right decisions, the tradeoff being development is

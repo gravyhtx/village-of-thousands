@@ -3,13 +3,16 @@ import Link from 'next/link';
 import DefaultLayout from '../templates/DefaultLayout';
 
 import TextContainer from '../components/TextContainer';
-import ProductGridItem from '../components/ProductGridItem';
+// import ProductGridItem from '../components/ProductGridItem';
 
-import LogoTeeBlack from "../public/images/szn/001/products/vot-logo_tee-black.png";
+// import LogoTeeBlack from "../public/images/szn/001/products/vot-logo_tee-black.png";
 import SocialCircles from '../components/SocialCircles';
 
 import website from '../config/site-data.json';
 import SiteImage from '../components/SiteImage';
+// import ProductImage from '../components/ProductImage';
+import ProductImageGrid from '../components/ProductImageGrid';
+import { useEffect, useState } from 'react';
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -62,6 +65,15 @@ const ProductsPage = () =>  {
       description: "The Movement Has Begun!",
   }
 
+  const ImageGrid = () => { return <ProductImageGrid width={'400px'} randomSetLength={4} randomize={"all"} colsize={6} /> }
+
+  const [productGrid, setProductGrid] = useState(<ImageGrid />);  
+  useEffect(() => {
+    const productTimer = () => { setTimeout(() => { setProductGrid(<ImageGrid />) }, 6000) }
+    productTimer();
+  }, [productGrid])
+
+
   return (
     <DefaultLayout>
     <div className="products-page-container">
@@ -84,7 +96,9 @@ const ProductsPage = () =>  {
             `SZN // SPRING 2022 // DROP #${dropNumber()}`
           }</h2>
           <div className='product-grid'>
-          <ProductGridItem description="The VoT Logo Tee" image={LogoTeeBlack} />
+          {/* <ProductGridItem description="The VoT Logo Tee" image={LogoTeeBlack} /> */}
+          {/* <ProductImageGrid randomize /> */}
+          { productGrid }
           </div>
           <div className="products-link_view-all center disable-highlight">
             <span className="special-link products-link_view-all">
