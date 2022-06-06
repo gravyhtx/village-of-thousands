@@ -8,7 +8,8 @@ export default async (req, res) => {
   switch ( method ) {
     case 'GET':
       try {
-        const categories = await Category.find({}).populate("products");
+        // const categoryLoad = await Category.find({});
+        const categories = await Category.find({}).populate("products")
         
         res.status(200).json(categories);
       } catch (err) {
