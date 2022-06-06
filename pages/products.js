@@ -13,6 +13,7 @@ import SiteImage from '../components/SiteImage';
 // import ProductImage from '../components/ProductImage';
 import ProductImageGrid from '../components/ProductImageGrid';
 import { useEffect, useState } from 'react';
+import { shuffleArr } from '../utils/generator';
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -27,6 +28,7 @@ const ProductsPage = () =>  {
       return website.drop;
     }
   }
+
 
   const main = {
     border: true,
@@ -65,13 +67,35 @@ const ProductsPage = () =>  {
       description: "The Movement Has Begun!",
   }
 
-  const ImageGrid = () => { return <ProductImageGrid width={'400px'} randomSetLength={4} randomize={"all"} colsize={6} /> }
+  const ImageGrid = ({ blur, category }) => { return <ProductImageGrid width={"400px"} randomSetLength={1} randomize={category} colsize={6} blur={ blur ? blur : false} /> }
+  
+  const catArr = ["shirts", "longsleeves", "hoodies", "crewnecks"];
 
-  const [productGrid, setProductGrid] = useState(<ImageGrid />);  
-  useEffect(() => {
-    const productTimer = () => { setTimeout(() => { setProductGrid(<ImageGrid />) }, 6000) }
-    productTimer();
-  }, [productGrid])
+  const [productGrid, setProductGrid] = useState(<>
+    <ImageGrid category={"shirts"} blur={true} />
+    <ImageGrid category={"longsleeves"} blur={true} />
+    <ImageGrid category={"hoodies"} blur={true} />
+    <ImageGrid category={"crewnecks"} blur={true} />
+  </>);
+  
+  const refreshArr = () => {
+    shuffleArr(catArr);
+    setProductGrid(<>
+      <ImageGrid category={"shirts"} blur={false} />
+      <ImageGrid category={"longsleeves"} blur={false} />
+      <ImageGrid category={"hoodies"} blur={false} />
+      <ImageGrid category={"crewnecks"} blur={false} />
+    </>)
+  }
+  // useEffect(() => {
+  //   const productTimer = () => { setTimeout(() => { setProductGrid(<>
+  //     <ImageGrid category={"shirts"} blur={false} />
+  //     <ImageGrid category={"hoodies"} blur={false} />
+  //     <ImageGrid category={"crewnecks"} blur={false} />
+  //     <ImageGrid category={"longsleeves"} blur={false} />
+  //     </>)}, 10000) }
+  //   productTimer();
+  // }, [productGrid])
 
 
   return (
@@ -96,15 +120,14 @@ const ProductsPage = () =>  {
             `SZN // SPRING 2022 // DROP #${dropNumber()}`
           }</h2>
           <div className='product-grid'>
-          {/* <ProductGridItem description="The VoT Logo Tee" image={LogoTeeBlack} /> */}
-          {/* <ProductImageGrid randomize /> */}
-          { productGrid }
+          <div onClick={refreshArr}>{ productGrid }</div>
+          {/* { productGrid } */}
           </div>
           <div className="products-link_view-all center disable-highlight">
             <span className="special-link products-link_view-all">
             <Link href="/shop">
               <a className="blue-outline special-link special-border">
-              <span className=''>VIEW ALL PRODUCTS</span></a>
+              <span className='view-all-products'>VIEW ALL PRODUCTS</span></a>
             </Link>
             </span>
           </div>

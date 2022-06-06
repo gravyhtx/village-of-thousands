@@ -20,14 +20,15 @@ const Login = ({ activation }) =>  {
     setErrorClass({ email: '', password: '' })
   }
 
-  // const checkEmail = async (email) => {
-  //   try {
-  //     const response = searchUserByEmail(email);
-  //     console.log(response)
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
+  const checkEmail = async (email) => {
+    try {
+      const response = searchUserByEmail(email);
+      console.log(response)
+      console.log(email)
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -38,12 +39,12 @@ const Login = ({ activation }) =>  {
         event.preventDefault();
         event.stopPropagation();
     }
+    checkEmail(userFormData.email)
 
     try {
 
       const response = await loginUser(userFormData);
       // console.log(response);
-      // checkEmail(userFormData.email)
       
       setErrorClass({
         email: response.ok ? '' : ' input-error',

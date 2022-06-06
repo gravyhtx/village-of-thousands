@@ -41,8 +41,9 @@ const ImageContainer = ({ width, height, size, square, containerClasses, imgClas
     })
   }, [dataLength]);
 
-  // size = size ? size : ''
   const containerStyles = size ? { width: size[0], height: size[1] ? height : width } : {}
+  // size = size ? size : ''
+  // console.log(size)
 
   // if( (imgHeight && square) && !imgWidth ) { imgWidth = imgHeight }
   return (

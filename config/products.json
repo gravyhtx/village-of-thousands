@@ -1,52 +1,88 @@
 {
   "currentDrop": {
-    "shirts": {
-      "name": "VoT Logo Tee",
-      "category": "shirts",
-      "price": 55,
+    "crewnecks": {
+      "name": "VoT Logo Crewneck",
+      "category": "crewnecks",
+      "filename": ["vocn-bk",  "vocn-nt",  "vocn-aq",  "vocn-sf",  "vocn-lv"],
+      "fileId":   ["44289ae9", "3478bef1", "731417a0", "63c6f186", "d4121305"],
       "sizes": ["SM", "MD", "LG", "XL", "2X"],
-      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
+      "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
-      "prefix": ["VOTSR-1001-BK", "VOTSR-1001-WT", "VOTSR-1001-AQ", "VOTSR-1001-SF", "VOTSR-1001-LV"],
-      "suffix": "-001",
-      "filename": ["vots-bk",  "vots-wt",  "vots-aq",  "vots-sf",  "vots-lv"],
-      "fileId":   ["86bb1527", "5742214f", "992ff767", "f2cd8471", "dc9329ae"]
-    },
-    "longsleeves": {
-      "name": "VoT Logo Longsleeve",
-      "category": "longsleeves",
-      "price": 64,
-      "sizes": ["SM", "MD", "LG", "XL", "2X"],
-      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
-      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
-      "prefix": ["VOLSR-1001-BK", "VOLSR-1001-WT", "VOLSR-1001-AQ", "VOLSR-1001-SF", "VOLSR-1001-LV"],
-      "suffix": "-001",
-      "filename": ["vols-bk",  "vols-wt",  "vols-aq",  "vols-sf",  "vols-lv"],
-      "fileId":   ["7ec8ba64", "c73db6af", "062f9fe0", "2eeacb15", "d4ff598f"]
+      "price": 110,
+      "sku": ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"]
     },
     "hoodies": {
       "name": "VoT Logo Hoodie",
       "category": "hoodies",
-      "price": 112,
-      "sizes": ["SM", "MD", "LG", "XL", "2X"],
-      "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
-      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
-      "prefix": ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"],
-      "suffix": "-001",
       "filename": ["vohd-bk",  "vohd-nt",  "vohd-aq",  "vohd-sf",  "vohd-lv"],
-      "fileId":   ["e0b49da4", "cf43a946", "37630235", "570af170", "3c491be3"]
-    },
-    "crewnecks": {
-      "name": "VoT Logo Crewneck",
-      "category": "crewnecks",
-      "price": 110,
+      "fileId":   ["6d788ece", "01a98c29", "1614dd56", "030881ea", "fc9388b0"],
       "sizes": ["SM", "MD", "LG", "XL", "2X"],
       "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
-      "prefix": ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"],
-      "suffix": "-001",
-      "filename": ["vocn-bk",  "vocn-nt",  "vocn-aq",  "vocn-sf",  "vocn-lv"],
-      "fileId":   ["944f5da9", "85a629b1", "29982440", "67fa0c9e", "fe5f11b7"]
+      "price": 112,
+      "sku": ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"]
+    },
+    "longsleeves": {
+      "name": "VoT Logo Longsleeve",
+      "category": "longsleeves",
+      "filename": ["vols-bk",  "vols-wt",  "vols-aq",  "vols-sf",  "vols-lv"],
+      "fileId":   ["5dbdc37e", "c4009ce5", "d07ef07e", "eb91537c", "6d382030"],
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "sku": ["VOLSR-1001-BK", "VOLSR-1001-WT", "VOLSR-1001-AQ", "VOLSR-1001-SF", "VOLSR-1001-LV"],
+      "price": 64,
+      "suffix": "-001"
+    },
+    "shirts": {
+      "name": "VoT Logo Tee",
+      "category": "shirts",
+      "filename": ["vots-bk",  "vots-wt",  "vots-aq",  "vots-sf",  "vots-lv"],
+      "fileId":   ["69f249ec", "c2e3e9bd", "f570dde5", "08fd99b1", "c5cddbdc"],
+      "sizes": ["SM", "MD", "LG", "XL", "2X"],
+      "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
+      "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "price": 55,
+      "sku": ["VOTSR-1001-BK", "VOTSR-1001-WT", "VOTSR-1001-AQ", "VOTSR-1001-SF", "VOTSR-1001-LV"],
+      "suffix": "-001"
+    },
+    "drop": {
+      "id": "001",
+      "shipping": {
+        "service": "USPS",
+        "cost": 10
+      }
+    }
+  },
+  "imageData": {
+    "dimensions": {
+      "actual": 2000,
+      "thumbnail": 56,
+      "small": 165,
+      "default": 400,
+      "large": 1080
+    }
+  },
+  "sizing": {
+    "crewnecks": {
+      "body":   ["","","","",""],
+      "chest":  ["","","","",""],
+      "sleeve": ["","","","",""]
+    },
+    "hoodies": {
+      "body":   ["","","","",""],
+      "chest":  ["","","","",""],
+      "sleeve": ["","","","",""]
+    },
+    "longsleeves": {
+      "body":   ["","","","",""],
+      "chest":  ["","","","",""],
+      "sleeve": ["","","","",""]
+    },
+    "shirts": {
+      "body":   ["","","","",""],
+      "chest":  ["","","","",""],
+      "sleeve": ["","","","",""]
     }
   }
 }

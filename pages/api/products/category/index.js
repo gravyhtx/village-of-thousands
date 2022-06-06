@@ -9,6 +9,7 @@ export default async (req, res) => {
     case 'GET':
       try {
         const categories = await Category.find({}).populate("products");
+        console.log(categories)
         // console.log(categories)
         res.status(200).json(categories);
       } catch (err) {
