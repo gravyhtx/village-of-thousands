@@ -50,7 +50,7 @@
     ** Note: SVG must be imported with black fill (#000000) **
       "If your icon set isn't black you can prepend "brightness(0) saturate(100%)" to your filter property which will first turn the icon set to black."
 */
-  --body-color:   #111111;
+  --body-color:   #141414;
   --svg-body-color: invert(0%) sepia(0%) saturate(7475%) hue-rotate(135deg) brightness(99%) contrast(93%);
   --content-color:#eeeeee;
   --svg-content-color: invert(99%) sepia(1%) saturate(172%) hue-rotate(51deg) brightness(114%) contrast(87%);
@@ -1325,19 +1325,24 @@ h2, .h2 {
   /* AFTER ACCOUNT CREATION... (JS) */
     /* display:none; */
   cursor: pointer;
+}
+
+.notify-container {
+  -webkit-transition: 250ms ease-in-out;
+  transition: 250ms ease-in-out;
+}
+
+/* .notify-container span {
+  -webkit-transition: 250ms ease-in-out;
+  transition: 250ms ease-in-out;
+} */
+
+.notify-container i {
   -webkit-transition: 500ms ease-in-out;
   transition: 500ms ease-in-out;
 }
 
-.notify-container span {
-  
-}
-
-.notify-container span:hover {
-  
-}
-
-.notify:hover, .info-icon:hover {
+.notify-container:hover {
   color: var(--notify-hover-color);
   text-shadow: 1px 1px 3px rgb(159, 159, 159);
   -webkit-transition: 250ms ease-in-out;
@@ -1433,10 +1438,14 @@ button.btn-floating.navigation-link:focus {
 .top-nav {
   position: sticky;
   margin-bottom: 0px !important;
-  border-bottom: 1px solid #ffffff50;
+  border-bottom: 1px solid #ffffff80;
   background-color: var(--theme-alt-dark-color);
   box-shadow: 0px 0 20px black;
   height: 35px;
+}
+
+.top-nav.home {
+  border-bottom: 1px solid #ffffff;
 }
 
 .nav-top-col {
@@ -2425,7 +2434,7 @@ label#upload-label:hover {
 
 div.products-link_view-all {
   height: 33.3px;
-  margin: 35px 10px;
+  margin: -25px 10px 35px;
 }
 
 span.products-link_view-all {
@@ -2450,6 +2459,15 @@ span.products-link_view-all {
 .product-aside {
   margin-bottom: 80px;
   padding: 0 20px;
+}
+
+.product-image {
+  -webkit-filter: drop-shadow(0px 0px 10px #7fcce420);
+          filter: drop-shadow(0px 0px 10px #7fcce420);
+}
+
+.product-image-grid div {
+  margin-bottom: 20px;
 }
 
 .shop_learn-more {
@@ -2701,6 +2719,10 @@ span.products-link_view-all {
 .collapsible.active .faq-question-container {
   border-bottom: 1px solid white;
   color: #ffffff;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 9999;
+  top: 0;
 }
 
 .faq-question-header {
@@ -3471,9 +3493,9 @@ span.products-link_view-all {
   } */
   .yuge-spacer { margin: 40px 0; }
 
-  .header-img-container {
-    max-width: 95%;
-  }
+  .header-img-container { max-width: 95%; }
+
+  .top-nav, .navbar-container { border-bottom: 1px solid #ffffff80; }
 
   .notify, i { font-size: 11px; }
 
@@ -3513,10 +3535,20 @@ span.products-link_view-all {
     width: 100%;
     filter: invert(100%);
   }
+
+  .product-grid {
+    padding: 25px;
+  }
     
   .product-grid-image {
     max-width: 80%;
   }
+
+  div.products-link_view-all {
+    height: 33.3px;
+    margin: -25px 10px 35px;
+  }
+
   .product-info { padding: 0; }
   .product-card {
     margin: 0 auto;

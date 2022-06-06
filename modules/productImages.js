@@ -21,12 +21,15 @@ import voHdLv from '../public/images/szn/001/products/hoodie/vohd-lv.png' // LAV
 
 // CREWNECKS
 import voCnBk from '../public/images/szn/001/products/crewneck/vocn-bk.png' // BLACK
-import voCnNt from '../public/images/szn/001/products/crewneck/vocn-nt.png' // Natural
+import voCnNt from '../public/images/szn/001/products/crewneck/vocn-nt.png' // NATURAL
 import voCnAq from '../public/images/szn/001/products/crewneck/vocn-aq.png' // AQUA
 import voCnSf from '../public/images/szn/001/products/crewneck/vocn-sf.png' // SEAFOAM
 import voCnLv from '../public/images/szn/001/products/crewneck/vocn-lv.png' // LAVENDAR
 
-import { emptyData } from '../utils/siteFunctions'
+import { emptyData } from '../utils/siteFunctions' // BLANK IMAGE
+import { arrayEl, select } from '../utils/generator'
+
+// import
 
 export const productImage = ( filename ) => {
 
@@ -35,7 +38,7 @@ export const productImage = ( filename ) => {
   const hd = [voHdBk, voHdNt, voHdAq, voHdSf, voHdLv];
   const cn = [voCnBk, voCnNt, voCnAq, voCnSf, voCnLv];
 
-  const emptyUrl =  emptyData(true)
+  const emptyUrl = emptyData(true);
   
   let output;
 
@@ -77,14 +80,36 @@ export const productSet = ( category ) => {
   const hd = [voHdBk, voHdNt, voHdAq, voHdSf, voHdLv];
   const cn = [voCnBk, voCnNt, voCnAq, voCnSf, voCnLv];
 
-  const blankArr = [emptyUrl, emptyUrl, emptyUrl, emptyUrl, emptyUrl]
+  const all = [ts, ls, hd, cn];
+
+  const emptyUrl = emptyData(true);
+  const blankArr = [emptyUrl, emptyUrl, emptyUrl, emptyUrl, emptyUrl];
 
   const output =
       category === "shirts" ? ts
     : category === "longsleeves" ? ls
     : category === "hoodies" ? hd
     : category === "crewnecks" ? cn
-    : blankArr
+    : all
 
-  return output
+  return category ? output : blankArr
+}
+
+export const randomProduct = ( category, setLength ) => {
+
+  const output = productSet(category);
+  
+  let arr = [];
+  
+  while(arr.length < setLength){
+    // const item = category === "all" ? select(output) : arrayEl(output);
+    arr.push(category === "all" ? select(output) : arrayEl(output));
+  }
+
+  if(setLength) {
+    return arr;
+  } else {
+    return category === "all" ? select(output) : arrayEl(output);
+  }  
+
 }

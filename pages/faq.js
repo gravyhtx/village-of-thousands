@@ -47,7 +47,7 @@ const Faq = () => {
           ref={accordElem}
           disableGutters>
           <AccordionSummary className="faq-question-container" onClick={scroll()}>
-            <span className="faq-number">{(index+1) < 10 ? (`00${index+1}//`) : (`"0${index+1}//`)}&emsp;</span>
+            <span className="faq-number">{(index+1) < 10 ? (`00${index+1}//`) : (`0${index+1}//`)}&emsp;</span>
             <h2 className="faq-question-header">{q.question}</h2>
           </AccordionSummary>
           <AccordionDetails className="faq-body">

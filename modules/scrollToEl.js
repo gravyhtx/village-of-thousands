@@ -11,7 +11,7 @@ const scrollToEl = (el,t) => {
         // getEl ?
         getEl.scrollIntoView({behavior: "smooth", block: "start", inline: "center"})
         // : rootEl.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-      }, 300)
+      }, 500)
     }
   });
 }

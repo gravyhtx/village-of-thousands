@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { accountActivation, getPendingUser } from "../../utils/API";
 import Auth from '../../utils/auth';
-
-import { getDemoProducts } from '../../utils/API';
-import { idbPromise } from '../../utils/helpers';
+import { accountActivation, getPendingUser } from "../../utils/API";
+import { getAllCategories } from '../../utils/API';
 
 import DefaultLayout from "../../templates/DefaultLayout";
 
@@ -14,6 +12,7 @@ import LoginContainer from "../../components/LoginActivateContainer";
 import ProductCard from "../../components/ProductCard";
 
 import website from '../../config/site-data.json';
+import ProductImage from "../../components/ProductImage";
 
 const Products = () => {
   const router = useRouter();
@@ -29,7 +28,7 @@ const Products = () => {
           setLogged(true)
         }
 
-        const response = await getDemoProducts();
+        const response = await getAllCategories();
         const productInfo = await response.json();
 
         console.log(productInfo)
@@ -49,12 +48,8 @@ const Products = () => {
           <div className="activate-page center container animate__animated animate__fadeIn">
             <div className="row">
               { products.length ?
-                products.map(productElement => {
-                  return (
-                    <div className="col s6" key={productElement._id}>
-                      <ProductCard productElement={productElement} loggedIn={loggedIn} />
-                    </div>)
-                }) :
+                <ProductImage randomize />
+                 :
                 (
                   <h1>Loading</h1>
                 )

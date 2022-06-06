@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const ImageContainer = ({ width, height, square, containerClasses, imgClasses, layout, description, src, id, containerId, svg, priority, blur, drag, contain }) => {
+const ImageContainer = ({ width, height, size, square, containerClasses, imgClasses, layout, description, src, id, containerId, svg, priority, blur, drag, contain }) => {
 
   const [imageData, setImageData] = useState({
     width: {
@@ -41,22 +41,34 @@ const ImageContainer = ({ width, height, square, containerClasses, imgClasses, l
     })
   }, [dataLength]);
 
-  const containerStyles = width ? { width: width, height: height ? height : width } : {}
+  // size = size ? size : ''
+  const containerStyles = size ? { width: size[0], height: size[1] ? height : width } : {}
 
   // if( (imgHeight && square) && !imgWidth ) { imgWidth = imgHeight }
   return (
-    <div style={ containerStyles } className={"image-container"+imageData.containerClasses+imageData.contain}
+    <div style={containerStyles} className={"image-container"+imageData.containerClasses+imageData.contain}
       id={containerId} aria-label={description+" Contianer"}>
-      <Image
-        // width={imgWidth}
-        layout={imageData.layout}
-        className={"image-class"+imageData.imgClasses}
-        alt={imageData.description}
-        src={src}
-        id={imageData.id}
-        placeholder={imageData.blur}
-        draggable={imageData.drag}
-        priority={imageData.priority} />
+      {size ?
+        <Image
+          width={size[0] ? size[0] : "100%"}
+          height={size[1] ? size[1] : "100%"}
+          layout={imageData.layout}
+          className={"image-class"+imageData.imgClasses}
+          alt={imageData.description}
+          src={src}
+          id={imageData.id}
+          placeholder={imageData.blur}
+          draggable={imageData.drag}
+          priority={imageData.priority} />
+      : <Image
+          layout={imageData.layout}
+          className={"image-class"+imageData.imgClasses}
+          alt={imageData.description}
+          src={src}
+          id={imageData.id}
+          placeholder={imageData.blur}
+          draggable={imageData.drag}
+          priority={imageData.priority} />}
     </div>
   )
       

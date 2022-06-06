@@ -127,7 +127,7 @@ export const accountActivation = (userId) => {
 }
 
 export const searchUserByEmail = (userEmail) => {
-  return fetch('/api/users/activate/' + userEmail, {
+  return fetch('/api/users/' + userEmail, {
     headers: {
       'Content-Type': 'application/json',
     }
