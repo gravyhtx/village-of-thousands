@@ -73,6 +73,11 @@ export const gaussRound = (num, decimalPlaces) => {
 // COMPARE & SHUFFLE //
 ///////////////////////
 
+// "THE COMPARE FUNCTION"
+export const compare = (a, b, reverse, randomize) => {
+  if(randomize) { return (0.5 - Math.random()) }
+  else { return reverse ? (b - a) : (a - b) }
+}
 
 // GET AVERAGE OF NUMBERS IN AN ARRAY
 export const average = (numberArray) => {
@@ -135,6 +140,17 @@ export const shuffleArr = (array) => {
   return array;
 }
 
+// PERFECT NUMBER SHUFFLE (aka "Fisher Yates Shuffle")
+export const shuffleNumbers = (numArr) => {
+  for (let i = numArr.length -1; i > 0; i--) {
+    let j = Math.floor(Math.random() * i)
+    let k = numArr[i]
+    numArr[i] = numArr[j]
+    numArr[j] = k
+  }
+  return numArr;
+}
+
 // SHUFFLE STRING ORDER
 export const shuffleStr = (str) => { // Randomizes character order of a string
     const arr = str.split('');
@@ -180,6 +196,23 @@ export const arrayEl = (el, array, opts) => {
     output = randomSelection()
   }
   return output
+}
+
+
+/////////////////////
+// SORT & ORGANIZE //
+/////////////////////
+
+// ARRANGE NUMBERS  (Organize numbers in order lowest to highest or highest to lowest)
+export const arrangeNumbers = (numArr, reverse) => {
+  return numArr.sort(compare(a, b, reverse));
+}
+
+// SIMPLE MAP FUNCTION
+export const simpleMap = (items, classes) => {
+  return items.map((item, index) =>
+    <div className={classes} key={index}>{item}</div>
+  )
 }
 
 

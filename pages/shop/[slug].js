@@ -2,89 +2,74 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { accountActivation, getPendingUser } from "../../utils/API";
 import Auth from '../../utils/auth';
-
-import { getDemoProducts } from '../../utils/API';
-import { idbPromise } from '../../utils/helpers';
+import { getAllCategories } from '../../utils/API';
 
 import DefaultLayout from "../../templates/DefaultLayout";
 
 import LoginContainer from "../../components/LoginActivateContainer";
 import ProductCard from "../../components/ProductCard";
+import ProductImage from "../../components/ProductImage";
 
 const Products = () => {
+  const [loggedIn, setLogged] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const router = useRouter();
 
-  // const [isLogged, setIsLogged] = useState(false);
-  // const [activateStatus, setActivateStatus] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
 
-  // useEffect(() => {
-  //   const checkLogged = async () => {
-  //     try {
-  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //       if (token) {
-  //         setIsLogged(true);
-  //       }
-  //     } catch (err) {
-  //       console.error(err)
-  //     }
-  //   }
-
-  //   checkLogged();
-
-  //   if(activateStatus) {
-  //     setTimeout(function(){
-  //       router.push('/')
-  //     }, 15000);
-  //   }
-  // }, []);
-
+  const [category, setCategory] = useState({ category_name: "", products: [], tags: [], _id: "" });
   const [products, setProducts] = useState([]);
-  const [loggedIn, setLogged] = useState(false);
+
+  const slug = router.query.slug;
 
   useEffect(() => {
     const getProductData = async () => {
-    try {
-      const profile = Auth.loggedIn() ? Auth.getProfile() : null;
+      try {
+        const profile = Auth.loggedIn() ? Auth.getProfile() : null;
+        
         if(profile) {
           setLogged(true)
         }
-
-        const response = await getDemoProducts();
-        const productInfo = await response.json();
-
-        console.log(productInfo)
-        setProducts(productInfo)
+        const response = await getAllCategories();
+        const productInfo = await response.json()
+        setAllProducts(productInfo);
+        if(allProducts) {
+          setLoaded(true)
+        }
+        
       } catch (err) {
           console.error(err);
       }
     }
     getProductData();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const cat = allProducts.filter(function(el){
+      return el.category_name === slug;
+    })
+    setCategory(cat ? cat[0] : {});
+    setProducts(category ? category.products : [])
+  }, [!allProducts.length]);
+
+  console.log(products);
 
   return (
     <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
       <div className="activate-page center container animate__animated animate__fadeIn">
-        {!loggedIn ? (
-          <>
-            <LoginContainer />
-          </>
-        ) : 
+        {category ? 
+          <h1>
+            {category.category_name.toUpperCase()}
+          </h1>
+        : <></> }
         <div className="row">
-          { products.length ?
-            products.map(productElement => {
-              return (
-                <div className="col s6" key={productElement._id}>
-                  <ProductCard productElement={productElement} loggedIn={loggedIn} />
-              </div>)
-            }) :
-            (
-              <h1>Loading</h1>
-            )
-          }
-        </div> }
+          {loaded && products.length ?
+            <ProductImage name={products[1].product_name} filename={products[1].product_path} />
+          : <></>}
+            {/* <ProductCard productElement={productElement} loggedIn={loggedIn} /> */}
+        </div>
+        {/* } */}
       </div>
     </DefaultLayout>
   );

@@ -62,6 +62,8 @@ const SiteImage = ({ images, width, containerClasses, imgClasses, description, d
 
   const output = siteImage ? { src: siteImage.src } : image;
 
+  // const imgEl =  <img style={width} className={"image-class"+imgClasses} alt={description} src={output.src} draggable={drag} />
+
   return (
     <>
       {output?

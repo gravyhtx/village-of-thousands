@@ -1,11 +1,13 @@
 import ImageContainer from '../components/ImageContainer';
 import { productImage, randomProduct } from '../modules/productImages';
+import { ImageCDN } from '../utils/siteFunctions';
 
 import website from '../config/site-data.json';
 
-export const ProductImage = ({ name, filename, color, width, containerClasses, randomize, randomSetLength, colSize }) => {
+export const ProductImage = ({ name, filename, color, width, containerClasses, randomize, randomSetLength, colSize, blur }) => {
 
   filename = filename ? filename : "vots-bk";
+  blur = blur ? blur : false;
 
   const randomizeProducts = () => {
     if(randomSetLength) {
@@ -31,7 +33,7 @@ export const ProductImage = ({ name, filename, color, width, containerClasses, r
 
   containerClasses = containerClasses ? "center center-img "+containerClasses : "center center-img";
 
-  const prodEl = (image, size, description, filename, containerClasses) => {
+  const prodEl = (image, size, description, filename, containerClasses, blur) => {
     return <ImageContainer
             src={image}
             size={size}
@@ -39,12 +41,12 @@ export const ProductImage = ({ name, filename, color, width, containerClasses, r
             id={"prod-img_"+filename}
             containerClasses={"product-image-container "+containerClasses}
             imgClasses={"product-image"}
-            blur />
+            blur={blur} />
   }
 
-  const randProdEl = () => {
+  const randProdEl = (blur) => {
     const arr = randomProduct(randomize === true ? "all" : randomize, randomSetLength, colSize);
-    const prodEl = (index, image, size, description, filename, containerClasses) => {
+    const prodEl = (index, image, size, description, filename, containerClasses, blur) => {
       return (<div className={colSize ? 'center-img col s12 m12 l'+colSize : 'center-img col s12 m12 l6'} key={index}>
                 <ImageContainer
                   src={image}
@@ -53,12 +55,13 @@ export const ProductImage = ({ name, filename, color, width, containerClasses, r
                   id={"prod-img_"+filename}
                   containerClasses={"product-image-container "+containerClasses}
                   imgClasses={"product-image"}
-                  blur /></div>)
+                  blur={blur} />
+              </div>)
     }
-    return arr.map((image, index) => prodEl(index, image, size, description, filename, containerClasses))
+    return arr.map((image, index) => prodEl(index, image, size, description, filename, containerClasses, blur))
   }
 
-  return randomize ? randProdEl() : prodEl(image, size, description, filename, containerClasses);
+  return randomize ? randProdEl(blur) : prodEl(image, size, description, filename, containerClasses, blur);
 }
 
 export default ProductImage;

@@ -119,88 +119,11 @@ export const canvasToPng = ( el, alt, classes, id ) => {
 }
 
 
-// SIMPLIFY ELEMENTS
-
-export const cdnLink = ( filename ) => {
-  
-  // USE WITH FULL FILENAME WITH EXTENSION
-  //  ex: "header.fb0ffabf.png"
-  
-  const path = "/_next/static/media/"
-
-  return path+filename
-}
-
-export const ImageCDN = ({ filename, fileExt, description, classes, id, allowDrag, sizes, defaultWidth,customStyles, containerClasses, responsive, useFallbackStyles, useContainerStyles }) => {
-  
-  // filename example -- "header.fb0ffabf"
-  // filename = filename.toString();
-  const fSplit = filename.split(".");
-  const fileTitle = fSplit[0];
-  const fileId = fSplit[1];
-  
-  // fileExt example -- ".jpg"
-  fileExt = fileExt ? fileExt : ".png";
-  
-  customStyles = customStyles ? customStyles : {};
-  responsive = responsive ? responsive : true;
-
-  const displayStyle = responsive ? 'flex': 'block';
-  
-  const fallbackStyles = {
-    position: 'absolute',
-    inset: '0px',
-    boxSizing: 'border-box',
-    padding: '0px',
-    border: 'none',
-    margin: 'auto',
-    display: displayStyle,
-    width: '0px',
-    height: '0px',
-    minWidth: '100%',
-    maxWidth: '100%',
-    minHeight: '100%',
-    maxHeight: '100%',
-  }
-  
-  const imgStyles = useFallbackStyles ? fallbackStyles + customStyles : customStyles;
-  
-  useContainerStyles = useContainerStyles ? useContainerStyles : true;
-  const containerStyles = {
-    display: responsive ? 'block' : 'inline-block',
-    position: 'relative'
-  }
-  
-  const widths = ["640","750","828","1080","1200","1920","2048","3840"];
-  defaultWidth = defaultWidth ? defaultWidth : widths[7];  
-  const path = "/_next/static/media/";
-  
-  const link = (n) => { return path+filename+fileExt+"?imwidth="+widths[n]+" "+widths[n]+"w" };
-  const srcSet = `${link(0)}, ${link(1)}, ${link(2)}, ${link(3)}, ${link(4)}, ${link(5)}, ${link(6)}, ${link(7)}`
-
-  console.log(`${path}${filename}${fileExt}?imwidth=${defaultWidth}`)
-  console.log(filename)
-
-  const image =
-          <div className={ containerClasses } style={ useContainerStyles ? containerStyles : '' }>
-            <img
-              alt={ description ? description : "Village of Thousands - Site Image" }
-              className={classes ? classes : "image-class"}
-              id={ id ? id : fileTitle+fileId }
-              draggable={ allowDrag ? allowDrag.toString() : "false" }
-              sizes={ sizes ? sizes : "100vw"}
-              srcSet={ srcSet }
-              src={ path+filename+fileExt+"?imwidth="+defaultWidth }
-              decoding="async"
-              style={ imgStyles }/>
-          </div>
-  
-  return image;
-}
 
 /////////////////////
 // RETURN ELEMENTS //
 /////////////////////
+
 
 export const emptyData = ( dataArray, dataImage ) => {
   // Returns an empty 1x1 px Data PNG
@@ -212,6 +135,83 @@ export const emptyData = ( dataArray, dataImage ) => {
   }
   return (  dataImage && !dataArray ? <img className={img.classes} style={img.styles} src={url} />
           : dataArray && !dataImage ? { src: url, blurDataUrl: url, height: 2000, width: 2000 } : url )
+}
+
+
+export const cdnLink = ( fileName, fileId, fileExt ) => {
+  
+  fileExt = fileExt ? fileExt : ".png";
+
+  const location = "/_next/static/media/";
+  const emptyUrl = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  const file = fileName && fileId ? fileName+"."+fileId+"."+fileExt : emptyUrl;
+
+  return location+file
+}
+
+
+export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
+
+  const imgLink = cdnLink(fileName, fileId, fileExt);
+
+  useContainerStyles = useContainerStyles ? useContainerStyles : true;
+  customStyles = customStyles ? customStyles : {};
+  responsive = responsive ? responsive : true;  
+  
+  const fallbackStyles = {
+    position: 'absolute',
+    inset: '0px',
+    boxSizing: 'border-box',
+    padding: '0px',
+    border: 'none',
+    margin: 'auto',
+    display: responsive ? 'flex': 'block',
+    width: '0px',
+    height: '0px',
+    minWidth: '100%',
+    maxWidth: '100%',
+    minHeight: '100%',
+    maxHeight: '100%',
+  }
+  
+  const widths = ["640","750","828","1080","1200","1920","2048","3840"];
+  
+  const img = {
+    src: imgLink+"?imwidth="+defaultWidth,
+    defaultWidth: defaultWidth ? defaultWidth : widths[7],
+    alt: description ? description : "Village of Thousands - Site Image",
+    imgClasses: imgClasses ? imgClasses : "image-class",
+    imgStyles: useFallbackStyles ? fallbackStyles + customStyles : customStyles,
+    containerClasses: containerClasses ? containerClasses : "image-container",
+    containerStyles: {
+      display: responsive ? 'block' : 'inline-block',
+      position: 'relative'
+    },
+    contain: contain ? ' contain' : '',
+    imgId: id ? id : fileName && fileId ? fileName+fileId : fileName,
+    containerId: containerId ? containerId : "image-container"+fileId,
+    draggable: allowDrag ? allowDrag.toString() : "false",
+    sizes: sizes ? sizes : "100vw",
+  }
+  
+  const link = (n) => { return imgLink+"?imwidth="+widths[n]+" "+widths[n]+"w" };
+  const srcSet = `${link(0)}, ${link(1)}, ${link(2)}, ${link(3)}, ${link(4)}, ${link(5)}, ${link(6)}, ${link(7)}`;
+
+  return (<>
+    {img.src ?
+      <div className={ img.containerClasses } style={ img.containerStyles } id={ img.containerId }>
+        <img
+          alt={ img.alt }
+          className={ img.imgClasses }
+          id={ img.imgId }
+          draggable={ img.draggable }
+          sizes={ img.sizes }
+          srcSet={ srcSet }
+          src={ img.src }
+          style={ img.imgStyles }
+          decoding="async" />
+      </div>:<></>}
+    </>)
 }
 
 

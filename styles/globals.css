@@ -595,6 +595,47 @@ Some of these animations were generated with ~https://animista.net/~ !! */
   }
 }
 
+@keyframes productGlow {
+  0% {
+    -webkit-filter: drop-shadow(-1px -1px 8px #7fcce420);
+            filter: drop-shadow(-1px -1px 8px #7fcce420);
+  }
+  100% {
+    -webkit-filter: drop-shadow(2px 2px 1px #7fcce405);
+            filter: drop-shadow(2px 2px 1px #7fcce405);
+  }
+}
+
+@keyframes saturator {
+  0% {
+    -webkit-filter: hue-rotate(0) saturate(.75);
+            filter: hue-rotate(0) saturate(.75);
+  }
+  50% {
+    -webkit-filter: hue-rotate(.142rad) saturate(1);
+            filter: hue-rotate(.142rad) saturate(1);
+  }
+  100% {
+    -webkit-filter: hue-rotate(0) saturate(.75);
+            filter: hue-rotate(0) saturate(.75);
+  }
+}
+
+@keyframes hueRotate01 {
+  0% {
+    -webkit-filter: hue-rotate(0.1rad) saturate(0.9);
+            filter: hue-rotate(0.1rad) saturate(0.9); }
+ 33% {
+    -webkit-filter: hue-rotate(0.33rad) saturate(0.75);
+            filter: hue-rotate(0.33rad) saturate(0.75); }
+ 67% {
+    -webkit-filter: hue-rotate(-0.1rad) saturate(1.1);
+            filter: hue-rotate(-0.1rad) saturate(1.1); }
+ 100% {
+    -webkit-filter: hue-rotate(0) saturate(1);
+            filter: hue-rotate(0) saturate(1); }
+}
+
 /*
 ////////////////////
 // MAGICAL STYLES //
@@ -2385,6 +2426,19 @@ label#upload-label:hover {
   width: 80%;
 }
 
+.index-main_img {
+  -webkit-filter: hue-rotate(0) saturate(.75);
+          filter: hue-rotate(0) saturate(.75);
+  -webkit-transition: 1s ease-out;
+          transition: 1s ease-out;
+}
+.index-main_img:hover {
+  -webkit-animation: saturator 2500ms forwards ease-in;
+          animation: saturator 2500ms forwards ease-in;
+  -webkit-transition: 1s;
+          transition: 1s;
+}
+
 .index-aside {
   font-size: 1.61rem;
 }
@@ -2392,6 +2446,7 @@ label#upload-label:hover {
 .index-aside_text {
   padding-bottom: 10px;
 }
+
 
 .index-aside_text p {
   margin: 0 0 1em;
@@ -2443,8 +2498,8 @@ span.products-link_view-all {
 }
 
 .products_showcase-container {
-  min-height: 650px;
-  margin-bottom: 60px;
+  min-height: 1140px;
+  margin-bottom: 125px;
 }
 
 .product-carousel-header {
@@ -2461,13 +2516,62 @@ span.products-link_view-all {
   padding: 0 20px;
 }
 
+.product-grid {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 90vw;
+}
+
+.product-grid-item {
+  margin: 0 auto;
+}
+
+.product-grid-image {
+  max-width: 50%;
+}
+
 .product-image {
-  -webkit-filter: drop-shadow(0px 0px 10px #7fcce420);
-          filter: drop-shadow(0px 0px 10px #7fcce420);
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  -webkit-filter: drop-shadow(0px 0px 10px #000000) contrast(100%) brightness(1) saturate(1);
+          filter: drop-shadow(0px 0px 10px #000000) contrast(100%) brightness(1) saturate(1);
+  -webkit-transition: 300ms ease-in;
+          transition: 300ms ease-in;
+}
+
+.product-image:hover {
+  -webkit-filter: drop-shadow(2px 2px 2px #000000) contrast(95%) brightness(1.125) saturate(1.25);
+          filter: drop-shadow(2px 2px 2px #000000) contrast(95%) brightness(1.125) saturate(1.25);
+  -webkit-transition: 500ms ease-out;
+          transition: 500ms ease-out;
+  -webkit-animation: hueRotate01 500ms forwards ease-in-out;
+          animation: hueRotate01 500ms forwards ease-in-out;
+}
+
+.product-grid div {
+  margin-bottom: 40px;
+}
+
+.product-image-container {
+  -webkit-filter: drop-shadow(1px 1px 5px #7fcce410);
+          filter: drop-shadow(1px 1px 5px #7fcce410);
+  -webkit-transition: 1s ease-in-out;
+          transition: 1s ease-in-out;
+}
+.product-image-container:hover {
+  /* -webkit-filter: drop-shadow(0px 0px 10px #7fcce433)!important;
+          filter: drop-shadow(0px 0px 10px #7fcce433)!important; */
+  -webkit-animation: productGlow 1s forwards ease-in-out;
+          animation: productGlow 1s forwards ease-in-out;
+}
+
+.product-image {
+  max-width: 90% !important;
 }
 
 .product-image-grid div {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .shop_learn-more {
@@ -2580,18 +2684,6 @@ span.products-link_view-all {
 
 .materialboxed.active {
 
-}
-
-.product-grid {
-  padding: 40px;
-}
-
-.product-grid-item {
-  margin: 0 auto;
-}
-
-.product-grid-image {
-  max-width: 50%;
 }
 
 .options-row {
@@ -3547,6 +3639,10 @@ span.products-link_view-all {
   div.products-link_view-all {
     height: 33.3px;
     margin: -25px 10px 35px;
+  }
+
+  .products_showcase-container {
+    margin-bottom: 110px;
   }
 
   .product-info { padding: 0; }
