@@ -1,0 +1,206 @@
+[
+  {
+    "state_name": "Alabama",
+    "state_value": "AL"
+  },
+  {
+    "state_name": "Alaska",
+    "state_value": "AK"
+  },
+  {
+    "state_name": "Arizona",
+    "state_value": "AZ"
+  },
+  {
+    "state_name": "Arkansas",
+    "state_value": "AR"
+  },
+  {
+    "state_name": "California",
+    "state_value": "CA"
+  },
+  {
+    "state_name": "Colorado",
+    "state_value": "CO"
+  },
+  {
+    "state_name": "Connecticut",
+    "state_value": "CT"
+  },
+  {
+    "state_name": "Delaware",
+    "state_value": "DE"
+  },
+  {
+    "state_name": "District Of Columbia",
+    "state_value": "DC"
+  },
+  {
+    "state_name": "Florida",
+    "state_value": "FL"
+  },
+  {
+    "state_name": "Georgia",
+    "state_value": "GA"
+  },
+  {
+    "state_name": "Hawaii",
+    "state_value": "HI"
+  },
+  {
+    "state_name": "Idaho",
+    "state_value": "ID"
+  },
+  {
+    "state_name": "Illinois",
+    "state_value": "IL"
+  },
+  {
+    "state_name": "Indiana",
+    "state_value": "IN"
+  },
+  {
+    "state_name": "Iowa",
+    "state_value": "IA"
+  },
+  {
+    "state_name": "Kansas",
+    "state_value": "KS"
+  },
+  {
+    "state_name": "Kentucky",
+    "state_value": "KY"
+  },
+  {
+    "state_name": "Lousiniana",
+    "state_value": "LA"
+  },
+  {
+    "state_name": "Maine",
+    "state_value": "ME"
+  },
+  {
+    "state_name": "Maryland",
+    "state_value": "MD"
+  },
+  {
+    "state_name": "Massachusetts",
+    "state_value": "MA"
+  },
+  {
+    "state_name": "Michigan",
+    "state_value": "MI"
+  },
+  {
+    "state_name": "Minnesota",
+    "state_value": "MN"
+  },
+  {
+    "state_name": "Mississippi",
+    "state_value": "MS"
+  },
+  {
+    "state_name": "Missouri",
+    "state_value": "MO"
+  },
+  {
+    "state_name": "Montana",
+    "state_value": "MT"
+  },
+  {
+    "state_name": "Nebraska",
+    "state_value": "NE"
+  },
+  {
+    "state_name": "Nevada",
+    "state_value": "NV"
+  },
+  {
+    "state_name": "New Hampshire",
+    "state_value": "NH"
+  },
+  {
+    "state_name": "New Jersey",
+    "state_value": "NJ"
+  },
+  {
+    "state_name": "New Mexico",
+    "state_value": "NM"
+  },
+  {
+    "state_name": "New York",
+    "state_value": "NY"
+  },
+  {
+    "state_name": "North Carolina",
+    "state_value": "NC"
+  },
+  {
+    "state_name": "North Dakota",
+    "state_value": "ND"
+  },
+  {
+    "state_name": "Ohio",
+    "state_value": "OH"
+  },
+  {
+    "state_name": "Oklahoma",
+    "state_value": "OK"
+  },
+  {
+    "state_name": "Oregon",
+    "state_value": "OR"
+  },
+  {
+    "state_name": "Pennsylvania",
+    "state_value": "PA"
+  },
+  {
+    "state_name": "Rhode Island",
+    "state_value": "RI"
+  },
+  {
+    "state_name": "South Carolina",
+    "state_value": "SC"
+  },
+  {
+    "state_name": "South Dakota",
+    "state_value": "SD"
+  },
+  {
+    "state_name": "Tennessee",
+    "state_value": "TN"
+  },
+  {
+    "state_name": "Texas",
+    "state_value": "TX"
+  },
+  {
+    "state_name": "Utah",
+    "state_value": "UT"
+  },
+  {
+    "state_name": "Vermont",
+    "state_value": "VT"
+  },
+  {
+    "state_name": "Virgina",
+    "state_value": "VA"
+  },
+  {
+    "state_name": "Washington",
+    "state_value": "WA"
+  },
+  {
+    "state_name": "West Virginia",
+    "state_value": "WV"
+  },
+  {
+    "state_name": "Wisconsin",
+    "state_value": "WI"
+  },
+  {
+    "state_name": "Wyoming",
+    "state_value": "WY"
+  }
+]
