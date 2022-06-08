@@ -8,8 +8,9 @@
       "sizes": ["SM", "MD", "LG", "XL", "2X"],
       "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "sku": ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"],
       "price": 110,
-      "sku": ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"]
+      "hexBase": ["#000000", "#f0eee4", "#5d9ca4", "#bcc8c6", "#b58da1"]
     },
     "hoodies": {
       "name": "VoT Logo Hoodie",
@@ -19,8 +20,9 @@
       "sizes": ["SM", "MD", "LG", "XL", "2X"],
       "colors": ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
+      "sku": ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"],
       "price": 112,
-      "sku": ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"]
+      "hexBase": ["#000000", "#f0eee4", "#5d9ca4", "#bcc8c6", "#b58da1"]
     },
     "longsleeves": {
       "name": "VoT Logo Longsleeve",
@@ -32,7 +34,7 @@
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
       "sku": ["VOLSR-1001-BK", "VOLSR-1001-WT", "VOLSR-1001-AQ", "VOLSR-1001-SF", "VOLSR-1001-LV"],
       "price": 64,
-      "suffix": "-001"
+      "hexBase": ["#000000", "#ffffff", "#5d9ca4", "#bcc8c6", "#b58da1"]
     },
     "shirts": {
       "name": "VoT Logo Tee",
@@ -42,9 +44,9 @@
       "sizes": ["SM", "MD", "LG", "XL", "2X"],
       "colors": ["Black", "White", "Aqua", "Seafoam", "Lavender"],
       "description": ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
-      "price": 55,
       "sku": ["VOTSR-1001-BK", "VOTSR-1001-WT", "VOTSR-1001-AQ", "VOTSR-1001-SF", "VOTSR-1001-LV"],
-      "suffix": "-001"
+      "price": 55,
+      "hexBase": ["#000000", "#ffffff", "#5d9ca4", "#bcc8c6", "#b58da1"]
     },
     "drop": {
       "id": "001",

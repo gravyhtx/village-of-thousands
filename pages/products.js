@@ -14,6 +14,7 @@ import SiteImage from '../components/SiteImage';
 import ProductImageGrid from '../components/ProductImageGrid';
 import { useEffect, useState } from 'react';
 import { shuffleArr } from '../utils/generator';
+import ProductImage from '../components/ProductImage';
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -72,19 +73,19 @@ const ProductsPage = () =>  {
   const catArr = ["shirts", "longsleeves", "hoodies", "crewnecks"];
 
   const [productGrid, setProductGrid] = useState(<>
-    <ImageGrid category={"shirts"} blur={true} />
-    <ImageGrid category={"longsleeves"} blur={true} />
-    <ImageGrid category={"hoodies"} blur={true} />
-    <ImageGrid category={"crewnecks"} blur={true} />
+    <ProductImage category={"ts"} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={"ls"} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={"hd"} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={"cn"} containerClasses={"col s12 m12 l6"} random />
   </>);
   
   const refreshArr = () => {
     shuffleArr(catArr);
     setProductGrid(<>
-      <ImageGrid category={"shirts"} blur={false} />
-      <ImageGrid category={"longsleeves"} blur={false} />
-      <ImageGrid category={"hoodies"} blur={false} />
-      <ImageGrid category={"crewnecks"} blur={false} />
+      <ProductImage category={"ts"} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={"ls"} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={"hd"} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={"cn"} containerClasses={"col s12 m12 l6"} random />
     </>)
   }
   // useEffect(() => {
@@ -115,19 +116,19 @@ const ProductsPage = () =>  {
         />
         </div>
         <br/>
-        <div className='products_showcase-container row'>
-          <h2 className='center product-carousel-header gravy-font'>{
+        <div className="products_showcase-container row">
+          <h2 className="center product-carousel-header gravy-font">{
             `SZN // SPRING 2022 // DROP #${dropNumber()}`
           }</h2>
-          <div className='product-grid'>
-          <div onClick={refreshArr}>{ productGrid }</div>
+          <div className="product-grid">
+          <div className="row" onClick={refreshArr}>{ productGrid }</div>
           {/* { productGrid } */}
           </div>
           <div className="products-link_view-all center disable-highlight">
             <span className="special-link products-link_view-all">
             <Link href="/shop">
               <a className="blue-outline special-link special-border">
-              <span className='view-all-products'>VIEW ALL PRODUCTS</span></a>
+              <span className="view-all-products">VIEW ALL PRODUCTS</span></a>
             </Link>
             </span>
           </div>

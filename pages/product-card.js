@@ -1,101 +1,75 @@
-import ImageContainer from '../components/ImageContainer';
-import { productImage } from '../modules/productImages';
-
-import products from '../config/products.json'
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
 
-export const ProductCard = ({ name, fileName, width, loggedIn }) => {
+import DefaultLayout from '../templates/DefaultLayout';
 
-  console.log(products.currentDrop)
+import ProductCard from '../components/ProductCard';
+
+import { productImage } from '../modules/productImages';
+import products from '../config/products.json'
+
+import Auth from '../utils/auth';
+import { getAllCategories } from '../utils/API';
+
+export const ProductCardTest = () => {
+
   // const id = id ? id : '';
-  const [productInfo, setProductInfo] = useState({
-    name: '',
-    description: [],
-    sizes: [],
-    colors: [],
-    price: undefined,
-    id: ''
-  }) ;
-  const [productSelection, setProductSelection] = useState({
-    size: '',
-    color: '',
-    quantity: 1
-  })
 
-  const addToCart = (event) => {
-    idbPromise('cart', 'put', {
-      id: event.target.dataset.id,
-      path: event.target.dataset.path,
-      product: event.target.dataset.name,
-      image: event.target.dataset.image,
-      color: event.target.dataset.color,
-      price: event.target.dataset.price,
-      quantity: 1
-    })
-  }
+  const [productData, setProductData] = useState([
+    // { category_name: "", product_information: [], products: [], tags: [], _id: "" },
+    // { category_name: "", products: [], tags: [], _id: "" },
+    // { category_name: "", products: [], tags: [], _id: "" },
+    // { category_name: "", products: [], tags: [], _id: "" }
+  ]);
 
-  // Sizes Box //
-  const sizeBox = () => {
-    return (
-    <div onclick="selectSize('${s[i]}')" className="sizes-box col s1 size-${s[i]}" id="size-${s[i]}">
-    <code className="box-size disable-highlight">${s[i].toUpperCase()}</code>
-    </div>
-    )
-  }
-  const renderSizeBox = (s) => {
-    let sizebox = "";
-    for(let i = 0; i < s.length; i++) {
-        sizebox += `<a href="#${s[i]}"><div onclick="selectSize('${s[i]}')" className="sizes-box col s1 size-${s[i]}" id="size-${s[i]}"><code className="box-size disable-highlight">${s[i].toUpperCase()}</code></div></a>`;
-        document.getElementById("display-sizes").innerHTML=sizebox;
-    }  
-  }
+  const [szn, setSzn] = useState({});
+  const [category, setCategory] = useState(Number);
 
-  // const image = productImage(filename);
+  const [logged, setLogged] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  const closeArticleModal = () => {
-    console.log('click')
-  }
+  useEffect(() => {
+    const getProductData = async () => {
+
+      try {
+
+        const profile = Auth.loggedIn() ? Auth.getProfile() : null;
+
+        if(profile) {
+          setLogged(true)
+        }
+
+        const response = await getAllCategories();
+        const productInfo = await response.json();
+        
+        setProductData(productInfo);
+        console.log(productData[0]);
+        setLoaded(true);
+
+      } catch (err) {
+          console.error(err);
+      }
+    }
+    getProductData();
+  }, [productData.length])
+
+  useEffect(() => {
+    setSzn(products.currentDrop)
+    console.log(szn);
+  }, [loaded])
+
+  // const getCategory = (i) => getAllCategories()[i];
 
   return (
-    <div className="product-card_modal" id={"product-card_"}>
-      <div className="card-container" id="product-card_container">
-        <div className="card-content">
-          <div className="product-card_container">
-
-            <span className="product-card_title">
-            </span>
-          </div>
-          <span onClick={closeArticleModal} className="product-card_close" id="product-card_close{{ forloop.index0 }}" aria-label="Close">&times;</span>
-          
-          <div id="product-card_img"></div>
-          <div className='product-select_container'>
-            {/* PRODUCT COLORS */}
-            {/* PRODUCT SIZES */}
-          </div>
-          <div className='product-card_data row' id="card_data">
-            <div className='col s6' id="card_description"></div>
-            <div className='col s6' id="card_price"></div>
-          </div>
-          {loggedIn ? 
-            <button className="theme-btn" onClick={addToCart} 
-              data-id={product._id}
-              data-path={product.product_path}
-              data-name={product.product_name}
-              data-image={product.product_image[0]}
-              data-color={product.product_colors} //needs state for color
-              // data-fit=state for fit
-              // data-size= state for size
-              data-price={product.price}
-
-              >Add to Cart</button>
-          : <button disabled>You Must Be A Part Of The Village</button>}
-          
+    <DefaultLayout>
+      <div className="products-page-container">
+        <div className="row products-page-content box-container animate__animated animate__fadeIn">
+        <div><button className="theme-btn">CLIQUE ME</button></div>
+        { loaded ? <ProductCard productElement={productData[0]} categoryName={productData[0].category_name} productCategory={products.currentDrop.shirts} loggedIn={logged} /> : <></> }
         </div>
-        
       </div>
-    </div>
+    </DefaultLayout>
   );
 }
 
-export default ProductCard;
+export default ProductCardTest;

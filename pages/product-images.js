@@ -1,26 +1,38 @@
-import ImageContainer from '../components/ImageContainer';
-import { productImage } from '../modules/productImages'
+import { ImageCDN } from '../utils/siteFunctions';
+import { randomize } from '../utils/generator';
+import products from '../config/products.json';
+import website from '../config/site-data.json';
 
-export const ProductImage = ({ name, filename, color, width, containerClasses }) => {
+export const ProductImage = ({ category, colorId, random }) => {
 
-  filename = "vots-wt";
+  const p = products.currentDrop;
+  const cn = p.crewnecks;
+  const hd = p.hoodies;
+  const ls = p.longsleeves;
+  const ts = p.shirts;
 
-  const size = width ? width : "400px";
-  const description =
-          name && color ? `${name} // ${color.toUpperCase()}`
-          : name && !color ? `${name} - Product Image`
-          : `VoT Product Image`
-  containerClasses = containerClasses ? "center center-img "+containerClasses : "center center-img";
+  const szn = website.szn;
 
-  const image = productImage(filename);
+  category = category === "cn" ? cn : category === "hd" ? hd : category === "ls" ? ls : ts;
+  colorId = colorId ? colorId : 1;
+  random  = random ? random : false;
+
+  const categoryLength = category.filename.length;
+  const randomId = randomize(categoryLength)
+  
+  const fileName = category.filename[random ? randomId : colorId];
+  const fileId = category.fileId[random ? randomId : colorId];
+
+  const color = category.colors[random ? randomId : colorId]
+  const description = category.name+" // "+color+" // "+szn;
 
   const prodEl =
-      <ImageContainer
-        src={image}
-        width={size}
+      <ImageCDN
+        fileName={fileName}
+        fileId={fileId}
         description={description}
-        id={"product-image_"+filename}
-        containerClasses={"product-image "+containerClasses} />
+        id={"product-image_"+fileName}
+        imgClasses={"product-image"} />
 
   return prodEl;
 }

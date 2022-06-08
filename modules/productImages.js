@@ -38,6 +38,14 @@
   import { arrayEl, select } from '../utils/generator'
 
 
+  const p = products.currentDrop;
+  const crewnecks = p.crewnecks;
+  const hoodies = p.hoodies;
+  const longsleeves = p.longsleeves
+  const shirts = p.shirts;
+
+  
+
 ///////////////////////////////////
 // PRODUCT IMAGE FILES -- PUBLIC //
 ///////////////////////////////////

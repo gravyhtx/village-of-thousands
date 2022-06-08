@@ -1,67 +1,46 @@
-import ImageContainer from '../components/ImageContainer';
-import { productImage, randomProduct } from '../modules/productImages';
 import { ImageCDN } from '../utils/siteFunctions';
-
+import { randomize } from '../utils/generator';
+import products from '../config/products.json';
 import website from '../config/site-data.json';
+import { containerClasses } from '@mui/material';
 
-export const ProductImage = ({ name, filename, color, width, containerClasses, randomize, randomSetLength, colSize, blur }) => {
+export const ProductImage = ({ category, colorId, imgClasses, containerClasses, random }) => {
 
-  filename = filename ? filename : "vots-bk";
-  blur = blur ? blur : false;
-
-  const randomizeProducts = () => {
-    if(randomSetLength) {
-      return randomProduct(randomize === true ? "all" : randomize, randomSetLength)
-    } else {
-      return randomProduct(randomize === true ? "all" : randomize)
-    }
-  }
-
-  const image = randomize ? randomizeProducts() : productImage(filename);
-  
-  const size = width ? [width, width] : ["100%","100%"];
+  const p = products.currentDrop;
+  const cn = p.crewnecks;
+  const hd = p.hoodies;
+  const ls = p.longsleeves;
+  const ts = p.shirts;
 
   const szn = website.szn;
-  const drop = website.drop;
-  const dropNum = drop < 10 ? '00'+drop : drop < 100 ? '0'+drop : drop;
+  console.log(colorId)
 
-  const description =
-          name && color ? `${name} // ${color.toUpperCase()} // ${szn} // Drop ${dropNum}`
-          : name && !color ? `${name} - Product Image // ${szn} // Drop ${dropNum}`
-          : randomize ? `VoT // ${szn} // Drop ${dropNum}`
-          : `VoT Product Image // ${szn} // Drop ${dropNum}`
+  category = category === 'crewnecks' ? cn : category === 'hoodies' ? hd : category === 'longsleeves' ? ls : ts;
+  // colorId = colorId ? colorId : 1;
+  random  = random ? random : false;
 
-  containerClasses = containerClasses ? "center center-img "+containerClasses : "center center-img";
+  const categoryLength = category.filename.length;
+  const randomId = randomize(categoryLength)
+  
+  const fileName = category.filename[random ? randomId : colorId];
+  const fileId = category.fileId[random ? randomId : colorId];
 
-  const prodEl = (image, size, description, filename, containerClasses, blur) => {
-    return <ImageContainer
-            src={image}
-            size={size}
-            description={description}
-            id={"prod-img_"+filename}
-            containerClasses={"product-image-container "+containerClasses}
-            imgClasses={"product-image"}
-            blur={blur} />
-  }
+  const color = category.colors[random ? randomId : colorId]
+  const description = category.name+' // '+color+' // '+szn;
 
-  const randProdEl = (blur) => {
-    const arr = randomProduct(randomize === true ? "all" : randomize, randomSetLength, colSize);
-    const prodEl = (index, image, size, description, filename, containerClasses, blur) => {
-      return (<div className={colSize ? 'center-img col s12 m12 l'+colSize : 'center-img col s12 m12 l6'} key={index}>
-                <ImageContainer
-                  src={image}
-                  size={size}
-                  description={description}
-                  id={"prod-img_"+filename}
-                  containerClasses={"product-image-container "+containerClasses}
-                  imgClasses={"product-image"}
-                  blur={blur} />
-              </div>)
-    }
-    return arr.map((image, index) => prodEl(index, image, size, description, filename, containerClasses, blur))
-  }
+  containerClasses = containerClasses ? 'product-image '+containerClasses : '';
+  imgClasses = imgClasses ? imgClasses : '';
 
-  return randomize ? randProdEl(blur) : prodEl(image, size, description, filename, containerClasses, blur);
+  const prodEl =
+      <ImageCDN
+        fileName={fileName}
+        fileId={fileId}
+        description={description}
+        id={"product-image_"+fileName}
+        imgClasses={imgClasses}
+        containerClasses={containerClasses} />
+
+  return prodEl;
 }
 
 export default ProductImage;

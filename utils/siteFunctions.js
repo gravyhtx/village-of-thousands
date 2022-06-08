@@ -138,13 +138,13 @@ export const emptyData = ( dataArray, dataImage ) => {
 }
 
 
-export const cdnLink = ( fileName, fileId, fileExt ) => {
+export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   
   fileExt = fileExt ? fileExt : ".png";
 
   const location = "/_next/static/media/";
   const emptyUrl = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-  const file = fileName && fileId ? fileName+"."+fileId+"."+fileExt : emptyUrl;
+  const file = fileName && fileId ? fileName+"."+fileId+fileExt : emptyUrl;
 
   return location+file
 }
@@ -154,10 +154,6 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClas
 
   const imgLink = cdnLink(fileName, fileId, fileExt);
 
-  useContainerStyles = useContainerStyles ? useContainerStyles : true;
-  customStyles = customStyles ? customStyles : {};
-  responsive = responsive ? responsive : true;  
-  
   const fallbackStyles = {
     position: 'absolute',
     inset: '0px',
@@ -176,22 +172,25 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClas
   
   const widths = ["640","750","828","1080","1200","1920","2048","3840"];
   
+  defaultWidth = defaultWidth ? defaultWidth : widths[7];
+  useContainerStyles = useContainerStyles ? useContainerStyles : true;
+  customStyles = customStyles ? customStyles : {};
+  responsive = responsive ? responsive : true;  
+  
   const img = {
-    src: imgLink+"?imwidth="+defaultWidth,
-    defaultWidth: defaultWidth ? defaultWidth : widths[7],
-    alt: description ? description : "Village of Thousands - Site Image",
-    imgClasses: imgClasses ? imgClasses : "image-class",
+    src: imgLink+'?imwidth='+defaultWidth,
+    alt: description ? description : 'Village of Thousands - Site Image',
+    imgClasses: imgClasses ? 'image-class '+imgClasses : 'image-class',
     imgStyles: useFallbackStyles ? fallbackStyles + customStyles : customStyles,
-    containerClasses: containerClasses ? containerClasses : "image-container",
+    containerClasses: containerClasses ? 'image-container '+containerClasses : 'image-container',
     containerStyles: {
-      display: responsive ? 'block' : 'inline-block',
-      position: 'relative'
+      display: responsive ? 'block' : 'inline-block'
     },
     contain: contain ? ' contain' : '',
-    imgId: id ? id : fileName && fileId ? fileName+fileId : fileName,
-    containerId: containerId ? containerId : "image-container"+fileId,
-    draggable: allowDrag ? allowDrag.toString() : "false",
-    sizes: sizes ? sizes : "100vw",
+    imgId: fileName && fileId ? fileName+'-'+fileId : '',
+    containerId: containerId ? containerId : 'container-'+fileId,
+    draggable: allowDrag ? allowDrag.toString() : 'false',
+    sizes: sizes ? sizes : '100vw',
   }
   
   const link = (n) => { return imgLink+"?imwidth="+widths[n]+" "+widths[n]+"w" };
@@ -199,7 +198,7 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClas
 
   return (<>
     {img.src ?
-      <div className={ img.containerClasses } style={ img.containerStyles } id={ img.containerId }>
+      <div className={ img.containerClasses+img.contain } style={ img.containerStyles } id={ img.containerId }>
         <img
           alt={ img.alt }
           className={ img.imgClasses }
