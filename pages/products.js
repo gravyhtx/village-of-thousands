@@ -73,30 +73,21 @@ const ProductsPage = () =>  {
   const catArr = ["shirts", "longsleeves", "hoodies", "crewnecks"];
 
   const [productGrid, setProductGrid] = useState(<>
-    <ProductImage category={"ts"} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={"ls"} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={"hd"} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={"cn"} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={catArr[0]} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={catArr[1]} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={catArr[2]} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={catArr[3]} containerClasses={"col s12 m12 l6"} random />
   </>);
   
   const refreshArr = () => {
     shuffleArr(catArr);
     setProductGrid(<>
-      <ProductImage category={"ts"} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={"ls"} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={"hd"} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={"cn"} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={catArr[0]} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={catArr[1]} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={catArr[2]} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={catArr[3]} containerClasses={"col s12 m12 l6"} random />
     </>)
   }
-  // useEffect(() => {
-  //   const productTimer = () => { setTimeout(() => { setProductGrid(<>
-  //     <ImageGrid category={"shirts"} blur={false} />
-  //     <ImageGrid category={"hoodies"} blur={false} />
-  //     <ImageGrid category={"crewnecks"} blur={false} />
-  //     <ImageGrid category={"longsleeves"} blur={false} />
-  //     </>)}, 10000) }
-  //   productTimer();
-  // }, [productGrid])
 
 
   return (

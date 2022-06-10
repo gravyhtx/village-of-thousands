@@ -4,7 +4,7 @@ import products from '../config/products.json';
 import website from '../config/site-data.json';
 import { containerClasses } from '@mui/material';
 
-export const ProductImage = ({ category, colorId, imgClasses, containerClasses, random }) => {
+export const ProductImage = ({ category, colorId, imgClasses, containerClasses, aria, random }) => {
 
   const p = products.currentDrop;
   const cn = p.crewnecks;
@@ -13,7 +13,6 @@ export const ProductImage = ({ category, colorId, imgClasses, containerClasses, 
   const ts = p.shirts;
 
   const szn = website.szn;
-  console.log(colorId)
 
   category = category === 'crewnecks' ? cn : category === 'hoodies' ? hd : category === 'longsleeves' ? ls : ts;
   // colorId = colorId ? colorId : 1;
@@ -36,6 +35,7 @@ export const ProductImage = ({ category, colorId, imgClasses, containerClasses, 
         fileName={fileName}
         fileId={fileId}
         description={description}
+        aria={aria}
         id={"product-image_"+fileName}
         imgClasses={imgClasses}
         containerClasses={containerClasses} />

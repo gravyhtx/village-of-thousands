@@ -150,7 +150,7 @@ export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
 }
 
 
-export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
+export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
 
   const imgLink = cdnLink(fileName, fileId, fileExt);
 
@@ -198,7 +198,7 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, containerClas
 
   return (<>
     {img.src ?
-      <div className={ img.containerClasses+img.contain } style={ img.containerStyles } id={ img.containerId }>
+      <div role="img" aria-label={aria} className={ img.containerClasses+img.contain } style={ img.containerStyles } id={ img.containerId }>
         <img
           alt={ img.alt }
           className={ img.imgClasses }

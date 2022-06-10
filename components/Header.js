@@ -176,7 +176,7 @@ const Header = ({ images }) => {
         {/* {loaded && userData.email && !userData.completeRegistration ?
           <Notification />:<></>} */}
         <Link className="navbar-brand container" href="/" id="header-link-container">
-          <div className="header-img-container" id="header-img-container">
+          <div className="header-img-container disable-highlight" id="header-img-container">
             <div className={
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
