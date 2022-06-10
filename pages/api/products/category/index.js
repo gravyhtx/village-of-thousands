@@ -8,8 +8,6 @@ export default async (req, res) => {
   switch ( method ) {
     case 'GET':
       try {
-        // const categoryLoad = await Category.find({});
-        // console.log(categoryLoad)
         models.Category.find({}).populate('products').exec(function(err, prod) {
           if (err) console.error(err);
           console.log(prod)

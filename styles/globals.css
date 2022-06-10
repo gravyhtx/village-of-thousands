@@ -4437,4 +4437,10 @@ input.input-field {
   margin: 0;
 }
 
+.cc-input-wrapper {
+  margin-top: 20px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
 /* MADE WITH LOVE BY GRÄVY DESIGN CO. */

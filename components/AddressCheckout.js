@@ -96,14 +96,14 @@ const AddressCheckout = (props) => {
             </label>
           </div>
         </div>
-        <div className='user-address-edit'>
+        {/* <div className='user-address-edit'>
           <button
             className="account-wallet-btn"
             onClick={handleFormSubmit}
           >
             CONFIRM ADDRESS
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   )

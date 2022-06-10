@@ -7,10 +7,10 @@ import CheckoutForm from "../../components/CheckoutForm";
 import AddressCheckout from "../../components/AddressCheckout";
 import Header from "../../components/Header";
 // import './materialize.css';
-const stripePromise = loadStripe("pk_test_51K4evvCa1OD2RYqlwwQm36uEOgpLsyziGmhNZso9sxmlwVSsvCaalITPCYL7MRfoVTa5tyyoHGEh4cZAUR6bd9sQ00FKPpQ6ks")
+const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
 
 export const getServerSideProps = async (ctx) => {
-    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY_TEST);
+    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
     let paymentIntent;
 
@@ -42,6 +42,7 @@ export const getServerSideProps = async (ctx) => {
     }
 }
 
+
 const Details = ({ paymentIntent }) => {
     const [formState, setFormState] = useState([]);
 
@@ -53,7 +54,7 @@ const Details = ({ paymentIntent }) => {
         <>
         <Header />
         <AddressCheckout handleFormSubmit={handleFormSubmit}/>
-        <Elements stripe={stripePromise}>
+        <Elements stripe={stripePromise} >
             <CheckoutForm paymentIntent={paymentIntent} />
         </Elements>
         </>

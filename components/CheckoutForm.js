@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 import { idbPromise } from "../utils/helpers";
@@ -27,7 +27,7 @@ const CheckoutForm = ({ paymentIntent }) => {
         if (!cart.length) {
             getCart()
         }
-        
+
         async function updatePaymentIntent() {
             const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -56,12 +56,12 @@ const CheckoutForm = ({ paymentIntent }) => {
         event.preventDefault();
 
         try {
-            const {error, paymentIntent: {status}} = await stripe.confirmCardPayment(paymentIntent.client_secret, {
+            const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
                 payment_method: {
                     card: elements.getElement(CardElement)
                 }
             })
-        
+
             if (error) throw new Error(error.message);
 
             if (status === 'succeeded') {
@@ -73,15 +73,56 @@ const CheckoutForm = ({ paymentIntent }) => {
         }
     }
 
-    if ( checkoutSuccess) return <p>Payment Successful</p>
+    if (checkoutSuccess) return <p>Payment Successful</p>
+
+    const options = {
+        style: {
+            base: {
+                color: '#ff0',
+                fontWeight: 600,
+                fontFamily: 'Quicksand, Open Sans, Segoe UI, sans-serif',
+                fontSize: '32px',
+                fontSmoothing: 'antialiased',
+          
+                ':focus': {
+                  color: '#424770',
+                },
+          
+                '::placeholder': {
+                  color: '#fff',
+                },
+          
+                ':focus::placeholder': {
+                  color: '#CFD7DF',
+                },
+              },
+              invalid: {
+                color: '#fff',
+                ':focus': {
+                  color: '#FA755A',
+                },
+                '::placeholder': {
+                  color: '#FFCCA5',
+                },
+              },
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
             {/* don't call it a comeback */}
-            <CardElement />
-            <button type='submit' disabled={!stripe}>Pay now</button>
-        
-            {checkoutError && <span style={{color: "red"}}>{checkoutError}</span>}
+            <div className="row">
+                <div className='cc-input-wrapper offset-s3 col s6'>
+                    <CardElement options={options} />
+                </div>
+            </div>
+            <div className='row'>
+                <div className='offset-s5 col s-4'>
+                    <button className='account-wallet-btn' type='submit' disabled={!stripe}>Pay now</button>
+                </div>
+            </div>
+
+            {checkoutError && <span style={{ color: "red" }}>{checkoutError}</span>}
         </form>
     )
 }
