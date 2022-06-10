@@ -3,41 +3,64 @@ import { idbPromise } from "../utils/helpers";
 import { productImage } from '../modules/productImages';
 import products from '../config/products.json';
 import ProductImage from './ProductImage';
+import Link from 'next/link';
 
-const ProductCard = ({ productElement, productCategory, categoryName, loggedIn }) => {
-
-  const category = productCategory;
-  let colorSet = 1
-
-  const [productSelection, setProductSelection] = useState({
-    size: '',
-    color: '',
-    quantity: 1
-  });
-
-  const addToCart = (event) => {
-    idbPromise('cart', 'put', {
-      id: event.target.dataset.id,
-      path: event.target.dataset.path,
-      product: event.target.dataset.name,
-      image: event.target.dataset.image,
-      color: event.target.dataset.color,
-      price: event.target.dataset.price,
-      quantity: 1
-    })
-  }
+const ProductCard = ({ activate, productElement, productCategory, categoryName, closeButton, loggedIn }) => {
 
   const product = productElement.products;
-  console.log(categoryName)
+  
+  const [colorSet, setColorSet] = useState(1);
+  const [sizeSelect, setSizeSelect] = useState();
+  const [itChecksOut, setChecks] = useState(false);
+  const category = productCategory;
+  console.log(category)
+
+  const [productSelection, setProductSelection] = useState({
+    id: '',
+    path: '',
+    product: '',
+    image: [],
+    color: '',
+    price: '',
+    quantity: 1
+  });
+  console.log(product)
+
+  const addToCart = () => {
+    if(itChecksOut) {
+      idbPromise('cart', 'put', {
+        id: product[colorSet].product_information[sizeSelect].id,
+        path: product[colorSet].product_path,
+        product: product[colorSet].product_name,
+        image: product[colorSet].product_image[0],
+        color: product[colorSet].product_colors,
+        price: product[colorSet].price,
+        quantity: 1
+      })
+    }
+  }
+
   const setColor = (index) => {
-    colorSet = index
-    console.log(colorSet)
+    setSizeSelect(undefined);
+    setChecks(false);
+    setColorSet(index);
+    setProductSelection({
+      path: product[index].product_path,
+      product: product[index].product_name,
+      image: product[index].product_image[0],
+      color: product[index].product_colors,
+      price: product[index].price,
+      id: ''
+    });
   }
 
   // Color Box //
   const colorBox = (name, hex, index) => {
     return (
-      <div onClick={setColor(index)} className={'color-box'+(index === colorSet ? ' highlight' : '')} data-color-select={name} key={index}>
+      <div onClick={() => { setColor(index) }}
+        className={'color-box'+(index === colorSet ? ' mines' : '')}
+        role="listitem" aria-label={"Color: "+name}
+        key={index}>
       <div style={{ backgroundColor: hex }}></div>
       </div>
     )
@@ -48,11 +71,30 @@ const ProductCard = ({ productElement, productCategory, categoryName, loggedIn }
       category.colors.map((color, index) => colorBox(color, category.hexBase[index], index))
     )
   }
-  
+
+  const setSize = (index, amt) => {
+    if(amt > 0) {
+      setChecks(true);
+      setSizeSelect(index);
+      setProductSelection({
+        path: product[colorSet].product_path,
+        product: product[colorSet].product_name,
+        image: product[colorSet].product_image[0],
+        color: product[colorSet].product_colors,
+        price: product[colorSet].price,
+        id: product[colorSet].product_information[index]._id
+      });
+      console.log(productSelection);
+    }
+  }
+  console.log(productSelection);
   // Size Box //
-  const sizeBox = (size, index) => {
+  const sizeBox = (size, amt, index) => {
     return (
-    <div className="size-box" data-color-size={size} key={index}>
+    <div onClick={() => { setSize(index, amt) }}
+      className={"size-box" + ((amt > 0) ? " available" : " unavailable") + ((index === sizeSelect && amt > 0) ? " mines" : "")}
+      role="listitem" aria-label={"Size "+size}
+      key={index}>
       <div><code className="box-size disable-highlight">{size}</code></div>
     </div>
     )
@@ -61,7 +103,7 @@ const ProductCard = ({ productElement, productCategory, categoryName, loggedIn }
   const renderSizeBox = (color) => {
     return (
       product[color].product_information.map((size, index) =>
-        sizeBox(size.product_abbreviated_size, index)
+        sizeBox(size.product_abbreviated_size, size.product_inventory, index)
       )
     ) 
   }
@@ -75,50 +117,56 @@ const ProductCard = ({ productElement, productCategory, categoryName, loggedIn }
     )
   }
 
-  const closeArticleModal = () => {
-    console.log('click')
+  // Price //
+  const renderPrice = (color) => {
+    return (
+      <div role="text" aria-label={"Price: $"+product[color].price}>
+        ${product[color].price}
+      </div>
+    )
   }
   
   return (
-
-    <div className="product-card" id={"product-card_"}>
+    <>{activate ?
+    <div className="product-card" id="product-card">
+      {closeButton}
       <div className="card-container" id="product-card_container">
         <div className="card-content">
           <div className="product-card_title">
             <div>{category.name}</div>
           </div>
           <div className="product-card_container">
-            {/* <div className='product-card_close-container'>
-              <div onClick={closeArticleModal} className="product-card_close" id="product-card_close" aria-label="Close">&times;</div>
-            </div> */}
-
-            
-            <div className="product-card_img">
-              <ProductImage colorId={colorSet} category={categoryName} imgClasses={"card-image"} />
+            <div className="product-card_img disable-highlight">
+              <ProductImage
+                colorId={colorSet}
+                category={categoryName}
+                imgClasses={"card-image"}
+                aria={category.name + " - " + product[colorSet].product_colors} />
             </div>
-            <div className='product-select_container'>
+            <div className="product-select_container">
               {/* PRODUCT COLORS */}
-              <div className='product-card_colors'>
+              <div role="list" aria-label="Select Color" className="product-card_colors">
                 {renderColors()}
               </div>
               {/* PRODUCT SIZES */}
-              <div className='product-card_sizes'>
+              <div role="list" aria-label="Select Size" className="product-card_sizes">
                 {renderSizeBox(colorSet)}
               </div>
             </div>
-            <div className='product-card_data row' id="card_data">
-              <div className='product-card_description col s8' id="card_description">
+            <div className="product-card_data row" id="card_data">
+              <div role="text" aria-label="Description" className="product-card_description col s8" id="card_description">
                 {renderDescription(colorSet)}
               </div>
-              <div className='product-card_price col s4' id="card_price">
-                <div>${product[colorSet].price}</div>
+              <div className="product-card_price col s4" id="card_price">
+                {renderPrice(colorSet)}
               </div>
             </div>
 
           </div>
-          <div className='product-card_submit'>
+          <div className={"product-card_submit disable-highlight" + (itChecksOut ? "" : " blank-checks")}>
             {loggedIn ? 
-              <button className="not-a-button" onClick={addToCart} 
+              <button className={"not-a-button" + (itChecksOut ? "" : " blank-checks")} onClick={addToCart}
+                aria-label={itChecksOut ? "Add To Cart" : "Please select your size."}
                 data-id={product._id}
                 data-path={product.product_path}
                 data-name={product.product_name}
@@ -129,12 +177,15 @@ const ProductCard = ({ productElement, productCategory, categoryName, loggedIn }
                 data-price={product.price}
 
                 >ADD TO CART</button>
-              : <div disabled>You Must Be A Part Of The Village</div>
+              : <Link href="/register"><a className="product-card_register-link">
+                  <div disabled>REGISTER TO PURCHASE</div>
+                </a></Link>
             }
           </div>
         </div>
       </div>
-    </div>)
+    </div>:<></>}
+    </>)
 }
 
 export default ProductCard;

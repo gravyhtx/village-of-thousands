@@ -23,10 +23,14 @@ export const ProductCardTest = () => {
   ]);
 
   const [szn, setSzn] = useState({});
-  const [category, setCategory] = useState(Number);
 
   const [logged, setLogged] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  const [activatePCness, setActivatePC] = useState(true);
+  const [setPC, setSetPC] = useState(2);
+
+  const productKeys = Object.entries(products.currentDrop);
 
   useEffect(() => {
     const getProductData = async () => {
@@ -44,7 +48,9 @@ export const ProductCardTest = () => {
         
         setProductData(productInfo);
         console.log(productData[0]);
-        setLoaded(true);
+        if(productData.length !== 0 && !loaded) {
+          setLoaded(true);
+        }
 
       } catch (err) {
           console.error(err);
@@ -56,20 +62,35 @@ export const ProductCardTest = () => {
   useEffect(() => {
     setSzn(products.currentDrop)
     console.log(szn);
-  }, [loaded])
+  }, [loaded]);
+
+  const closeButton = () => {
+    return (
+      <div role="button" aria-label="Close" className="product-card_close-container disable-highlight">
+        <div onClick={() => setActivatePC(false)} className="product-card_close" id="product-card_close" aria-label="Close">&times;</div>
+      </div>
+    )
+  }
 
   // const getCategory = (i) => getAllCategories()[i];
 
-  return (
-    <DefaultLayout>
-      <div className="products-page-container">
+  return (<>
+    <DefaultLayout classes={activatePCness ? " disable-highlight" : ""}>
+      <div className={"products-page-container" + (activatePCness ? " disable-highlight" : "")}>
         <div className="row products-page-content box-container animate__animated animate__fadeIn">
-        <div><button className="theme-btn">CLIQUE ME</button></div>
-        { loaded ? <ProductCard productElement={productData[0]} categoryName={productData[0].category_name} productCategory={products.currentDrop.shirts} loggedIn={logged} /> : <></> }
+        <div><button onClick={() => setActivatePC(true)} className="theme-btn">CLIQUE ME</button></div>
         </div>
       </div>
     </DefaultLayout>
-  );
+    { loaded ?
+      <ProductCard
+        activate={activatePCness}
+        productElement={productData[setPC]}
+        categoryName={productData[setPC].category_name}
+        productCategory={productKeys[setPC][1]}
+        closeButton={closeButton()}
+        loggedIn={logged} /> : <></> }
+  </>);
 }
 
 export default ProductCardTest;
