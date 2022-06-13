@@ -111,14 +111,14 @@ const CheckoutForm = ({ paymentIntent }) => {
     return (
         <form onSubmit={handleSubmit}>
             {/* don't call it a comeback */}
-            <div className="row">
-                <div className='cc-input-wrapper offset-s3 col s6'>
+            <div className="row container">
+                <div className='cc-input-wrapper s12'>
                     <CardElement options={options} />
                 </div>
             </div>
             <div className='row'>
-                <div className='offset-s5 col s-4'>
-                    <button className='account-wallet-btn' type='submit' disabled={!stripe}>Pay now</button>
+                <div className='offset-m5 col s12 m4'>
+                    <button className='account-wallet-btn pay-btn' type='submit' disabled={!stripe}>Pay now</button>
                 </div>
             </div>
 

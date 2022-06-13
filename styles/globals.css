@@ -3416,11 +3416,16 @@ button.card-trigger.loading {
   padding: .125rem .33rem;
 }
 
-/*
+/* 
 //////////////
-// FAQ PAGE //
+// CHECKOUT //
 //////////////
 */
+
+.checkout_billing-check {
+  margin-bottom: 80px;
+}
+
 
 /*
 ///////////

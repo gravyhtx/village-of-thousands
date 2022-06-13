@@ -122,13 +122,16 @@ export const ProductCardTest = () => {
   }
 
   useEffect(() => {
-    if(activatePCness && loaded){
-      if(!document.getElementById('product-card').matches(':hover')) {
-        document.getElementById('content').addEventListener('click', () => {
-          closePC();
-        });
-      }
-    }
+    // if(activatePCness && loaded){
+    //   if(!document.getElementById('product-card').matches(':hover')) {
+    //     document.getElementById('content').addEventListener('click', () => {
+    //       closePC();
+    //     });
+    //   }
+    // }
+    document.getElementById('content').addEventListener('click', () => {
+      closePC();
+    });
   })
 
   return (<>
