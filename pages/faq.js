@@ -46,14 +46,12 @@ const Faq = () => {
           onChange={handleChange(index)}
           ref={accordElem}
           disableGutters>
-          <AccordionSummary className="faq-question-container" onClick={scroll()}>
+          <AccordionSummary className="faq-question-container" onClick={scroll()} aria-label={"FAQ - Question #"+(index+1)}>
             <span className="faq-number">{(index+1) < 10 ? (`00${index+1}//`) : (`0${index+1}//`)}&emsp;</span>
             <h2 className="faq-question-header">{q.question}</h2>
           </AccordionSummary>
-          <AccordionDetails className="faq-body">
-            <div>
-              {q.answer.map((a, index) => <div className="faq-answer p-style" key={index}>{a}</div>)}
-            </div>
+          <AccordionDetails className="faq-body" aria-label={"FAQ - Answer #"+(index+1)}>
+            {q.answer.map((a, index) => <div className="faq-answer p-style" key={index}>{a}</div>)}
           </AccordionDetails>
         </Accordion>
         </div>
@@ -71,7 +69,7 @@ const Faq = () => {
           images={Cartas} />
         <h1 className="faq-header center italics thin focus-in-expand">frequently ask questions...</h1>
         <div className="faq-collapsible container">
-        {question()}
+          {question()}
         </div>
       </div>
       <br/><br/>

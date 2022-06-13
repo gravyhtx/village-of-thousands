@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 
 const scrollToEl = (el,t) => {
-  let rootEl;
   let getEl;
+  let rootEl;
+  t = t ? t : 500;
   useEffect(() => {
     getEl = document.getElementById(el);
     rootEl = document.getElementById('layout');
@@ -11,7 +12,7 @@ const scrollToEl = (el,t) => {
         // getEl ?
         getEl.scrollIntoView({behavior: "smooth", block: "start", inline: "center"})
         // : rootEl.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-      }, 500)
+      }, t)
     }
   });
 }
