@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 import { authMiddleware } from '../../../utils/jwAuth';
 dbConnect();
 
@@ -25,10 +25,10 @@ export default async (req, res) => {
           req.body.stripeId,
           { amount: req.body.amount * 100 }
         )
-        // console.log(stripeResponse)
+        console.log(stripeResponse)
         res.status(200).json(stripeResponse)
       }catch (err) {
-        res.status(400).json({ success: false, message: 'Payment Total Update Error' });
+        res.status(400).json({ success: false, message: 'Payment Total Update Error', error: err });
       }
       break;
   }

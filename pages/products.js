@@ -64,7 +64,7 @@ const ProductsPage = () =>  {
 
   const img1 = {
       containerClasses: "",
-      imgClasses: "img-lg",
+      imgClasses: "img-md",
       description: "The Movement Has Begun!",
   }
 
@@ -73,19 +73,19 @@ const ProductsPage = () =>  {
   const catArr = ["shirts", "longsleeves", "hoodies", "crewnecks"];
 
   const [productGrid, setProductGrid] = useState(<>
-    <ProductImage category={catArr[0]} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={catArr[1]} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={catArr[2]} containerClasses={"col s12 m12 l6"} random />
-    <ProductImage category={catArr[3]} containerClasses={"col s12 m12 l6"} random />
+    <ProductImage category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
   </>);
   
   const refreshArr = () => {
     shuffleArr(catArr);
     setProductGrid(<>
-      <ProductImage category={catArr[0]} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={catArr[1]} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={catArr[2]} containerClasses={"col s12 m12 l6"} random />
-      <ProductImage category={catArr[3]} containerClasses={"col s12 m12 l6"} random />
+      <ProductImage category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
     </>)
   }
 

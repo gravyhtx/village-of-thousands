@@ -4,31 +4,29 @@ import Link from 'next/link';
 import DefaultLayout from '../templates/DefaultLayout';
 
 import ProductCard from '../components/ProductCard';
-
-import { productImage } from '../modules/productImages';
-import products from '../config/products.json'
+import ProductImage from '../components/ProductImage';
 
 import Auth from '../utils/auth';
 import { getAllCategories } from '../utils/API';
 
+import products from '../config/products.json'
+import website from '../config/site-data.json';
+
+import { productImage } from '../modules/productImages';
+import scrollToEl from "../modules/scrollToEl";
+import { randomize } from '../utils/generator';
+
 export const ProductCardTest = () => {
 
-  // const id = id ? id : '';
-
-  const [productData, setProductData] = useState([
-    // { category_name: "", product_information: [], products: [], tags: [], _id: "" },
-    // { category_name: "", products: [], tags: [], _id: "" },
-    // { category_name: "", products: [], tags: [], _id: "" },
-    // { category_name: "", products: [], tags: [], _id: "" }
-  ]);
+  const [productData, setProductData] = useState([]);
 
   const [szn, setSzn] = useState({});
 
   const [logged, setLogged] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  const [activatePCness, setActivatePC] = useState(true);
-  const [setPC, setSetPC] = useState(2);
+  const [activatePCness, setActivatePC] = useState(false);
+  const [setPC, setSetPC] = useState();
 
   const productKeys = Object.entries(products.currentDrop);
 
@@ -47,7 +45,7 @@ export const ProductCardTest = () => {
         const productInfo = await response.json();
         
         setProductData(productInfo);
-        console.log(productData[0]);
+        // console.log(productData[0]);
         if(productData.length !== 0 && !loaded) {
           setLoaded(true);
         }
@@ -61,34 +59,104 @@ export const ProductCardTest = () => {
 
   useEffect(() => {
     setSzn(products.currentDrop)
-    console.log(szn);
+    // console.log(szn);
   }, [loaded]);
+
+  const closePC = () => {
+    setActivatePC(false);
+    setSetPC(null);
+  }
 
   const closeButton = () => {
     return (
       <div role="button" aria-label="Close" className="product-card_close-container disable-highlight">
-        <div onClick={() => setActivatePC(false)} className="product-card_close" id="product-card_close" aria-label="Close">&times;</div>
+        <div onClick={() => closePC()} className="product-card_close" id="product-card_close" aria-label="Close">&times;</div>
       </div>
     )
   }
 
-  // const getCategory = (i) => getAllCategories()[i];
+  const setProductCard = (index) => {
+    if(!activatePCness) {
+      setSetPC(index);
+      setActivatePC(true);
+    }
+  }
+
+  const scrollToContainer = () => {
+    if(activatePCness) {
+      // Set this to event target's id instead of container ???
+      // Will be more useful as page fills up
+      // Will need to add PADDING to the product containers (not MARGIN) to add some space from top
+      scrollToEl(setPC ? "product_view-category"+setPC : "content", 100)
+    } else {
+      scrollToEl(null)
+    }
+  }
+
+  const renderCategories = () => {
+    const categories = [{
+      name: "Crewnecks",
+      id: randomize(2) },
+    { name: "Hoodies",
+      id: randomize(2) },
+    { name: "Longsleeves",
+      id: randomize(2) },
+    { name: "Tees",
+      id: randomize(2)}];
+    return categories.map((category, index) =>
+      <div role="button" aria-label={"View VoT "+category.name}
+        onClick={scrollToContainer()}
+        className={"col s12 m6 l6 product_view-category"+(index === setPC ? " active" : "")}
+        id={"product_view-category"+index}
+        key={index}>
+        <ProductImage colorId={category.id}
+          category={category.name.toLowerCase()}
+          containerClasses={"col s12 m6 l6" + (loaded ? "" : " loading")} />
+        <div className="card-trigger_container">
+          <button role="button" aria-controls={activatePCness ? "product-card" : ""}
+            style={{ backgroundImage: '/_next/static/media/vohd-nt.01a98c29.png?imgwidth=3840' }}
+            aria-haspopup="grid"
+            tabIndex={index}
+            onClick={() => setProductCard(index)}
+            className={"card-trigger" + (loaded ? "" : " loading")}
+            id={"product-category"+index}>{category.name}</button>
+        </div>
+      </div>
+    )
+  }
+
+  useEffect(() => {
+    if(activatePCness && loaded){
+      if(!document.getElementById('product-card').matches(':hover')) {
+        document.getElementById('content').addEventListener('click', () => {
+          closePC();
+        });
+      }
+    }
+  })
 
   return (<>
     <DefaultLayout classes={activatePCness ? " disable-highlight" : ""}>
-      <div className={"products-page-container" + (activatePCness ? " disable-highlight" : "")}>
-        <div className="row products-page-content box-container animate__animated animate__fadeIn">
-        <div><button onClick={() => setActivatePC(true)} className="theme-btn">CLIQUE ME</button></div>
+      <div className={"products-page-container center-img" + (activatePCness ? " disable-highlight" : "")} id="products-page-container">
+        <div className="row all-products products-page-content box-container animate__animated animate__fadeIn">
+          <h1 className='products-header center gravy-font'>Welcome to our {website.szn} collection.</h1>
+          <div className="product_category-container row">
+            {renderCategories()}
+          </div>
+        </div>
+        <div className="shop_learn-more glow-hover center">
+          <Link href="/products"><a className="link underline">Click here to learn more about our products.</a></Link>
         </div>
       </div>
     </DefaultLayout>
     { loaded ?
       <ProductCard
         activate={activatePCness}
-        productElement={productData[setPC]}
-        categoryName={productData[setPC].category_name}
-        productCategory={productKeys[setPC][1]}
+        productElement={productData[setPC ? setPC : 0]}
+        categoryName={productData[setPC ? setPC : 0].category_name}
+        productCategory={productKeys[setPC ? setPC : 0][1]}
         closeButton={closeButton()}
+        pcId={setPC}
         loggedIn={logged} /> : <></> }
   </>);
 }

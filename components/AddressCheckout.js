@@ -84,13 +84,12 @@ const AddressCheckout = (props) => {
           <AddressCheckoutForm handleInputChange={handleInputChange} />
         </div>
         <br />
-        <div className='row'>
+        <div className='row checkout_billing-check'>
           <div className='input-field col s12'>
 
             <label>
               <input type="checkbox" onChange={handleSameAddress}/>
               <span>
-
                 My shipping address is the same as yo momma
               </span>
             </label>
