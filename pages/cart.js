@@ -40,8 +40,8 @@ const Cart = () => {
                       <div key={item._id}>
                         <img src={item.image} height="200px" width="200px"></img>
                         <h1>{item.product}</h1>
-                        <div role="button" aria-label="Close" className="cart_close-container disable-highlight">
-                          <button className="cart_close" id="cart_close" aria-label="Close">&times;</button>
+                        <div className="cart_close-container disable-highlight">
+                          <button className="cart_close" data-id={item._id} id="cart_close" aria-label="Close">&times;</button>
                         </div>
                       </div>
                     )

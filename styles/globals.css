@@ -167,6 +167,8 @@
 /* GRAVY STYLES */
   --gravy-font: 'Poppins', Helvetica, sans-serif;
   --important: #D24B4B;
+  --important-highlight: #e57d7d;
+  --important-darken: #873535;
   --svg-important: invert(38%) sepia(45%) saturate(1023%) hue-rotate(315deg) brightness(96%) contrast(93%);
   --dark-gravy: #64483b;
   --svg-dark-gravy: invert(27%) sepia(36%) saturate(501%) hue-rotate(334deg) brightness(91%) contrast(84%);
@@ -1536,18 +1538,24 @@ button.btn-floating.navigation-link:focus {
 
 .login-btn,
 .login-btn:focus,
+.login-btn:active,
 .back-btn,
 .back-btn:focus,
+.back-btn:active,
 .logout-btn,
 .logout-btn:focus,
+.logout-btn:active,
 .account-wallet-btn,
 .account-wallet-btn:focus,
+.account-wallet-btn:active,
 .theme-btn,
-.theme-btn:focus {
-  width: 250px !important;
+.theme-btn:focus,
+.theme-btn:active {
+  width: 100%;
+  max-width: 250px;
   height: 50px;
-  background-color: var(--button-bg-darker) !important;
-  color: var(--theme-primary-light-color) !important;
+  background-color: var(--button-bg-darker);
+  color: var(--theme-primary-light-color);
   border: 2px solid #7fcce4 !important;
   box-shadow: 5px 5px 2px black;
   margin: 20px 0 !important;
@@ -1564,6 +1572,17 @@ button.btn-floating.navigation-link:focus {
   cursor: pointer !important;
 }
 
+.login-btn:focus,
+.back-btn:focus,
+.logout-btn:focus,
+.account-wallet-btn:focus,
+.theme-btn:focus {
+  background-color: #1a1a1a;
+  border: 2px solid #7fcce4;
+  filter: drop-shadow(0px 0px 5px #ffffff20);
+  outline: 1px;
+}
+
 .login-btn:hover,
 .back-btn:hover,
 .logout-btn:hover,
@@ -1571,9 +1590,9 @@ button.btn-floating.navigation-link:focus {
 .theme-btn:hover {
   -webkit-transition: 750ms ease-in-out;
   transition: 750ms ease-in-out;
-  background-color: #3b495433 !important;
+  background-color: #3b495433;
   border: 2px solid var(--theme-secondary-dark-color);
-  box-shadow: 0 0 25px #7fcce450 !important;
+  box-shadow: 0 0 25px #7fcce450;
   text-shadow: 0 0 10px #ffffff50;
   cursor: pointer !important;
 }
@@ -2324,7 +2343,8 @@ label#upload-label:hover {
 
 .index-content { max-width: 1080px; }
 
-.index-section {
+.index-section,
+.checkout-details {
   margin-top: 10px;
   padding: 10px 20px;
   color:rgb(245, 245, 245);
@@ -3057,10 +3077,6 @@ button.card-trigger.loading {
 }
 
 
-/* CHECKOUT */
-
-
-
 
 /* ACCOUNT */
 .account {
@@ -3422,8 +3438,55 @@ button.card-trigger.loading {
 //////////////
 */
 
+.address-form_input select {
+  background-color: #111;
+  color: #bbb;
+  padding: 10px;
+  border: 3px solid #0e0e0e;
+  border-radius: 0;
+  height: 3.65rem;
+}
+
+.address-form_input select:focus {
+  color: #eee;
+  background-color: #1a1a1a;
+  outline: 1px solid #eee;
+}
+
 .checkout_billing-check {
   margin-bottom: 80px;
+}
+
+.checkout_billing-check input:focus,
+.checkout_billing-check input:active {
+  box-shadow: 0 0 10px #fff !important;
+}
+
+.checkout_billing-check [type="checkbox"]:checked+span:not(.lever):before {
+
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.cc-input-wrapper {
+  margin-bottom: 25px;
+}
+
+.checkout-details_cost h2 {
+  margin-top: 30px;
+}
+
+.checkout-details_submit {
+  margin-bottom: 40px;
+}
+
+.pay-button,
+.pay-button:focus,
+.pay-button:active {
+  font-size: 1.5rem !important;
+  font-weight: 600;
+  height: 70px;
+  max-width: 300px;
 }
 
 
@@ -3804,7 +3867,8 @@ button.card-trigger.loading {
 
   .inner-card { padding: 10px; }
 
-  .index-section {
+  .index-section,
+  .checkout-details {
     padding: 5px 10px;
     font-size: var(--theme-font-size);
   }
@@ -4060,6 +4124,27 @@ button.card-trigger.loading {
     bottom: -20px;
   }
 
+  .account-wallet .wallet-info {
+    font-size: 18px;
+  }
+  
+  .address-form_input {
+    margin-bottom: 10px;
+  }
+
+  .address-form_input input,
+  .CardField {
+    font-size: 16px;
+  }
+
+  .address-form_input.xt-margin {
+    margin-bottom: 40px;
+  }
+
+  .checkout_billing-check {
+    margin-bottom: 120px;
+  }
+
   input:not([type]),
   input[type=text]:not(.browser-default),
   input[type=password]:not(.browser-default),
@@ -4074,10 +4159,6 @@ button.card-trigger.loading {
   input[type=search]:not(.browser-default),
   textarea.materialize-textarea {
     padding: 0 5px;
-  }
-
-  .account-wallet .wallet-info {
-    font-size: 18px;
   }
 
   /* .account-wallet {
@@ -4183,7 +4264,7 @@ button.card-trigger.loading {
   .account-wallet-btn:focus,
   .theme-btn,
   .theme-btn:focus {
-    width: 100%;
+    max-width: 100%;
     padding: 0 20px;
     font-size: 0.67rem;
   }

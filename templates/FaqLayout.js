@@ -1,4 +1,3 @@
-import { useWindowSize, screenWidth } from '../modules/getWindow';
 import TopNav from '../components/TopNav';
 // import NavMobile from './NavMobile';
 // import NavDesktop from './NavDesktop';

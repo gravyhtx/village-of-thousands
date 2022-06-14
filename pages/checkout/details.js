@@ -54,7 +54,7 @@ const Details = ({ paymentIntent }) => {
         <>
         <DefaultLayout>
             <div className="checkout-details">
-                <h2 className="checkout-header center">Checkout Details</h2>
+            <h1 className="center cart-header">Checkout Details</h1>
                 <AddressCheckout handleFormSubmit={handleFormSubmit}/>
                 <Elements stripe={stripePromise} >
                     <CheckoutForm paymentIntent={paymentIntent} />
