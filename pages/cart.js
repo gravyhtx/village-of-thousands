@@ -45,7 +45,8 @@ const Cart = () => {
                   )}
                   <h2>Price: $ {totalAmount(cart)} </h2>
                   <h2>Tax (8.25%): $ {Math.round((totalAmount(cart) * 0.0825) * 100) / 100} </h2>
-                  <h2>Total: $ {totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
+                  <h2>Shipping: $ 10</h2>
+                  <h2>Total: $ {10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
                 </div>
               ): (
                 <p>Your cart is currently empty.</p>
