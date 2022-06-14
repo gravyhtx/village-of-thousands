@@ -25,6 +25,17 @@ const Cart = () => {
     return sum
   }
 
+  async function deleteFromCart(event) {
+    event.preventDefault();
+    const itemId = event.target.dataset.id
+    console.log(itemId)
+    await idbPromise('cart', 'deleteone', {
+      id: itemId
+    })
+
+    location.reload()
+  }
+
   return (
     <DefaultLayout>
 
@@ -37,11 +48,11 @@ const Cart = () => {
                 <div>
                   {cart.map((item, index) => 
                     (
-                      <div key={item._id}>
+                      <div key={item.id}>
                         <img src={item.image} height="200px" width="200px"></img>
                         <h1>{item.product}</h1>
                         <div className="cart_close-container disable-highlight">
-                          <button className="cart_close" data-id={item._id} id="cart_close" aria-label="Close">&times;</button>
+                          <button className='cart_close' data-id={item.id} onClick={deleteFromCart} id="cart_close" aria-label="Close">&times;</button>
                         </div>
                       </div>
                     )

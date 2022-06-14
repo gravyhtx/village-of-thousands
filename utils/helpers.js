@@ -78,6 +78,7 @@ export function idbPromise(storeName, method, object) {
                             return
                         }else {
                             recordForDelete.result.cart.forEach((item, index) => {
+                                console.log(item)
                                 if(item.id === object.id){
                                     recordForDelete.result.cart.splice(index, 1);
                                     return
