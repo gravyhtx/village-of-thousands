@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-// import { useWindowSize, screenWidth } from '../modules/getWindow';
 import Head from 'next/head'
 import TopNav from '../components/TopNav';
 import Header from '../components/Header';

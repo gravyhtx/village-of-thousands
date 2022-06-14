@@ -3,7 +3,6 @@ import products from '../config/products.json';
 
 const ProductImageGrid = ({ containerClasses, width, imageClasses, category, randomize, randomSetLength, colsize, blur }) => {
 
-  // console.log(screenWidth(window))
   width = width ? width : '100%'
 
   const productData = products.currentDrop;

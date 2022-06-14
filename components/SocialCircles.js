@@ -24,35 +24,39 @@ const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, ic
   icon3link=icon3link?icon3link:website.tiktokUrl;
   icon4link=icon4link?icon4link:website.githubUrl;
 
-  icon1alt=icon1alt?icon1alt:website.title+" // Instagram";
-  icon2alt=icon2alt?icon2alt:website.title+" // Twitter";
-  icon3alt=icon3alt?icon3alt:website.title+" // TikTok";
-  icon4alt=icon4alt?icon4alt:website.title+" // Github";
+  icon1alt=icon1alt?icon1alt:website.name+" // Instagram";
+  icon2alt=icon2alt?icon2alt:website.name+" // Twitter";
+  icon3alt=icon3alt?icon3alt:website.name+" // TikTok";
+  icon4alt=icon4alt?icon4alt:website.name+" // Github";
 
   const icons = [
     {
       src: icon1,
       link: icon1link,
-      alt: icon1alt
+      alt: icon1alt,
+      name: "Instagram"
     },{
       src: icon2,
       link: icon2link,
-      alt: icon2alt
+      alt: icon2alt,
+      name: "Twitter"
     },{
       src: icon3,
       link: icon3link,
-      alt: icon3alt
+      alt: icon3alt,
+      name: "TikTok"
     },{
       src: icon4,
       link: icon4link,
-      alt: icon4alt
+      alt: icon4alt,
+      name: "Github"
     }
   ]
 
   return (
     <div className={"social-circles icon-container row"}>
       {icons.map((icon, i) => (
-        <div className='col s3' key={i}>
+        <div className='col s3' aria-label={"Follow us on "+icon.name} key={i}>
           <SvgContainer
             layout="responsive"
             classes={"social-icon link"+iClass}

@@ -146,7 +146,7 @@ export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   const emptyUrl = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
   const file = fileName && fileId ? fileName+"."+fileId+fileExt : emptyUrl;
 
-  return location+file
+  return location+file + (imgWidth ? "?imwidth="+imgWidth : "?imgwidth=3840");
 }
 
 
@@ -193,7 +193,7 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, contain
     sizes: sizes ? sizes : '100vw',
   }
   
-  const link = (n) => { return imgLink+"?imwidth="+widths[n]+" "+widths[n]+"w" };
+  const link = (n) => { return imgLink };
   const srcSet = `${link(0)}, ${link(1)}, ${link(2)}, ${link(3)}, ${link(4)}, ${link(5)}, ${link(6)}, ${link(7)}`;
 
   return (<>

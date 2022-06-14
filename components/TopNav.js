@@ -17,7 +17,7 @@ const TopNav = () => {
   ];
 
   return (
-    <div className={"top-nav disable-highlight row"+(location === '/' ? ' home': '')} role="navigation" aria-label="Site Navigation">
+    <div className={"top-nav disable-highlight row"+(location === '/' ? ' home': '')} role="navigation" aria-label="Site Navigation" id="top-nav">
       {navlinks.map((item, index) =>
           <Link href={item.link} key={index}><a alt={item.alt} suppressHydrationWarning>
             <div className="col s3 nav-top-col">

@@ -4,8 +4,9 @@ import { productImage } from '../modules/productImages';
 import products from '../config/products.json';
 import ProductImage from './ProductImage';
 import Link from 'next/link';
+import { cdnLink } from '../utils/siteFunctions';
 
-const ProductCard = ({ activate, productElement, productCategory, categoryName, closeButton, loggedIn }) => {
+const ProductCard = ({ activate, productElement, productCategory, categoryName, closeButton, pcId, loggedIn }) => {
 
   const product = productElement.products;
   
@@ -13,7 +14,8 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   const [sizeSelect, setSizeSelect] = useState();
   const [itChecksOut, setChecks] = useState(false);
   const category = productCategory;
-  console.log(category)
+
+  const imgSrc = cdnLink(category.filename[colorSet], category.fileId[colorSet]);
 
   const [productSelection, setProductSelection] = useState({
     id: '',
@@ -24,21 +26,31 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     price: '',
     quantity: 1
   });
-  console.log(product)
+  // console.log(product);
 
   const addToCart = () => {
     if(itChecksOut) {
       idbPromise('cart', 'put', {
-        id: product[colorSet].product_information[sizeSelect].id,
-        path: product[colorSet].product_path,
-        product: product[colorSet].product_name,
-        image: product[colorSet].product_image[0],
-        color: product[colorSet].product_colors,
-        price: product[colorSet].price,
+        id: productSelection.id,
+        path: productSelection.path,
+        product: productSelection.product,
+        color: productSelection.color,
+        price: productSelection.price,
+        image: imgSrc,
         quantity: 1
       })
+      // NEED TO SET CLASS TO MAKE SUBMIT BUTTON BLINK ON CLICK
+      // NEED BETTER SYSTEM FOR ALERTING ITEM IN CART
+      // NEED BETTER SYSTEM FOR ALERTING CURRENT ITEM ALREADY IN CART
     }
   }
+  useEffect(() => {
+    if(!activate) {
+      setChecks(false);
+      setColorSet(1);
+      setSizeSelect();
+    }
+  }, [activate])
 
   const setColor = (index) => {
     setSizeSelect(undefined);
@@ -47,9 +59,9 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     setProductSelection({
       path: product[index].product_path,
       product: product[index].product_name,
-      image: product[index].product_image[0],
       color: product[index].product_colors,
       price: product[index].price,
+      image: imgSrc,
       id: ''
     });
   }
@@ -77,17 +89,17 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
       setChecks(true);
       setSizeSelect(index);
       setProductSelection({
+        image: imgSrc,
         path: product[colorSet].product_path,
         product: product[colorSet].product_name,
-        image: product[colorSet].product_image[0],
         color: product[colorSet].product_colors,
         price: product[colorSet].price,
         id: product[colorSet].product_information[index]._id
       });
-      console.log(productSelection);
+      // console.log(productSelection);
     }
   }
-  console.log(productSelection);
+  // console.log(productSelection);
   // Size Box //
   const sizeBox = (size, amt, index) => {
     return (
@@ -128,7 +140,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   
   return (
     <>{activate ?
-    <div className="product-card" id="product-card">
+    <div className="product-card" aria-labelledby={"product-category"+pcId} id="product-card">
       {closeButton}
       <div className="card-container" id="product-card_container">
         <div className="card-content">
@@ -136,7 +148,8 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
             <div>{category.name}</div>
           </div>
           <div className="product-card_container">
-            <div className="product-card_img disable-highlight">
+            {/* Add onChange to div to make product image blink when switched */}
+            <div className="product-card_img disable-highlight" id={("img-"+category.category+"-"+product[colorSet].product_colors).toLowerCase()}>
               <ProductImage
                 colorId={colorSet}
                 category={categoryName}
@@ -163,25 +176,27 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
             </div>
 
           </div>
-          <div className={"product-card_submit disable-highlight" + (itChecksOut ? "" : " blank-checks")}>
             {loggedIn ? 
-              <button className={"not-a-button" + (itChecksOut ? "" : " blank-checks")} onClick={addToCart}
-                aria-label={itChecksOut ? "Add To Cart" : "Please select your size."}
-                data-id={product._id}
-                data-path={product.product_path}
-                data-name={product.product_name}
-                // data-image={product.product_image[0]}
-                data-color={product.product_colors} //needs state for color
-                // data-fit=state for fit
-                // data-size= state for size
-                data-price={product.price}
-
-                >ADD TO CART</button>
-              : <Link href="/register"><a className="product-card_register-link">
+              <div className={"product-card_submit disable-highlight" + (itChecksOut ? "" : " blank-checks")}>
+                <button className={"not-a-button" + (itChecksOut ? "" : " blank-checks")} onClick={addToCart}
+                  aria-label={itChecksOut ? "Add To Cart" : "Please select your size."}
+                  data-id={product._id}
+                  data-path={product.product_path}
+                  data-name={product.product_name}
+                  // data-image={product.product_image[0]}
+                  data-color={product.product_colors} //needs state for color
+                  // data-fit=state for fit
+                  // data-size= state for size
+                  data-price={product.price}
+                  >ADD TO CART</button>
+              </div>
+              : 
+              <Link href="/register"><a className="product-card_register-link">
+                <div className="product-card_submit disable-highlight">
                   <div disabled>REGISTER TO PURCHASE</div>
-                </a></Link>
+                </div>
+              </a></Link>
             }
-          </div>
         </div>
       </div>
     </div>:<></>}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
+import { useScreenWidth } from '../modules/getWindow'
 import { idbPromise } from "../utils/helpers";
 import { updateAmount } from "../utils/API";
 import Auth from '../utils/auth';
-// import {}
 
 // const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
 
@@ -16,6 +16,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     const [cart, setCart] = useState([]);
     // console.log(stripeObj)
+    // console.log(useScreenWidth());
     useEffect(() => {
         async function getCart() {
             //check for staleness here
@@ -31,7 +32,7 @@ const CheckoutForm = ({ paymentIntent }) => {
         async function updatePaymentIntent() {
             const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-            console.log(paymentIntent)
+            console.log(paymentIntent.amount)
 
             updateAmount(
                 {
@@ -78,52 +79,64 @@ const CheckoutForm = ({ paymentIntent }) => {
     const options = {
         style: {
             base: {
-                color: '#ff0',
-                fontWeight: 600,
+                color: '#eee',
+                fontWeight: '600',
                 fontFamily: 'Quicksand, Open Sans, Segoe UI, sans-serif',
-                fontSize: '32px',
+                fontSize: useScreenWidth() > 770 ? '20px' : '16px',
                 fontSmoothing: 'antialiased',
-          
+                transition: 'color 500ms ease-in-out',
+
                 ':focus': {
-                  color: '#424770',
+                  color: '#eee',
                 },
           
                 '::placeholder': {
-                  color: '#fff',
+                  color: '#595d7c',
                 },
           
                 ':focus::placeholder': {
-                  color: '#CFD7DF',
+                  color: '#aaa',
                 },
-              },
-              invalid: {
-                color: '#fff',
+            },
+            invalid: {
+                color: '#D24B4B',
+
                 ':focus': {
-                  color: '#FA755A',
+                    color: '#e57d7d',
                 },
+
                 '::placeholder': {
-                  color: '#FFCCA5',
+                    color: '#873535',
                 },
-              },
+            },
         }
     };
 
-    return (
+    return (<>
+        <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
         <form onSubmit={handleSubmit}>
             {/* don't call it a comeback */}
-            <div className="row">
-                <div className='cc-input-wrapper offset-s3 col s6'>
+            <div className="row container">
+                <div className='cc-input-wrapper s12'>
                     <CardElement options={options} />
                 </div>
             </div>
-            <div className='row'>
-                <div className='offset-s5 col s-4'>
-                    <button className='account-wallet-btn' type='submit' disabled={!stripe}>Pay now</button>
+            {paymentIntent ?
+                <div className='checkout-details_cost center-text'>
+                    <div aria-label={'Your cost is $'+((paymentIntent.amount/100)-10)}><b>Cost&ensp;//&ensp;${(paymentIntent.amount/100) - 10}</b></div>
+                    <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
+                    <h2 aria-label={'Your total is $'+paymentIntent.amount/100} className='c-total'>
+                        <b>Total:</b> ${paymentIntent.amount/100}
+                    </h2>
+                </div> : <></>}
+            <div className='row center checkout-details_submit'>
+                <div className='col s12'>
+                    <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
                 </div>
             </div>
 
-            {checkoutError && <span style={{ color: "red" }}>{checkoutError}</span>}
-        </form>
+            {checkoutError && <span style={{ color: "#aa3d3d" }}>{checkoutError}</span>}
+        </form></>
     )
 }
 
