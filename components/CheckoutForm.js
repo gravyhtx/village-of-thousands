@@ -124,10 +124,10 @@ const CheckoutForm = ({ paymentIntent }) => {
             </div>
             {paymentIntent ?
                 <div className='checkout-details_cost center-text'>
-                    <div aria-label={'Your cost is $'+((paymentIntent.amount/100)-10)}><b>Cost&ensp;//&ensp;${(paymentIntent.amount/100) - 10}</b></div>
+                    <div aria-label={'Your cost is $'+(paymentIntent.amount/100)}><b>Cost&ensp;//&ensp;${paymentIntent.amount/100}</b></div>
                     <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
-                    <h2 aria-label={'Your total is $'+paymentIntent.amount/100} className='c-total'>
-                        <b>Total:</b> ${paymentIntent.amount/100}
+                    <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
+                        <b>Total:</b> ${totalAmount(cart)}
                     </h2>
                 </div> : <></>}
             <div className='row center checkout-details_submit'>
