@@ -49,7 +49,8 @@ const CheckoutForm = ({ paymentIntent }) => {
     function totalAmount(arr) {
         const sum = arr.reduce((prev, curr) => prev + parseInt(curr.price), 0);
 
-        return sum + (Math.round((sum * 0.0825) * 100) / 100)
+        //10 is the flat value of shipping
+        return sum + (Math.round((sum * 0.0825) * 100) / 100) + 10
     }
 
 
