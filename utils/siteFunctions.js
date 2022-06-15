@@ -51,6 +51,58 @@ export const isUser = async () => {
   }
 }
 
+export function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
+
+export function windowSize(window) {
+
+  let windowSize = {
+    width: window ? window.innerWidth : undefined,
+    height: window ? window.innerHeight : undefined
+  }
+
+  return windowSize;
+}
+
+export const useScreenWidth = () => {
+  return useWindowSize().width;
+}
+
+export const useScreenHeight = () => {
+  return useWindowSize().height;
+}
+
+export const screenWidth = (window) => {
+  return windowSize(window).width;
+}
+
+export const screenHeight = (window) => {
+  return windowSize(window).height;
+}
+
 //////////////////////
 // CONVERT ELEMENTS //
 //////////////////////
@@ -67,29 +119,51 @@ export const canvasToPng = ( el, alt, classes, id ) => {
 }
 
 
-// SIMPLIFY ELEMENTS
 
-export const cdnLink = ( filename ) => {
+/////////////////////
+// RETURN ELEMENTS //
+/////////////////////
+
+
+export const emptyData = ( dataArray, dataImage ) => {
+  // Returns an empty 1x1 px Data PNG
+  const url = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
   
-  // USE WITH FULL FILENAME WITH EXTENSION
-  //  ex: "header.fb0ffabf.png"
-  
-  const path = "https://villageofthousands.com/_next/static/media/";
-  return path+filename
+  const img = {
+    classes: dataImage ? dataImage.classes : '',
+    styles: dataImage ? dataImage.styles : ''
+  }
+  return (  dataImage && !dataArray ? <img className={img.classes} style={img.styles} src={url} />
+          : dataArray && !dataImage ? { src: url, blurDataUrl: url, height: 2000, width: 2000 } : url )
 }
 
-export const ImageCDN = ( filename, fileExt, description, classes, id, allowDrag, sizes, defaultWidth, customStyles, useFallbackStyles ) => {
+
+export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   
-  // filename example -- "header.fb0ffabf"
-  const fSplit = filename.split(".");
-  const fileTitle = fSplit[0];
-  const fileId = fSplit[1];
-  
-  // fileExt example -- ".jpg"
   fileExt = fileExt ? fileExt : ".png";
-  
-  customStyles = customStyles ? customStyles : '';
-  
+
+  const location = "/_next/static/media/";
+  const emptyUrl = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  const file = fileName && fileId ? fileName+"."+fileId+fileExt : emptyUrl;
+
+  return location+file + (imgWidth ? "?imwidth="+imgWidth : "?imgwidth=3840");
+}
+
+export function imageExists(image_url){
+
+  var http = new XMLHttpRequest();
+
+  http.open('HEAD', image_url, false);
+  http.send();
+
+  return http.status != 404;
+
+}
+
+export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
+
+  const imgLink = cdnLink(fileName, fileId, fileExt);
+
   const fallbackStyles = {
     position: 'absolute',
     inset: '0px',
@@ -97,7 +171,7 @@ export const ImageCDN = ( filename, fileExt, description, classes, id, allowDrag
     padding: '0px',
     border: 'none',
     margin: 'auto',
-    display: 'block',
+    display: responsive ? 'flex': 'block',
     width: '0px',
     height: '0px',
     minWidth: '100%',
@@ -106,30 +180,49 @@ export const ImageCDN = ( filename, fileExt, description, classes, id, allowDrag
     maxHeight: '100%',
   }
   
-  const styles = useFallbackStyles ? fallbackStyles + customStyles : customStyles;
-  
   const widths = ["640","750","828","1080","1200","1920","2048","3840"];
+  
   defaultWidth = defaultWidth ? defaultWidth : widths[7];
+  useContainerStyles = useContainerStyles ? useContainerStyles : true;
+  customStyles = customStyles ? customStyles : {};
+  responsive = responsive ? responsive : true;  
   
-  const path = "https://villageofthousands.com/_next/static/media/";
+  const img = {
+    src: imgLink,
+    alt: description ? description : 'Village of Thousands - Site Image',
+    imgClasses: imgClasses ? 'image-class '+imgClasses : 'image-class',
+    imgStyles: useFallbackStyles ? fallbackStyles + customStyles : customStyles,
+    containerClasses: containerClasses ? 'image-container '+containerClasses : 'image-container',
+    containerStyles: {
+      display: responsive ? 'block' : 'inline-block'
+    },
+    contain: contain ? ' contain' : '',
+    imgId: fileName && fileId ? fileName+'-'+fileId : '',
+    containerId: containerId ? containerId : 'container-'+fileId,
+    draggable: allowDrag ? allowDrag.toString() : 'false',
+    sizes: sizes ? sizes : '100vw',
+  }
   
-  const link = (n) => { return path+filename+fileExt+"?imwidth="+widths[n]+" "+widths[n]+"w" };
-  const srcSet = `${link(0)}, ${link(1)}, ${link(2)}, ${link(3)}, ${link(4)}, ${link(5)}, ${link(6)}, ${link(7)}`
-  
-  const image =
-  <img
-  alt={ description ? description : "Village of Thousands - Site Image" }
-  className={classes ? classes : "image-class"}
-  id={ id ? id : fileTitle+fileId }
-  draggable={ allowDrag ? allowDrag.toString() : "false" }
-  sizes={ sizes ? sizes : "100vw"}
-  srcSet={ srcSet }
-  src={ path+filename+fileExt+"?imwidth="+defaultWidth }
-  decoding="async" data-nimg="responsive"
-  style={ styles }/>
-  
-  return image;
+  const link = (n) => { return imgLink };
+  const srcSet = `${link(0)}, ${link(1)}, ${link(2)}, ${link(3)}, ${link(4)}, ${link(5)}, ${link(6)}, ${link(7)}`;
+
+  return (<>
+    {img.src ?
+      <div role="img" aria-label={aria} className={ img.containerClasses+img.contain } style={ img.containerStyles } id={ img.containerId }>
+        <img
+          alt={ img.alt }
+          className={ img.imgClasses }
+          id={ img.imgId }
+          draggable={ img.draggable }
+          sizes={ img.sizes }
+          srcSet={ srcSet }
+          src={ img.src }
+          style={ img.imgStyles }
+          decoding="async" />
+      </div>:<></>}
+    </>)
 }
+
 
 
 
@@ -138,6 +231,7 @@ export const ImageCDN = ( filename, fileExt, description, classes, id, allowDrag
 //////////////
 
 import LoginContainer from '../components/LoginContainer';
+import Blockie from "../components/Blockie";
 
 export const withAuth = Component => {
   const Render = (props) => {

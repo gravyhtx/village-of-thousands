@@ -66,8 +66,32 @@ export function idbPromise(storeName, method, object) {
                         resolve(all.result);
                     };
                     break;
+                case 'deleteone':
+                    const profileForDelete = Auth.loggedIn() ? Auth.getProfile() : null;
+
+                    const recordForDelete = store.get(profileForDelete.data._id)
+
+                    recordForDelete.onsuccess = function(info) {
+                        console.log(recordForDelete, info)
+                        if(!recordForDelete.result) {
+                            alert("no cart to delete items from")
+                            return
+                        }else {
+                            recordForDelete.result.cart.forEach((item, index) => {
+                                console.log(item)
+                                if(item.id === object.id){
+                                    recordForDelete.result.cart.splice(index, 1);
+                                    return
+                                }
+                            })
+                            recordForDelete.result.dateUpdated = Date.now();
+                            store.put(recordForDelete.result);
+                        }
+                        resolve(object);
+                    }
+                    break;
                 case 'delete':
-                    store.delete(object.product);
+                    store.delete(object.id);
                     break;
                 default:
                     console.log('Not a valid method');

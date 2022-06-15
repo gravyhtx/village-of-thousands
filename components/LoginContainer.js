@@ -17,18 +17,6 @@ const LoginContainer = ({ name, message }) =>  {
 
   const signupContainers = [{name:'login', component: <Login/>}, {name:'register', component: <Register/>}];
 
-  const headerStyle = () => {
-    if(h = 'login') {
-      return {
-        color: "#ebebeb"
-      }
-    } else {
-      return {
-        color: "#787878"
-      }
-    }
-  };
-
   const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
 
   return (

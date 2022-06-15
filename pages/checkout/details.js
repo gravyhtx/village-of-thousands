@@ -4,11 +4,12 @@ import { parseCookies, setCookie } from 'nookies';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/CheckoutForm";
-
-const stripePromise = loadStripe("pk_test_51K4evvCa1OD2RYqlwwQm36uEOgpLsyziGmhNZso9sxmlwVSsvCaalITPCYL7MRfoVTa5tyyoHGEh4cZAUR6bd9sQ00FKPpQ6ks")
+import DefaultLayout from "../../templates/DefaultLayout";
+// import './materialize.css';
+const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
 
 export const getServerSideProps = async (ctx) => {
-    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY_TEST);
+    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
     let paymentIntent;
 
@@ -24,6 +25,8 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
+
+
     paymentIntent = await stripe.paymentIntents.create({
         amount: 100,
         currency: 'usd'
@@ -38,11 +41,19 @@ export const getServerSideProps = async (ctx) => {
     }
 }
 
+
 const Details = ({ paymentIntent }) => {
     return (
-        <Elements stripe={stripePromise}>
-            <CheckoutForm paymentIntent={paymentIntent} />
-        </Elements>
+        <>
+        <DefaultLayout>
+            <div className="checkout-details">
+                <h2 className="checkout-header center">Checkout Details</h2>
+                <Elements stripe={stripePromise} >
+                    <CheckoutForm paymentIntent={paymentIntent} />
+                </Elements>
+            </div>
+        </DefaultLayout>
+        </>
     );
 }
 export default Details;

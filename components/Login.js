@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from "next/link";
 import { Button } from '@mui/material';
 
-import { loginUser } from '../utils/API';
+import { loginUser, searchUserByEmail } from '../utils/API';
 import Auth from '../utils/auth';
 
 const Login = ({ activation }) =>  {
@@ -20,6 +20,16 @@ const Login = ({ activation }) =>  {
     setErrorClass({ email: '', password: '' })
   }
 
+  const checkEmail = async (email) => {
+    try {
+      const response = searchUserByEmail(email);
+      console.log(response)
+      console.log(email)
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -29,23 +39,24 @@ const Login = ({ activation }) =>  {
         event.preventDefault();
         event.stopPropagation();
     }
+    checkEmail(userFormData.email)
 
     try {
 
       const response = await loginUser(userFormData);
       // console.log(response);
-
+      
       setErrorClass({
         email: response.ok ? '' : ' input-error',
         password: response.ok ? '' : ' input-error',
       });
-
+      
       if(!response.ok) {
         throw new Error('something went wrong!');
       }
-
+      
       const { token, user } = await response.json();
-
+      
       Auth.login(token);
 
       if(!activation){ router.push('/'); }

@@ -10,13 +10,13 @@ import { getSingleUser } from '../utils/API';
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
-import { useWindowSize } from "../modules/getWindow";
 import { resendConfirmationFetch } from "../utils/API";
 
 
 const Header = ({ images }) => {
 
   const [userData, setUserData] = useState({
+    email: '',
     walletAddress: []
   });
   const [loaded, setLoaded] = useState(false);
@@ -49,22 +49,24 @@ const Header = ({ images }) => {
 
   const notificationLink = "/register";
 
+  const svgHeader = "/_next/static/media/header.77dc7a1a.svg"
   const Svg = () => {
     return (images ? images[0] :
     <SvgContainer
       layout="responsive"
-      src={HeaderSvg}
+      src={svgHeader}
       id="header-img"
       draggable="false"
       description="Village of Thousands Logo"
     />)
   }
-  
+  const pngHeader = "/_next/static/media/header.fb0ffabf.png"
+
   const Png = () => {
     return (images ? images[1] :
     <ImageContainer
       layout="responsive"
-      src={HeaderImg}
+      src={pngHeader}
       id="header-img"
       draggable="false"
       description="Village of Thousands Logo"
@@ -83,18 +85,24 @@ const Header = ({ images }) => {
       </a></Link>
     </span>
 
+  const [emailSent, setEmailSent] = useState(false)
 
   const resendConfirmation = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
     const profile = token ? Auth.getProfile() : null;
-
-    resendConfirmationFetch(profile)
+    resendConfirmationFetch(profile);
+    setEmailSent(true);
   }
-  const activateText =
-    <span onClick={resendConfirmation}>
-      Please activate your account. Check your email or click here if you need to resend the activation link to your email.
-    </span>
+
+  const activateText = emailSent ?
+      <span className="notify_email-sent form-text-blink">
+        Activation email sent to <span className="notify_sent-to underline weight-4">{ userData.email }</span>.
+        Please check your "Spam" and "Promotions" folders, or DM us on Instagram if you still don't see it.
+      </span> :
+      <span onClick={resendConfirmation}>
+        Please activate your account. Check your email for instructions or click here to resend the activation link.
+      </span>
+    
 
   const fallbackStyles = {
     position: 'absolute',
@@ -114,16 +122,16 @@ const Header = ({ images }) => {
   const fallbackImage =
     <img alt="Village of Thousands Logo" id="header-img" draggable="false" sizes="100vw"
       srcSet="
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1080 1080w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1200 1200w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=1920 1920w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
-        https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
-      src="https://villageofthousands.com/_next/static/media/header.fb0ffabf.png?imwidth=3840"
-      decoding="async" data-nimg="responsive" className="image-class"
+        /_next/static/media/header.fb0ffabf.png?imwidth=640 640w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=750 750w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=828 828w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1080 1080w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1200 1200w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=1920 1920w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=2048 2048w,
+        /_next/static/media/header.fb0ffabf.png?imwidth=3840 3840w"
+      src="/_next/static/media/header.fb0ffabf.png?imwidth=3840"
+      decoding="async" className="image-class"
       style={fallbackStyles}/>
   
   const Fallback = () => {
@@ -164,16 +172,18 @@ const Header = ({ images }) => {
   return (
     <header className="site-header" id="site-header">
       <div className="navbar-container black" id="header-container">
+        {/* {loaded && userData.email && !userData.completeRegistration ?
+          <Notification />:<></>} */}
         <Link className="navbar-brand container" href="/" id="header-link-container">
-          <div className="header-img-container" id="header-img-container">
+          <div className="header-img-container disable-highlight" id="header-img-container">
             <div className={
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* <Svg /> */}
-              {useWindowSize().width > 1470
+              <Svg />
+              {/* {useWindowSize().width > 1080
                 ? <Svg />
-                : <Fallback />}
+                : <Fallback />} */}
             </div>
           </div>
         </Link>

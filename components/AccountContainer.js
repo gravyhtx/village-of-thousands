@@ -43,7 +43,7 @@ const AccountContainer = () => {
       }
     };
     getUserData();
-    // console.log(userData)
+    console.log(userData)
   }, [userDataLength]);
 
   const [userCheck, setUserCheck] = useState();

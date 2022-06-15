@@ -4,6 +4,7 @@ import Github from '../public/images/icons/github_social-circles.svg';
 import Instagram from '../public/images/icons/instagram_social-circles.svg';
 import Twitter from '../public/images/icons/twitter_social-circles.svg';
 import Discord from '../public/images/icons/discord_social-circles.svg';
+import TikTok from '../public/images/icons/tiktok_social-circles.svg';
 
 import website from '../config/site-data.json';
 
@@ -15,43 +16,47 @@ const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, ic
 
   icon1=icon1?icon1:Instagram;
   icon2=icon2?icon2:Twitter;
-  icon3=icon3?icon3:Discord;
+  icon3=icon3?icon3:TikTok;
   icon4=icon4?icon4:Github;
 
   icon1link=icon1link?icon1link:website.instagramUrl;
   icon2link=icon2link?icon2link:website.twitterUrl;
-  icon3link=icon3link?icon3link:website.discordUrl;
+  icon3link=icon3link?icon3link:website.tiktokUrl;
   icon4link=icon4link?icon4link:website.githubUrl;
 
-  icon1alt=icon1alt?icon1alt:website.title+" // Instagram";
-  icon2alt=icon2alt?icon2alt:website.title+" // Twitter";
-  icon3alt=icon3alt?icon3alt:website.title+" // Discord";
-  icon4alt=icon4alt?icon4alt:website.title+" // Github";
+  icon1alt=icon1alt?icon1alt:website.name+" // Instagram";
+  icon2alt=icon2alt?icon2alt:website.name+" // Twitter";
+  icon3alt=icon3alt?icon3alt:website.name+" // TikTok";
+  icon4alt=icon4alt?icon4alt:website.name+" // Github";
 
   const icons = [
     {
       src: icon1,
       link: icon1link,
-      alt: icon1alt
+      alt: icon1alt,
+      name: "Instagram"
     },{
       src: icon2,
       link: icon2link,
-      alt: icon2alt
+      alt: icon2alt,
+      name: "Twitter"
     },{
       src: icon3,
       link: icon3link,
-      alt: icon3alt
+      alt: icon3alt,
+      name: "TikTok"
     },{
       src: icon4,
       link: icon4link,
-      alt: icon4alt
+      alt: icon4alt,
+      name: "Github"
     }
   ]
 
   return (
     <div className={"social-circles icon-container row"}>
       {icons.map((icon, i) => (
-        <div className='col s3' key={i}>
+        <div className='col s3' aria-label={"Follow us on "+icon.name} key={i}>
           <SvgContainer
             layout="responsive"
             classes={"social-icon link"+iClass}

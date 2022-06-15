@@ -8,6 +8,14 @@ export const createProduct = (productData) => {
   })
 }
 
+export const getAllCategories = () => {
+  return fetch('/api/products/category/', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+};
+
 export const resendConfirmationFetch = (user) => {
   return fetch('/api/users/activate/resend', {
     method: 'POST',
@@ -119,13 +127,23 @@ export const accountActivation = (userId) => {
 }
 
 export const searchUserByEmail = (userEmail) => {
-  return fetch('/api/users/activate/' + userEmail, {
+  return fetch('/api/users/' + userEmail, {
     headers: {
       'Content-Type': 'application/json',
     }
   })
 }
 
+export const updateAmount = (userData, token) => {
+  return fetch('/api/checkout', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
 
 //Demo Use Only Section
 

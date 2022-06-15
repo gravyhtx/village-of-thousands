@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-// import { useWindowSize, screenWidth } from '../modules/getWindow';
 import Head from 'next/head'
 import TopNav from '../components/TopNav';
 import Header from '../components/Header';
@@ -10,16 +9,16 @@ import website from '../config/site-data.json';
 
 import favicon from '../public/favicon.ico'
 
-import authCheck from '../utils/authCheck';
+import { authCheck } from '../utils/siteFunctions';
 import { useEffect } from 'react';
 
-export default function DefaultLayout({ headerImages, title, description, withAuth, children }) {
+export default function DefaultLayout({ headerImages, title, classes, description, withAuth, children }) {
 
   title = title ? title : website.name;
   description = description ? description : website.description;
+  classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
 
   const router = useRouter();
-  console.log(favicon.src)
 
   useEffect(() => {
     if(withAuth && (authCheck() === false)) {
@@ -28,7 +27,7 @@ export default function DefaultLayout({ headerImages, title, description, withAu
   })
 
   return (
-    <div className="animate__animated animate__fadeIn" id="layout">
+    <div className={classes} id="layout">
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />

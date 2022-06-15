@@ -1,35 +1,28 @@
 import { useEffect, useState } from "react";
 import { getSingleUser } from '../utils/API';
 
-export default function getUserData(fn,tokenRoute) {
-  const [userData, setUserData] = useState({});
-  const userDataLength = Object.keys(userData).length;
+export async function getUserData(fn,tokenRoute) {
+  let userData;
+    try {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  useEffect(() => {
-  const userData = async () => {
-      try {
-          const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-          if(tokenRoute && !token) {
-              window.location.assign(tokenRoute);
-              return false
-          }
-
-          const response = await getSingleUser(token);
-
-          if(!response.ok){
-              throw new Error('Something went wrong!');
-          }
-
-          if(fn){ fn(); }
-
-          const user = await response.json();
-          setUserData(user);
-      } catch (err) {
-          console.error(err);
+      if(tokenRoute && !token) {
+          window.location.assign(tokenRoute);
+          return false
       }
-  };
-  userData();
-  }, [userDataLength]);
+
+      const response = await getSingleUser(token);
+
+      if(!response.ok){
+          throw new Error('Something went wrong!');
+      }
+
+      if(fn){ fn(); }
+
+      const user = await response.json();
+      userData = user;
+  } catch (err) {
+      console.error(err);
+  }
   return userData;
 }

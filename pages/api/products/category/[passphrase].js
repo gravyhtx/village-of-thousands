@@ -1,5 +1,6 @@
 import dbConnect from "../../../../utils/dbConnect";
 import Category from '../../../../models/Category';
+import Drop from '../../../../models/Drop';
 
 dbConnect();
 

@@ -24,7 +24,7 @@ const NavDesktop = () => {
             <Link href={item.link}><a>
               <button
                 color="inherit"
-                className={"btn-floating btn-floating navigation-link nav-"+item.name}
+                className={"btn-floating navigation-link nav-"+item.name}
               ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
             </a></Link>
           </li>

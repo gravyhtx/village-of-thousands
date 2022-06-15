@@ -5,6 +5,12 @@ import Auth from '../utils/auth';
 const NavMobile = () => {
 
     const account = Auth.loggedIn() ? "/account" : "/login";
+    const links = [
+        { name: "account", ref: "person", link: account, },
+        { name: "products", ref: "remove_red_eye", link: "/shop" },
+        { name: "faq", ref: "all_inclusive", link: "/faq" },
+        { name: "cart", ref: "shopping_cart", link: "/cart" }
+    ]
 
     return (
         <div className="mobile-nav mobile">
