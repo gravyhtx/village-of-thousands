@@ -5,11 +5,8 @@ import { useScreenWidth } from '../modules/getWindow'
 import { idbPromise } from "../utils/helpers";
 import { updateAmount } from "../utils/API";
 import Auth from '../utils/auth';
-<<<<<<< HEAD
 import AddressCheckout from "./AddressCheckout";
 // import {}
-=======
->>>>>>> 96254458faaf48988e76f425afed607a2e49685b
 
 // const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
 
