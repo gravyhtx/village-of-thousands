@@ -149,6 +149,16 @@ export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   return location+file + (imgWidth ? "?imwidth="+imgWidth : "?imgwidth=3840");
 }
 
+export function imageExists(image_url){
+
+  var http = new XMLHttpRequest();
+
+  http.open('HEAD', image_url, false);
+  http.send();
+
+  return http.status != 404;
+
+}
 
 export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
 
@@ -178,7 +188,7 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, contain
   responsive = responsive ? responsive : true;  
   
   const img = {
-    src: imgLink+'?imwidth='+defaultWidth,
+    src: imgLink,
     alt: description ? description : 'Village of Thousands - Site Image',
     imgClasses: imgClasses ? 'image-class '+imgClasses : 'image-class',
     imgStyles: useFallbackStyles ? fallbackStyles + customStyles : customStyles,
