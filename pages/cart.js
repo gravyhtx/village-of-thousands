@@ -25,6 +25,17 @@ const Cart = () => {
     return sum
   }
 
+  async function deleteFromCart(event) {
+    event.preventDefault();
+    const itemId = event.target.dataset.id
+    console.log(itemId)
+    await idbPromise('cart', 'deleteone', {
+      id: itemId
+    })
+
+    location.reload()
+  }
+
   return (
     <DefaultLayout>
 
@@ -32,27 +43,35 @@ const Cart = () => {
         <div className="index-section animate__animated animate__fadeIn cart-page">
           <h1 className="center cart-header">Cart</h1>
           <div className="cart center">
-            <div className="empty-cart center">
+            <div className={(cart.length ? "got-stuff " : "empty-cart ")+"center"}>
               {cart.length ? (
                 <div>
                   {cart.map((item, index) => 
                     (
-                      <div key={item._id}>
+                      <div className="cart-item" key={item.id}>
                         <img src={item.image} height="200px" width="200px"></img>
                         <h1>{item.product}</h1>
+                        <div className="cart_close-container disable-highlight">
+                          <button className='cart_delete not-a-button' data-id={item.id} onClick={deleteFromCart} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
+                        </div>
                       </div>
                     )
                   )}
                   <h2>Price: $ {totalAmount(cart)} </h2>
                   <h2>Tax (8.25%): $ {Math.round((totalAmount(cart) * 0.0825) * 100) / 100} </h2>
-                  <h2>Total: $ {totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
+                  <h2>Shipping: $ 10</h2>
+                  <h2>Total: $ {10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
+                  <Link href="/checkout/details"><a>
+                    <h2 className="link cart-view-products"><u>CHECKOUT</u></h2>
+                  </a></Link>
                 </div>
               ): (
-                <p>Your cart is currently empty.</p>
+                <><p>Your cart is currently empty.</p>
+                <Link href="/shop"><a>
+                  <p className="link cart-view-products">VIEW PRODUCTS</p>
+                </a></Link></>
               )}
-              <Link href="/shop"><a>
-              <p className="link cart-view-products">VIEW PRODUCTS</p>
-              </a></Link>
+              
             </div>
           </div>
         </div>

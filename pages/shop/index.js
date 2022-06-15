@@ -69,8 +69,10 @@ export const ProductCardTest = () => {
 
   const closeButton = () => {
     return (
-      <div role="button" aria-label="Close" className="product-card_close-container disable-highlight">
-        <div onClick={() => closePC()} className="product-card_close" id="product-card_close" aria-label="Close">&times;</div>
+      <div className="product-card_close-container disable-highlight">
+        <div onClick={() => closePC()} className="product-card_close" id="product-card_close" role="button" aria-label="Close">
+          &times;
+        </div>
       </div>
     )
   }

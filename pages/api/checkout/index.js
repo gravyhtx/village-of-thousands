@@ -15,17 +15,17 @@ export default async (req, res) => {
           return res.status(400).json({ success: false, message: 'Unauthorized Token, Must Log In!' })
         }
 
-        if(req.body.amount < 100) {
+        if(req.body.amount < 1) {
           return res.status(400).json({ success: false, message: 'Total Amount is too little.'})
         }
 
-        // console.log(req.body.amount)
+        // console.log(req.body.amount *100)
         
         const stripeResponse = await stripe.paymentIntents.update(
           req.body.stripeId,
-          { amount: req.body.amount * 100 }
+          { amount: Math.floor(req.body.amount * 100) }
         )
-        console.log(stripeResponse)
+        // console.log(stripeResponse)
         res.status(200).json(stripeResponse)
       }catch (err) {
         res.status(400).json({ success: false, message: 'Payment Total Update Error', error: err });

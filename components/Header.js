@@ -10,7 +10,6 @@ import { getSingleUser } from '../utils/API';
 import HeaderImg from '../public/images/header.png';
 import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
-import { useWindowSize } from "../modules/getWindow";
 import { resendConfirmationFetch } from "../utils/API";
 
 

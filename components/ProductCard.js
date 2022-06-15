@@ -28,6 +28,8 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   });
   // console.log(product);
 
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const addToCart = () => {
     if(itChecksOut) {
       idbPromise('cart', 'put', {
@@ -39,6 +41,9 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
         image: imgSrc,
         quantity: 1
       })
+      setAddedToCart(true);
+      setChecks(false)
+      setSizeSelect();
       // NEED TO SET CLASS TO MAKE SUBMIT BUTTON BLINK ON CLICK
       // NEED BETTER SYSTEM FOR ALERTING ITEM IN CART
       // NEED BETTER SYSTEM FOR ALERTING CURRENT ITEM ALREADY IN CART
@@ -56,6 +61,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     setSizeSelect(undefined);
     setChecks(false);
     setColorSet(index);
+    setAddedToCart(false);
     setProductSelection({
       path: product[index].product_path,
       product: product[index].product_name,
@@ -88,6 +94,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     if(amt > 0) {
       setChecks(true);
       setSizeSelect(index);
+      setAddedToCart(false);
       setProductSelection({
         image: imgSrc,
         path: product[colorSet].product_path,
@@ -140,7 +147,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   
   return (
     <>{activate ?
-    <div className="product-card" aria-labelledby={"product-category"+pcId} id="product-card">
+    <div className={"product-card"+( addedToCart ? " added" : "" )} aria-labelledby={"product-category"+pcId} id="product-card">
       {closeButton}
       <div className="card-container" id="product-card_container">
         <div className="card-content">
@@ -177,7 +184,9 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
 
           </div>
             {loggedIn ? 
-              <div className={"product-card_submit disable-highlight" + (itChecksOut ? "" : " blank-checks")}>
+              <div className={"product-card_submit disable-highlight"
+                            + ( itChecksOut ? "" : " blank-checks" )
+                            + ( addedToCart ? " added" : "" )}>
                 <button className={"not-a-button" + (itChecksOut ? "" : " blank-checks")} onClick={addToCart}
                   aria-label={itChecksOut ? "Add To Cart" : "Please select your size."}
                   data-id={product._id}
@@ -188,7 +197,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
                   // data-fit=state for fit
                   // data-size= state for size
                   data-price={product.price}
-                  >ADD TO CART</button>
+                  >{addedToCart ? "ADDED TO CART" : "ADD TO CART"}</button>
               </div>
               : 
               <Link href="/register"><a className="product-card_register-link">
