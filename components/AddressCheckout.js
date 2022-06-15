@@ -36,73 +36,25 @@ const AddressCheckout = (props) => {
     getUserData();
   }, [userDataLength]);
 
-  const [userFormData, setUserFormData] = useState({})
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  }
-
-  const handleSameAddress = (event) => {
-    console.log("I'm checked")
-  }
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    props.handleFormSubmit(userFormData)
-
-    setUserFormData({
-      first_name: "",
-      last_name: "",
-      // OPTIONAL //
-      phone: "",
-      // ENTER IN ADDRESS FORM //
-      addressOne: "",
-      addressTwo: "",
-      city: "",
-      state: "",
-      zip: "",
-      // // GET FROM NEW WALLET APP //
-      // walletAddress: "",
-      // walletBalance: "",
-      // completed: true
-    });
-  }
-
   return (
     <>
       <div className='register-address-container container'>
         <div className="register-input-container" id="user-register-container">
           <div className="user-register-address-header">SHIPPING ADDRESS</div>
-          <AddressCheckoutForm handleInputChange={handleInputChange} />
+          <AddressCheckoutForm handleInputChange={props.inputFn} />
         </div>
         <br />
         <div className='row checkout_billing-check'>
           <div className='input-field col s12'>
 
             <label>
-              <input type="checkbox" onChange={handleSameAddress}/>
+              <input type="checkbox" onChange={props.sameAddress}/>
               <span>
                 My shipping address is the same as yo momma
               </span>
             </label>
           </div>
         </div>
-        {/* <div className='user-address-edit'>
-          <button
-            className="account-wallet-btn"
-            onClick={handleFormSubmit}
-          >
-            CONFIRM ADDRESS
-          </button>
-        </div> */}
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import { destroyCookie } from 'nookies';
 import { idbPromise } from "../utils/helpers";
 import { updateAmount } from "../utils/API";
 import Auth from '../utils/auth';
+import AddressCheckout from "./AddressCheckout";
 // import {}
 
 // const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
@@ -13,6 +14,18 @@ const CheckoutForm = ({ paymentIntent }) => {
     const elements = useElements();
     const [checkoutError, setCheckoutError] = useState();
     const [checkoutSuccess, setCheckoutSuccess] = useState();
+    const [userFormData, setUserFormData] = useState({});
+    const [addressCheck, setAddressCheck] = useState(false)
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        console.log(name, value)
+        setUserFormData({ ...userFormData, [name]: value });
+    }
+    
+    const handleSameAddress = (event) => {
+        setAddressCheck(!addressCheck)
+    }
 
     const [cart, setCart] = useState([]);
     // console.log(stripeObj)
@@ -54,23 +67,42 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     const handleSubmit = async event => {
         event.preventDefault();
+        console.log(userFormData);
+        console.log(addressCheck);
 
-        try {
-            const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-                payment_method: {
-                    card: elements.getElement(CardElement)
-                }
-            })
+        // try {
+        //     const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
+        //         payment_method: {
+        //             card: elements.getElement(CardElement)
+        //         }
+        //     })
 
-            if (error) throw new Error(error.message);
+        //     if (error) throw new Error(error.message);
 
-            if (status === 'succeeded') {
-                destroyCookie(null, "paymentIntentId")
-                setCheckoutSuccess(true)
-            };
-        } catch (err) {
-            setCheckoutError(err.message)
-        }
+        //     if (status === 'succeeded') {
+        //         destroyCookie(null, "paymentIntentId")
+        //         setCheckoutSuccess(true)
+        //     };
+
+        //     setUserFormData({
+        //         first_name: "",
+        //         last_name: "",
+        //         // OPTIONAL //
+        //         phone: "",
+        //         // ENTER IN ADDRESS FORM //
+        //         addressOne: "",
+        //         addressTwo: "",
+        //         city: "",
+        //         state: "",
+        //         zip: "",
+        //         // // GET FROM NEW WALLET APP //
+        //         // walletAddress: "",
+        //         // walletBalance: "",
+        //         // completed: true
+        //       });
+        // } catch (err) {
+        //     setCheckoutError(err.message)
+        // }
     }
 
     if (checkoutSuccess) return <p>Payment Successful</p>
@@ -110,6 +142,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
             {/* don't call it a comeback */}
             <div className="row container">
                 <div className='cc-input-wrapper s12'>

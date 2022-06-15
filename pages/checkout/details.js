@@ -4,7 +4,6 @@ import { parseCookies, setCookie } from 'nookies';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/CheckoutForm";
-import AddressCheckout from "../../components/AddressCheckout";
 import DefaultLayout from "../../templates/DefaultLayout";
 // import './materialize.css';
 const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
@@ -44,18 +43,11 @@ export const getServerSideProps = async (ctx) => {
 
 
 const Details = ({ paymentIntent }) => {
-    const [formState, setFormState] = useState([]);
-
-    const handleFormSubmit = (information) => {
-        console.log(information)
-    }
-
     return (
         <>
         <DefaultLayout>
             <div className="checkout-details">
                 <h2 className="checkout-header center">Checkout Details</h2>
-                <AddressCheckout handleFormSubmit={handleFormSubmit}/>
                 <Elements stripe={stripePromise} >
                     <CheckoutForm paymentIntent={paymentIntent} />
                 </Elements>
