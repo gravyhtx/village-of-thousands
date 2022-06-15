@@ -121,29 +121,21 @@ const AddressCheckout = (props) => {
     <>
       <div className='register-address-container container'>
         <div className="register-input-container" id="user-register-container">
-          <div aria-label="Please enter your shipping address." className="user-register-address-header center">SHIPPING ADDRESS</div>
-          <AddressCheckoutForm errorClasses={errorClasses} handleInputChange={handleInputChange} />
+          <div className="user-register-address-header">SHIPPING ADDRESS</div>
+          <AddressCheckoutForm errorClasses={errorClasses} handleInputChange={props.inputFn} />
         </div>
         <br />
         <div className='row checkout_billing-check'>
           <div className='input-field col s12'>
 
             <label>
-              <input className='simple-checkbox' type="checkbox" onChange={handleSameAddress}/>
+              <input type="checkbox" onChange={props.sameAddress}/>
               <span>
                 My shipping address is the same as yo momma
               </span>
             </label>
           </div>
         </div>
-        {/* <div className='user-address-edit'>
-          <button
-            className="account-wallet-btn"
-            onClick={handleFormSubmit}
-          >
-            CONFIRM ADDRESS
-          </button>
-        </div> */}
       </div>
     </>
   )
