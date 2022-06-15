@@ -10,6 +10,10 @@ module.exports = {
         source: '/qr',
         destination: '/',
         permanent: false,
+      },{
+        source: '/checkout/details',
+        destination: '/',
+        permanent: false,
       },
     ]
   }
