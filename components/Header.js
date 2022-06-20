@@ -180,7 +180,8 @@ const Header = ({ images }) => {
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              <Svg />
+              {/* <Svg /> */}
+              <Fallback />
               {/* {useWindowSize().width > 1080
                 ? <Svg />
                 : <Fallback />} */}
