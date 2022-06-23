@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 import { useScreenWidth } from '../modules/getWindow'
 import { idbPromise } from "../utils/helpers";
-import { updateAmount } from "../utils/API";
+import { updateAmount, createOrder } from "../utils/API";
 import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
 // import {}
@@ -16,11 +16,11 @@ const CheckoutForm = ({ paymentIntent }) => {
     const [checkoutError, setCheckoutError] = useState();
     const [checkoutSuccess, setCheckoutSuccess] = useState();
     const [userFormData, setUserFormData] = useState({});
-    const [addressCheck, setAddressCheck] = useState(false)
+    const [addressCheck, setAddressCheck] = useState(false);
+    const [orderId, setOrderId] = useState("");
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value)
         setUserFormData({ ...userFormData, [name]: value });
     }
     
@@ -29,13 +29,11 @@ const CheckoutForm = ({ paymentIntent }) => {
     }
 
     const [cart, setCart] = useState([]);
-    // console.log(stripeObj)
-    // console.log(useScreenWidth());
+ 
     useEffect(() => {
         async function getCart() {
             //check for staleness here
             const { cart } = await idbPromise('cart', 'get');
-            console.log(cart)
             setCart(cart)
         }
 
@@ -46,15 +44,20 @@ const CheckoutForm = ({ paymentIntent }) => {
         async function updatePaymentIntent() {
             const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-            console.log(paymentIntent.amount)
-
-            updateAmount(
+            const response = await updateAmount(
                 {
                     amount: totalAmount(cart),
                     stripeId: paymentIntent.id
                 },
                 token
             )
+
+            if(response.status != 200){
+                alert('Payment Update failed')
+            }
+
+            const data = await response.json()
+            setOrderId(data.id)
         }
 
         updatePaymentIntent()
@@ -70,42 +73,63 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        console.log(userFormData);
-        console.log(addressCheck);
 
-        // try {
-        //     const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-        //         payment_method: {
-        //             card: elements.getElement(CardElement)
-        //         }
-        //     })
+        try {
+            const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
+                payment_method: {
+                    card: elements.getElement(CardElement)
+                }
+            })
 
-        //     if (error) throw new Error(error.message);
+            if (error) throw new Error(error.message);
 
-        //     if (status === 'succeeded') {
-        //         destroyCookie(null, "paymentIntentId")
-        //         setCheckoutSuccess(true)
-        //     };
+            if (status === 'succeeded') {
+                destroyCookie(null, "paymentIntentId")
+                setCheckoutSuccess(true);
 
-        //     setUserFormData({
-        //         first_name: "",
-        //         last_name: "",
-        //         // OPTIONAL //
-        //         phone: "",
-        //         // ENTER IN ADDRESS FORM //
-        //         addressOne: "",
-        //         addressTwo: "",
-        //         city: "",
-        //         state: "",
-        //         zip: "",
-        //         // // GET FROM NEW WALLET APP //
-        //         // walletAddress: "",
-        //         // walletBalance: "",
-        //         // completed: true
-        //       });
-        // } catch (err) {
-        //     setCheckoutError(err.message)
-        // }
+                const user = await Auth.getProfile();
+
+                const productsOrdered = [];
+                cart.forEach(item => {
+                    productsOrdered.push(item.id)
+                })
+
+                const orderObj = {
+                    id: user.data._id,
+                    products: productsOrdered,
+                    addressCheck,
+                    shippingAddress: {
+                        ...userFormData
+                    },
+                    billingAddress: {
+                        ...userFormData
+                    },
+                    paymentConfirmation: orderId,
+                    totalPrice: totalAmount(cart),
+                    specialInstructions: "None"
+                }
+                createOrder(orderObj)
+            };
+
+            setUserFormData({
+                first_name: "",
+                last_name: "",
+                // OPTIONAL //
+                phone: "",
+                // ENTER IN ADDRESS FORM //
+                addressOne: "",
+                addressTwo: "",
+                city: "",
+                state: "",
+                zip: "",
+                // // GET FROM NEW WALLET APP //
+                // walletAddress: "",
+                // walletBalance: "",
+                // completed: true
+              });
+        } catch (err) {
+            setCheckoutError(err.message)
+        }
     }
 
     if (checkoutSuccess) return <p>Payment Successful</p>
@@ -158,7 +182,7 @@ const CheckoutForm = ({ paymentIntent }) => {
             </div>
             {paymentIntent ?
                 <div className='checkout-details_cost center-text'>
-                    <div aria-label={'Your cost is $'+ (totalAmount(cart) - 10)}><b>Cost&ensp;//&ensp;${paymentIntent.amount/100}</b></div>
+                    <div aria-label={'Your cost is $'+ (10 - totalAmount(cart))}><b>Cost&ensp;//&ensp;${(totalAmount(cart)-10).toFixed(2)}</b></div>
                     <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
                     <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
                         <b>Total:</b> ${totalAmount(cart)}

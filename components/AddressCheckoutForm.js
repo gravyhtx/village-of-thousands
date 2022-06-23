@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import statesList from "./dynamic-content/statesList.json";
 
-const AddressCheckoutForm = ({ handleInputChange, errorClasses }) => {
+const AddressCheckoutForm = ({ handleInputChange, errorClasses, user }) => {
 
   return (
     <>
@@ -29,7 +29,7 @@ const AddressCheckoutForm = ({ handleInputChange, errorClasses }) => {
       </div>
       <div className='row'>
         <div className='col s12 address-form_input'>
-          <input
+            <input
             className="input-field"
             id={"user-register-" + "test" + "_input"}
             aria-label="Address - Line 1"
