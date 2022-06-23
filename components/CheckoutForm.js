@@ -171,10 +171,10 @@ const CheckoutForm = ({ paymentIntent }) => {
     };
 
     return (<>
-        <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
         <form onSubmit={handleSubmit}>
             <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
             {/* don't call it a comeback */}
+            <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
             <div className="row container">
                 <div className='cc-input-wrapper s12'>
                     <CardElement options={options} />

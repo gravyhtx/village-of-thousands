@@ -14,7 +14,8 @@ import SiteImage from '../components/SiteImage';
 import ProductImageGrid from '../components/ProductImageGrid';
 import { useEffect, useState } from 'react';
 import { shuffleArr } from '../utils/generator';
-import ProductImage from '../components/ProductImage';
+import { ProductImage } from '../components/dynamic-content/ProductData';
+
 
 // import RandomQuote from '../components/modules/RandomQuote';
 
@@ -113,7 +114,6 @@ const ProductsPage = () =>  {
           }</h2>
           <div className="product-grid">
           <div className="row" onClick={refreshArr}>{ productGrid }</div>
-          {/* { productGrid } */}
           </div>
           <div className="products-link_view-all center disable-highlight">
             <span className="special-link products-link_view-all">

@@ -57,19 +57,19 @@ const Cart = () => {
                       </div>
                     )
                   )}
-                  <h2>Price: $ {totalAmount(cart)} </h2>
-                  <h2>Tax (8.25%): $ {Math.round((totalAmount(cart) * 0.0825) * 100) / 100} </h2>
-                  <h2>Shipping: $ 10</h2>
-                  <h2>Total: $ {10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)} </h2>
-                  <Link href="/checkout/details"><a>
+                  <h2>Price: $ {totalAmount(cart).toFixed(2)} </h2>
+                  <h2>Tax (8.25%): $ {(Math.round((totalAmount(cart) * 0.0825) * 100) / 100).toFixed(2)} </h2>
+                  <h2>Shipping: $ 10.00</h2>
+                  <h2>Total: $ {(10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)).toFixed(2)} </h2>
+                  <div className="cart_submit-container"><Link href="/checkout/details"><a>
                     <h2 className="link cart-view-products"><u>CHECKOUT</u></h2>
-                  </a></Link>
+                  </a></Link></div>
                 </div>
               ): (
                 <><p>Your cart is currently empty.</p>
-                <Link href="/shop"><a>
+                <div className="cart_submit-container"><Link href="/shop"><a>
                   <p className="link cart-view-products">VIEW PRODUCTS</p>
-                </a></Link></>
+                </a></Link></div></>
               )}
               
             </div>
