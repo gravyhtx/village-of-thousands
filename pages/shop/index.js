@@ -4,7 +4,8 @@ import Link from 'next/link';
 import DefaultLayout from '../../templates/DefaultLayout';
 
 import ProductCard from '../../components/ProductCard';
-import ProductImage from '../../components/ProductImage';
+// import ProductImage from '../../components/ProductImage';
+import { ProductImage } from '../../components/dynamic-content/ProductData';
 
 import Auth from '../../utils/auth';
 import { getAllCategories } from '../../utils/API';
@@ -12,7 +13,7 @@ import { getAllCategories } from '../../utils/API';
 import products from '../../config/products.json'
 import website from '../../config/site-data.json';
 
-import { productImage } from '../../modules/productImages';
+// import { productImage } from '../../modules/productImages';
 import scrollToEl from "../../modules/scrollToEl";
 import { randomize } from '../../utils/generator';
 

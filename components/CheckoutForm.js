@@ -147,10 +147,10 @@ const CheckoutForm = ({ paymentIntent }) => {
     };
 
     return (<>
-        <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
         <form onSubmit={handleSubmit}>
             <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
             {/* don't call it a comeback */}
+            <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
             <div className="row container">
                 <div className='cc-input-wrapper s12'>
                     <CardElement options={options} />
@@ -158,10 +158,10 @@ const CheckoutForm = ({ paymentIntent }) => {
             </div>
             {paymentIntent ?
                 <div className='checkout-details_cost center-text'>
-                    <div aria-label={'Your cost is $'+ (totalAmount(cart) - 10)}><b>Cost&ensp;//&ensp;${paymentIntent.amount/100}</b></div>
-                    <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
-                    <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
-                        <b>Total:</b> ${totalAmount(cart)}
+                    <div aria-label={'Your cost is $'+ (paymentIntent.amount/100).toFixed(2)}><b>Cost&ensp;//&ensp;${(paymentIntent.amount/100).toFixed(2)}</b></div>
+                    <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10.00</b></div>
+                    <h2 aria-label={'Your total is $'+totalAmount(cart).toFixed(2)} className='c-total'>
+                        <b>Total:</b> ${totalAmount(cart).toFixed(2)}
                     </h2>
                 </div> : <></>}
             <div className='row center checkout-details_submit'>

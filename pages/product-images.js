@@ -2,8 +2,12 @@ import { ImageCDN } from '../utils/siteFunctions';
 import { randomize } from '../utils/generator';
 import products from '../config/products.json';
 import website from '../config/site-data.json';
+import Image from 'next/image';
+import { ProductImage, allProductData } from '../components/dynamic-content/ProductData';
 
-export const ProductImage = ({ category, colorId, random }) => {
+import header from '../public/images/header.png'
+
+export const ProductImages = ({ category, colorId, random }) => {
 
   const p = products.currentDrop;
   const cn = p.crewnecks;
@@ -25,16 +29,17 @@ export const ProductImage = ({ category, colorId, random }) => {
 
   const color = category.colors[random ? randomId : colorId]
   const description = category.name+" // "+color+" // "+szn;
+  console.log(allProductData())
 
-  const prodEl =
-      <ImageCDN
-        fileName={fileName}
-        fileId={fileId}
-        description={description}
-        id={"product-image_"+fileName}
-        imgClasses={"product-image"} />
+  // const prodEl =
+  //     <ImageCDN
+  //       fileName={fileName}
+  //       fileId={fileId}
+  //       description={description}
+  //       id={"product-image_"+fileName}
+  //       imgClasses={"product-image"} />
 
-  return prodEl;
+  return <ProductImage random />
 }
 
-export default ProductImage;
+export default ProductImages;

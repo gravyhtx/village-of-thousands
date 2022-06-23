@@ -121,7 +121,7 @@ const AddressCheckout = (props) => {
     <>
       <div className='register-address-container container'>
         <div className="register-input-container" id="user-register-container">
-          <div className="user-register-address-header">SHIPPING ADDRESS</div>
+          <div className="user-register-address-header center-text">SHIPPING ADDRESS</div>
           <AddressCheckoutForm errorClasses={errorClasses} handleInputChange={props.inputFn} />
         </div>
         <br />
