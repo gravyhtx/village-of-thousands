@@ -2686,8 +2686,8 @@ button.card-trigger.loading {
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
   margin: 0 auto;
-  min-width: 350px;
-  max-width: 480px;
+  min-width: 69vh;
+  max-width: 99vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
