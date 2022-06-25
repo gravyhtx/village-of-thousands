@@ -6,6 +6,7 @@ import { idbPromise } from "../utils/helpers";
 import { updateAmount, createOrder } from "../utils/API";
 import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
+import { useRouter } from 'next/router';
 // import {}
 
 // const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
@@ -108,7 +109,16 @@ const CheckoutForm = ({ paymentIntent }) => {
                     totalPrice: totalAmount(cart),
                     specialInstructions: "None"
                 }
-                createOrder(orderObj)
+                await createOrder(orderObj)
+
+                const cartDeleteObj = {
+                    id: user.data._id
+                }
+                await idbPromise("delete", cartDeleteObj)
+
+                setTimeout(() => {
+                    useRouter('/')
+                }, 3000)
             };
 
             setUserFormData({
