@@ -25,9 +25,9 @@ const Cart = () => {
     return sum
   }
 
-  async function deleteFromCart(event) {
-    event.preventDefault();
-    const itemId = event.target.dataset.id
+  async function deleteFromCart(id) {
+    // event.preventDefault();
+    const itemId = id
     console.log(itemId)
     await idbPromise('cart', 'deleteone', {
       id: itemId
@@ -52,7 +52,7 @@ const Cart = () => {
                         <img src={item.image} height="200px" width="200px"></img>
                         <h1>{item.product}</h1>
                         <div className="cart_close-container disable-highlight">
-                          <button className='cart_delete not-a-button' data-id={item.id} onClick={deleteFromCart} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
+                          <button className='cart_delete not-a-button' data-id={item.id} onClick={() => {deleteFromCart(item.id)}} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
                         </div>
                       </div>
                     )
