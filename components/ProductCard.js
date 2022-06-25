@@ -192,7 +192,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
             </div>
 
           </div>
-            {/* {loggedIn ? 
+            {loggedIn ? 
               <div className={"product-card_submit disable-highlight"
                             + ( itChecksOut ? "" : " blank-checks" )
                             + ( addedToCart ? " added" : "" )}>
@@ -214,12 +214,12 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
                   <div disabled>REGISTER TO PURCHASE</div>
                 </div>
               </a></Link>
-            } */}
-            <Link href="/register"><a className="product-card_register-link">
+            }
+            {/* <Link href="/register"><a className="product-card_register-link">
                 <div className="product-card_submit disable-highlight">
                   <div disabled>REGISTER TO PURCHASE</div>
                 </div>
-              </a></Link>
+              </a></Link> */}
         </div>
       </div>
     </div>:<></>}
