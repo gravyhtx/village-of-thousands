@@ -322,11 +322,31 @@ input[type=number]:not(.browser-default),
 input[type=search]:not(.browser-default),
 textarea.materialize-textarea,
 input.input-field {
-  font-size: 1rem;
+  font-size: 1.1rem;
   -webkit-box-sizing: border-box;
     box-sizing: border-box;
-  padding: 0 8px;
+  padding: 0 10px;
   border-bottom: 1px solid white;
+}
+
+input[type=password]:not(.browser-default) {
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+}
+
+input:-webkit-autofill {
+  /* font-weight: 400; */
+  -webkit-box-shadow: 0 0 0 1000px #111 inset !important;
+          box-shadow: 0 0 0 1000px #111 inset !important;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #222 inset !important;
+          box-shadow: 0 0 0 1000px #222 inset !important;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .MuiInput-input.MuiInputBase-input::after,
@@ -1112,7 +1132,7 @@ h2, .h2 {
 }
 
 .image-class {
-  display: flex;
+  display: block;
   width: 100%;
   margin: 0 auto;
 }
@@ -1350,10 +1370,21 @@ h2, .h2 {
 }
 
 .navigation-link {
-  height: 34px;
-  width: 68px;
+  height: 48px;
+  width: 80%;
   border-radius: 0 !important;
   overflow: auto;
+  transition: 1s !important;
+}
+
+.top-nav,
+.navigation-link {
+  overflow: visible;
+}
+
+.top-nav::-webkit-scrollbar,
+.navigation-link::-webkit-scrollbar {
+  width: 0;
 }
 
 .navigation-link span {
@@ -1364,16 +1395,30 @@ h2, .h2 {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  line-height: 1.5;
-  cursor: pointer;
+  line-height: 1.6;
+  /* cursor: pointer; */
+  overflow: visible;
+  transition: 1s !important;
 }
 
-button.btn-floating.navigation-link:hover,
-button.btn-floating.navigation-link:active,
-button.btn-floating.navigation-link:focus {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
-  background-color: rgba(0, 0, 0, 0.1);
+.navigation-link span:hover,
+.navigation-link span:active,
+.navigation-link span:focus {
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+  background-color: none;
+  background: none;
+  transition: 1s !important;
 }
+
+button.btn-floating,
+button.btn-floating:hover,
+button.btn-floating:active,
+button.btn-floating:focus {
+  background-color: none;
+  background: none;
+  transition: 1s !important;
+}
+
 
 .fixed-action-btn.toolbar ul li a:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -1401,7 +1446,7 @@ button.btn-floating.navigation-link:focus {
   border-bottom: 1px solid #ffffff80;
   background-color: var(--theme-alt-dark-color);
   box-shadow: 0px 0 20px black;
-  height: 35px;
+  height: 48px;
 }
 
 .top-nav.home {
@@ -1417,7 +1462,7 @@ button.btn-floating.navigation-link:focus {
 
 .nav-icon {
   color: white;
-  font-size: 1.5rem !important;
+  font-size: 1.8rem;
 }
 
 .css-kp9ftd-MuiIcon-root {
@@ -2641,8 +2686,8 @@ button.card-trigger.loading {
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
   margin: 0 auto;
-  min-width: 350px;
-  max-width: 480px;
+  min-width: 69vh;
+  max-width: 99vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -3094,6 +3139,10 @@ button.card-trigger.loading {
   margin-bottom: 50px;
 }
 
+.cart_submit-container {
+  margin: 20px 0 50px;
+}
+
 
 /* ACCOUNT */
 .account {
@@ -3485,8 +3534,16 @@ button.card-trigger.loading {
   border-bottom: 2px solid white;
 }
 
+.checkout-header {
+  padding: 30px 0;
+}
+
 .cc-input-wrapper {
   margin-bottom: 25px;
+}
+
+.checkout-details_cost {
+  margin: 30px 0;
 }
 
 .checkout-details_cost h2 {
@@ -3663,7 +3720,7 @@ button.card-trigger.loading {
 @media only screen and (min-width: 1600px) {
 
   body { font-size: 20px; }
-
+  
   .notify { font-size: 16px; }
 
   .big-spacer { margin-top: 60px; }
@@ -3677,6 +3734,21 @@ button.card-trigger.loading {
 
   .products-header { font-size: 3.5rem; }
 
+}
+
+@media only screen and (max-width: 1400px) {
+
+  .top-nav, .navigation-link { height: 35px; }
+
+  .navigation-link span { line-height: 1.6; }
+
+  .nav-icon {
+    font-size: 1.3rem;
+  }
+  .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
+    line-height: 35px;
+    width: 80%;
+  }
 }
 
 /* ----------------- */
@@ -3712,12 +3784,6 @@ button.card-trigger.loading {
     color: white;
     font-size: 1.2rem;
     /* filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4)); */
-  }
-  .nav-icon {
-    font-size: 1.25rem !important;
-  }
-  .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
-    line-height: 40px;
   }
   .box-container {
     max-width: 95vw;
@@ -3792,6 +3858,12 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 1080px) {
+  .top-nav, .navigation-link {
+    height: 32px;
+  }
+  .nav-icon {
+    font-size: 1.225rem;
+  }
   .index-aside {
     font-size: 1.5rem;
   }
@@ -3808,6 +3880,8 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 992px) {
+  .top-nav, .navigation-link { height: 30px; }
+  .navigation-link span { line-height: 1.4; }
   .index-main.container {
     font-size: var(--theme-font-size);
     width: 90%;
@@ -3836,6 +3910,13 @@ button.card-trigger.loading {
   .index-aside {
     font-size: 1.4rem;
   }
+
+  .navigation-link span { line-height: 1.6; }
+  .nav-icon { font-size: 1.2rem; }
+
+  .products-header {
+    padding: 30px 5px 20px;
+  }
   .signup-error.error-message {
     font-size: 0.7rem;
   }
@@ -3862,7 +3943,7 @@ button.card-trigger.loading {
 @media only screen and (max-width: 770px) {
 
   input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   body { font-size: 12px; }
@@ -3874,6 +3955,9 @@ button.card-trigger.loading {
   /* .big-spacer {
     margin: 30px 0;
   } */
+  .nav-icon {
+    font-size: 1.125rem;
+  }
   .yuge-spacer { margin: 40px 0; }
 
   .header-img-container { max-width: 95%; }
@@ -4151,7 +4235,7 @@ button.card-trigger.loading {
 
   .address-form_input input,
   .CardField {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .address-form_input.xt-margin {
@@ -4175,7 +4259,7 @@ button.card-trigger.loading {
   input[type=number]:not(.browser-default),
   input[type=search]:not(.browser-default),
   textarea.materialize-textarea {
-    padding: 0 5px;
+    padding: 0 8px;
   }
 
   /* .account-wallet {
@@ -4321,8 +4405,6 @@ button.card-trigger.loading {
   }
   .products-header {
     font-size: 1.35rem;
-    margin: 40px 0;
-    padding: 0 5px;
   }
   .index-content .index-socials div p {
     font-size: .9rem;

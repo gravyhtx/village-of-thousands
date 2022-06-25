@@ -47,7 +47,7 @@ const Details = ({ paymentIntent }) => {
         <>
         <DefaultLayout>
             <div className="checkout-details">
-                <h2 className="checkout-header center">Checkout Details</h2>
+                <h1 className="checkout-header center">Checkout Details</h1>
                 <Elements stripe={stripePromise} >
                     <CheckoutForm paymentIntent={paymentIntent} />
                 </Elements>

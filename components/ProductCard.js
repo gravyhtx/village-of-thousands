@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { idbPromise } from "../utils/helpers";
 import { productImage } from '../modules/productImages';
 import products from '../config/products.json';
-import ProductImage from './ProductImage';
+// import ProductImage from './ProductImage';
+import { ProductImage } from '../components/dynamic-content/ProductData';
+
 import Link from 'next/link';
 import { cdnLink } from '../utils/siteFunctions';
 
@@ -157,11 +159,18 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
           <div className="product-card_container">
             {/* Add onChange to div to make product image blink when switched */}
             <div className="product-card_img disable-highlight" id={("img-"+category.category+"-"+product[colorSet].product_colors).toLowerCase()}>
-              <ProductImage
+              {/* <ProductImage
                 colorId={colorSet}
                 category={categoryName}
                 imgClasses={"card-image"}
-                aria={category.name + " - " + product[colorSet].product_colors} />
+                aria={category.name + " - " + product[colorSet].product_colors} /> */}
+              <ProductImage
+                colorId={colorSet}
+                category={categoryName}
+                containerClasses={"image-container"}
+                imgClasses={"card-image"}
+                // aria={category.name + " - " + product[colorSet].product_colors}
+                />
             </div>
             <div className="product-select_container">
               {/* PRODUCT COLORS */}

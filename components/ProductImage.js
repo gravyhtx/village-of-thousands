@@ -2,7 +2,6 @@ import { ImageCDN } from '../utils/siteFunctions';
 import { randomize } from '../utils/generator';
 import products from '../config/products.json';
 import website from '../config/site-data.json';
-import { containerClasses } from '@mui/material';
 
 export const ProductImage = ({ category, colorId, imgClasses, containerClasses, aria, random }) => {
 

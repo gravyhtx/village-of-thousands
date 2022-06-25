@@ -149,16 +149,16 @@ export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   return location+file + (imgWidth ? "?imwidth="+imgWidth : "?imgwidth=3840");
 }
 
-export function imageExists(image_url){
+// export function imageExists(image_url){
 
-  var http = new XMLHttpRequest();
+//   var http = new XMLHttpRequest();
 
-  http.open('HEAD', image_url, false);
-  http.send();
+//   http.open('HEAD', image_url, false);
+//   http.send();
 
-  return http.status != 404;
+//   return http.status != 404;
 
-}
+// }
 
 export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
 
