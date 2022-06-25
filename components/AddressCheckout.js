@@ -24,7 +24,7 @@ const AddressCheckout = (props) => {
         const response = await getSingleUser(token);
 
         if (!response.ok) {
-          // router.replace("/login")
+          router.replace("/login")
           throw new Error('User is not logged in, something went wrong!');
         }
 
@@ -62,47 +62,6 @@ const AddressCheckout = (props) => {
     zip: ""
   })
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-    // performChecks();
-    // console.log(userFormData.first_name.length);
-    // console.log(itChecksOut)
-  }
-
-  const handleSameAddress = (event) => {
-    console.log("I'm checked")
-  }
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    props.handleFormSubmit(userFormData);
-
-    setUserFormData({
-      first_name: "",
-      last_name: "",
-      // OPTIONAL //
-      phone: "",
-      // ENTER IN ADDRESS FORM //
-      addressOne: "",
-      addressTwo: "",
-      city: "",
-      state: "",
-      zip: "",
-      // // GET FROM NEW WALLET APP //
-      // walletAddress: "",
-      // walletBalance: "",
-      // completed: true
-    });
-  }
-
   const performChecks = () => {
     if( userFormData.first_name.length !== 0 &&
       userFormData.last_name.length !== 0 &&
@@ -121,8 +80,8 @@ const AddressCheckout = (props) => {
     <>
       <div className='register-address-container container'>
         <div className="register-input-container" id="user-register-container">
-          <div className="user-register-address-header center-text">SHIPPING ADDRESS</div>
-          <AddressCheckoutForm errorClasses={errorClasses} handleInputChange={props.inputFn} />
+          <div className="user-register-address-header">SHIPPING ADDRESS</div>
+          <AddressCheckoutForm errorClasses={errorClasses} user={userData} handleInputChange={props.inputFn} />
         </div>
         <br />
         <div className='row checkout_billing-check'>
@@ -131,7 +90,7 @@ const AddressCheckout = (props) => {
             <label>
               <input type="checkbox" onChange={props.sameAddress}/>
               <span>
-                My shipping address is the same as yo momma
+                My shipping address is the same as my billing address
               </span>
             </label>
           </div>

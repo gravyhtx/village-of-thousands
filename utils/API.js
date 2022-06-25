@@ -145,6 +145,15 @@ export const updateAmount = (userData, token) => {
   })
 }
 
+export const createOrder = (orderData) => {
+  return fetch('/api/checkout/order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+  })
+}
 //Demo Use Only Section
 
 
