@@ -2686,8 +2686,8 @@ button.card-trigger.loading {
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
   margin: 0 auto;
-  min-width: 69vh;
-  max-width: 99vh;
+  min-width: 40vh;
+  max-width: 95vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -3137,6 +3137,22 @@ button.card-trigger.loading {
 
 .cart-item {
   margin-bottom: 50px;
+}
+
+.cart-item h2 {
+  margin-bottom: 0px;
+}
+
+.cart-item h3 {
+  margin-top: 10px;
+}
+
+.cart-price h3 {
+  margin: 10px auto 5px;
+}
+
+.cart-price h2 {
+  margin: 20px auto 5px;
 }
 
 .cart_submit-container {
@@ -3738,7 +3754,7 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 1400px) {
 
-  .top-nav, .navigation-link { height: 35px; }
+  .top-nav, .navigation-link { height: 32px; }
 
   .navigation-link span { line-height: 1.6; }
 
