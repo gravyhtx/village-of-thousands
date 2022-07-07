@@ -41,6 +41,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
         color: productSelection.color,
         price: productSelection.price,
         image: imgSrc,
+        size: sizeSelect,
         quantity: 1
       })
       setAddedToCart(true);
