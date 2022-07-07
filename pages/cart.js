@@ -46,24 +46,29 @@ const Cart = () => {
             <div className={(cart.length ? "got-stuff " : "empty-cart ")+"center"}>
               {cart.length ? (
                 <div>
+                  <div className="row">
                   {cart.map((item, index) => 
                     (
                       <div className="cart-item" key={item.id}>
                         <img src={item.image} height="200px" width="200px"></img>
-                        <h1>{item.product}</h1>
+                        <h2>{item.product}</h2>
+                        <h3>{item.color}</h3>
                         <div className="cart_close-container disable-highlight">
                           <button className='cart_delete not-a-button' data-id={item.id} onClick={() => {deleteFromCart(item.id)}} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
                         </div>
                       </div>
                     )
                   )}
-                  <h2>Price: $ {totalAmount(cart).toFixed(2)} </h2>
-                  <h2>Tax (8.25%): $ {(Math.round((totalAmount(cart) * 0.0825) * 100) / 100).toFixed(2)} </h2>
-                  <h2>Shipping: $ 10.00</h2>
-                  <h2>Total: $ {(10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)).toFixed(2)} </h2>
-                  <div className="cart_submit-container"><Link href="/checkout/details"><a>
-                    <h2 className="link cart-view-products"><u>CHECKOUT</u></h2>
-                  </a></Link></div>
+                  </div>
+                  <div className="cart-price">
+                    <h3>Price: $ {totalAmount(cart).toFixed(2)} </h3>
+                    <h3>Tax (8.25%): $ {(Math.round((totalAmount(cart) * 0.0825) * 100) / 100).toFixed(2)} </h3>
+                    <h3>Shipping: $ 10.00</h3>
+                    <h2><b>Total: $ {(10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)).toFixed(2)}</b></h2>
+                    <div className="cart_submit-container"><Link href="/checkout/details"><a>
+                      <h2 className="link cart-view-products"><u>CHECKOUT</u></h2>
+                    </a></Link></div>
+                  </div>
                 </div>
               ): (
                 <><p>Your cart is currently empty.</p>
