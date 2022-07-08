@@ -14,6 +14,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   
   const [colorSet, setColorSet] = useState(1);
   const [sizeSelect, setSizeSelect] = useState();
+  const [sizeObj, setSizeObj] = useState({})
   const [itChecksOut, setChecks] = useState(false);
   const category = productCategory;
 
@@ -22,6 +23,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   const [productSelection, setProductSelection] = useState({
     id: '',
     path: '',
+    category: '',
     product: '',
     image: [],
     color: '',
@@ -36,11 +38,14 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     if(itChecksOut) {
       idbPromise('cart', 'put', {
         id: productSelection.id,
+        category: productSelection.category,
         path: productSelection.path,
         product: productSelection.product,
         color: productSelection.color,
         price: productSelection.price,
         image: imgSrc,
+        size: sizeObj.size,
+        abbr_size: sizeObj.abbr_size,
         quantity: 1
       })
       setAddedToCart(true);
@@ -65,6 +70,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     setColorSet(index);
     setAddedToCart(false);
     setProductSelection({
+      category: product[index].category_name,
       path: product[index].product_path,
       product: product[index].product_name,
       color: product[index].product_colors,
@@ -92,13 +98,18 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     )
   }
 
-  const setSize = (index, amt) => {
+  const setSize = (index, abbr_size, size, amt) => {
     if(amt > 0) {
       setChecks(true);
       setSizeSelect(index);
       setAddedToCart(false);
+      setSizeObj({
+        size: size,
+        abbr_size: abbr_size
+      })
       setProductSelection({
         image: imgSrc,
+        category: product[colorSet].category_name,
         path: product[colorSet].product_path,
         product: product[colorSet].product_name,
         color: product[colorSet].product_colors,
@@ -110,13 +121,13 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   }
   // console.log(productSelection);
   // Size Box //
-  const sizeBox = (size, amt, index) => {
+  const sizeBox = (abbr_size, size, amt, index) => {
     return (
-    <div onClick={() => { setSize(index, amt) }}
+    <div onClick={() => { setSize(index, abbr_size, size, amt) }}
       className={"size-box" + ((amt > 0) ? " available" : " unavailable") + ((index === sizeSelect && amt > 0) ? " mines" : "")}
       role="listitem" aria-label={"Size "+size}
       key={index}>
-      <div><code className="box-size disable-highlight">{size}</code></div>
+      <div><code className="box-size disable-highlight">{abbr_size}</code></div>
     </div>
     )
   }
@@ -124,7 +135,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
   const renderSizeBox = (color) => {
     return (
       product[color].product_information.map((size, index) =>
-        sizeBox(size.product_abbreviated_size, size.product_inventory, index)
+        sizeBox(size.product_abbreviated_size, size.product_size, size.product_inventory, index)
       )
     ) 
   }
