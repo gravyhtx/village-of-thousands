@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import DefaultLayout from "../templates/DefaultLayout";
 import { idbPromise } from "../utils/helpers";
+import { ProductImage } from "../components/dynamic-content/ProductData";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -52,7 +53,7 @@ const Cart = () => {
                       <div className="cart-item" key={item.id}>
                         <img src={item.image} height="200px" width="200px"></img>
                         <h2>{item.product}</h2>
-                        <h3>{item.color}</h3>
+                        <h3>{item.color} // {item.size}</h3>
                         <div className="cart_close-container disable-highlight">
                           <button className='cart_delete not-a-button' data-id={item.id} onClick={() => {deleteFromCart(item.id)}} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
                         </div>
