@@ -1395,7 +1395,7 @@ h2, .h2 {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  line-height: 1.6;
+  line-height: 1.67;
   /* cursor: pointer; */
   overflow: visible;
   transition: 1s !important;
@@ -3737,7 +3737,7 @@ button.card-trigger.loading {
 
   body { font-size: 20px; }
   
-  .notify { font-size: 16px; }
+  .notify { font-size: 20px; }
 
   .big-spacer { margin-top: 60px; }
   .yuge-spacer { margin-top: 80px; }
@@ -3752,11 +3752,19 @@ button.card-trigger.loading {
 
 }
 
+
+@media only screen and (min-width: 1400px) {
+  .top-nav, .navigation-link { height:50px; }
+
+  .navigation-link span { line-height: 1.6; }
+}
+
+
 @media only screen and (max-width: 1400px) {
 
   .top-nav, .navigation-link { height: 32px; }
 
-  .navigation-link span { line-height: 1.6; }
+  .navigation-link span { line-height: 1.45; }
 
   .nav-icon {
     font-size: 1.3rem;
@@ -3770,6 +3778,7 @@ button.card-trigger.loading {
     min-width: 40vw;
     max-width: 40vw;
   }
+  
 }
 
 /* ----------------- */
@@ -3906,7 +3915,7 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 992px) {
   .top-nav, .navigation-link { height: 30px; }
-  .navigation-link span { line-height: 1.4; }
+  /* .navigation-link span { line-height: 1.45; } */
   .index-main.container {
     font-size: var(--theme-font-size);
     width: 90%;
@@ -3941,7 +3950,7 @@ button.card-trigger.loading {
     font-size: 1.4rem;
   }
 
-  .navigation-link span { line-height: 1.6; }
+  /* .navigation-link span { line-height: 1.6; } */
   .nav-icon { font-size: 1.2rem; }
 
   .products-header {
