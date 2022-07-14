@@ -2686,8 +2686,8 @@ button.card-trigger.loading {
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
   margin: 0 auto;
-  min-width: 40vh;
-  max-width: 95vh;
+  min-width: 35vw;
+  max-width: 35vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -3762,8 +3762,13 @@ button.card-trigger.loading {
     font-size: 1.3rem;
   }
   .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
-    line-height: 35px;
+    line-height: 45px;
     width: 80%;
+  }
+
+  .product-card {
+    min-width: 40vw;
+    max-width: 40vw;
   }
 }
 
@@ -3893,6 +3898,10 @@ button.card-trigger.loading {
   .activate-header {
     font-size: 6.5rem;
   }
+  .product-card {
+    min-width: 75vh;
+    max-width: 75vh;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -3917,6 +3926,11 @@ button.card-trigger.loading {
   .activate-button {
     padding-bottom: 7.5%;
     margin-bottom: 2.5vh;
+  }
+  
+  .product-card {
+    min-width: 65vh;
+    max-width: 65vh;
   }
 }
 
@@ -3948,11 +3962,11 @@ button.card-trigger.loading {
     width: 70vw;
     margin: 10px auto;
   }
-  .product-card_sizes {
-    display: flex;
-    float: left;
-    margin-bottom: 10px;
+  .product-card {
+    min-width: 70vh;
+    max-width: 70vh;
   }
+
 }
 
 
@@ -4038,12 +4052,11 @@ button.card-trigger.loading {
   }
 
   .product-info { padding: 0; }
-  /* .product-card {
-    margin: 0 auto;
-    right: 50%;
-    top: 50%;
-    transform: translate(50%, -50%);
-  } */
+
+  .product-card {
+    min-width: 50vw;
+    max-width: 50vw;
+  }
 
   .products-text-main {
     font-size: var(--theme-font-size);
@@ -4077,6 +4090,12 @@ button.card-trigger.loading {
 
   .product-card_price div {
     font-size: 2.5rem;
+  }
+
+  .product-card_sizes {
+    display: flex;
+    float: left;
+    margin-bottom: 10px;
   }
 
   .blue-outline.special-link {
@@ -4297,6 +4316,10 @@ button.card-trigger.loading {
   .index_mobile-box {
     font-size: 1.15rem;
   }
+  .product-card {
+    min-width: 60vw;
+    max-width: 60vw;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -4365,6 +4388,17 @@ button.card-trigger.loading {
   .activated-is-activated {
     font-size: 2.5rem;
   }
+  .product-card {
+    min-width: 70vw;
+    max-width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .product-card {
+    min-width: 80vw;
+    max-width: 80vw;
+}
 }
 
 @media only screen and (max-width: 400px) {
@@ -4400,6 +4434,9 @@ button.card-trigger.loading {
   }
   .activated-congrats {
     font-size: 3.5rem;
+  }
+  .product-card {
+    min-width: 95vw;
   }
   .blue-outline.special-link {
     font-size: 1.5rem;
