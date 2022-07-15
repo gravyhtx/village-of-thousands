@@ -1395,11 +1395,13 @@ h2, .h2 {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  line-height: 1.67;
+  line-height: 1.9;
   /* cursor: pointer; */
+  font-size: 1.75rem;
   overflow: visible;
   transition: 1s !important;
 }
+.top-nav, .navigation-link { height: 45px; }
 
 .navigation-link span:hover,
 .navigation-link span:active,
@@ -3747,14 +3749,7 @@ button.card-trigger.loading {
 }
 
 @media only screen and (min-width: 1400px) {
-  .top-nav, .navigation-link { height: 38px; }
-
-  .navigation-link span { line-height: 1.25; }
-
-  .nav-icon {
-    color: white;
-    font-size: 1.65rem;
-  }
+ 
 
   .faq-image {
     width: 45vw;
@@ -3772,13 +3767,6 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 1400px) {
 
-  .top-nav, .navigation-link { height: 45px; }
-
-  .navigation-link span { line-height: 1.45; }
-
-  .nav-icon {
-    /* font-size: 1.3rem; */
-  }
   .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
     line-height: 45px;
     width: 80%;
@@ -3787,6 +3775,15 @@ button.card-trigger.loading {
   .product-card {
     min-width: 40vw;
     max-width: 40vw;
+  }
+
+  .top-nav, .navigation-link { height: 38px; }
+
+  .navigation-link span { line-height: 1.25; }
+
+  .nav-icon {
+    color: white;
+    font-size: 1.65rem;
   }
   
 }
@@ -3873,6 +3870,13 @@ button.card-trigger.loading {
   .activated-header {
     font-size: 2.65rem;
   }
+  .top-nav, .navigation-link { height: 45px; }
+
+  .navigation-link span { line-height: 1.45; }
+
+  .nav-icon {
+    /* font-size: 1.3rem; */
+  }
 }
 
 @media only screen and (max-width: 1124px) {
@@ -3902,7 +3906,7 @@ button.card-trigger.loading {
     height: 40px;
   }
   .navigation-link span {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
   .index-aside {
     font-size: 1.5rem;
@@ -3924,11 +3928,13 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 992px) {
-  .top-nav, .navigation-link { height: 32px; }
-  .navigation-link span {
-    font-size: 1.25rem;
+  .top-nav, .navigation-link { height: 45px; }
+
+  .navigation-link span { line-height: 1.8; }
+
+  .nav-icon {
+    /* font-size: 1.3rem; */
   }
-  /* .navigation-link span { line-height: 1.45; } */
   .index-main.container {
     font-size: var(--theme-font-size);
     width: 90%;
