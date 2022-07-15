@@ -163,7 +163,7 @@ const CheckoutForm = ({ paymentIntent }) => {
                 },
           
                 ':focus::placeholder': {
-                  color: '#aaa',
+                  color: '#666',
                 },
             },
             invalid: {

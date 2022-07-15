@@ -1395,7 +1395,7 @@ h2, .h2 {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  line-height: 1.6;
+  line-height: 1.67;
   /* cursor: pointer; */
   overflow: visible;
   transition: 1s !important;
@@ -2686,8 +2686,8 @@ button.card-trigger.loading {
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
   margin: 0 auto;
-  min-width: 40vh;
-  max-width: 95vh;
+  min-width: 35vw;
+  max-width: 35vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -3737,7 +3737,7 @@ button.card-trigger.loading {
 
   body { font-size: 20px; }
   
-  .notify { font-size: 16px; }
+  .notify { font-size: 20px; }
 
   .big-spacer { margin-top: 60px; }
   .yuge-spacer { margin-top: 80px; }
@@ -3752,19 +3752,33 @@ button.card-trigger.loading {
 
 }
 
+
+@media only screen and (min-width: 1400px) {
+  .top-nav, .navigation-link { height:50px; }
+
+  .navigation-link span { line-height: 1.6; }
+}
+
+
 @media only screen and (max-width: 1400px) {
 
   .top-nav, .navigation-link { height: 32px; }
 
-  .navigation-link span { line-height: 1.6; }
+  .navigation-link span { line-height: 1.45; }
 
   .nav-icon {
     font-size: 1.3rem;
   }
   .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
-    line-height: 35px;
+    line-height: 45px;
     width: 80%;
   }
+
+  .product-card {
+    min-width: 40vw;
+    max-width: 40vw;
+  }
+  
 }
 
 /* ----------------- */
@@ -3893,11 +3907,15 @@ button.card-trigger.loading {
   .activate-header {
     font-size: 6.5rem;
   }
+  .product-card {
+    min-width: 75vh;
+    max-width: 75vh;
+  }
 }
 
 @media only screen and (max-width: 992px) {
   .top-nav, .navigation-link { height: 30px; }
-  .navigation-link span { line-height: 1.4; }
+  /* .navigation-link span { line-height: 1.45; } */
   .index-main.container {
     font-size: var(--theme-font-size);
     width: 90%;
@@ -3918,6 +3936,11 @@ button.card-trigger.loading {
     padding-bottom: 7.5%;
     margin-bottom: 2.5vh;
   }
+  
+  .product-card {
+    min-width: 65vh;
+    max-width: 65vh;
+  }
 }
 
 @media only screen and (max-width: 880px) {
@@ -3927,7 +3950,7 @@ button.card-trigger.loading {
     font-size: 1.4rem;
   }
 
-  .navigation-link span { line-height: 1.6; }
+  /* .navigation-link span { line-height: 1.6; } */
   .nav-icon { font-size: 1.2rem; }
 
   .products-header {
@@ -3948,11 +3971,11 @@ button.card-trigger.loading {
     width: 70vw;
     margin: 10px auto;
   }
-  .product-card_sizes {
-    display: flex;
-    float: left;
-    margin-bottom: 10px;
+  .product-card {
+    min-width: 70vh;
+    max-width: 70vh;
   }
+
 }
 
 
@@ -4038,12 +4061,11 @@ button.card-trigger.loading {
   }
 
   .product-info { padding: 0; }
-  /* .product-card {
-    margin: 0 auto;
-    right: 50%;
-    top: 50%;
-    transform: translate(50%, -50%);
-  } */
+
+  .product-card {
+    min-width: 50vw;
+    max-width: 50vw;
+  }
 
   .products-text-main {
     font-size: var(--theme-font-size);
@@ -4077,6 +4099,12 @@ button.card-trigger.loading {
 
   .product-card_price div {
     font-size: 2.5rem;
+  }
+
+  .product-card_sizes {
+    display: flex;
+    float: left;
+    margin-bottom: 10px;
   }
 
   .blue-outline.special-link {
@@ -4297,6 +4325,10 @@ button.card-trigger.loading {
   .index_mobile-box {
     font-size: 1.15rem;
   }
+  .product-card {
+    min-width: 60vw;
+    max-width: 60vw;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -4365,6 +4397,20 @@ button.card-trigger.loading {
   .activated-is-activated {
     font-size: 2.5rem;
   }
+  .product-card {
+    min-width: 70vw;
+    max-width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .product-card {
+    min-width: 80vw;
+    max-width: 80vw;
+  }
+  .navigation-link span {
+    line-height: 1.5;
+  }
 }
 
 @media only screen and (max-width: 400px) {
@@ -4400,6 +4446,9 @@ button.card-trigger.loading {
   }
   .activated-congrats {
     font-size: 3.5rem;
+  }
+  .product-card {
+    min-width: 95vw;
   }
   .blue-outline.special-link {
     font-size: 1.5rem;
