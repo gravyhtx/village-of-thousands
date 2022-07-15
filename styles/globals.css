@@ -1400,6 +1400,7 @@ h2, .h2 {
   font-size: 1.75rem;
   overflow: visible;
   transition: 1s !important;
+  font-size: 1.8rem;
 }
 .top-nav, .navigation-link { height: 45px; }
 
@@ -3750,6 +3751,16 @@ button.card-trigger.loading {
 
 @media only screen and (min-width: 1400px) {
  
+  
+
+  .top-nav, .navigation-link { height: 38px; }
+
+  .navigation-link span { line-height: 1.25; }
+
+  .nav-icon {
+    color: white;
+    font-size: 1.65rem;
+  }
 
   .faq-image {
     width: 45vw;
@@ -3768,22 +3779,13 @@ button.card-trigger.loading {
 @media only screen and (max-width: 1400px) {
 
   .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
-    line-height: 45px;
+    line-height: 40px;
     width: 80%;
   }
 
   .product-card {
     min-width: 40vw;
     max-width: 40vw;
-  }
-
-  .top-nav, .navigation-link { height: 38px; }
-
-  .navigation-link span { line-height: 1.25; }
-
-  .nav-icon {
-    color: white;
-    font-size: 1.65rem;
   }
   
 }
@@ -3928,9 +3930,9 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 992px) {
-  .top-nav, .navigation-link { height: 45px; }
+  .top-nav, .navigation-link { height: 40px; }
 
-  .navigation-link span { line-height: 1.8; }
+  .navigation-link span { line-height: 1.8; font-size: 1.45rem }
 
   .nav-icon {
     /* font-size: 1.3rem; */
@@ -4428,8 +4430,9 @@ button.card-trigger.loading {
     max-width: 80vw;
   }
   .navigation-link span {
-    line-height: 1.5;
-  }
+    line-height: 1.8;
+    font-size: 1.3rem;
+}
 }
 
 @media only screen and (max-width: 400px) {
