@@ -1446,7 +1446,7 @@ button.btn-floating:focus {
   border-bottom: 1px solid #ffffff80;
   background-color: var(--theme-alt-dark-color);
   box-shadow: 0px 0 20px black;
-  height: 48px;
+  height: 50px;
 }
 
 .top-nav.home {
@@ -3101,7 +3101,7 @@ button.card-trigger.loading {
 }
 
 .faq-image {
-  width: 40vw;
+  width: 35vw;
 }
 
 .faq-number {
@@ -3746,13 +3746,6 @@ button.card-trigger.loading {
 
 }
 
-@media only screen and (min-width: 1200px) {
-
-  .products-header { font-size: 3.5rem; }
-
-}
-
-
 @media only screen and (min-width: 1400px) {
   .top-nav, .navigation-link { height: 38px; }
 
@@ -3762,17 +3755,29 @@ button.card-trigger.loading {
     color: white;
     font-size: 1.65rem;
   }
+
+  .faq-image {
+    width: 45vw;
+  }
 }
+
+@media only screen and (min-width: 1200px) {
+
+  .products-header { font-size: 3.5rem; }
+  .faq-image { width: 45vw; }
+
+}
+
 
 
 @media only screen and (max-width: 1400px) {
 
-  .top-nav, .navigation-link { height: 36px; }
+  .top-nav, .navigation-link { height: 45px; }
 
   .navigation-link span { line-height: 1.45; }
 
   .nav-icon {
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
   }
   .navigation-link, .navigation-link:active, .navigation-link:hover, .navigation-link:focus, .navigation-link:focus-visible {
     line-height: 45px;
@@ -3855,7 +3860,7 @@ button.card-trigger.loading {
     font-size: 1.24rem;
   }
   .faq-image {
-    width: 50vw;
+    width: 45vw;
   }
   .activate-button {
     width: 65vw;
@@ -3894,10 +3899,10 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 1080px) {
   .top-nav, .navigation-link {
-    height: px;
+    height: 40px;
   }
-  .nav-icon {
-    font-size: 1.225rem;
+  .navigation-link span {
+    font-size: 1.5rem;
   }
   .index-aside {
     font-size: 1.5rem;
@@ -3920,6 +3925,9 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 992px) {
   .top-nav, .navigation-link { height: 32px; }
+  .navigation-link span {
+    font-size: 1.25rem;
+  }
   /* .navigation-link span { line-height: 1.45; } */
   .index-main.container {
     font-size: var(--theme-font-size);
