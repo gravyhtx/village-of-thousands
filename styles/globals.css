@@ -4407,7 +4407,10 @@ button.card-trigger.loading {
   .product-card {
     min-width: 80vw;
     max-width: 80vw;
-}
+  }
+  .navigation-link span {
+    line-height: 1.5;
+  }
 }
 
 @media only screen and (max-width: 400px) {
