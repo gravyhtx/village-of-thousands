@@ -3754,15 +3754,20 @@ button.card-trigger.loading {
 
 
 @media only screen and (min-width: 1400px) {
-  .top-nav, .navigation-link { height:50px; }
+  .top-nav, .navigation-link { height: 38px; }
 
-  .navigation-link span { line-height: 1.6; }
+  .navigation-link span { line-height: 1.25; }
+
+  .nav-icon {
+    color: white;
+    font-size: 1.65rem;
+  }
 }
 
 
 @media only screen and (max-width: 1400px) {
 
-  .top-nav, .navigation-link { height: 32px; }
+  .top-nav, .navigation-link { height: 36px; }
 
   .navigation-link span { line-height: 1.45; }
 
@@ -3889,7 +3894,7 @@ button.card-trigger.loading {
 
 @media only screen and (max-width: 1080px) {
   .top-nav, .navigation-link {
-    height: 32px;
+    height: px;
   }
   .nav-icon {
     font-size: 1.225rem;
@@ -3914,7 +3919,7 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 992px) {
-  .top-nav, .navigation-link { height: 30px; }
+  .top-nav, .navigation-link { height: 32px; }
   /* .navigation-link span { line-height: 1.45; } */
   .index-main.container {
     font-size: var(--theme-font-size);
