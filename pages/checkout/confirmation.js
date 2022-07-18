@@ -51,7 +51,7 @@ const Succcess = () => {
                 <h1 className="checkout-header center">Checkout Succcess</h1>
                 <div class="user-register-address-header center">
                   <div>ORDER CONFIRMATION NUMBER</div>
-                  <div>#404302432</div>
+                  <h2>#404302432</h2>
                 </div>
                 <br/><br/>
                 <div class="products-link_view-all center disable-highlight">
