@@ -155,7 +155,7 @@ const CheckoutForm = ({ paymentIntent }) => {
                 transition: 'color 500ms ease-in-out',
 
                 ':focus': {
-                  color: '#eee',
+                  color: '#888',
                 },
           
                 '::placeholder': {
