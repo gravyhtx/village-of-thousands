@@ -336,16 +336,20 @@ input[type=password]:not(.browser-default) {
 
 input:-webkit-autofill {
   /* font-weight: 400; */
-  -webkit-box-shadow: 0 0 0 1000px #111 inset !important;
-          box-shadow: 0 0 0 1000px #111 inset !important;
-  -webkit-text-fill-color: white;
+  /* -webkit-box-shadow: 0 0 0 1000px #1a1b1c inset !important;
+          box-shadow: 0 0 0 1000px #1a1b1c inset !important; */
+  -webkit-box-shadow: 0 0 0 1000px #cadfeb inset !important;
+          box-shadow: 0 0 0 1000px #cadfeb inset !important;
+  -webkit-text-fill-color: #000;
+  font-weight: 300;
+  /* filter: drop-shadow( 2px 2px 10px #111) !important; */
   transition: background-color 5000s ease-in-out 0s;
 }
 
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px #222 inset !important;
+ -webkit-box-shadow: 0 0 0 1000px #222 inset !important;
           box-shadow: 0 0 0 1000px #222 inset !important;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: #ecf5fa;
   transition: background-color 5000s ease-in-out 0s;
 }
 

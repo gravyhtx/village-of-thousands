@@ -16,6 +16,7 @@ const CheckoutForm = ({ paymentIntent }) => {
     const elements = useElements();
     const [checkoutError, setCheckoutError] = useState();
     const [checkoutSuccess, setCheckoutSuccess] = useState();
+    const [updateSuccess, setUpdateSuccess] = useState(false);
     const [userFormData, setUserFormData] = useState({});
     const [addressCheck, setAddressCheck] = useState(false);
     const [orderId, setOrderId] = useState("");
@@ -76,50 +77,50 @@ const CheckoutForm = ({ paymentIntent }) => {
         event.preventDefault();
 
         try {
-            const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-                payment_method: {
-                    card: elements.getElement(CardElement)
-                }
-            })
+            // const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
+            //     payment_method: {
+            //         card: elements.getElement(CardElement)
+            //     }
+            // })
 
-            if (error) throw new Error(error.message);
+            // if (error) throw new Error(error.message);
 
-            if (status === 'succeeded') {
-                destroyCookie(null, "paymentIntentId")
-                setCheckoutSuccess(true);
+            // if (status === 'succeeded') {
+            //     destroyCookie(null, "paymentIntentId")
+            //     setCheckoutSuccess(true);
 
-                const user = await Auth.getProfile();
+            //     const user = await Auth.getProfile();
 
-                const productsOrdered = [];
-                cart.forEach(item => {
-                    productsOrdered.push(item.id)
-                })
+            //     const productsOrdered = [];
+            //     cart.forEach(item => {
+            //         productsOrdered.push(item.id)
+            //     })
 
-                const orderObj = {
-                    id: user.data._id,
-                    products: productsOrdered,
-                    addressCheck,
-                    shippingAddress: {
-                        ...userFormData
-                    },
-                    billingAddress: {
-                        ...userFormData
-                    },
-                    paymentConfirmation: orderId,
-                    totalPrice: totalAmount(cart),
-                    specialInstructions: "None"
-                }
-                await createOrder(orderObj)
+            //     const orderObj = {
+            //         id: user.data._id,
+            //         products: productsOrdered,
+            //         addressCheck,
+            //         shippingAddress: {
+            //             ...userFormData
+            //         },
+            //         billingAddress: {
+            //             ...userFormData
+            //         },
+            //         paymentConfirmation: orderId,
+            //         totalPrice: totalAmount(cart),
+            //         specialInstructions: "None"
+            //     }
+            //     await createOrder(orderObj)
 
-                const cartDeleteObj = {
-                    id: user.data._id
-                }
-                await idbPromise("delete", cartDeleteObj)
+            //     const cartDeleteObj = {
+            //         id: user.data._id
+            //     }
+            //     await idbPromise("delete", cartDeleteObj)
 
                 setTimeout(() => {
-                    useRouter('/')
+                    useRouter('/checkout/confirmation')
                 }, 3000)
-            };
+            // };
 
             setUserFormData({
                 first_name: "",
@@ -155,7 +156,7 @@ const CheckoutForm = ({ paymentIntent }) => {
                 transition: 'color 500ms ease-in-out',
 
                 ':focus': {
-                  color: '#eee',
+                  color: '#888',
                 },
           
                 '::placeholder': {
@@ -200,7 +201,15 @@ const CheckoutForm = ({ paymentIntent }) => {
                 </div> : <></>}
             <div className='row center checkout-details_submit'>
                 <div className='col s12'>
-                    <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                    <button className='theme-btn pay-button' type='submit'>SUBMIT</button>
+                    {/* {updateSuccess ? 
+                    (
+                        <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                    )
+                    :
+                    (
+                        <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
+                    )} */}
                 </div>
             </div>
 
