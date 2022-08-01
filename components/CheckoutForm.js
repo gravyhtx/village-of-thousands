@@ -16,6 +16,7 @@ const CheckoutForm = ({ paymentIntent }) => {
     const elements = useElements();
     const [checkoutError, setCheckoutError] = useState();
     const [checkoutSuccess, setCheckoutSuccess] = useState();
+    const [updateSuccess, setUpdateSuccess] = useState(false);
     const [userFormData, setUserFormData] = useState({});
     const [addressCheck, setAddressCheck] = useState(false);
     const [orderId, setOrderId] = useState("");
@@ -117,7 +118,7 @@ const CheckoutForm = ({ paymentIntent }) => {
                 await idbPromise("delete", cartDeleteObj)
 
                 setTimeout(() => {
-                    useRouter('/')
+                    useRouter('/checkout/confirmation')
                 }, 3000)
             };
 
@@ -200,7 +201,14 @@ const CheckoutForm = ({ paymentIntent }) => {
                 </div> : <></>}
             <div className='row center checkout-details_submit'>
                 <div className='col s12'>
-                    <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                    {updateSuccess ? 
+                    (
+                        <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                    )
+                    :
+                    (
+                        <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
+                    )}
                 </div>
             </div>
 

@@ -1,46 +1,46 @@
 import React, { useState, useEffect } from "react";
-import Stripe from "stripe";
-import { parseCookies, setCookie } from 'nookies';
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "../../components/CheckoutForm";
+// import Stripe from "stripe";
+// import { parseCookies, setCookie } from 'nookies';
+// import { loadStripe } from "@stripe/stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
+// import CheckoutForm from "../../components/CheckoutForm";
 import Link from "next/link";
 import DefaultLayout from "../../templates/DefaultLayout";
 // import './materialize.css';
-const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
+// const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
 
-export const getServerSideProps = async (ctx) => {
-    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
+// export const getServerSideProps = async (ctx) => {
+//     const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
-    let paymentIntent;
+//     let paymentIntent;
 
-    const { paymentIntentId } = await parseCookies(ctx);
+//     const { paymentIntentId } = await parseCookies(ctx);
 
-    if (paymentIntentId) {
-        paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
+//     if (paymentIntentId) {
+//         paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
 
-        return {
-            props: {
-                paymentIntent
-            }
-        }
-    }
+//         return {
+//             props: {
+//                 paymentIntent
+//             }
+//         }
+//     }
 
 
 
-    paymentIntent = await stripe.paymentIntents.create({
-        amount: 100,
-        currency: 'usd'
-    })
+//     paymentIntent = await stripe.paymentIntents.create({
+//         amount: 100,
+//         currency: 'usd'
+//     })
 
-    setCookie(ctx, 'paymentIntentId', paymentIntent.id)
+//     setCookie(ctx, 'paymentIntentId', paymentIntent.id)
 
-    return {
-        props: {
-            paymentIntent
-        }
-    }
-}
+//     return {
+//         props: {
+//             paymentIntent
+//         }
+//     }
+// }
 
 
 const Succcess = () => {
