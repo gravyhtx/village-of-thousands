@@ -6,10 +6,7 @@ import { idbPromise } from "../utils/helpers";
 import { updateAmount, createOrder } from "../utils/API";
 import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
-import { useRouter } from 'next/router';
-// import {}
-
-// const updatePromise = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
+import Succcess from './confirmation';
 
 const CheckoutForm = ({ paymentIntent }) => {
     const stripe = useStripe();
@@ -20,6 +17,7 @@ const CheckoutForm = ({ paymentIntent }) => {
     const [userFormData, setUserFormData] = useState({});
     const [addressCheck, setAddressCheck] = useState(false);
     const [orderId, setOrderId] = useState("");
+    const [cart, setCart] = useState([]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -30,7 +28,6 @@ const CheckoutForm = ({ paymentIntent }) => {
         setAddressCheck(!addressCheck)
     }
 
-    const [cart, setCart] = useState([]);
  
     useEffect(() => {
         async function getCart() {
@@ -60,6 +57,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
             const data = await response.json()
             setOrderId(data.id)
+            setUpdateSuccess(true)
         }
 
         updatePaymentIntent()
@@ -75,7 +73,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-
+        setCheckoutSuccess(true)
         try {
             const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
                 payment_method: {
@@ -117,9 +115,6 @@ const CheckoutForm = ({ paymentIntent }) => {
                 }
                 await idbPromise("delete", cartDeleteObj)
 
-                setTimeout(() => {
-                    useRouter('/checkout/confirmation')
-                }, 3000)
             };
 
             setUserFormData({
@@ -142,8 +137,6 @@ const CheckoutForm = ({ paymentIntent }) => {
             setCheckoutError(err.message)
         }
     }
-
-    if (checkoutSuccess) return <p>Payment Successful</p>
 
     const options = {
         style: {
@@ -181,39 +174,44 @@ const CheckoutForm = ({ paymentIntent }) => {
         }
     };
 
-    return (<>
-        <form onSubmit={handleSubmit}>
-            <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
-            {/* don't call it a comeback */}
-            <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
-            <div className="row container">
-                <div className='cc-input-wrapper s12'>
-                    <CardElement options={options} />
-                </div>
-            </div>
-            {paymentIntent ?
-                <div className='checkout-details_cost center-text'>
-                    <div aria-label={'Your cost is $'+ (10 - totalAmount(cart))}><b>Cost&ensp;//&ensp;${(totalAmount(cart)-10).toFixed(2)}</b></div>
-                    <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
-                    <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
-                        <b>Total:</b> ${totalAmount(cart)}
-                    </h2>
-                </div> : <></>}
-            <div className='row center checkout-details_submit'>
-                <div className='col s12'>
-                    {updateSuccess ? 
-                    (
-                        <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
-                    )
-                    :
-                    (
-                        <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
-                    )}
-                </div>
-            </div>
+    if (checkoutSuccess) return <Succcess />
 
-            {checkoutError && <span style={{ color: "#aa3d3d" }}>{checkoutError}</span>}
-        </form></>
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
+                {/* don't call it a comeback */}
+                <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
+                <div className="row container">
+                    <div className='cc-input-wrapper s12'>
+                        <CardElement options={options} />
+                    </div>
+                </div>
+                {paymentIntent ?
+                    <div className='checkout-details_cost center-text'>
+                        <div aria-label={'Your cost is $'+ (10 - totalAmount(cart))}><b>Cost&ensp;//&ensp;${(totalAmount(cart)-10).toFixed(2)}</b></div>
+                        <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
+                        <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
+                            <b>Total:</b> ${totalAmount(cart)}
+                        </h2>
+                    </div> : <></>}
+                <div className='row center checkout-details_submit'>
+                    <div className='col s12'>
+                        {updateSuccess ? 
+                        (
+                            <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                        )
+                        :
+                        (
+                            <button className='theme-btn pay-button' type='submit'>SUBMIT</button>
+                        )}
+                    </div>
+                </div>
+
+                {checkoutError && <span style={{ color: "#aa3d3d" }}>{checkoutError}</span>}
+            </form>
+        </>
+        
     )
 }
 

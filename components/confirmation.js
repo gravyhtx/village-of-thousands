@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import Stripe from "stripe";
 // import { parseCookies, setCookie } from 'nookies';
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import CheckoutForm from "../../components/CheckoutForm";
 import Link from "next/link";
-import DefaultLayout from "../../templates/DefaultLayout";
+import DefaultLayout from "../templates/DefaultLayout";
 // import './materialize.css';
 // const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
 
@@ -42,13 +42,11 @@ import DefaultLayout from "../../templates/DefaultLayout";
 //     }
 // }
 
-
 const Succcess = () => {
     return (
         <>
-        <DefaultLayout>
             <div className="checkout-details">
-                <h1 className="checkout-header center">Checkout Success</h1>
+                {/* <h1 className="checkout-header center">Checkout Success</h1> */}
                 <div class="user-register-address-header center">
                   <div>ORDER CONFIRMATION NUMBER</div>
                   <h2>#404302432</h2>
@@ -62,7 +60,6 @@ const Succcess = () => {
                   </span>
                 </div>
             </div>
-        </DefaultLayout>
         </>
     );
 }
