@@ -203,7 +203,7 @@ const CheckoutForm = ({ paymentIntent }) => {
                         )
                         :
                         (
-                            <button className='theme-btn pay-button' type='submit'>SUBMIT</button>
+                            <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
                         )}
                     </div>
                 </div>
