@@ -4,6 +4,7 @@ import Link from 'next/link';
 import DefaultLayout from '../../templates/DefaultLayout';
 
 import ProductCard from '../../components/ProductCard';
+import LoadingScreen from '../../components/LoadingScreen';
 // import ProductImage from '../../components/ProductImage';
 import { ProductImage } from '../../components/dynamic-content/ProductData';
 
@@ -159,7 +160,7 @@ export const ProductCardTest = () => {
         productCategory={productKeys[setPC ? setPC : 0][1]}
         closeButton={closeButton()}
         pcId={setPC}
-        loggedIn={logged} /> : <></> }
+        loggedIn={logged} /> : <LoadingScreen onClick={() => closePC()} isOpen={activatePCness} /> }
   </>);
 }
 

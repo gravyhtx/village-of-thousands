@@ -1,7 +1,7 @@
 const RandomQuote = ({ type, className }) => {
 
     const zen = [
-        <>"Wherever you are is where your mind should be."<br/>- Gran Master Wei Chueh</>,
+        <>"Wherever you are is where your mind should be."<br/>- Grand Master Wei Chueh</>,
         <>"The world is ruled by letting things take their course."<br/>- Lao Tzu</>,
         <>"The most wasted of days is one without laughter."<br/>- E. E. Cummings</>,
         <>"Do not let what you can't do interfere with what you can do."<br/>- John Wooden</>,

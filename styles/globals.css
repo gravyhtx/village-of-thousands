@@ -2688,6 +2688,31 @@ button.card-trigger.loading {
   100% { filter: drop-shadow(2px 2px 25px #ffffff00); }
 }
 
+/* LOADING SCREEN */
+
+.loading-screen {
+  background: #01010120;
+  backdrop-filter: blur(8px);
+}
+.loading-screen, .loading-inner {
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  margin: 0 auto;
+  min-width: 100vw;
+  max-width: 100vw;
+  min-height: 100vw;
+  max-height: 100vw;
+  filter: drop-shadow(none);
+  overflow: hidden;
+}
+
+.loading-inner {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 /* PRODUCT CARDS */
 .product-card {
   position: fixed; /* Stay in place */
