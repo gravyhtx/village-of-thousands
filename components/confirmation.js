@@ -6,7 +6,7 @@ const Succcess = () => {
         <>
             <div className="checkout-details">
                 {/* <h1 className="checkout-header center">Checkout Success</h1> */}
-                <div class="user-register-address-header center">
+                <div className="user-register-address-header center">
                   <div>ORDER CONFIRMATION NUMBER</div>
                   <h2>#404302432</h2>
                 </div>

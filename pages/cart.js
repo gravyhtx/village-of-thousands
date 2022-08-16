@@ -10,9 +10,12 @@ const Cart = () => {
   useEffect(() => {
     async function getCart() {
       //check for staleness here
-      const { cart } = await idbPromise('cart', 'get');
-      console.log(cart)
-      setCart(cart)
+      const indexedDB = await idbPromise('cart', 'get');
+      if(indexedDB) {
+        const { cart } = await idbPromise('cart', 'get');
+        console.log(cart)
+        setCart(cart)
+      }
     }
 
     if(!cart.length) {
