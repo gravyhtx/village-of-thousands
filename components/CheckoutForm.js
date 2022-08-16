@@ -42,6 +42,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
         async function updatePaymentIntent() {
             const token = Auth.loggedIn() ? Auth.getToken() : null;
+            const { cart } = await idbPromise('cart', 'get');
 
             const response = await updateAmount(
                 {
@@ -85,10 +86,9 @@ const CheckoutForm = ({ paymentIntent }) => {
 
             if (status === 'succeeded') {
                 destroyCookie(null, "paymentIntentId")
-                setCheckoutSuccess(true);
-
+                
                 const user = await Auth.getProfile();
-
+                
                 const productsOrdered = [];
                 cart.forEach(item => {
                     productsOrdered.push(item.id)
@@ -109,10 +109,11 @@ const CheckoutForm = ({ paymentIntent }) => {
                     specialInstructions: "None"
                 }
                 await createOrder(orderObj)
-
+                
                 const cartDeleteObj = {
                     id: user.data._id
                 }
+                setCheckoutSuccess(true);
                 await idbPromise("delete", cartDeleteObj)
 
             };
