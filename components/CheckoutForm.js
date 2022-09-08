@@ -42,6 +42,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
         async function updatePaymentIntent() {
             const token = Auth.loggedIn() ? Auth.getToken() : null;
+            const { cart } = await idbPromise('cart', 'get');
 
             const response = await updateAmount(
                 {
@@ -65,7 +66,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     function totalAmount(arr) {
         const sum = arr.reduce((prev, curr) => prev + parseInt(curr.price), 0);
-        console.log(10 + sum + (Math.round((sum * 0.0825) * 100)/ 100))
+        // console.log(10 + sum + (Math.round((sum * 0.0825) * 100)/ 100))
         //10 is the flat value of shipping
         return (10 + sum + (Math.round((sum * 0.0825) * 100) / 100))
     }
@@ -73,7 +74,7 @@ const CheckoutForm = ({ paymentIntent }) => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        setCheckoutSuccess(true)
+
         try {
             const { error, paymentIntent: { status } } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
                 payment_method: {
@@ -85,10 +86,9 @@ const CheckoutForm = ({ paymentIntent }) => {
 
             if (status === 'succeeded') {
                 destroyCookie(null, "paymentIntentId")
-                setCheckoutSuccess(true);
-
+                
                 const user = await Auth.getProfile();
-
+                
                 const productsOrdered = [];
                 cart.forEach(item => {
                     productsOrdered.push(item.id)
@@ -109,11 +109,12 @@ const CheckoutForm = ({ paymentIntent }) => {
                     specialInstructions: "None"
                 }
                 await createOrder(orderObj)
-
+                
                 const cartDeleteObj = {
                     id: user.data._id
                 }
-                await idbPromise("delete", cartDeleteObj)
+                setCheckoutSuccess(true);
+                await idbPromise("cart", "delete", cartDeleteObj)
 
             };
 
