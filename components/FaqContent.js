@@ -290,6 +290,30 @@ const FaqContent = () => {
       ]
     },
     {
+      "question": "How does VoT handle ordering, shipping, and returns?",
+      "answer": [
+        <>Currently, all orders are being processed and checked manually. We also limit one color in any size
+        per product offered in order to ensure fair accessibility to our curated selection of products to all
+        of our verified users. If you wish to obtain two or more of the same color you must create separate
+        orders and pay shipping for each order created.</>,
+        <>Shipping is flat rate through USPS. Most items take 7-10 business days to process, authenticate,
+        and then arrive at your destination HQ. We will send you an email as soon as your order has been
+        processed and added to our queue and when it has been processed for shipping, along with the order’s
+        tracking number.</>,
+        <>In order to purchase any products from Village of Thousands, you must be logged in with a verified
+        account. We need a verified email to keep you informed throughout the order and shipping process and
+        provide open correspondence in case of any communication needs, issues, or discrepancies. Any abuse or
+        misuse of our system may result in termination of your account.</>,
+        <>In case of issue please respond directly to emails from Village of Thousands only and we will be happy
+        to assist. We reserve the right to not accept returns or refunds, neither full nor partial. Once an order
+        has been placed with the correct information and been paid for you will now assume ownership of this item.
+        It will be an especially important issue to dive further into whenever we integrate our physical products
+        with digital assets.</>,
+        <>For now though, we recommend that you let us know of any feedback and we are prepared to discuss if we run
+        into special cases where we must adapt as a business. Any and all changes to our policy will be in our FAQ.</>
+      ]
+    },
+    {
       "question": "Where can I report bugs?",
       "answer": [
         <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">
@@ -302,6 +326,8 @@ const FaqContent = () => {
       ]
     }
   ]
+
+  console.log(questions.length);
 
   // https://github.com/gravyhtx/village-of-thousands
   return (questions)

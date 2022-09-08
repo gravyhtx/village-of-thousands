@@ -3,6 +3,7 @@ import Link from "next/link";
 import DefaultLayout from "../templates/DefaultLayout";
 import { idbPromise } from "../utils/helpers";
 import { ProductImage } from "../components/dynamic-content/ProductData";
+import CartItem from "../components/CartItem.js";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -37,6 +38,21 @@ const Cart = () => {
     location.reload()
   }
 
+  // const removeItem = deleteFromCart(item.id)
+  const removeItem = (id) => {
+    return (
+      <div className="cart_close-container disable-highlight">
+        <button className="cart_delete not-a-button cursor-pointer"
+          data-id={id}
+          onClick={() => { deleteFromCart(id) }}
+          id="cart_delete"
+          aria-label="Remove Product">
+          <u>REMOVE</u>
+        </button>
+      </div>
+    )
+  }
+
   return (
     <DefaultLayout>
 
@@ -47,18 +63,9 @@ const Cart = () => {
             <div className={(cart.length ? "got-stuff " : "empty-cart ")+"center"}>
               {cart.length ? (
                 <div>
-                  <div className="row">
+                  <div className="row container cart-item_container">
                   {cart.map((item, index) => 
-                    (
-                      <div className="cart-item" key={item.id}>
-                        <img src={item.image} height="200px" width="200px"></img>
-                        <h2>{item.product}</h2>
-                        <h3>{item.color} // {item.size}</h3>
-                        <div className="cart_close-container disable-highlight">
-                          <button className='cart_delete not-a-button' data-id={item.id} onClick={() => {deleteFromCart(item.id)}} id="cart_delete" aria-label="Delete"><u>REMOVE</u></button>
-                        </div>
-                      </div>
-                    )
+                    (<CartItem cart={cart} item={item} removeItem={removeItem(item.id)} key={index} />)
                   )}
                   </div>
                   <div className="cart-price">

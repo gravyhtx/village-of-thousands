@@ -52,6 +52,9 @@ const Login = ({ activation }) =>  {
       });
       
       if(!response.ok) {
+        const { message } = await response.json();
+        console.log(message)
+        console.log(response)
         throw new Error('something went wrong!');
       }
       

@@ -2,7 +2,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const LoadingScreen = ({ isOpen }) => {
-  isOpen=isOpen?isOpen:true;
+  isOpen=isOpen?isOpen:false;
   return (
     <>{
       isOpen ?

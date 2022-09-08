@@ -12,19 +12,19 @@ import favicon from '../public/favicon.ico'
 import { authCheck } from '../utils/siteFunctions';
 import { useEffect } from 'react';
 
+// import XMLHttpRequest from 'xhr2';
+
 export default function DefaultLayout({ headerImages, title, classes, description, withAuth, children }) {
 
   title = title ? title : website.name;
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
 
-  const router = useRouter();
-
   useEffect(() => {
     if(withAuth && (authCheck() === false)) {
       window.location.href='/login';
     }
-  })
+  });
 
   return (
     <div className={classes} id="layout">
