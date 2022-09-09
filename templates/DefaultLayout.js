@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 
 export default function DefaultLayout({ headerImages, title, classes, description, withAuth, children }) {
 
-  title = title ? title : website.name;
+  title = title ? (website.name + " // " + title) : website.name;
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
 

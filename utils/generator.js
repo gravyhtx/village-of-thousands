@@ -67,6 +67,19 @@ export const gaussRound = (num, decimalPlaces) => {
   return d ? r / m : r;
 }
 
+/////////////
+// STRINGS //
+/////////////
+
+export const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const capitalizeWords = (string) => {
+  // const words = string.slice(" ")
+  // for(word in words)
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 ///////////////////////
@@ -118,7 +131,7 @@ export const objectMap = (object, mapFn) => {
 }
 
 
-// ONLY RETURNS ONE ELEMENT FROM AN ARRAY OF ARRAYS
+// RETURN ONE ELEMENT FROM AN ARRAY OF ARRAYS
 export const select = (el) => {
   const output = el[randomize(el.length)];
   return output[randomize(output.length)];

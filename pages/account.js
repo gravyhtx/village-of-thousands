@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 const Account = () => {
 
   return(
-    <DefaultLayout withAuth={true}>
+    <DefaultLayout title={"Account"} withAuth={true}>
     <div className="account">
       <h1 className="account-header center">Account</h1>
       <AccountContainer />

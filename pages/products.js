@@ -92,7 +92,7 @@ const ProductsPage = () =>  {
 
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title={"Products"}>
     <div className="products-page-container">
       <div className="row products-page-content box-container animate__animated animate__fadeIn">
         <h1 className='products-header center gravy-font'>Welcome to our {website.szn} collection.</h1>

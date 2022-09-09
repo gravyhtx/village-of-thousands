@@ -5,6 +5,7 @@ const FaqContent = () => {
 
   const questions = [
     {
+      // 001
       "question": "Who is the “Village of Thousands”?",
       "answer": [
         <><span className="italics h2"><b>WELCOME TO THE VOT DIGITAL HQ!</b></span></>,
@@ -31,6 +32,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 002
       "question": "How does Village of Thousands promote sustainability?",
       "answer": [
         <>Village of Thousands is committed to using the best sustainability and fair trade practices from
@@ -68,6 +70,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 003
       "question": "How can I become part of the community of VoT Enthusiasts?",
       "answer": [
         <>We are currently growing and developing our brand while building our community both online and
@@ -83,6 +86,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 004
       "question": "Why will VoT be selling NFT-authenticated apparel and products?",
       "answer": [
         <>The VoT Digital HQ will be among the first wave of web apps to combine digital
@@ -103,6 +107,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 005
       "question": "What is a decentralized application (dApp)?",
       "answer": [
         <>DApps are, simply put, the future of websites and how customers form and build a relationship with
@@ -119,6 +124,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 006
       "question": "How is this website being developed to be Web 3.0 ready?",
       "answer": [
         <>Our developers and designers are working together to prepare for our complete Web 3.0 release in
@@ -159,6 +165,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 007
       "question": "What services and tools will I need to prepare myself for Web 3.0?",
       "answer": [
         <>There are a few apps you will need to download to be ready for Web 3.0 changes across the whole
@@ -218,6 +225,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 008
       "question": "How will I be receiving my free limited-edition NFT?",
       "answer": [
         <>We are going to release and send the first 200 customers a limited edition NFT from our first digital
@@ -242,6 +250,7 @@ const FaqContent = () => {
       ]
     },
     {
+    // 009
       "question": "How do I get a wallet that can accept crypto and store NFTs?",
       "answer": [
         <>After you create and activate your VoT account, you will be able to optionally add your in-browser
@@ -266,6 +275,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 010
       "question": "This website uses cookies? Why?! Omg.. is my data being collected too???",
       "answer": [
         <>Yes we do use cookies... so that you can place orders with us. Breathe, my dude. Did you
@@ -290,6 +300,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 011
       "question": "How does VoT handle ordering, shipping, and returns?",
       "answer": [
         <>Currently, all orders are being processed and checked manually. We also limit one color in any size
@@ -314,6 +325,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 012
       "question": "Where can I report bugs?",
       "answer": [
         <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">
@@ -326,8 +338,6 @@ const FaqContent = () => {
       ]
     }
   ]
-
-  console.log(questions.length);
 
   // https://github.com/gravyhtx/village-of-thousands
   return (questions)

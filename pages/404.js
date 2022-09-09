@@ -37,7 +37,7 @@ const PageNotFound = () => {
   }
   
   return (
-    <DefaultLayout>
+    <DefaultLayout title={"404"}>
     <div className="big-spacer"></div>
     <div className="location-error-section">
       <div className="box-container row">

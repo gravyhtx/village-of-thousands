@@ -57,7 +57,7 @@ const Cart = () => {
   }
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title={"Cart"}>
 
       <div className="main-content animate__animated animate__fadeIn" id="content">
         <div className="index-section animate__animated animate__fadeIn cart-page">

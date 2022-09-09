@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { isLoaded } from "../utils/siteFunctions";
 
 const UploadFile = ( data, success, instructions, instructionsClasses, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
 
@@ -56,11 +55,11 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
   return (
     <>
     <div className={containerClasses?"upload-file-container container center sm "+containerClasses:"upload-file-container container center sm"}>
-    <input className={inputClasses?"upload-file-input "+inputClasses:"upload-file-input"} type="file" onChange={upload} id="upload" hidden />
-    <span className="upload-btn-container">
-    <label className={labelClasses?"upload-file-label "+labelClasses:"upload-file-label"} htmlFor="upload" id="upload-label"></label>
-    </span>
-    <span className={fileNameClasses?"upload-file-name "+fileNameClasses:"upload-file-name"} id="file-name">{fileName}</span>
+      <input className={inputClasses?"upload-file-input "+inputClasses:"upload-file-input"} type="file" onChange={upload} id="upload" hidden />
+      <span className="upload-btn-container">
+      <label className={labelClasses?"upload-file-label "+labelClasses:"upload-file-label"} htmlFor="upload" id="upload-label"></label>
+      </span>
+      <span className={fileNameClasses?"upload-file-name "+fileNameClasses:"upload-file-name"} id="file-name">{fileName}</span>
     </div>
   </>
   )
