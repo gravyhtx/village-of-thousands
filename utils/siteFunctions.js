@@ -230,22 +230,22 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, contain
 // OBSOLETE //
 //////////////
 
-import LoginContainer from '../components/LoginContainer';
-import Blockie from "../components/Blockie";
+// import LoginContainer from '../components/LoginContainer';
+// import Blockie from "../components/Blockie";
 
-export const withAuth = Component => {
-  const Render = (props) => {
-    // If user is not logged in, return login component
-    if (!Auth.loggedIn()) {
-      return (
-        <LoginContainer state="login" />
-      );
-    }
-    // If user is logged in, return original component
-    return (
-      <Component {...props} />
-    );
-  };
+// export const withAuth = Component => {
+//   const Render = (props) => {
+//     // If user is not logged in, return login component
+//     if (!Auth.loggedIn()) {
+//       return (
+//         <LoginContainer state="login" />
+//       );
+//     }
+//     // If user is logged in, return original component
+//     return (
+//       <Component {...props} />
+//     );
+//   };
 
-  return Render;
-};
+//   return Render;
+// };

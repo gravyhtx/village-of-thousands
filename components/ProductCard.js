@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { idbPromise } from "../utils/helpers";
-import { productImage } from '../modules/productImages';
-import products from '../config/products.json';
-// import ProductImage from './ProductImage';
 import { ProductImage } from '../components/dynamic-content/ProductData';
 
 import Link from 'next/link';
@@ -51,7 +48,6 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
       setAddedToCart(true);
       setChecks(false)
       setSizeSelect();
-      // NEED TO SET CLASS TO MAKE SUBMIT BUTTON BLINK ON CLICK
       // NEED BETTER SYSTEM FOR ALERTING ITEM IN CART
       // NEED BETTER SYSTEM FOR ALERTING CURRENT ITEM ALREADY IN CART
     }
@@ -119,7 +115,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
       // console.log(productSelection);
     }
   }
-  // console.log(productSelection);
+  
   // Size Box //
   const sizeBox = (abbr_size, size, amt, index) => {
     return (
@@ -226,11 +222,6 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
                 </div>
               </a></Link>
             }
-            {/* <Link href="/register"><a className="product-card_register-link">
-                <div className="product-card_submit disable-highlight">
-                  <div disabled>REGISTER TO PURCHASE</div>
-                </div>
-              </a></Link> */}
         </div>
       </div>
     </div>:<></>}

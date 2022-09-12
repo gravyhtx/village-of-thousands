@@ -173,7 +173,7 @@ const UserPasswordRecovery = () => {
   const instructions = "GET SEED PHRASE FROM .TXT FILE";
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title={"PW Recovery"}>
     <div className="pw-recovery-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
     <h1 className="pw-recovery-header center">Recover Password</h1>
     <div className="pw-recovery-container center">

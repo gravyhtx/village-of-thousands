@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import Auth from '../../utils/auth';
 import { getAllCategories } from '../../utils/API';
+import { capitalize } from "../../utils/generator";
 
 import DefaultLayout from "../../templates/DefaultLayout";
 
@@ -56,7 +57,7 @@ const Products = () => {
   console.log(products);
 
   return (
-    <DefaultLayout>{/* <DefaultLayout headerImages={headerImages}> */}
+    <DefaultLayout title={"Shop" + (category ? " " + capitalize(category.category_name) : "")}>{/* <DefaultLayout headerImages={headerImages}> */}
       <div className="activate-page center container animate__animated animate__fadeIn">
         {category ? 
           <h1>
@@ -65,7 +66,7 @@ const Products = () => {
         : <></> }
         <div className="row">
           {loaded && products.length ?
-            <ProductImage name={products[1].product_name} filename={products[1].product_path} />
+            <ProductImage colorId={1} name={products[1].product_name} filename={products[1].product_path} />
           : <></>}
             {/* <ProductCard productElement={productElement} loggedIn={loggedIn} /> */}
         </div>

@@ -139,7 +139,7 @@ export const ProductCardTest = () => {
   })
 
   return (<>
-    <DefaultLayout classes={activatePCness ? " disable-highlight" : ""}>
+    <DefaultLayout title={"Shop"} classes={activatePCness ? " disable-highlight" : ""}>
       <div className={"products-page-container center-img" + (activatePCness ? " disable-highlight" : "")} id="products-page-container">
         <div className="row all-products products-page-content box-container animate__animated animate__fadeIn">
           <h1 className='products-header center gravy-font'>Welcome to our {website.szn} collection.</h1>

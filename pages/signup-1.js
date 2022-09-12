@@ -159,7 +159,7 @@ const UserMnemonic = () => {
   }
 
   return (
-    <DefaultLayout withAuth={true}>
+    <DefaultLayout title={"Create Account"} withAuth={true}>
       <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
         <h1 className="user-registration-header center">Complete Your Registration</h1>
         <div className="seed-phrase">

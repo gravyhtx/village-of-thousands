@@ -59,7 +59,7 @@ const Faq = () => {
     )
   }
   return(
-    <DefaultLayout>
+    <DefaultLayout title={"FAQ"}>
       <div className="faq-container animate__animated animate__fadeIn" id="faq-container">
         <SiteImage
           layout="responsive"

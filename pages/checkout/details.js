@@ -45,7 +45,7 @@ export const getServerSideProps = async (ctx) => {
 const Details = ({ paymentIntent }) => {
     return (
         <>
-        <DefaultLayout>
+        <DefaultLayout title={"Checkout Details"}>
             <div className="checkout-details">
                 <h1 className="checkout-header center">Checkout Details</h1>
                 <Elements stripe={stripePromise} >
