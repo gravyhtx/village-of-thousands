@@ -154,6 +154,14 @@ export const createOrder = (orderData) => {
     body: JSON.stringify(orderData)
   })
 }
+
+export const getAllOrders = () => {
+  return fetch('/api/orders/', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+};
 //Demo Use Only Section
 
 
