@@ -10,7 +10,7 @@ import Auth from '../../../utils/auth';
 
 const Main = () => {
   const router = useRouter();
-  const whiteList = ["andreslong95@gmail.com"]
+  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com"]
 
   const [orderObject, setorderObject] = useState({});
 
