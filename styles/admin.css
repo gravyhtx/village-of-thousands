@@ -96,6 +96,14 @@
   transition: margin-left 300ms;
   margin-left: 345px;
 }
+
+.main-admin-content h4 {
+  color: #646464;
+}
+.main-admin-content h4,
+.main-admin-content small {
+  text-align: right;
+}
 /* main  section */
 
 .header-admin {
@@ -194,7 +202,8 @@
 }
 
 .card-single div:first-child span {
-  color: var(--text-grey)
+  color: var(--text-grey);
+  font-size: .9rem;
 }
 
 .card-single:last-child{
@@ -205,6 +214,15 @@
 .card-single:last-child div:first-child span, 
 .card-single:last-child div:last-child span {
   color: #fefefe
+}
+
+.card-single h1 {
+  font-size: 2.6rem;
+}
+
+.card-single h1,
+.card-header h3 {
+  color: #aaa
 }
 
 /* Table Section */
@@ -249,6 +267,11 @@ table {
 thead tr {
   border-top: 1px solid #f0f0f0;
   border-bottom: 1px solid #f0f0f0;
+}
+
+thead tr,
+tbody tr {
+  font-size: 0.8rem;
 }
 
 thead td {

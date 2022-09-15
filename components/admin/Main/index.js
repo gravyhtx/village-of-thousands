@@ -7,6 +7,7 @@ import Aside from '../Aside'
 
 import { getAllOrders } from '../../../utils/API';
 import Auth from '../../../utils/auth';
+import { reverseArr } from '../../../utils/generator';
 
 const Main = () => {
   const router = useRouter();
@@ -38,16 +39,18 @@ const Main = () => {
       }
     }
     getOrderData();
-  },[])
+  },[]);
+
+  console.log(reverseArr(orderObject.orderHistory))
 
   return (
     <>
       <Cards 
         totalOrders={orderObject.orderHistory ? orderObject.orderHistory.length : 0} 
-        grossEarning={orderObject.totalGrossEarnings} 
+        grossEarning={orderObject.orderHistory ? orderObject.totalGrossEarnings.toFixed(2) : 0} 
       />
       <div className="recent-grid">
-        <Table orders={orderObject.orderHistory} />
+        <Table orders={orderObject.orderHistory ? reverseArr(orderObject.orderHistory) : []} />
         <Aside />
       </div>
     </>
