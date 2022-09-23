@@ -228,6 +228,15 @@ export const simpleMap = (items, classes) => {
   )
 }
 
+export const reverseArr = (input) => {
+  var ret = new Array;
+  if(input){
+      for(var i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+  }
+  return ret;
+}
 
 /////////////////////////////
 // QUANTUM REALM FUNCTIONS //

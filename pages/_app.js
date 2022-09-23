@@ -10,7 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 function App({ Component, pageProps }) {
   return (
   <React.StrictMode>
-  <Component {...pageProps} />
+    <Component {...pageProps} />
   </React.StrictMode>
   )
 }

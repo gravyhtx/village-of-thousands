@@ -30,7 +30,7 @@ const Table = ({ orders }) => {
                         <td>{order.totalPrice}</td>
                         <td>{order.purchaseDate}</td>
                         <td>
-                          <span class="status flagged"></span>
+                          <span className="status flagged"></span>
                           {order.deliveryStatus}
                         </td>
                       </tr>
@@ -41,7 +41,7 @@ const Table = ({ orders }) => {
                         <td>Loading...</td>
                         <td>Loading...</td>
                         <td>
-                          <span class="status flagged"></span>
+                          <span className="status flagged"></span>
                           Loading...
                         </td>
                       </tr>

@@ -36,8 +36,8 @@ const Cards = ({totalOrders, grossEarning}) => {
 
           <div className="card-single">
             <div>
-              <h1>123</h1>
-              <span>Post Stripe</span>
+              <h1>$money</h1>
+              <span>Taxes Collected</span>
             </div>
             <div>
               <span className="las la-shopping-bag"></span>
