@@ -134,9 +134,31 @@ export const searchUserByEmail = (userEmail) => {
   })
 }
 
+export const fetchPayment = (userData, token) => {
+  return fetch('/api/checkout', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
+
 export const updateAmount = (userData, token) => {
   return fetch('/api/checkout', {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  })
+}
+
+export const deletePaymentIntent = (userData, token) => {
+  return fetch('/api/checkout', {
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`

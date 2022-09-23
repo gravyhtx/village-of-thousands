@@ -29,7 +29,6 @@ const AddressCheckout = (props) => {
         }
 
         const user = await response.json();
-        console.log(user)
         setUserData(user.foundUser);
       } catch (err) {
         console.error(err);
@@ -43,10 +42,8 @@ const AddressCheckout = (props) => {
 
   useEffect(() => {
     if(userFormData.first_name) {
-      console.log(userFormData.first_name.length)
     }
     if(userFormData) { performChecks() }
-    console.log(itChecksOut)
   });
 
   const [userFormData, setUserFormData] = useState({
@@ -80,21 +77,30 @@ const AddressCheckout = (props) => {
     <>
       <div className='register-address-container container'>
         <div className="register-input-container" id="user-register-container">
-          <div className="user-register-address-header">SHIPPING ADDRESS</div>
-          <AddressCheckoutForm errorClasses={errorClasses} user={userData} handleInputChange={props.inputFn} />
+          <div className="user-register-address-header">BILLING ADDRESS</div>
+          <AddressCheckoutForm errorClasses={errorClasses} user={userData} handleInputChange={props.billingFn} />
         </div>
         <br />
         <div className='row checkout_billing-check'>
           <div className='input-field col s12'>
 
             <label>
-              <input type="checkbox" onChange={props.sameAddress}/>
+              <input type="checkbox" onChange={props.sameAddressFn}/>
               <span>
                 My shipping address is the same as my billing address
               </span>
             </label>
           </div>
         </div>
+        {!props.sameAddressCheck ? (
+          <>
+            <br />
+            <div className="register-input-container" id="user-register-container">
+              <div className="user-register-address-header">SHIPPING ADDRESS</div>
+              <AddressCheckoutForm errorClasses={errorClasses} user={userData} handleInputChange={props.shippingFn} />
+            </div>
+          </>
+        ) : (<></>)}
       </div>
     </>
   )

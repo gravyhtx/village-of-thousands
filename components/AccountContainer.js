@@ -43,7 +43,6 @@ const AccountContainer = () => {
       }
     };
     getUserData();
-    console.log(userData)
   }, [userDataLength]);
 
   const [userCheck, setUserCheck] = useState();
@@ -71,7 +70,6 @@ const AccountContainer = () => {
     if(!userCheck && loaded) {
       setAcctContainer(pending());
     }
-    // console.log(userCheck)
   }, [userData])
 
   const pending = () => {
