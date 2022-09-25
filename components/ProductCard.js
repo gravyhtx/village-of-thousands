@@ -27,7 +27,6 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     price: '',
     quantity: 1
   });
-  // console.log(product);
 
   const [addedToCart, setAddedToCart] = useState(false);
 
@@ -112,7 +111,6 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
         price: product[colorSet].price,
         id: product[colorSet].product_information[index]._id
       });
-      // console.log(productSelection);
     }
   }
   

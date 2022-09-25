@@ -29,7 +29,6 @@ export function idbPromise(storeName, method, object) {
                     const record = store.get(profile.data._id)
                     //future: put date on creation of user
                     record.onsuccess = function(info) {
-                        console.log(record, info)
                         if(!record.result) {
                             store.put({id: profile.data._id, cart: [object], dateUpdated: Date.now()});
                         }else {
@@ -62,7 +61,6 @@ export function idbPromise(storeName, method, object) {
                     }
                     
                     all.onsuccess = function() {
-                        console.log(all)
                         resolve(all.result);
                     };
                     break;
@@ -72,13 +70,11 @@ export function idbPromise(storeName, method, object) {
                     const recordForDelete = store.get(profileForDelete.data._id)
 
                     recordForDelete.onsuccess = function(info) {
-                        console.log(recordForDelete, info)
                         if(!recordForDelete.result) {
                             alert("no cart to delete items from")
                             return
                         }else {
                             recordForDelete.result.cart.forEach((item, index) => {
-                                console.log(item)
                                 if(item.id === object.id){
                                     recordForDelete.result.cart.splice(index, 1);
                                     return

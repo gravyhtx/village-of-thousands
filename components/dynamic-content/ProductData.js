@@ -42,7 +42,7 @@ const drop = {
   id: "001",
   shipping: {
     "service": "USPS",
-    "cost": 10
+    "cost": 12
   }
 }
 

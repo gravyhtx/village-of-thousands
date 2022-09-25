@@ -34,7 +34,6 @@ const AccountAvatar = (props) => {
   const setColorScheme = async () => {
     const colorChange = shuffleArr(themeVot);
     setThemeColors(colorChange);
-    console.log(colorChange)
     
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     

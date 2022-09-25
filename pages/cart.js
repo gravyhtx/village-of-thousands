@@ -31,7 +31,6 @@ const Cart = () => {
   }
 
   async function deleteFromCart(id) {
-    // event.preventDefault();
     const itemId = id
     console.log(itemId)
     await idbPromise('cart', 'deleteone', {
@@ -41,7 +40,6 @@ const Cart = () => {
     location.reload()
   }
 
-  // const removeItem = deleteFromCart(item.id)
   const removeItem = (id) => {
     return (
       <div className="cart_close-container disable-highlight">
@@ -74,8 +72,8 @@ const Cart = () => {
                   <div className="cart-price">
                     <h3>Price: $ {totalAmount(cart).toFixed(2)} </h3>
                     <h3>Tax (8.25%): $ {(Math.round((totalAmount(cart) * 0.0825) * 100) / 100).toFixed(2)} </h3>
-                    <h3>Shipping: $ 10.00</h3>
-                    <h2><b>Total: $ {(10 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)).toFixed(2)}</b></h2>
+                    <h3>Shipping: $ 12.00</h3>
+                    <h2><b>Total: $ {(12 + totalAmount(cart) + (Math.round((totalAmount(cart) * 0.0825) * 100) / 100)).toFixed(2)}</b></h2>
                     <div className="cart_submit-container"><Link href="/checkout/details"><a>
                       <h2 className="link cart-view-products"><u>CHECKOUT</u></h2>
                     </a></Link></div>
