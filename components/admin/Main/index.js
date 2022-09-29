@@ -11,7 +11,7 @@ import { reverseArr } from '../../../utils/generator';
 
 const Main = () => {
   const router = useRouter();
-  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com"]
+  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com", "villageofthousands@gmail.com"]
 
   const [orderObject, setorderObject] = useState({});
 
