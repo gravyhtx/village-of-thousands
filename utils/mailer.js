@@ -1,9 +1,8 @@
 // OLD CODE IN '_playground' FOLDER IN COMPONENTS
 
 import sgMail from '@sendgrid/mail';
-import Link from 'next/link';
 
-import VotEmail from '../templates/email/DefaultEmail';
+// import VotEmail from '../templates/email/DefaultEmail';
 // import { useRouter } from 'next/router';
 
 export const sendConfirmationEmail = function({ toUser, hash }) {

@@ -60,7 +60,7 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
       <ScrollToTop />
       {headerImages ? <Header images={headerImages} /> : <Header />}
       <TopNav />
-        <div id="content" className="main-content">
+        <div className="main-content" id="content">
           {withAuth && authCheck() || !withAuth ? children : <></>}
         </div>
       <Footer />
