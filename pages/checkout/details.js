@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/CheckoutForm";
 import DefaultLayout from "../../templates/DefaultLayout";
 
-const stripePromise = loadStripe("pk_test_51K4evvCa1OD2RYqlwwQm36uEOgpLsyziGmhNZso9sxmlwVSsvCaalITPCYL7MRfoVTa5tyyoHGEh4cZAUR6bd9sQ00FKPpQ6ks")
+const stripePromise = loadStripe("pk_live_51K4evvCa1OD2RYqlnmHnOXiqISnldSVVMxkiPTYwAOziYwpcABLkCQTyakjtp0qdRZpPTArrI2lwH2fteqRXTMj400C6mtUMUS")
 
 const Details = () => {
     return (

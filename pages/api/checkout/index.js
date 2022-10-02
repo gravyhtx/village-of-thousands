@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY_TEST)
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 import OngoingPayment from "../../../models/OngoingPayment";
 import { authMiddleware } from '../../../utils/jwAuth';
 dbConnect();
