@@ -23,8 +23,6 @@ const Login = ({ activation }) =>  {
   const checkEmail = async (email) => {
     try {
       const response = searchUserByEmail(email);
-      console.log(response)
-      console.log(email)
     } catch (err) {
       console.error(err);
     }
@@ -44,7 +42,6 @@ const Login = ({ activation }) =>  {
     try {
 
       const response = await loginUser(userFormData);
-      // console.log(response);
       
       setErrorClass({
         email: response.ok ? '' : ' input-error',
@@ -52,6 +49,8 @@ const Login = ({ activation }) =>  {
       });
       
       if(!response.ok) {
+        const { message } = await response.json();
+        console.log(message)
         throw new Error('something went wrong!');
       }
       

@@ -1,38 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { destroyCookie } from 'nookies';
 import { useScreenWidth } from '../modules/getWindow'
 import { idbPromise } from "../utils/helpers";
-import { updateAmount, createOrder } from "../utils/API";
+import { updateAmount, fetchPayment, deletePaymentIntent , createOrder } from "../utils/API";
 import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
 import Succcess from './confirmation';
+import { useRouter } from 'next/router';
 
-const CheckoutForm = ({ paymentIntent }) => {
+const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
+    
+    let router = useRouter()
+
     const [checkoutError, setCheckoutError] = useState();
     const [checkoutSuccess, setCheckoutSuccess] = useState();
     const [updateSuccess, setUpdateSuccess] = useState(false);
-    const [userFormData, setUserFormData] = useState({});
+
+    const [billingFormData, setBillingFormData] = useState({});
+    const [shippingFormData, setShippingFormData] = useState({});
     const [addressCheck, setAddressCheck] = useState(false);
+   
     const [orderId, setOrderId] = useState("");
     const [cart, setCart] = useState([]);
+    const [paymentIntent, setPaymentIntent] = useState();
 
-    const handleInputChange = (event) => {
+    const handleInputBilling = (event) => {
         const { name, value } = event.target;
-        setUserFormData({ ...userFormData, [name]: value });
+        setBillingFormData({ ...billingFormData, [name]: value });
     }
-    
+
+    const handleInputShipping = (event) => {
+        const { name, value } = event.target;
+        setShippingFormData({ ...shippingFormData, [name]: value });
+    }
+
     const handleSameAddress = (event) => {
         setAddressCheck(!addressCheck)
     }
 
- 
     useEffect(() => {
         async function getCart() {
             //check for staleness here
-            const { cart } = await idbPromise('cart', 'get');
+            const dbResponse = await idbPromise('cart', 'get');
+            if(!dbResponse) {
+                router.push("/shop")
+            }
+            const { cart } = dbResponse
             setCart(cart)
         }
 
@@ -40,8 +55,45 @@ const CheckoutForm = ({ paymentIntent }) => {
             getCart()
         }
 
-        async function updatePaymentIntent() {
+        async function postNewPaymentIntent() {
+            setPaymentIntent({})
             const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+            const userProfile = await Auth.getProfile();
+
+            const dbResponse = await idbPromise('cart', 'get');
+
+            if(!dbResponse) {
+                return;
+            }
+
+            const {cart} = dbResponse;
+
+            if(!userProfile) {
+                return
+            }
+
+            const response = await fetchPayment(
+                {
+                    amount: totalAmount(cart),
+                    userId: userProfile.data._id,
+                    userEmail: userProfile.data.email
+                },
+                token
+            )
+
+            if (response.status != 200) {
+                console.log(response)
+            }
+
+            const data = await response.json()
+            setPaymentIntent(data.paymentIntent)
+            updatePaymentIntent(data.paymentIntent)
+        }
+
+        async function updatePaymentIntent(paymentIntent) {
+            const token = Auth.loggedIn() ? Auth.getToken() : null;
+
             const { cart } = await idbPromise('cart', 'get');
 
             const response = await updateAmount(
@@ -52,25 +104,21 @@ const CheckoutForm = ({ paymentIntent }) => {
                 token
             )
 
-            if(response.status != 200){
-                alert('Payment Update failed')
+            if (response.status != 200) {
+                console.log(response)
             }
 
             const data = await response.json()
             setOrderId(data.id)
             setUpdateSuccess(true)
         }
-
-        updatePaymentIntent()
-    }, [cart.length]);
+        postNewPaymentIntent()
+    }, []);
 
     function totalAmount(arr) {
         const sum = arr.reduce((prev, curr) => prev + parseInt(curr.price), 0);
-        // console.log(10 + sum + (Math.round((sum * 0.0825) * 100)/ 100))
-        //10 is the flat value of shipping
-        return (10 + sum + (Math.round((sum * 0.0825) * 100) / 100))
+        return (12 + sum + (Math.round((sum * 0.0825) * 100) / 100))
     }
-
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -85,9 +133,16 @@ const CheckoutForm = ({ paymentIntent }) => {
             if (error) throw new Error(error.message);
 
             if (status === 'succeeded') {
-                destroyCookie(null, "paymentIntentId")
-                
+                const token = Auth.loggedIn() ? Auth.getToken() : null;
+
                 const user = await Auth.getProfile();
+                
+                const response = await deletePaymentIntent(
+                    {
+                        userId: user.data._id
+                    },
+                    token
+                )
                 
                 const productsOrdered = [];
                 cart.forEach(item => {
@@ -99,17 +154,18 @@ const CheckoutForm = ({ paymentIntent }) => {
                     products: productsOrdered,
                     addressCheck,
                     shippingAddress: {
-                        ...userFormData
+                        ...shippingFormData
                     },
                     billingAddress: {
-                        ...userFormData
+                        ...billingFormData
                     },
                     paymentConfirmation: orderId,
                     totalPrice: totalAmount(cart),
                     specialInstructions: "None"
                 }
+
                 await createOrder(orderObj)
-                
+
                 const cartDeleteObj = {
                     id: user.data._id
                 }
@@ -118,22 +174,8 @@ const CheckoutForm = ({ paymentIntent }) => {
 
             };
 
-            setUserFormData({
-                first_name: "",
-                last_name: "",
-                // OPTIONAL //
-                phone: "",
-                // ENTER IN ADDRESS FORM //
-                addressOne: "",
-                addressTwo: "",
-                city: "",
-                state: "",
-                zip: "",
-                // // GET FROM NEW WALLET APP //
-                // walletAddress: "",
-                // walletBalance: "",
-                // completed: true
-              });
+            setShippingFormData({});
+            setBillingFormData({});
         } catch (err) {
             setCheckoutError(err.message)
         }
@@ -150,15 +192,15 @@ const CheckoutForm = ({ paymentIntent }) => {
                 transition: 'color 500ms ease-in-out',
 
                 ':focus': {
-                  color: '#888',
+                    color: '#888',
                 },
-          
+
                 '::placeholder': {
-                  color: '#595d7c',
+                    color: '#595d7c',
                 },
-          
+
                 ':focus::placeholder': {
-                  color: '#666',
+                    color: '#666',
                 },
             },
             invalid: {
@@ -175,13 +217,16 @@ const CheckoutForm = ({ paymentIntent }) => {
         }
     };
 
-    if (checkoutSuccess) return <Succcess />
+    if (checkoutSuccess) return <Succcess confirmationId={paymentIntent.id} />
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <AddressCheckout inputFn={handleInputChange} sameAddress={handleSameAddress}/>
-                {/* don't call it a comeback */}
+                <AddressCheckout 
+                    shippingFn={handleInputShipping}
+                    billingFn={handleInputBilling}
+                    sameAddressCheck={addressCheck} 
+                    sameAddressFn={handleSameAddress} />
                 <div aria-label="Please enter your credit or debit card information." className="user-register-address-header center">PAYMENT DETAILS</div>
                 <div className="row container">
                     <div className='cc-input-wrapper s12'>
@@ -190,29 +235,29 @@ const CheckoutForm = ({ paymentIntent }) => {
                 </div>
                 {paymentIntent ?
                     <div className='checkout-details_cost center-text'>
-                        <div aria-label={'Your cost is $'+ (10 - totalAmount(cart))}><b>Cost&ensp;//&ensp;${(totalAmount(cart)-10).toFixed(2)}</b></div>
-                        <div aria-label={'Your shipping is $10'}><b>Shipping&ensp;//&ensp;$10</b></div>
-                        <h2 aria-label={'Your total is $'+totalAmount(cart)} className='c-total'>
+                        <div aria-label={'Your cost is $' + (12 - totalAmount(cart))}><b>Cost&ensp;//&ensp;${(totalAmount(cart) - 12).toFixed(2)}</b></div>
+                        <div aria-label={'Your shipping is $12'}><b>Shipping&ensp;//&ensp;$12</b></div>
+                        <h2 aria-label={'Your total is $' + totalAmount(cart)} className='c-total'>
                             <b>Total:</b> ${totalAmount(cart)}
                         </h2>
                     </div> : <></>}
                 <div className='row center checkout-details_submit'>
                     <div className='col s12'>
-                        {updateSuccess ? 
-                        (
-                            <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
-                        )
-                        :
-                        (
-                            <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
-                        )}
+                        {updateSuccess ?
+                            (
+                                <button className='theme-btn pay-button' type='submit' disabled={!stripe}>SUBMIT</button>
+                            )
+                            :
+                            (
+                                <button className='theme-btn pay-button' type='submit' disabled={true}>SUBMIT</button>
+                            )}
                     </div>
                 </div>
 
                 {checkoutError && <span style={{ color: "#aa3d3d" }}>{checkoutError}</span>}
             </form>
         </>
-        
+
     )
 }
 

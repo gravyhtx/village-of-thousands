@@ -43,7 +43,7 @@ const UserRegistration = () => {
   }, [userDataLength]);
 
   return (
-    <DefaultLayout withAuth={true}>
+    <DefaultLayout title={"Create Account"} withAuth={true}>
     <div className="user-registration-container center">
       <h1 className="user-registration-header">Complete Your Registration</h1>
       <Link href="/faq#8" target="_blank" rel="noopener noreferrer">

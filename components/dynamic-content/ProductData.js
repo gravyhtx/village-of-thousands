@@ -42,7 +42,7 @@ const drop = {
   id: "001",
   shipping: {
     "service": "USPS",
-    "cost": 10
+    "cost": 12
   }
 }
 
@@ -164,10 +164,10 @@ export const ProductImage = ({ category, colorId, containerClasses, imgClasses, 
     highlight: allowHighlight ? "" : " disable-highlight",
   }
 
-  const boxSizing = {
-    maxWidth: boxSize ? boxSize : '100%',
-    maxHeight: boxSize ? boxSize : '100%',
-  }
+  // const boxSizing = {
+  //   maxWidth: boxSize ? boxSize : '100%',
+  //   maxHeight: boxSize ? boxSize : '100%',
+  // }
 
   const productImg =
       <Image layout='responsive'

@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 
-const Succcess = () => {
+const Succcess = (props) => {
     return (
         <>
             <div className="checkout-details">
                 {/* <h1 className="checkout-header center">Checkout Success</h1> */}
                 <div className="user-register-address-header center">
                   <div>ORDER CONFIRMATION NUMBER</div>
-                  <h2>#404302432</h2>
+                  <h2>{props.confirmationId}</h2>
                 </div>
                 <br/><br/>
                 <div className="products-link_view-all center disable-highlight">

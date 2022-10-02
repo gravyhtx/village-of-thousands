@@ -20,7 +20,7 @@ const LoginContainer = ({ name, message }) =>  {
   const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title={name ==="register" ? "Register" : "Login"}>
       <div className="row container signup-container animate__animated animate__fadeIn login-container">
         <div className="signup-collapsible">
         <ErrorMessage />

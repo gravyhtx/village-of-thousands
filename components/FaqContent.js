@@ -5,6 +5,7 @@ const FaqContent = () => {
 
   const questions = [
     {
+      // 001
       "question": "Who is the “Village of Thousands”?",
       "answer": [
         <><span className="italics h2"><b>WELCOME TO THE VOT DIGITAL HQ!</b></span></>,
@@ -31,6 +32,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 002
       "question": "How does Village of Thousands promote sustainability?",
       "answer": [
         <>Village of Thousands is committed to using the best sustainability and fair trade practices from
@@ -68,6 +70,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 003
       "question": "How can I become part of the community of VoT Enthusiasts?",
       "answer": [
         <>We are currently growing and developing our brand while building our community both online and
@@ -83,6 +86,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 004
       "question": "Why will VoT be selling NFT-authenticated apparel and products?",
       "answer": [
         <>The VoT Digital HQ will be among the first wave of web apps to combine digital
@@ -103,6 +107,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 005
       "question": "What is a decentralized application (dApp)?",
       "answer": [
         <>DApps are, simply put, the future of websites and how customers form and build a relationship with
@@ -119,6 +124,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 006
       "question": "How is this website being developed to be Web 3.0 ready?",
       "answer": [
         <>Our developers and designers are working together to prepare for our complete Web 3.0 release in
@@ -159,6 +165,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 007
       "question": "What services and tools will I need to prepare myself for Web 3.0?",
       "answer": [
         <>There are a few apps you will need to download to be ready for Web 3.0 changes across the whole
@@ -218,6 +225,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 008
       "question": "How will I be receiving my free limited-edition NFT?",
       "answer": [
         <>We are going to release and send the first 200 customers a limited edition NFT from our first digital
@@ -242,6 +250,7 @@ const FaqContent = () => {
       ]
     },
     {
+    // 009
       "question": "How do I get a wallet that can accept crypto and store NFTs?",
       "answer": [
         <>After you create and activate your VoT account, you will be able to optionally add your in-browser
@@ -266,6 +275,7 @@ const FaqContent = () => {
       ]
     },
     {
+      // 010
       "question": "This website uses cookies? Why?! Omg.. is my data being collected too???",
       "answer": [
         <>Yes we do use cookies... so that you can place orders with us. Breathe, my dude. Did you
@@ -290,6 +300,32 @@ const FaqContent = () => {
       ]
     },
     {
+      // 011
+      "question": "How does VoT handle ordering, shipping, and returns?",
+      "answer": [
+        <>Currently, all orders are being processed and checked manually. We also limit one color in any size
+        per product offered in order to ensure fair accessibility to our curated selection of products to all
+        of our verified users. If you wish to obtain two or more of the same color you must create separate
+        orders and pay shipping for each order created.</>,
+        <>Shipping is flat rate through USPS. Most items take 7-10 business days to process, authenticate,
+        and then arrive at your destination HQ. We will send you an email as soon as your order has been
+        processed and added to our queue and when it has been processed for shipping, along with the order’s
+        tracking number.</>,
+        <>In order to purchase any products from Village of Thousands, you must be logged in with a verified
+        account. We need a verified email to keep you informed throughout the order and shipping process and
+        provide open correspondence in case of any communication needs, issues, or discrepancies. Any abuse or
+        misuse of our system may result in termination of your account.</>,
+        <>In case of issue please respond directly to emails from Village of Thousands only and we will be happy
+        to assist. We reserve the right to not accept returns or refunds, neither full nor partial. Once an order
+        has been placed with the correct information and been paid for you will now assume ownership of this item.
+        It will be an especially important issue to dive further into whenever we integrate our physical products
+        with digital assets.</>,
+        <>For now though, we recommend that you let us know of any feedback and we are prepared to discuss if we run
+        into special cases where we must adapt as a business. Any and all changes to our policy will be in our FAQ.</>
+      ]
+    },
+    {
+      // 012
       "question": "Where can I report bugs?",
       "answer": [
         <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">

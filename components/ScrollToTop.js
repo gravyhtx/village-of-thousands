@@ -11,12 +11,13 @@ const ScrollToTop = () => {
     const rootEl = document.getElementById('layout');
     const scrollEl = document.getElementById('scrollToEl-'+qId);
     const scrollPosition = () => {
-    scrollEl
-    ? scrollEl.scrollIntoView({ behavior: "smooth", block: "start" })
-    : rootEl.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  setTimeout(() => {
-    scrollPosition()},500);
+      scrollEl
+      ? scrollEl.scrollIntoView({ behavior: "smooth", block: "start" })
+      : rootEl.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+    setTimeout(() => {
+      scrollPosition();
+    },500);
   }, [pathname]);
   return null;
 };

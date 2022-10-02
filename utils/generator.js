@@ -67,6 +67,19 @@ export const gaussRound = (num, decimalPlaces) => {
   return d ? r / m : r;
 }
 
+/////////////
+// STRINGS //
+/////////////
+
+export const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const capitalizeWords = (string) => {
+  // const words = string.slice(" ")
+  // for(word in words)
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 ///////////////////////
@@ -118,7 +131,7 @@ export const objectMap = (object, mapFn) => {
 }
 
 
-// ONLY RETURNS ONE ELEMENT FROM AN ARRAY OF ARRAYS
+// RETURN ONE ELEMENT FROM AN ARRAY OF ARRAYS
 export const select = (el) => {
   const output = el[randomize(el.length)];
   return output[randomize(output.length)];
@@ -209,12 +222,46 @@ export const arrangeNumbers = (numArr, reverse) => {
 }
 
 // SIMPLE MAP FUNCTION
-export const simpleMap = (items, classes) => {
-  return items.map((item, index) =>
-    <div className={classes} key={index}>{item}</div>
-  )
+// export const simpleMap = (items, classes, tag) => {
+//   const elType = tag.toLowerCase()
+//   return items.map((item, index) => {
+//     switch(elType) {
+//       case "div":
+//         <div className={classes} key={index}>{item}</div>
+//         break;
+//       case "span":
+//         <span className={classes} key={index}>{item}</span>
+//         break;
+//     }
+//   })
+// }
+
+// SIMPLE MAP FUNCTION (From an array of items)
+export const simpleMap = (items, classes, tag) => {
+  const elType = tag ? tag.toLowerCase() : div;
+  return items.map((item, index) => {
+    tag
+      ? `<${elType} className=${classes} key=${index}>${item}</${elType}>`
+      : <div className={classes} key={index}>{item}</div>
+  })
 }
 
+// USE AN ARRAY OF OBJECTS TO SPECIFY UNIQUE TAGS AND/OR CLASSES IN MAP FUNCTION
+export const complexMap = (itemsArray) => {
+  return itemsArray.map((item, index) => {
+    `<${item.tag.toLowerCase()} className=${item.classes} key=${index}>${item.content}</${item.tag.toLowerCase()}>`
+  })
+}
+
+export const reverseArr = (input) => {
+  var ret = new Array;
+  if(input){
+      for(var i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+  }
+  return ret;
+}
 
 /////////////////////////////
 // QUANTUM REALM FUNCTIONS //

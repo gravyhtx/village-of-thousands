@@ -12,19 +12,19 @@ import favicon from '../public/favicon.ico'
 import { authCheck } from '../utils/siteFunctions';
 import { useEffect } from 'react';
 
+// import XMLHttpRequest from 'xhr2';
+
 export default function DefaultLayout({ headerImages, title, classes, description, withAuth, children }) {
 
-  title = title ? title : website.name;
+  title = title ? (website.name + " // " + title) : website.name;
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
-
-  const router = useRouter();
 
   useEffect(() => {
     if(withAuth && (authCheck() === false)) {
       window.location.href='/login';
     }
-  })
+  });
 
   return (
     <div className={classes} id="layout">
@@ -60,7 +60,7 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
       <ScrollToTop />
       {headerImages ? <Header images={headerImages} /> : <Header />}
       <TopNav />
-        <div id="content" className="main-content">
+        <div className="main-content" id="content">
           {withAuth && authCheck() || !withAuth ? children : <></>}
         </div>
       <Footer />

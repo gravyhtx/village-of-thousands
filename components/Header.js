@@ -168,7 +168,7 @@ const Header = ({ images }) => {
     }
     return(<></>)
   }
-  // console.log(userData)
+  
   return (
     <header className="site-header" id="site-header">
       <div className="navbar-container black" id="header-container">
