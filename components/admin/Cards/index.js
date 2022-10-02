@@ -19,6 +19,13 @@ const Cards = ({totalOrders, grossEarning}) => {
     return ((grossTotal- stripePercent - shippingPercent) * 0.0825).toFixed(2)
   }
 
+  const netAmount = (grossTotal, orderTotal) => {
+    const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
+    const shippingPercent = orderTotal * 12;
+    const taxPercent = taxAmount(grossTotal, orderTotal)
+
+    return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2)
+  }
   return (
         <div className="cards">
           <div className="card-single">
@@ -53,7 +60,7 @@ const Cards = ({totalOrders, grossEarning}) => {
 
           <div className="card-single">
             <div>
-              <h1>$6k</h1>
+              <h1>${netAmount(grossEarning, totalOrders)}</h1>
               <span>Net Income</span>
             </div>
             <div>
