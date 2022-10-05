@@ -144,14 +144,17 @@ const CheckoutForm = () => {
                     token
                 )
                 
+                const productSKU = [];
                 const productsOrdered = [];
                 cart.forEach(item => {
+                    productSKU.push(item.SKU)
                     productsOrdered.push(item.id)
                 })
 
                 const orderObj = {
                     id: user.data._id,
                     products: productsOrdered,
+                    productSKU,
                     addressCheck,
                     shippingAddress: {
                         ...shippingFormData

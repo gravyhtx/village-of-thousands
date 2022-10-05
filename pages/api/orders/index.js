@@ -10,7 +10,7 @@ export default async (req, res) => {
     //get me all products
     case 'GET':
       try {
-        const orderHistory = await Order.find({});
+        const orderHistory = await Order.find({}).populate('products');
         const totalGrossEarnings = orderHistory.reduce((x, y) => x + y.totalPrice, 0)
         
         res.status(200).json({orderHistory, totalGrossEarnings});

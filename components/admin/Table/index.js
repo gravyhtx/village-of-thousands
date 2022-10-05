@@ -1,13 +1,17 @@
 import React from 'react'
 
-const Table = ({ orders }) => {
+const Table = ({ orders, inOrderPage }) => {
   return (
     <div className="projects">
       <div className="card">
         <div className="card-header">
           <h3>Recent Orders</h3>
 
-          <button>See all (WIP)<span className="las la-arrow-right"></span></button>
+          {inOrderPage ? (
+            <></>
+            ) : (
+              <button>See all (WIP)<span className="las la-arrow-right"></span></button>
+          )}
         </div>
 
         <div className="card-body">

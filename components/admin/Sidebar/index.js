@@ -18,9 +18,9 @@ const Sidebar = ({currentPage, pageChangeFn}) => {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#" className={currentPage == "All-Orders" ? "active" : "non-active"} onClick={()=>{pageChangeFn("All-Orders")}}>
               <span className="bi bi-facebook"></span>
-              <span>Placeholder</span>
+              <span>All Orders</span>
             </a>
           </li>
           <li>

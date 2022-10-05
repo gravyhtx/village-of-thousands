@@ -31,6 +31,7 @@ export default async (req, res) => {
 
         const orderObj = {
             products: req.body.products,
+            productSKU: req.body.productSKU,
             paymentConfirmation: req.body.paymentConfirmation,
             totalPrice: req.body.totalPrice,
             specialInstructions: req.body.specialInstructions,

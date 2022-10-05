@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from '../../components/admin/Sidebar';
 import Header from '../../components/admin/Header';
 import Main from '../../components/admin/Main';
+import Orders from '../../components/admin/Orders';
 
 import { authCheck } from '../../utils/siteFunctions';
 import {  } from 'react';
@@ -17,6 +18,8 @@ const Admin = () => {
     switch (page) {
       case "Home":
         return <Main />
+      case "All-Orders":
+        return <Orders fullPage={true}/>
     }
   }
   

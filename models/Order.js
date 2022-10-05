@@ -54,6 +54,7 @@ const orderSchema = new Schema({
       ref: 'Product'
     }
   ],
+  productSKU: [String],
   paymentConfirmation: {
     type: String
   },
