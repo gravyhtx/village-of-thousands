@@ -14,7 +14,6 @@ import { getAllCategories } from '../../utils/API';
 import products from '../../config/products.json'
 import website from '../../config/site-data.json';
 
-// import { productImage } from '../../modules/productImages';
 import scrollToEl from "../../modules/scrollToEl";
 import { randomize } from '../../utils/generator';
 

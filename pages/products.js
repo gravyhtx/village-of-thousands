@@ -1,23 +1,17 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import DefaultLayout from '../templates/DefaultLayout';
 
 import TextContainer from '../components/TextContainer';
-// import ProductGridItem from '../components/ProductGridItem';
-
-// import LogoTeeBlack from "../public/images/szn/001/products/vot-logo_tee-black.png";
 import SocialCircles from '../components/SocialCircles';
+import SiteImage from '../components/SiteImage';
+import { ProductImage } from '../components/dynamic-content/ProductData';
+import ProductImageGrid from '../components/ProductImageGrid';
 
 import website from '../config/site-data.json';
-import SiteImage from '../components/SiteImage';
-// import ProductImage from '../components/ProductImage';
-import ProductImageGrid from '../components/ProductImageGrid';
-import { useEffect, useState } from 'react';
+
 import { shuffleArr } from '../utils/generator';
-import { ProductImage } from '../components/dynamic-content/ProductData';
-
-
-// import RandomQuote from '../components/modules/RandomQuote';
 
 const ProductsPage = () =>  {
 
