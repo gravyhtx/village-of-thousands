@@ -33,7 +33,6 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
       <img
         style={svgStyles ? svgStyles : {}}
         src={src ? path : ""}
-        // width={width}
         className={"svg-img"+svgClass}
         id={svgId ? "svg-img_"+svgId : ""}
         draggable={drag ? drag : false}
