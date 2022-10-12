@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-// import { width } from '@mui/system';
 
 
 export const formatDate = (date, format) => {
@@ -260,30 +259,3 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, contain
       </div>:<></>}
     </>)
 }
-
-
-
-
-//////////////
-// OBSOLETE //
-//////////////
-
-// import LoginContainer from '../components/LoginContainer';
-// import Blockie from "../components/Blockie";
-
-// export const withAuth = Component => {
-//   const Render = (props) => {
-//     // If user is not logged in, return login component
-//     if (!Auth.loggedIn()) {
-//       return (
-//         <LoginContainer state="login" />
-//       );
-//     }
-//     // If user is logged in, return original component
-//     return (
-//       <Component {...props} />
-//     );
-//   };
-
-//   return Render;
-// };

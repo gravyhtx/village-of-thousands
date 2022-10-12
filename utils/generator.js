@@ -1,3 +1,5 @@
+import { checkType, checkForWords, listOfWords } from "./validation";
+
 /////////////////////////////
 // SIMPLE NUMBER FUNCTIONS //
 /////////////////////////////
@@ -75,10 +77,69 @@ export const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export const capitalizeWords = (string) => {
-  // const words = string.slice(" ")
-  // for(word in words)
+export const capitalizeWord = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// CAPITALIZE MULTIPLE WORDS IN A STRING OR ARRAY
+// Make Override List work
+export const capitalizeWords = (input, titleCase, excludeWordsList, overrideList) => {
+
+  // Check string to see if there are multiple words in a string. Checks to see if there
+  // is at least one space, excluding leading and training spaces.
+    const checkForMultipleWords = input.trim().indexOf(' ') != -1;
+    const checkForArray = checkType(input, "array");
+    const splitString = input.split(" ");
+    const arr = checkForMultipleWords ? splitString : checkForArray ? input : [];
+
+  // If input is just a single word and no reference checks need to be performed then output
+  // then skip the rest and just return the word capitalized.
+  if(checkType(input, "string") && !checkForMultipleWords && !titleCase && !overrideList) {
+    return capitalizeWord(input);
+  }
+
+  // Make output for string of words or an array of words & set checks
+  let capsArr = [];
+  const overrideWords = overrideList && overrideList !== undefined && overrideList.length ? overrideList : false;
+  let titleArray = overrideWords
+    ? removeFromArray(listOfWords("titleCase"), overrideList)
+    : listOfWords("titleCase");
+
+  const wordsToCheck =
+    (titleCase === true || titleCase) && excludeWordsList
+      ? excludeWordsList.concat(titleArray)
+    : titleCase || (titleCase === true && !excludeWordsList)
+      ? titleArray
+    : false;
+  
+  // Loop through words array to check and exclude in capitalization
+  for (let i = 0; i < arr.length; i++) {
+    const word = arr[i].toLowerCase();
+    // Need to make override list work, add list of words to capitalize all letters, and more...
+    if (checkType(word[i], 'number')) {
+      capsArr.push(word);
+      continue;
+    }
+
+    if 
+      ((i !== 0 && titleCase === true && checkForWords(word, wordsToCheck, true))
+      || (titleCase === false && excludeWordsList && checkForWords(word, excludeWordsList, true) === true)
+      || (i !== 0 && titleCase === true && excludeWordsList && checkForWords(word, wordsToCheck, true) === true) )
+        { capsArr.push(word); }
+    else
+      { capsArr.push(capitalizeWord(word)); }
+  }
+
+  // If capitalized words array worked then the new output is a new string from 'capsArr'
+    const output = capsArr ? capsArr.join(" ") : false;
+  // Return the new string if it exists
+    return output !== false ? output : capitalizeWord(input);
+}
+
+// TITLE CASE
+// Capitalizes the first letter in the words of a string
+export const titleCase = (input, excludeWordsList, overrideList) => {
+  return capitalizeWords(input, true, excludeWordsList, overrideList);
 }
 
 

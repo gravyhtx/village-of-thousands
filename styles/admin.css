@@ -308,7 +308,12 @@ tr {
 }
 
 .order-accordian .collapsible.MuiAccordion-root {
-  background: transparent !important;
+  background: transparent;
+}
+
+.order-accordian .collapsible.MuiAccordion-root.active {
+  background: black;
+  color: white;
 }
 .header {
   text-align: center;
@@ -335,6 +340,27 @@ tr {
 
 .p-head.row {
   margin-bottom: 0 !important;
+}
+
+.p-head.row .col span {
+  border-bottom: 1px solid white;
+  width: 80%;
+}
+
+.purchase-details_header {
+  font-size: 1.25rem;
+  text-decoration: underline;
+  margin: 10px 0 20px;
+}
+
+.order-details_headers div b {
+  text-decoration: underline;
+}
+
+.MuiAccordionDetails-root {
+  background-color: #333;
+  color: white;
+  border: 2px solid #7fcce4;
 }
 
 .status.active {
@@ -411,12 +437,14 @@ tr {
     display: none;
   }
   
-  .main-admin-content{
-    margin-left: 70px;
+  .main-admin-content {
+    width: calc(100vw - 70px);
   }
   
   .main-admin-content header{
-    width: calc(100% - 70px);
+    width: calc(100vw - 70px);
+  }
+  .header-admin {
     left: 70px;
   }
 }
