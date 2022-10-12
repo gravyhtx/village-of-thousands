@@ -3,6 +3,44 @@ import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
 // import { width } from '@mui/system';
 
+
+export const formatDate = (date, format) => {
+  date = date ? date : false
+  format = format ? format.toLowerCase() : false;
+  const timeElapsed = Date.now();
+  const today = new Date(timeElapsed);
+  switch (format) {
+    case format === false && date === false:
+      return today;
+    case format === 'string' && date === false:
+      return today.toDateString(); // "Sun Jun 14 2020"
+    case format === 'iso' && date === false:
+      return today.toISOString(); // "2020-06-13T18:30:00.000Z"
+    case format === 'utc' && date === false:
+      return today.toUTCString(); // "Sat, 13 Jun 2020 18:30:00 GMT"
+    case format === 'local' && date === false:
+    case format === 'locale' && date === false:
+      return today.toLocaleDateString(); // "6/14/2020"
+    default:
+      return today.toLocaleDateString();
+  }
+}
+
+export const taxAmount = (grossTotal, orderTotal) => {
+  const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
+  const shippingPercent = orderTotal * 12;
+
+  return ((grossTotal- stripePercent - shippingPercent) * 0.0825).toFixed(2)
+}
+
+export const netAmount = (grossTotal, orderTotal) => {
+  const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
+  const shippingPercent = orderTotal * 12;
+  const taxPercent = taxAmount(grossTotal, orderTotal)
+
+  return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2)
+}
+
 ////////////////////////
 // CLIENT SIDE CHECKS //
 ////////////////////////

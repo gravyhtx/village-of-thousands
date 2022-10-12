@@ -2,7 +2,7 @@ import React from 'react'
 
 const Aside = () => {
   return (
-    <div className="customers">
+    <div className="customers col s3">
       <div className="card">
         <div className="card-header">
           <h3>New Customers</h3>

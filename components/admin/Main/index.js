@@ -11,7 +11,7 @@ import { reverseArr } from '../../../utils/generator';
 
 const Main = () => {
   const router = useRouter();
-  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com", "villageofthousands@gmail.com"]
+  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com", "villageofthousands@gmail.com"];
 
   const [orderObject, setorderObject] = useState({});
 
@@ -49,7 +49,7 @@ const Main = () => {
         totalOrders={orderObject.orderHistory ? orderObject.orderHistory.length : 0} 
         grossEarning={orderObject.orderHistory ? orderObject.totalGrossEarnings.toFixed(2) : 0} 
       />
-      <div className="recent-grid">
+      <div className="recent-grid row">
         <Table orders={orderObject.orderHistory ? reverseArr(orderObject.orderHistory) : []} />
         <Aside />
       </div>

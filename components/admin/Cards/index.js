@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 // import API from "../../utils/API";
 
 const Cards = ({totalOrders, grossEarning}) => {
@@ -27,10 +27,11 @@ const Cards = ({totalOrders, grossEarning}) => {
     return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2)
   }
   return (
-        <div className="cards">
+        <div className="cards row">
           <div className="card-single">
             <div>
-              <h1>{totalOrders}</h1>
+              { totalOrders ?
+              <h1>{totalOrders}</h1> : <></>}
               <span>Total Orders</span>
             </div>
             <div>
@@ -40,7 +41,8 @@ const Cards = ({totalOrders, grossEarning}) => {
 
           <div className="card-single">
             <div>
-              <h1>${grossEarning}</h1>
+              { grossEarning ?
+              <h1>${grossEarning}</h1> : <></>}
               <span>Gross Income</span>
             </div>
             <div>
@@ -50,7 +52,8 @@ const Cards = ({totalOrders, grossEarning}) => {
 
           <div className="card-single">
             <div>
-              <h1>${taxAmount(grossEarning, totalOrders)}</h1>
+              { taxAmount(grossEarning, totalOrders) ?
+              <h1>${taxAmount(grossEarning, totalOrders)}</h1> : <></>}
               <span>Taxes Collected</span>
             </div>
             <div>
@@ -60,7 +63,8 @@ const Cards = ({totalOrders, grossEarning}) => {
 
           <div className="card-single">
             <div>
-              <h1>${netAmount(grossEarning, totalOrders)}</h1>
+              { netAmount(grossEarning, totalOrders) ?
+              <h1>${netAmount(grossEarning, totalOrders)}</h1> : <></>}
               <span>Net Income</span>
             </div>
             <div>
