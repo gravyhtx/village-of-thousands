@@ -242,7 +242,7 @@
 
 .card-header,
 .card-body {
-  padding: 1rem;
+  padding: 0 1rem;
   font-size: .8rem;
 }
 
@@ -286,9 +286,14 @@ td {
   font-size: .9rem;
   color: #222;
 }
-.thead {
-  color: black;
-  font-weight: 800;
+
+.order-table .thead {
+  background: black;
+  color: white;
+  font-weight: 900;
+  border-bottom: 1px solid #666;
+  padding: 15px 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .status {
@@ -307,43 +312,62 @@ tr {
   width: 100%;
 }
 
+.order-collapsible {
+  font-weight: 500;
+}
+
 .order-accordian .collapsible.MuiAccordion-root {
   background: transparent;
 }
 
-.order-accordian .collapsible.MuiAccordion-root.active {
-  background: black;
-  color: white;
+.order-accordian .order-collapsible.active  .order-collapsible {
+  font-weight: 500;
+  background: #f0f0f0;
+  color: black;
+  text-shadow: 1px 1px 0 #bbb;
+  border-top: 1px solid #bbb;
 }
-.header {
+
+.order-collapsible_details.MuiAccordionDetails-root {
+  border-top: 2px solid #7fcce4;
+  background-color: #f6f6f6;
+  color: #222;
+}
+
+.order-table .thead .header {
   text-align: center;
 }
 
-.header.pc,
-.row .number {
+.order-table .thead .header.o-num,
+.order-collapsible .order-summary .number {
   /* padding: 0 !important; */
   float: left;
   text-align: left;
 }
-.order-collapsible .order {
+
+.order-collapsible .order-summary {
   text-align: center;
   width: 100%;
 }
+
+.order-collapsible .order-summary .number {}
+
 .order-collapsible .confirmation {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.p-head {
+.order-deets .details-headers {
   font-weight: 500;
 }
 
-.p-head.row {
+.order-deets .details-headers.row {
+  font-weight: 600;
   margin-bottom: 0 !important;
 }
 
-.p-head.row .col span {
-  border-bottom: 1px solid white;
+.order-deets .details-headers.row .col span {
+  border-bottom: 1px solid #222;
   width: 80%;
 }
 
@@ -357,10 +381,9 @@ tr {
   text-decoration: underline;
 }
 
-.MuiAccordionDetails-root {
-  background-color: #333;
-  color: white;
-  border: 2px solid #7fcce4;
+.product-map .number {
+  color: #666;
+  text-shadow: 2px 2px 2px #ddd;
 }
 
 .status.active {
