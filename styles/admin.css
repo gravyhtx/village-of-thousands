@@ -183,10 +183,20 @@
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
   grid-gap: 2rem;
   margin-top: 1rem;
+}
+
+.card-single_container {
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.card-single_container {
+  padding: 0 10px;
+  margin-bottom: 20px;
 }
 
 .card-single {
@@ -195,14 +205,15 @@
   background: #fefefe;
   padding: 2rem;
   border-radius: 2px;
+  min-height: 160px;
 }
 
-.card-single div:last-child span {
+.card-single:last-child span {
   font-size: 3rem;
   color: var(--main-color);
 }
 
-.card-single div:first-child span {
+.card-single:first-child span {
   color: var(--text-grey);
   font-size: .9rem;
 }
@@ -224,6 +235,10 @@
 .card-single h1,
 .card-header h3 {
   color: #aaa
+}
+
+.card-header h3 {
+  font-size: 1.2rem;
 }
 
 /* Table Section */
@@ -291,6 +306,7 @@ td {
   background: black;
   color: white;
   font-weight: 900;
+  font-size: .9rem;
   border-bottom: 1px solid #666;
   padding: 15px 0 !important;
   margin-bottom: 0 !important;
@@ -312,12 +328,15 @@ tr {
   width: 100%;
 }
 
-.order-collapsible {
+.order-collapsible .row {
   font-weight: 500;
+  margin-bottom: 0 !important;
 }
 
 .order-accordian .collapsible.MuiAccordion-root {
   background: transparent;
+  /* background: #f6f6f6; */
+  box-shadow: 0px 1px 1px #bbb;
 }
 
 .order-accordian .order-collapsible.active  .order-collapsible {
@@ -329,9 +348,24 @@ tr {
 }
 
 .order-collapsible_details.MuiAccordionDetails-root {
+  /* font-family: 'Be Vietnam Pro'; */
   border-top: 2px solid #7fcce4;
-  background-color: #f6f6f6;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 30px;
+  background: white;
+  color: #444;
+}
+
+.order-collapsible_details.MuiAccordionDetails-root:last-child {
+  border-bottom: none;
+}
+
+.order-collapsible_details .purchase-details_header .col {
+  margin-bottom: 0px;
   color: #222;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  margin: 10px 0 10px;
 }
 
 .order-table .thead .header {
@@ -350,35 +384,38 @@ tr {
   width: 100%;
 }
 
-.order-collapsible .order-summary .number {}
-
 .order-collapsible .confirmation {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.order-deets .details-headers {
-  font-weight: 500;
-}
-
-.order-deets .details-headers.row {
-  font-weight: 600;
-  margin-bottom: 0 !important;
-}
-
 .order-deets .details-headers.row .col span {
+  color: #222;
+  font-size: .9rem;
+  font-weight: 800;
+  margin-bottom: 0 !important;
   border-bottom: 1px solid #222;
   width: 80%;
 }
 
 .purchase-details_header {
+  color: #333;
   font-size: 1.25rem;
   text-decoration: underline;
   margin: 10px 0 20px;
 }
 
 .order-details_headers div b {
+  font-size: .9rem;
+  color: #222;
   text-decoration: underline;
+}
+
+.order-details_info .confirmation {
+  font-family: 'Share Tech Mono';
+  font-weight: 500;
+  font-size: .9rem;
+  margin-bottom: 25px;
 }
 
 .product-map .number {
@@ -392,6 +429,10 @@ tr {
 
 .status.flagged {
   background: rgb(219, 110, 67);
+}
+
+.confirmation .status {
+  margin-right: 6px;
 }
 
 .status.new {
@@ -474,7 +515,7 @@ tr {
 
 @media only screen and (max-width: 960px) {
   .cards {
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
   }
 
   .recent-grid {
@@ -484,7 +525,7 @@ tr {
 
 @media only screen and (max-width: 768px) {
   .cards {
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 
   .recent-grid {
@@ -565,6 +606,6 @@ tr {
 
 @media only screen and (max-width: 560px) {
   .cards {
-    grid-template-columns: 100%;
+    /* grid-template-columns: 100%; */
   }
 }

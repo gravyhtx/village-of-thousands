@@ -1,20 +1,15 @@
-import { useState } from 'react';
 import Link from "next/link";
 
 import { Accordion, AccordionDetails, capitalize } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
 import Login from '../components/Login';
-import RandomQuote from '../components/dynamic-content/RandomQuote';
 
-const LoginContainer = ({ name, message }) =>  {
-
-  const ErrorMessage = () => { return message ? <div className='login-error'>{message}</div> : <></> }
+const LoginContainer = ({ message, mapBoth }) =>  {
 
   return (
     <>
       <div className="signup-collapsible">
-      <ErrorMessage />
         <Accordion
           className="collapsible"
           expanded={true}
@@ -27,8 +22,8 @@ const LoginContainer = ({ name, message }) =>  {
                 {capitalize("Login")}
             </div>
           </AccordionSummary>
-          <AccordionDetails className="activate-login login-collapsible-item">
-            <Login activation={true} />
+          <AccordionDetails className="login-collapsible-item margin">
+            <Login reloadPage={true} />
             <Link href="/register"><a className="did-you-register">
               <div className="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
             </a></Link>
@@ -36,7 +31,6 @@ const LoginContainer = ({ name, message }) =>  {
           </AccordionDetails>
         </Accordion>
       </div>
-      <div className="center-text italics"><RandomQuote className="center-text activate-zen" type="zen" /></div>
     </>
   )
 }

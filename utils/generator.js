@@ -5,22 +5,29 @@ import { checkType, checkForWords, listOfWords } from "./validation";
 /////////////////////////////
 
 
-// MATH.RANDOM() SHORTCUT
-export const randomize = (n) => {  // Simple Math.random() Shortcut :)
+// RANDOMIZE SHORTCUT
+export const randomize = (n) => {
 	return Math.floor(Math.random() * n);
 }
 
 // HEADS... OR TAILS?
 export const cointoss = () => {
-  let n = randomize = (2);
+  let n = randomize(2);
   let bool = n === 0 ? true : false;
   return bool;
 };
 
-// ROLL A RANDOM NUMBER -- ASSIGN IT WHEREVER YOU WANT ACROSS PAGES!
-export const luckyRoll = (n) => {
-  let output = Math.floor(Math.random()*(n));
+// RANDOMLY MAKE A NUMBER POSITIVE OR NEGATIVE
+export const posNeg = (n) => {
+  return (n?n:1)*(Math.round(Math.random()) * 2 - 1)
+}
+
+// ROLL A RANDOM NUMBER
+//  Assign it wherever you want across pages!
+export const luckyRoll = (n, includeZero) => {
+  const output = includeZero === true ? randomize(n) : randomize(n)+1;
   localStorage.setItem("luckyNumber", output);
+  return output;
 };
 
 // TRUNCATE TO DECIMAL PLACE
@@ -35,14 +42,56 @@ export const roundToMultiple = (num, multiple) => {
   return Math.round(num / m) * m;
 }
 
+// RANDOM VALUE FROM BELL CURVE
+export function randomBell(multiplier, min, max, skew) {
+
+  multiplier=(multiplier===true)?100:(typeof multiplier === 'number')?multiplier:undefined;
+  min=min?min:0;
+  max=max?max:1;
+  skew=skew?skew:1;
+
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+  while(v === 0) v = Math.random()
+  let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+  
+  num = num / 10.0 + 0.5 // Translate to 0 -> 1
+  if (num > 1 || num < 0) {
+    num = randomBell(min, max, skew) // Resample between 0 and 1 if out of range
+  } else {
+    num = Math.pow(num, skew) // Skew
+    num *= max - min // Stretch to fill range
+    num += min // offset to min
+  }
+  return multiplier ? Math.floor(num*multiplier) : num;
+}
+
 // CLAMP NUMBER WITHIN SPECIFIED RANGE
-// Example...
-// numberClamp(123,50,100) || Output: 100
 export const numberClamp = (num, min, max) => {
+  // Example...
+  //    numberClamp(123,50,100) || Output: 100
   min = min ? min : 0;
   max = max ? max : 100;
   return Math.min(Math.max(num, min), max);
 };
+
+// HANDLE EVEN/ODD VALUES
+//    ** Need to figure out handling non-whole number **
+export const numberIsEven = (number) => {
+  return number % 2 == 0 ? true : false;
+}
+
+export const numberIsOdd = (number) => {
+  return number % 2 == 0 ? false : true;
+}
+
+export const makeNumberEven = (number) => {
+  return number % 2 == 0 ? number : number+1;
+}
+
+export const makeNumberOdd = (number) => {
+  return number % 2 == 0 ? number+1 : number;
+}
 
 
 

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Accordion, AccordionDetails } from "@mui/material";
+import { Accordion, AccordionDetails, capitalize } from "@mui/material";
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { formatDate, taxAmount } from "../../../utils/siteFunctions";
 import { titleCase } from "../../../utils/generator";
@@ -29,10 +29,10 @@ const Table = ({ orders, inOrderPage }) => {
         <div className="card-body">
           <div className="order-table table-responsive">
             <div className="thead row">
-              <div className="header o-num col s1">ORDER</div>
-              <div className="header o-cost col s3">COST</div>
-              <div className="header o-tax col s1">TAX</div>
-              <div className="header o-totes col s3">TOTAL</div>
+              <div className="header o-num col s2">ORDER</div>
+              <div className="header o-cost col s2">COST</div>
+              <div className="header o-tax col s2">TAX</div>
+              <div className="header o-totes col s2">TOTAL</div>
               <div className="header o-date col s2 left">DATE</div>
               <div className="header o-stat right col s2">STATUS</div>
             </div>
@@ -52,36 +52,53 @@ const Table = ({ orders, inOrderPage }) => {
                       ref={accordElem}
                       key={index}
                       disableGutters>
-                      <AccordionSummary className="order-collapsible row" aria-label={"Order #"+(index+1)}>
+                      <AccordionSummary
+                        className="order-collapsible row"
+                        aria-label={"Order #"+(index+1)}
+                        style={{ marginBottom: '0' }}>
                       <div className="order-summary" key={order._id}>
-                        <div className="number col s1">#{1000 + (orders.length - index)}</div>
+                        <div className="number col s2">#{1000 + (orders.length - index)}</div>
                         {/* <div className="total col s1">${taxAmount(order)}</div> */}
-                        <div className="cost col s3">${cost}</div>
-                        <div className="tax col s1">${tax}</div>
-                        <div className="total col s3">${total}</div>
-                        <div className="date col left s2">{formatDate(order.purchaseDate, 'utc')}</div>
-                        <div className="status right col s2">
-                          <span className="status flagged"></span>&emsp;
-                          {order.deliveryStatus}
+                        <div className="cost col s2">${cost}</div>
+                        <div className="tax col s2">${tax}</div>
+                        <div className="total col s2">${total}</div>
+                        <div className="date col left s2 center">{formatDate(order.purchaseDate, 'utc')}</div>
+                        <div className="status right col s2 center">
+                          <span className="status flagged"></span>
+                          {/* &emsp;{order.deliveryStatus} */}
                         </div>
                       </div>
                       </AccordionSummary>
                       <AccordionDetails className="order-collapsible_details">
-                        <div className="purchase-details_header"><b>PURCHASE DETAILS</b></div>
-                        <div className="row order-details_headers">
-                          <div className="confirmation col s6">
-                            <b>CONFIRMATION ID</b>
+                        <div className="purchase-details_header row">
+                          <b className="col s12">PURCHASE DETAILS</b>
+                        </div>
+                        <div className="row order-details_info">
+                          <div className="confirmation col s12">
+                            <div><b>CONFIRMATION:</b> {order.paymentConfirmation}</div>
+                            <div>
+                              <b>STATUS:</b>&emsp;
+                              <span className="status flagged"></span>
+                              {order.deliveryStatus}
+                            </div>
                           </div>
-                          <div className="address col s6">
+                        </div>
+                        <div className="row order-details_headers">
+                          {/* <div className="confirmation col s6">
+                            <b>CONFIRMATION ID</b>
+                          </div> */}
+                          <div className="address col s12">
                             <b>ADDRESS</b>
                           </div>
                         </div>
                         <div className="row order-details_info">
-                          <div className="confirmation col s6">
+                          {/* <div className="confirmation col s6">
                             <div>{order.paymentConfirmation}</div>
-                          </div>
-                          <div className="address col s6">
-                            <div>{titleCase(order.billingAddress.addressOne)} - {order.billingAddress.zip}</div>
+                          </div> */}
+                          <div className="address col s12">
+                            <div>{titleCase(order.billingAddress.addressOne)}
+                              <br/>{capitalize(order.billingAddress.city).trim()},&nbsp;
+                              {order.billingAddress.state}&nbsp;{order.billingAddress.zip}</div>
                           </div>
                         </div>
                         <br/>
@@ -90,7 +107,7 @@ const Table = ({ orders, inOrderPage }) => {
                             <div className="col s5"><span>PRODUCT</span></div>
                             <div className="col s3 center"><span>COST</span></div>
                             <div className="col s2 center"><span>TAX</span></div>
-                            <div className="col s2 right"><span>TOTAL</span></div>
+                            <div className="col s2 center"><span>TOTAL</span></div>
                           </div>
                           <br/>
                           <div className="p-deets row">
@@ -108,7 +125,7 @@ const Table = ({ orders, inOrderPage }) => {
                                   &emsp;{item.product_name} - {item.product_colors}</div>
                                 <div className="col s3 center">${cost}</div>
                                 <div className="col s2 center">${tax}</div>
-                                <div className="col s2 right">${total}</div>
+                                <div className="col s2 center">${total}</div>
                               </div>
                             )
                           })}

@@ -7,11 +7,8 @@ import Auth from '../../utils/auth';
 
 import DefaultLayout from "../../templates/DefaultLayout";
 
-import LoginContainer from "../../components/LoginActivateContainer";
-import SvgContainer from "../../components/SvgContainer";
+import LoginContainer from "../../components/LoginContainer";
 import SiteImage from "../../components/SiteImage";
-
-import HeaderSvg from './header.svg';
 
 const Activate = () => {
   const router = useRouter();
@@ -62,22 +59,6 @@ const Activate = () => {
     setActivateStatus(true);
   }
 
-  const headerImages = [
-    <SvgContainer
-      layout="responsive"
-      src={HeaderSvg}
-      id="header-img"
-      draggable="false"
-      description="Village of Thousands Logo"
-    />,
-    <SiteImage
-      siteImage="Header PNG"
-      id="header-img"
-      draggable="false"
-      description="Village of Thousands Logo"
-    />
-  ];
-
   const activateHeader = "SUPPP, BROH?!";
 
   return (
@@ -85,7 +66,7 @@ const Activate = () => {
       <div className="activate-page center container animate__animated animate__fadeIn">
         {!isLogged ? (
           <>
-            <LoginContainer />
+            <LoginContainer activationPage={true} />
           </>
         ) : 
         (
