@@ -11,8 +11,13 @@ import { reverseArr } from '../../../utils/generator';
 
 const Main = ({ user, setUser }) => {
   const router = useRouter();
-  const whiteListEmails = ["andreslong95@gmail.com", "godisgravy@gmail.com", "villageofthousands@gmail.com"];
-  const whiteListNames = ["Andres", "Andrew", "JC"]
+  const whiteListEmails = [
+    "andreslong95@gmail.com",
+    "godisgravy@gmail.com",
+    "villageofthousands@gmail.com",
+    "houstontaxconsultants@gmail.com"
+  ];
+  const whiteListNames = ["Andres", "Andrew", "JC", "Sylvia"]
 
   const [orderObject, setorderObject] = useState({});
   const [userIndex, setUserIndex] = useState(null);
@@ -47,11 +52,8 @@ const Main = ({ user, setUser }) => {
 
 
   useEffect(()  => {
-    setUser({name: whiteListNames[userIndex], email: whiteListEmails[userIndex]})
-    // if(!user) {
-    // }
-    setLoaded(true)
-    // return () => setUser({name: whiteListNames[userIndex], email: whiteListEmails[userIndex]});
+    setUser({name: whiteListNames[userIndex], email: whiteListEmails[userIndex]});
+    setLoaded(true);
   },  [!loaded])
 
   console.log(reverseArr(orderObject.orderHistory))
