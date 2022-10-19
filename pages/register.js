@@ -1,7 +1,7 @@
 import DefaultLayout from "../templates/DefaultLayout";
 import RandomQuote from "../components/dynamic-content/RandomQuote";
 import LoginContainer from "../components/LoginContainer";
-s
+
 const Register = () => {
   return (
     <DefaultLayout title="Register">
