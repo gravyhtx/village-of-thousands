@@ -136,7 +136,9 @@ export const capitalizeWords = (input, titleCase, excludeWordsList, overrideList
 
   // Check string to see if there are multiple words in a string. Checks to see if there
   // is at least one space, excluding leading and training spaces.
-    const checkForMultipleWords = input.trim().indexOf(' ') != -1;
+    input = input || '';
+    input = input.trim();
+    const checkForMultipleWords = input.indexOf(' ') != -1;
     const checkForArray = checkType(input, "array");
     const splitString = input.split(" ");
     const arr = checkForMultipleWords ? splitString : checkForArray ? input : [];

@@ -3,6 +3,8 @@ import { Accordion, AccordionDetails, capitalize } from "@mui/material";
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { formatDate, taxAmount } from "../../../utils/siteFunctions";
 import { titleCase } from "../../../utils/generator";
+import { simpleHash } from "../../../modules/hashSystem";
+import { MiCon } from "../../icons/MatIco";
 
 const Table = ({ orders, inOrderPage }) => {
 
@@ -14,7 +16,7 @@ const Table = ({ orders, inOrderPage }) => {
   };
 
   return (
-    <div className="projects col s9">
+    <div className="projects col m12 l9">
       <div className="card">
         <div className="card-header">
           <h3>Recent Orders</h3>
@@ -39,12 +41,12 @@ const Table = ({ orders, inOrderPage }) => {
             <div className="order-accordian_map">
             {orders ?
               orders.map((order, index) => {
-              console.log(order)
+              {/* console.log(order) */}
               const total = (order.totalPrice).toFixed(2)
               const tax = (total * 0.0825).toFixed(2);
               const cost = (total - tax).toFixed(2);
                 return (
-                  <div className="order-accordian">
+                  <div className="order-accordian" key={index}>
                     <Accordion
                       className={expanded === index ? "order-collapsible collapsible active" : "collapsible"}
                       expanded={expanded === index}
@@ -75,7 +77,7 @@ const Table = ({ orders, inOrderPage }) => {
                         </div>
                         <div className="row order-details_info">
                           <div className="confirmation col s12">
-                            <div><b>CONFIRMATION:</b> {order.paymentConfirmation}</div>
+                            <div><b>CONFIRMATION:</b> {simpleHash(order.paymentConfirmation)}</div>
                             <div>
                               <b>STATUS:</b>&emsp;
                               <span className="status flagged"></span>
@@ -116,8 +118,7 @@ const Table = ({ orders, inOrderPage }) => {
                             const itemNum = num < 10 ? '00'+num : num < 100 ? '0'+num : num;
                             const cost = item.price;
                             const tax = (cost * 0.0825).toFixed(2);
-                            const total = cost + tax;
-                            console.log(item.product_name)
+                            const total = Number(cost) + Number(tax);
                             return (
                               <div className={"product-map" + (expanded === index ? " active":"")} key={index}>
                                 <div className="col s5">

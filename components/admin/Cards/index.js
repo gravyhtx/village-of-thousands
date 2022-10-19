@@ -24,17 +24,17 @@ const Cards = ({totalOrders, grossEarning}) => {
     const shippingPercent = orderTotal * 12;
     const taxPercent = taxAmount(grossTotal, orderTotal)
 
-    return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2)
+    return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2);
   }
   return (
         <div className="cards row">
 
-          <div className="card-single_container col s6 m3">
+          <div className="card-single_container col s12 m3">
             <div className="card-single">
               <div>
-                { totalOrders ?
+                { totalOrders > 0 ?
                 <h1>{totalOrders}</h1> : <></>}
-                <span>Total Orders</span>
+                <div>Total Orders</div>
               </div>
               <div>
                 <span className="las la-users"></span>
@@ -42,12 +42,12 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s6 m3">
+          <div className="card-single_container col s12 m3">
             <div className="card-single">
               <div>
-                { grossEarning ?
+                { grossEarning > 0 ?
                 <h1>${grossEarning}</h1> : <></>}
-                <span>Gross Income</span>
+                <div>Gross Income</div>
               </div>
               <div>
                 <span className="las la-clipboard"></span>
@@ -55,12 +55,12 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s6 m3">
+          <div className="card-single_container col s12 m3">
             <div className="card-single">
               <div>
-                { taxAmount(grossEarning, totalOrders) ?
+                { taxAmount(grossEarning, totalOrders) > 0 ?
                 <h1>${taxAmount(grossEarning, totalOrders)}</h1> : <></>}
-                <span>Taxes Collected</span>
+                <div>Taxes Collected</div>
               </div>
               <div>
                 <span className="las la-shopping-bag"></span>
@@ -68,12 +68,12 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s6 m3">
+          <div className="card-single_container col s12 m3">
             <div className="card-single">
               <div>
-                { netAmount(grossEarning, totalOrders) ?
+                { netAmount(grossEarning, totalOrders) > 0 ?
                 <h1>${netAmount(grossEarning, totalOrders)}</h1> : <></>}
-                <span>Net Income</span>
+                <div>Net Income</div>
               </div>
               <div>
                 <span className="las la-google-wallet"></span>

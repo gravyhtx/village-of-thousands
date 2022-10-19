@@ -103,7 +103,7 @@
 }
 .main-admin-content h4,
 .main-admin-content small {
-  text-align: right;
+  text-align: left;
 }
 /* main  section */
 
@@ -125,6 +125,11 @@
 
 .header-admin h2 {
   color: var(--text-grey);
+  font-weight: 600;
+  font-style: italic;
+}
+.header-admin h2 span {
+  text-decoration: underline;
 }
 
 .header-admin label span {
@@ -174,7 +179,7 @@
 /* content section  */
 
 .main-admin {
-  margin-top: 90px;
+  margin-top: 110px;
   padding: 2rem 1.5rem;
   background: var(--color-dark);
   /* Dark Mode */
@@ -214,7 +219,8 @@
 }
 
 .card-single:first-child span {
-  color: var(--text-grey);
+  /* color: var(--text-grey); */
+  color: #f0f0f0;
   font-size: .9rem;
 }
 
@@ -222,31 +228,54 @@
   background: var(--main-color);
 }
 
-.card-single:last-child h1,
+/* .card-single:last-child h1,
 .card-single:last-child div:first-child span, 
 .card-single:last-child div:last-child span {
   color: #fefefe
+} */
+.card-single h1,
+.card-single div, 
+.card-single div {
+  /* height: 100%; */
+  color: #ffffff;
+  font-size: .9rem;
 }
 
 .card-single h1 {
   font-size: 2.6rem;
 }
 
-.card-single h1,
-.card-header h3 {
-  color: #aaa
+.card-single h1 {
+  color: #fff;
 }
-
 .card-header h3 {
-  font-size: 1.2rem;
+  color: #222;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.aside .card-header h3 {
+  font-size: 1rem;
 }
 
 /* Table Section */
 .recent-grid {
-  margin-top: 3.5rem;
-  display: flex;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   grid-template-columns: 65% auto;
+}
+
+.recent-grid div {
+  margin: 0 auto;
+}
+
+.recent-grid .projects .card,
+.recent-grid .customers .card {
+  margin: 0 auto;
+  border: 1px solid #7fcce4;
+  border-top: 3px solid #7fcce4;
+}
+
+.recent-grid .customers .card {
+  padding-bottom: 30px;
 }
 
 .card {
@@ -257,15 +286,21 @@
 
 .card-header,
 .card-body {
-  padding: 0 1rem;
   font-size: .8rem;
+}
+
+.card-body {
+  padding: 0;
 }
 
 .card-header {
   display: flex;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  background: #eaf1f3;
+  border-bottom: 3px solid #7fcce4;
+  color:#202527;
 }
 
 .card-header button {
@@ -307,9 +342,13 @@ td {
   color: white;
   font-weight: 900;
   font-size: .9rem;
-  border-bottom: 1px solid #666;
-  padding: 15px 0 !important;
+  border-bottom: 3px solid #7fcce4;
+  padding: 15px 10px !important;
   margin-bottom: 0 !important;
+}
+
+.order-table .order-summary {
+  padding: 0 10px;
 }
 
 .status {
@@ -336,15 +375,30 @@ tr {
 .order-accordian .collapsible.MuiAccordion-root {
   background: transparent;
   /* background: #f6f6f6; */
-  box-shadow: 0px 1px 1px #bbb;
+  box-shadow: 0px 1px 1px #888;
+  border-radius: 0px;
 }
 
-.order-accordian .order-collapsible.active  .order-collapsible {
+.order-accordian .collapsible.MuiAccordion-root.active {
+  box-shadow: 0px 1px 1px #222;
+  border-top: 1px solid #222;
+}
+
+.order-accordian .collapsible.MuiAccordion-root.active:first-child {
+  border-top: none;
+}
+
+.order-accordian .order-collapsible.active .order-collapsible {
   font-weight: 500;
   background: #f0f0f0;
   color: black;
   text-shadow: 1px 1px 0 #bbb;
   border-top: 1px solid #bbb;
+  border-radius: 0px;
+}
+
+.order-accordian .order-collapsible.active .order-collapsible:first-child {
+  border-top: 1px solid #222;
 }
 
 .order-collapsible_details.MuiAccordionDetails-root {
@@ -382,6 +436,7 @@ tr {
 .order-collapsible .order-summary {
   text-align: center;
   width: 100%;
+  font-weight: 500;
 }
 
 .order-collapsible .confirmation {
@@ -445,7 +500,8 @@ tr {
 }
 
 .customer {
-  display: flex;
+  text-align: left;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   padding: .5rem .7rem;
@@ -456,9 +512,11 @@ tr {
   align-items: center;
 }
 
-.info img {
+.customer .info img {
   border-radius: 50%;
-  margin-right: 1rem;
+  margin: 0 auto !important;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .info h4 {
@@ -540,6 +598,10 @@ tr {
     left: -100% !important;
   }
 
+  .card-header h3 {
+    font-size: 1.5rem;
+  }
+
   header h2 {
     display:flex;
     align-items: center;
@@ -571,6 +633,16 @@ tr {
   .main-admin-content {
     width: 100%;
     margin-left: 0rem;
+  }
+
+  .card-single {
+    display: block;
+    margin:  0 auto;
+    text-align: center;
+  }
+
+  .recent-grid div {
+    margin-bottom: 30px;
   }
 
   header {
@@ -605,6 +677,12 @@ tr {
 }
 
 @media only screen and (max-width: 560px) {
+  .card-single h1 {
+    font-size: 2rem;
+  }
+  .card-single div {
+    font-size: .75rem;
+  }
   .cards {
     /* grid-template-columns: 100%; */
   }

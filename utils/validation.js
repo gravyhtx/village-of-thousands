@@ -1,4 +1,7 @@
 // CHECK ELEMENT TYPES
+
+import { capitalizeWords, titleCase } from "./generator";
+
 // Uses various methods to check if the given 'element' matches a 'type' (string)
 export const checkTypeof = (variable, type) => {
   // Set Output
@@ -304,9 +307,49 @@ export const fileName = (string) => {
   let str = '';
 
   if(string !== undefined && checkType(string, 'string')) {
-    str = str.replace(/\s+/g, ' ').trim().toLowerCase();
+    str = string.replace(/\s+/g, ' ').trim().toLowerCase();
   }
   return str ? str.replace(/ /g, "_").replace(/[^a-z0-9_]/gmi, "-") : string;
+}
+
+// export const fileName = (string, reverseConvention) => {
+//   let str = '';
+
+//   let reverse = reverseConvention === 'dashes' || reverseConvention === 'd'
+//                   ? 'dashes'
+//                 : reverseConvention === 'underscores' || reverseConvention === 'u'
+//                 ? 'underscores'
+//                 : reverseConvention === true
+//                   ? true
+//                   : false;
+
+//   if(string !== undefined && checkType(string, 'string')) {
+//     str
+//     str = reverseConvention === true
+//         ? str.replace(/\s+/g, ' ').trim().toLowerCase()
+//       : reverseConvention === 'dashes'
+//         ? str.replace(/\s+/g, '-').trim().toLowerCase()
+//       : reverseConvention === 'underscores'
+//         ? str.replace(/\s+/g, '_').trim().toLowerCase()
+
+//   }
+//   return str ? str.replace(/ /g, "_").replace(/[^a-z0-9_]/gmi, "-") : string;
+// }
+
+export const unFileName = (string, caps) => {
+
+  caps = caps === false ? false : caps !== true && caps !== undefined ? caps : true; 
+
+  if(string !== undefined && checkType(string, 'string')) {
+    string = string.replace(/_+/g, ' ').trim().toLowerCase();
+    string = string.replace(/-/g, ' ');
+    return caps === 'titlecase'
+        ? titleCase(string)
+      : caps === true
+        ? capitalizeWords(string)
+        : string;
+  }
+  return undefined;
 }
 
 
