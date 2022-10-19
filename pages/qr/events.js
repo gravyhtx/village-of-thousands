@@ -1,6 +1,6 @@
 import DefaultLayout from "../../templates/DefaultLayout";
 
-const PopUp = () => {
+const Events = () => {
   return (
   <DefaultLayout>
     <div>Upcoming Events</div>
@@ -9,4 +9,4 @@ const PopUp = () => {
   )
 }
 
-export default PopUp;
+export default Events;
