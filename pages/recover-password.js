@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import DefaultLayout from "../templates/DefaultLayout";
 
-import { Button } from "@mui/material";
-import UploadFile from "../components/UploadFile";
-
 import Mnemonic from "../components/Mnemonic";
 import NewPassword from "../components/NewPassword";
+import UploadFile from "../components/UploadFile";
+
 import { updateUser, getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 // import Captcha from "../components/Captcha";
@@ -58,7 +57,7 @@ const UserPasswordRecovery = () => {
   const phraseArr = getHex.toWords();
   let phrase = phraseArr.join(' ');
   let seedArr = [];
-  // console.log(phrase);
+  console.log(phrase);
 
   const [pwCheck, setPwCheck] = useState(false);
 
@@ -66,7 +65,7 @@ const UserPasswordRecovery = () => {
 
   useEffect(() => {
     setTxtSeed(localStorage.getItem('upload_data'));
-    // console.log(txtSeed);
+    console.log(txtSeed);
     if(phrase === txtSeed) {
       setPwCheck(true);
     }

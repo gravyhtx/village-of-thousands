@@ -1,4 +1,5 @@
 {
+
   "url": "https://villageofthousands.io/",
   "name": "Village of Thousands",
   "description": "Village of Thousands is a Web 3.0 ready lifestyle brand, with the aspiration and drive to be among the biggest and best household names in the skateboard realm, offering some of the highest quality sustainable apparel and products in the streetwear market. We offer an opportunity for all who join us on our journey to participate in a community of thousands in both the physical and digital space.",
@@ -7,6 +8,7 @@
   "drop": 1,
   "szn": "Spring 2022",
   "hero": "https://www.villageofthousands.io/_next/static/media/vot_banner.094e334f.png",
+
   "githubUrl": "https://github.com/village-of-thousands",
   "instagramHandle": "@VillageOfThousands",
   "instagramUrl": "https://instagram.com/VillageOfThousands",

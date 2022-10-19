@@ -1,7 +1,117 @@
 import { useEffect, useState } from "react"
-import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-// import { width } from '@mui/system';
+import Auth from '../utils/auth';
+
+const date =  new Date();
+
+// GET CURRENT YEAR
+// Input a number 1 to 4 (or -4 to -1) to specify the number of digits to output
+export const getYears = (int) => {
+  const year =  date.getFullYear().toString();
+  const getLast = int && int !== true && int <= 4 && int >= 1
+      ? -1*int
+    : int && int !== true && int <= -1 && int >= -4
+      ? int
+    : int === true ? -2 : false;
+  return getLast ? year.slice(getLast) : year;
+}
+
+// GET CURRENT MONTH
+export const getMonths = (addZeros, toString) => {
+  toString = toString === true ? true : false;
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  const month = addZeros && (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1; 
+  return toString === false ? month : months[date.getMonth()];
+}
+
+// GET CURRENT DATE
+export const getDays = (addZeros) => {
+  const today = date.getDate();
+  return addZeros && today < 10 ? '0' + today.toString() : today.toString();
+}
+
+// GET HOURS/MINUTES IN CALCULATION OR MILITARY TIME
+// Ex. 14hr 30min = 14.5 or 1430
+export const getTimeCalc = (hour, minutes, military) => {
+  const total = 60;
+  const min = !Number.isNaN(minutes) && minutes <= 60 ? Number(minutes) : 0;
+  const hr = !Number.isNaN(hour) && ((hour < 24 && min) || (hour === 24 && min === 0)) ? Number(hour) : 0;
+
+  const timeCalc = hr + (min / total);
+
+  const milMin = min > 10 ? min.toString() : min < 10 && min !== 0 ? '0' + minutes.toString() : '00';
+  const milHr = hr < 10 ? '0'+hr.toString() : hr.toString();
+  const milTime = milHr + milMin;
+
+  return military === true ? milTime : timeCalc.toFixed(2);
+}
+
+// FORMAT DATE BASED ON 'FORMAT' INPUT
+export const formatDate = (inputDate, format) => {
+  inputDate = inputDate ? inputDate : false
+  format = format ? format.toLowerCase() : false;
+
+  const timeElapsed = Date.now();
+  const today = new Date(timeElapsed);
+
+  const toDate = new Date(inputDate);
+  const toYear = inputDate ? toDate.getFullYear() : today.getFullYear();
+  const toMonth = inputDate ? toDate.getMonth()+1 : today.getMonth()+1;
+  const toDay = inputDate ? toDate.getDate() : today.getDate();
+
+  switch (format) {
+    case format === false:
+      return inputDate === false
+      ? getMonths(true)+getDays(true)+getYears(2)
+      : (toMonth < 10 ? '0'+toMonth : toMonth)+(toDay < 10 ? '0'+toDay : toDay)+(toYear.slice(-2));
+    case format === 'str':
+    case format === 'string':
+      return inputDate === false
+        ? today.toDateString()
+        : toDate.toDateString()
+        // "Sun Jun 13 2020"
+    case format === 'iso':
+      return inputDate === false
+        ? today.toISOString()
+        : toDate.toISOString()
+        // "2020-06-13T18:30:00.000Z"
+    case format === 'utc' && inputDate === false:
+      return inputDate === false
+        ? today.toUTCString()
+        : toDate.toUTCString()
+        // "Sat, 13 Jun 2020 18:30:00 GMT"
+    case format === 'local':
+    case format === 'locale':
+      return inputDate === false
+        ? today.toLocaleDateString()
+        : toDate.toLocaleDateString()
+        // "6/13/2020"
+    case format === 'obj':
+    case format === 'object':
+      return { month: toMonth, day: toDay, year: toYear }
+      // {month: 6, day: 13, year: 2020}
+    default:
+      return inputDate === false
+        ? today.toLocaleDateString()
+        : toDate.toLocaleDateString()
+  }
+}
+
+export const taxAmount = (grossTotal, orderTotal) => {
+  const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
+  const shippingPercent = orderTotal * 12;
+
+  return ((grossTotal- stripePercent - shippingPercent) * 0.0825).toFixed(2);
+}
+
+export const netAmount = (grossTotal, orderTotal) => {
+  const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
+  const shippingPercent = orderTotal * 12;
+  const taxPercent = taxAmount(grossTotal, orderTotal);
+
+  return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2);
+}
 
 ////////////////////////
 // CLIENT SIDE CHECKS //
@@ -149,16 +259,22 @@ export const cdnLink = ( fileName, fileId, fileExt, imgWidth ) => {
   return location+file + (imgWidth ? "?imwidth="+imgWidth : "?imgwidth=3840");
 }
 
-// export function imageExists(image_url){
+export const imageExists = (url) => {
+  const img = new Image();
+  img.src = url;
 
-//   var http = new XMLHttpRequest();
-
-//   http.open('HEAD', image_url, false);
-//   http.send();
-
-//   return http.status != 404;
-
-// }
+  if (img.complete) {
+    return true;
+  } else {
+    img.onload = () => {
+      return true;
+    };
+    img.onerror = () => {
+      return false;
+    };
+  }
+  return false;
+}
 
 export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, containerClasses, imgClasses, containerId, allowDrag, contain, sizes, defaultWidth, customStyles, responsive, useFallbackStyles, useContainerStyles }) => {
 
@@ -222,30 +338,3 @@ export const ImageCDN = ({ fileName, fileId, fileExt, description, aria, contain
       </div>:<></>}
     </>)
 }
-
-
-
-
-//////////////
-// OBSOLETE //
-//////////////
-
-// import LoginContainer from '../components/LoginContainer';
-// import Blockie from "../components/Blockie";
-
-// export const withAuth = Component => {
-//   const Render = (props) => {
-//     // If user is not logged in, return login component
-//     if (!Auth.loggedIn()) {
-//       return (
-//         <LoginContainer state="login" />
-//       );
-//     }
-//     // If user is logged in, return original component
-//     return (
-//       <Component {...props} />
-//     );
-//   };
-
-//   return Render;
-// };

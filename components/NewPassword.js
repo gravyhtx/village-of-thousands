@@ -30,7 +30,7 @@ const NewPassword = () => {
     getUserData();
   }, [userDataLength]);
   
-  const [userFormData, setUserFormData] = useState({password: ''})
+  const [userFormData, setUserFormData] = useState({password: '', reEnterPassword: '',})
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -60,7 +60,8 @@ const NewPassword = () => {
     }
 
     setUserFormData({
-      password: ""
+      password: '',
+      reEnterPassword: '',
     })
 
     window.location.assign('/');
@@ -69,7 +70,7 @@ const NewPassword = () => {
   return (
     <>
     <div className="pw-recovery-input-container new-password-container row">
-      <div className="new-password-label-1">ENTER NEW PASSWORD</div>
+      <div className="new-password-label-1" id="new-password-label-1">ENTER NEW PASSWORD</div>
       <input 
         className='new-password center'
         style={{color: 'white'}}
@@ -78,19 +79,19 @@ const NewPassword = () => {
         type='password'
         name='password'
         onChange={handleInputChange}
-        value={userFormData.passwordOne}
+        value={userFormData.password}
       />
 
-      <div className="new-password-label-2">RE-ENTER NEW PASSWORD</div>
+      <div className="new-password-label-2" id="new-password-label-2">RE-ENTER NEW PASSWORD</div>
       <input 
         className='new-password center'
         style={{color: 'white'}}
         id='new-password-2'
         aria-labelledby='new-password-label-2'
         type='password'
-        name='password'
+        name='reEnterPassword'
         onChange={handleInputChange}
-        value={userFormData.passwordTwo}
+        value={userFormData.reEnterPassword}
       />
       
     </div>

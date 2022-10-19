@@ -1,6 +1,7 @@
 import dbConnect from "../../../../utils/dbConnect";
 import User from "../../../../models/User";
 import Order from "../../../../models/Order";
+import Product from "../../../../models/Product";
 dbConnect();
 
 export default async (req, res) => {
@@ -31,6 +32,7 @@ export default async (req, res) => {
 
         const orderObj = {
             products: req.body.products,
+            productSKU: req.body.productSKU,
             paymentConfirmation: req.body.paymentConfirmation,
             totalPrice: req.body.totalPrice,
             specialInstructions: req.body.specialInstructions,
@@ -45,6 +47,10 @@ export default async (req, res) => {
             orders: newOrder
           }
         })
+
+        // orderObj.products.forEach(async (item, index) => {
+        //   await Product.updateOne({''})
+        // })
 
         res.status(200).json('Added new order to DB')
       }catch (err) {

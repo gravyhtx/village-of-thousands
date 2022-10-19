@@ -34,6 +34,7 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
     if(itChecksOut) {
       idbPromise('cart', 'put', {
         id: productSelection.id,
+        SKU: productSelection.SKU,
         category: productSelection.category,
         path: productSelection.path,
         product: productSelection.product,
@@ -109,7 +110,8 @@ const ProductCard = ({ activate, productElement, productCategory, categoryName, 
         product: product[colorSet].product_name,
         color: product[colorSet].product_colors,
         price: product[colorSet].price,
-        id: product[colorSet].product_information[index]._id
+        SKU: product[colorSet].product_information[index].SKU,
+        id: product[colorSet]._id
       });
     }
   }

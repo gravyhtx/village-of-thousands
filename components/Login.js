@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from "next/link";
-import { Button } from '@mui/material';
 
 import { loginUser, searchUserByEmail } from '../utils/API';
 import Auth from '../utils/auth';
 
-const Login = ({ activation }) =>  {
+const Login = ({ reloadPage }) =>  {
 
   const router = useRouter();
 
@@ -58,7 +56,7 @@ const Login = ({ activation }) =>  {
       
       Auth.login(token);
 
-      if(!activation){ router.push('/'); }
+      if(!reloadPage){ router.push('/'); }
       else{ router.reload(window.location.pathname); }
 
     } catch (err) {
