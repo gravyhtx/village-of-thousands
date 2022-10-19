@@ -17,17 +17,17 @@ export const hash = (string, action) => {
   return action === "decrypt" ? decrypted : encrypted;
 }
 
-export const shortenHash = (s) => {
-  for (var h = 0, i = 0; i < s.length; h &= h)
-    h = 31 * h + s.charCodeAt(i++);
+export const shortenHash = (string) => {
+  for (var h = 0, i = 0; i < string.length; h &= h)
+    h = 31 * h + string.charCodeAt(i++);
   return h;
 }
 
-export const simpleHash = (str, lowercase) => {
+export const simpleHash = (string, lowercase) => {
   lowercase = lowercase === true ? true : false;
   let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
+  for (let i = 0; i < string.length; i++) {
+    const char = string.charCodeAt(i);
     hash = (hash << 5) - hash + char;
     hash &= hash; // Convert to 32bit integer
   }

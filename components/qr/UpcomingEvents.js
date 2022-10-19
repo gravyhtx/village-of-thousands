@@ -1,6 +1,6 @@
 import vEv111122 from '../../public/images/events/v_ev_11-11-22-.jpg';
 
-const Events = () => {
+const UpcomingEvents = () => {
   const events = {
     "2022": [
       {
@@ -23,4 +23,4 @@ const Events = () => {
   }
 }
 
-export default Events;
+export default UpcomingEvents;
