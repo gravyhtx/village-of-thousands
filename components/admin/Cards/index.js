@@ -26,6 +26,7 @@ const Cards = ({totalOrders, grossEarning}) => {
 
     return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2)
   }
+  
   return (
         <div className="cards">
           <div className="card-single">
