@@ -8,8 +8,6 @@ import { capitalize } from "../../utils/generator";
 
 import DefaultLayout from "../../templates/DefaultLayout";
 
-import LoginContainer from "../../components/LoginActivateContainer";
-import ProductCard from "../../components/ProductCard";
 import ProductImage from "../../components/ProductImage";
 
 const Products = () => {

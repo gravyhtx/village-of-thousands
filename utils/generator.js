@@ -1,24 +1,33 @@
+import { checkType, checkForWords, listOfWords } from "./validation";
+
 /////////////////////////////
 // SIMPLE NUMBER FUNCTIONS //
 /////////////////////////////
 
 
-// MATH.RANDOM() SHORTCUT
-export const randomize = (n) => {  // Simple Math.random() Shortcut :)
+// RANDOMIZE SHORTCUT
+export const randomize = (n) => {
 	return Math.floor(Math.random() * n);
 }
 
 // HEADS... OR TAILS?
 export const cointoss = () => {
-  let n = randomize = (2);
+  let n = randomize(2);
   let bool = n === 0 ? true : false;
   return bool;
 };
 
-// ROLL A RANDOM NUMBER -- ASSIGN IT WHEREVER YOU WANT ACROSS PAGES!
-export const luckyRoll = (n) => {
-  let output = Math.floor(Math.random()*(n));
+// RANDOMLY MAKE A NUMBER POSITIVE OR NEGATIVE
+export const posNeg = (n) => {
+  return (n?n:1)*(Math.round(Math.random()) * 2 - 1)
+}
+
+// ROLL A RANDOM NUMBER
+//  Assign it wherever you want across pages!
+export const luckyRoll = (n, includeZero) => {
+  const output = includeZero === true ? randomize(n) : randomize(n)+1;
   localStorage.setItem("luckyNumber", output);
+  return output;
 };
 
 // TRUNCATE TO DECIMAL PLACE
@@ -33,14 +42,56 @@ export const roundToMultiple = (num, multiple) => {
   return Math.round(num / m) * m;
 }
 
+// RANDOM VALUE FROM BELL CURVE
+export function randomBell(multiplier, min, max, skew) {
+
+  multiplier=(multiplier===true)?100:(typeof multiplier === 'number')?multiplier:undefined;
+  min=min?min:0;
+  max=max?max:1;
+  skew=skew?skew:1;
+
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+  while(v === 0) v = Math.random()
+  let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+  
+  num = num / 10.0 + 0.5 // Translate to 0 -> 1
+  if (num > 1 || num < 0) {
+    num = randomBell(min, max, skew) // Resample between 0 and 1 if out of range
+  } else {
+    num = Math.pow(num, skew) // Skew
+    num *= max - min // Stretch to fill range
+    num += min // offset to min
+  }
+  return multiplier ? Math.floor(num*multiplier) : num;
+}
+
 // CLAMP NUMBER WITHIN SPECIFIED RANGE
-// Example...
-// numberClamp(123,50,100) || Output: 100
 export const numberClamp = (num, min, max) => {
+  // Example...
+  //    numberClamp(123,50,100) || Output: 100
   min = min ? min : 0;
   max = max ? max : 100;
   return Math.min(Math.max(num, min), max);
 };
+
+// HANDLE EVEN/ODD VALUES
+//    ** Need to figure out handling non-whole number **
+export const numberIsEven = (number) => {
+  return number % 2 == 0 ? true : false;
+}
+
+export const numberIsOdd = (number) => {
+  return number % 2 == 0 ? false : true;
+}
+
+export const makeNumberEven = (number) => {
+  return number % 2 == 0 ? number : number+1;
+}
+
+export const makeNumberOdd = (number) => {
+  return number % 2 == 0 ? number+1 : number;
+}
 
 
 
@@ -75,10 +126,71 @@ export const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export const capitalizeWords = (string) => {
-  // const words = string.slice(" ")
-  // for(word in words)
+export const capitalizeWord = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// CAPITALIZE MULTIPLE WORDS IN A STRING OR ARRAY
+// Make Override List work
+export const capitalizeWords = (input, titleCase, excludeWordsList, overrideList) => {
+
+  // Check string to see if there are multiple words in a string. Checks to see if there
+  // is at least one space, excluding leading and training spaces.
+    input = input || '';
+    input = input.trim();
+    const checkForMultipleWords = input.indexOf(' ') != -1;
+    const checkForArray = checkType(input, "array");
+    const splitString = input.split(" ");
+    const arr = checkForMultipleWords ? splitString : checkForArray ? input : [];
+
+  // If input is just a single word and no reference checks need to be performed then output
+  // then skip the rest and just return the word capitalized.
+  if(checkType(input, "string") && !checkForMultipleWords && !titleCase && !overrideList) {
+    return capitalizeWord(input);
+  }
+
+  // Make output for string of words or an array of words & set checks
+  let capsArr = [];
+  const overrideWords = overrideList && overrideList !== undefined && overrideList.length ? overrideList : false;
+  let titleArray = overrideWords
+    ? removeFromArray(listOfWords("titleCase"), overrideList)
+    : listOfWords("titleCase");
+
+  const wordsToCheck =
+    (titleCase === true || titleCase) && excludeWordsList
+      ? excludeWordsList.concat(titleArray)
+    : titleCase || (titleCase === true && !excludeWordsList)
+      ? titleArray
+    : false;
+  
+  // Loop through words array to check and exclude in capitalization
+  for (let i = 0; i < arr.length; i++) {
+    const word = arr[i].toLowerCase();
+    // Need to make override list work, add list of words to capitalize all letters, and more...
+    if (checkType(word[i], 'number')) {
+      capsArr.push(word);
+      continue;
+    }
+
+    if 
+      ((i !== 0 && titleCase === true && checkForWords(word, wordsToCheck, true))
+      || (titleCase === false && excludeWordsList && checkForWords(word, excludeWordsList, true) === true)
+      || (i !== 0 && titleCase === true && excludeWordsList && checkForWords(word, wordsToCheck, true) === true) )
+        { capsArr.push(word); }
+    else
+      { capsArr.push(capitalizeWord(word)); }
+  }
+
+  // If capitalized words array worked then the new output is a new string from 'capsArr'
+    const output = capsArr ? capsArr.join(" ") : false;
+  // Return the new string if it exists
+    return output !== false ? output : capitalizeWord(input);
+}
+
+// TITLE CASE
+// Capitalizes the first letter in the words of a string
+export const titleCase = (input, excludeWordsList, overrideList) => {
+  return capitalizeWords(input, true, excludeWordsList, overrideList);
 }
 
 

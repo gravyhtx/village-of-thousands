@@ -862,6 +862,7 @@ input:focus { border-bottom: 1px solid #7fcce4 !important; }
   border: 1px solid white;
 }
 
+
 /*
 ////////////
 // COLORS //
@@ -1183,7 +1184,8 @@ h2, .h2 {
   margin: 0 auto;
 }
 
-.collapsible-header .login-header {
+.collapsible-header .login-header,
+.collapsible-header .register-header {
   font-size: var(--theme-font-size-xl);
   font-weight: 500;
 }
@@ -1218,7 +1220,8 @@ h2, .h2 {
   /* color: #ebebeb; */
 }
 
-.home-login-header {
+.home-login-header,
+.home-register-header {
   justify-content: left;
 }
 
@@ -1914,7 +1917,11 @@ label#upload-label:hover {
 }
 
 .activate-page .signup-collapsible {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.login-only-message {
+  padding-top: 10px;
 }
 
 .did-you-register:hover {
@@ -1927,7 +1934,7 @@ label#upload-label:hover {
   margin-bottom: 30px;
 }
 
-.activate-login .login-input-container {
+.signup-collapsible .collapsible .margin {
     margin-bottom: 25px;
 }
 
@@ -4255,7 +4262,8 @@ button.card-trigger.loading {
     padding: 25px 40px 40px;
   }
 
-  .login-header {
+  .login-header,
+  .register-header {
     font-size: var(--theme-font-size-lg) !important;
   }
 
@@ -4537,6 +4545,7 @@ button.card-trigger.loading {
 }
 
 @media only screen and (max-width: 400px) {
+  .login-collapsible-item,
   .register-collapsible-item {
     padding: 2rem 1rem 0.75rem;
   }

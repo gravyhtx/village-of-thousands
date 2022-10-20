@@ -9,11 +9,19 @@ import { getAllOrders } from '../../../utils/API';
 import Auth from '../../../utils/auth';
 import { reverseArr } from '../../../utils/generator';
 
-const Main = () => {
+const Main = ({ user, setUser }) => {
   const router = useRouter();
-  const whiteList = ["andreslong95@gmail.com", "godisgravy@gmail.com", "villageofthousands@gmail.com"]
+  const whiteListEmails = [
+    "andreslong95@gmail.com",
+    "godisgravy@gmail.com",
+    "villageofthousands@gmail.com",
+    "houstontaxconsultants@gmail.com"
+  ];
+  const whiteListNames = ["Andres", "Andrew", "JC", "Sylvia"]
 
   const [orderObject, setorderObject] = useState({});
+  const [userIndex, setUserIndex] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getOrderData = async () => {
@@ -26,13 +34,14 @@ const Main = () => {
 
         const profile = token ? Auth.getProfile() : null;
         
-        if(!whiteList.includes(profile.data.email)) {
+        if(!whiteListEmails.includes(profile.data.email)) {
           router.push('/')
+        } else {
+          setUserIndex(whiteListEmails.indexOf(profile.data.email))
         }
 
         const response = await getAllOrders();
         const orders = await response.json();
-        console.log(orders)
         setorderObject(orders)
       } catch (err) {
         console.error(err)
@@ -41,15 +50,21 @@ const Main = () => {
     getOrderData();
   },[]);
 
+
+  useEffect(()  => {
+    setUser({name: whiteListNames[userIndex], email: whiteListEmails[userIndex]});
+    setLoaded(true);
+  },  [!loaded])
+
   console.log(reverseArr(orderObject.orderHistory))
 
   return (
     <>
-      <Cards 
+      <Cards
         totalOrders={orderObject.orderHistory ? orderObject.orderHistory.length : 0} 
         grossEarning={orderObject.orderHistory ? orderObject.totalGrossEarnings.toFixed(2) : 0} 
       />
-      <div className="recent-grid">
+      <div className="recent-grid row">
         <Table orders={orderObject.orderHistory ? reverseArr(orderObject.orderHistory) : []} />
         <Aside />
       </div>

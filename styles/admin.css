@@ -17,7 +17,7 @@
 /* sidebar section */
 
 .sidebar-admin {
-  width: 345px;
+  width: 300px;
   position: fixed;
   left: 0;
   top: 0;
@@ -93,8 +93,9 @@
 }
 
 .main-admin-content {
-  transition: margin-left 300ms;
-  margin-left: 345px;
+  transition: width 300ms;
+  width: calc(100vw - 300px);
+  float: right;
 }
 
 .main-admin-content h4 {
@@ -102,7 +103,7 @@
 }
 .main-admin-content h4,
 .main-admin-content small {
-  text-align: right;
+  text-align: left;
 }
 /* main  section */
 
@@ -115,8 +116,8 @@
   padding: 0.75rem 1.0rem;
   box-shadow: 3px 3px 7.5px rgba(0,0,0, 0.2);
   position: fixed;
-  left: 345px;
-  width: calc(100% - 345px);
+  left: 300px;
+  width: calc(100% - 300px);
   top: 0;
   z-index: 99;
   transition: left 300ms;
@@ -124,6 +125,11 @@
 
 .header-admin h2 {
   color: var(--text-grey);
+  font-weight: 600;
+  font-style: italic;
+}
+.header-admin h2 span {
+  text-decoration: underline;
 }
 
 .header-admin label span {
@@ -173,7 +179,7 @@
 /* content section  */
 
 .main-admin {
-  margin-top: 90px;
+  margin-top: 110px;
   padding: 2rem 1.5rem;
   background: var(--color-dark);
   /* Dark Mode */
@@ -182,10 +188,20 @@
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
   grid-gap: 2rem;
   margin-top: 1rem;
+}
+
+.card-single_container {
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.card-single_container {
+  padding: 0 10px;
+  margin-bottom: 20px;
 }
 
 .card-single {
@@ -194,15 +210,17 @@
   background: #fefefe;
   padding: 2rem;
   border-radius: 2px;
+  min-height: 160px;
 }
 
-.card-single div:last-child span {
+.card-single:last-child span {
   font-size: 3rem;
   color: var(--main-color);
 }
 
-.card-single div:first-child span {
-  color: var(--text-grey);
+.card-single:first-child span {
+  /* color: var(--text-grey); */
+  color: #f0f0f0;
   font-size: .9rem;
 }
 
@@ -210,44 +228,79 @@
   background: var(--main-color);
 }
 
-.card-single:last-child h1,
+/* .card-single:last-child h1,
 .card-single:last-child div:first-child span, 
 .card-single:last-child div:last-child span {
   color: #fefefe
+} */
+.card-single h1,
+.card-single div, 
+.card-single div {
+  /* height: 100%; */
+  color: #ffffff;
+  font-size: .9rem;
 }
 
 .card-single h1 {
   font-size: 2.6rem;
 }
 
-.card-single h1,
+.card-single h1 {
+  color: #fff;
+}
 .card-header h3 {
-  color: #aaa
+  color: #222;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.aside .card-header h3 {
+  font-size: 1rem;
 }
 
 /* Table Section */
 .recent-grid {
-  margin-top: 3.5rem;
-  display: grid;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   grid-template-columns: 65% auto;
+}
+
+.recent-grid div {
+  margin: 0 auto;
+}
+
+.recent-grid .projects .card,
+.recent-grid .customers .card {
+  margin: 0 auto;
+  border: 1px solid #7fcce4;
+  border-top: 3px solid #7fcce4;
+}
+
+.recent-grid .customers .card {
+  padding-bottom: 30px;
 }
 
 .card {
   background: #fefefe;
   border-radius: 5px;
+  height: 100%;
 }
 
 .card-header,
 .card-body {
-  padding: 1rem;
+  font-size: .8rem;
+}
+
+.card-body {
+  padding: 0;
 }
 
 .card-header {
   display: flex;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  background: #eaf1f3;
+  border-bottom: 3px solid #7fcce4;
+  color:#202527;
 }
 
 .card-header button {
@@ -284,17 +337,145 @@ td {
   color: #222;
 }
 
-td .status {
+.order-table .thead {
+  background: black;
+  color: white;
+  font-weight: 900;
+  font-size: .9rem;
+  border-bottom: 3px solid #7fcce4;
+  padding: 15px 10px !important;
+  margin-bottom: 0 !important;
+}
+
+.order-table .order-summary {
+  padding: 0 10px;
+}
+
+.status {
   display: inline-block;
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  margin-right: 1rem;
 }
 
 tr td:last-child {
   display: flex;
   align-items: center;
+}
+
+tr {
+  width: 100%;
+}
+
+.order-collapsible .row {
+  font-weight: 500;
+  margin-bottom: 0 !important;
+}
+
+.order-accordian .collapsible.MuiAccordion-root {
+  background: transparent;
+  /* background: #f6f6f6; */
+  box-shadow: 0px 1px 1px #888;
+  border-radius: 0px;
+}
+
+.order-accordian .collapsible.MuiAccordion-root.active {
+  box-shadow: 0px 1px 1px #222;
+  border-top: 1px solid #222;
+}
+
+.order-accordian .collapsible.MuiAccordion-root.active:first-child {
+  border-top: none;
+}
+
+.order-accordian .order-collapsible.active .order-collapsible {
+  font-weight: 500;
+  background: #f0f0f0;
+  color: black;
+  text-shadow: 1px 1px 0 #bbb;
+  border-top: 1px solid #bbb;
+  border-radius: 0px;
+}
+
+.order-accordian .order-collapsible.active .order-collapsible:first-child {
+  border-top: 1px solid #222;
+}
+
+.order-collapsible_details.MuiAccordionDetails-root {
+  /* font-family: 'Be Vietnam Pro'; */
+  border-top: 2px solid #7fcce4;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 30px;
+  background: white;
+  color: #444;
+}
+
+.order-collapsible_details.MuiAccordionDetails-root:last-child {
+  border-bottom: none;
+}
+
+.order-collapsible_details .purchase-details_header .col {
+  margin-bottom: 0px;
+  color: #222;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  margin: 10px 0 10px;
+}
+
+.order-table .thead .header {
+  text-align: center;
+}
+
+.order-table .thead .header.o-num,
+.order-collapsible .order-summary .number {
+  /* padding: 0 !important; */
+  float: left;
+  text-align: left;
+}
+
+.order-collapsible .order-summary {
+  text-align: center;
+  width: 100%;
+  font-weight: 500;
+}
+
+.order-collapsible .confirmation {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-deets .details-headers.row .col span {
+  color: #222;
+  font-size: .9rem;
+  font-weight: 800;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid #222;
+  width: 80%;
+}
+
+.purchase-details_header {
+  color: #333;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  margin: 10px 0 20px;
+}
+
+.order-details_headers div b {
+  font-size: .9rem;
+  color: #222;
+  text-decoration: underline;
+}
+
+.order-details_info .confirmation {
+  font-family: 'Share Tech Mono';
+  font-weight: 500;
+  font-size: .9rem;
+  margin-bottom: 25px;
+}
+
+.product-map .number {
+  color: #666;
+  text-shadow: 2px 2px 2px #ddd;
 }
 
 .status.active {
@@ -303,6 +484,10 @@ tr td:last-child {
 
 .status.flagged {
   background: rgb(219, 110, 67);
+}
+
+.confirmation .status {
+  margin-right: 6px;
 }
 
 .status.new {
@@ -315,7 +500,8 @@ tr td:last-child {
 }
 
 .customer {
-  display: flex;
+  text-align: left;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   padding: .5rem .7rem;
@@ -326,9 +512,11 @@ tr td:last-child {
   align-items: center;
 }
 
-.info img {
+.customer .info img {
   border-radius: 50%;
-  margin-right: 1rem;
+  margin: 0 auto !important;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .info h4 {
@@ -371,19 +559,21 @@ tr td:last-child {
     display: none;
   }
   
-  .main-admin-content{
-    margin-left: 70px;
+  .main-admin-content {
+    width: calc(100vw - 70px);
   }
   
   .main-admin-content header{
-    width: calc(100% - 70px);
+    width: calc(100vw - 70px);
+  }
+  .header-admin {
     left: 70px;
   }
 }
 
 @media only screen and (max-width: 960px) {
   .cards {
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
   }
 
   .recent-grid {
@@ -393,7 +583,7 @@ tr td:last-child {
 
 @media only screen and (max-width: 768px) {
   .cards {
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 
   .recent-grid {
@@ -406,6 +596,10 @@ tr td:last-child {
 
   .sidebar-admin {
     left: -100% !important;
+  }
+
+  .card-header h3 {
+    font-size: 1.5rem;
   }
 
   header h2 {
@@ -441,6 +635,16 @@ tr td:last-child {
     margin-left: 0rem;
   }
 
+  .card-single {
+    display: block;
+    margin:  0 auto;
+    text-align: center;
+  }
+
+  .recent-grid div {
+    margin-bottom: 30px;
+  }
+
   header {
     width: 100% !important;
     left: 0 !important;
@@ -449,7 +653,7 @@ tr td:last-child {
   #nav-admin-toggle:checked + .sidebar-admin {
     left: 0 !important;
     z-index: 99;
-    width: 345px;
+    width: 300px;
   }
   
   #nav-admin-toggle:checked + .sidebar-admin .sidebar-admin-brand,
@@ -473,7 +677,13 @@ tr td:last-child {
 }
 
 @media only screen and (max-width: 560px) {
+  .card-single h1 {
+    font-size: 2rem;
+  }
+  .card-single div {
+    font-size: .75rem;
+  }
   .cards {
-    grid-template-columns: 100%;
+    /* grid-template-columns: 100%; */
   }
 }
