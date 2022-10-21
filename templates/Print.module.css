@@ -1,0 +1,59 @@
+.body {
+  background: #aaa !important;
+  width: 100vw;
+  height: calc(100vh + 5in);
+}
+
+.printAreaPortrait {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  margin-top: 250px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 5px 5px 20px #333;
+  height: 11.7in;
+  width: 8.3in;
+  background: white !important;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: 5px;  /* Firefox */
+}
+
+.printAreaLandscape {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  margin-top: 200px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 5px 5px 20px #333;
+  height: 8.3in;
+  width: 11.7in;
+  background: white !important;
+  overflow-y: scroll;
+  -ms-overflow-style: -ms-autohiding-scrollbar;  /* IE and Edge */
+  scrollbar-width: 5px;  /* Firefox */
+  /* scrollbar-width: thin; */
+}
+
+.printAreaLandscape::-webkit-scrollbar,
+.printAreaPortrait::-webkit-scrollbar {
+  width: 0;
+}
+
+.portrait {
+}
+
+.landscape {
+  height: 8.3in;
+  width: 11.7in;
+}

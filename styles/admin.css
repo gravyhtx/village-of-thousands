@@ -687,3 +687,22 @@ tr {
     /* grid-template-columns: 100%; */
   }
 }
+
+
+/* PRINT */
+
+.micon-nav {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.micon-nav a {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  margin: auto;
+}
+.print-content {
+  color: black;
+}

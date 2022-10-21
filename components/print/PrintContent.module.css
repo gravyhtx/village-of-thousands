@@ -1,0 +1,82 @@
+.printContent {
+  color: black;
+  position: fixed;
+  top: 10px;
+  padding: 20px 20px 50px;
+  width: 90%;
+}
+
+.printHeader {
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
+}
+
+.printHeader h2 {
+  margin-bottom: 10px;
+}
+
+.printDate {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.orderContainer {
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 60px;
+}
+
+.orderContainer:last-child {
+  border-bottom: none;
+}
+
+.headerRow {
+  font-weight: 600;
+}
+
+.printContent {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: 5px;  /* Firefox */
+}
+
+.printContent::-webkit-scrollbar {
+  width: 0;
+}
+
+.confirmation {
+  margin-bottom: 0;
+  padding: 0 0.75rem;
+}
+
+.addressHeader .row {
+  margin-bottom: 0 !important;
+}
+
+.addressHeader {
+  padding: 6px 0.75rem 0;
+}
+
+.addressHeader b {
+  text-decoration: none !important;
+}
+
+.orderAddress .address {
+  font-weight: 400;
+}
+
+.deetsHeaders {
+  font-weight: 600;
+}
+
+.printMap,
+.orderSummary {
+  font-size: 14px;
+}
+.orderSummary {
+  font-weight: 500;
+}

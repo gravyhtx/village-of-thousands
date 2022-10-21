@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Head from 'next/head'
+import Head from 'next/head';
 import TopNav from '../components/TopNav';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -58,10 +58,10 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
         <link rel="shortcut icon" href={ favicon.src } />
       </Head>
       <ScrollToTop />
-      {headerImages ? <Header images={headerImages} /> : <Header />}
+      {headerImages ? <Header images={ headerImages } /> : <Header />}
       <TopNav />
         <div className="main-content" id="content">
-          {withAuth && authCheck() || !withAuth ? children : <></>}
+          { withAuth && authCheck() || !withAuth ? children : <></> }
         </div>
       <Footer />
     </div>
