@@ -64,7 +64,30 @@ const PrintAll = ({ login }) => {
       <LoginContainer admin={true}/>
     </div>
 
-  const settings = <>Hello</>;
+  const [settingsObj, setSettingsObj] = useState({
+    detailedText: 'Detailed Order Report // ',
+    detailed: true,
+  });
+
+  const handleSettings = (e) => {
+    const { value, name } = e.target;
+    setSettingsObj({ ...settingsObj, [name]: !value })
+  }
+
+  const checkbox = (name, value) => {
+    return (
+      <input name={ name } type='checkbox' checked={value?'checked':null} onChange={ (e) => handleSettings(e) } />
+    )
+  }
+
+  const settings = () => {
+    return (<>
+      <span>{ settingsObj.detailedText }</span>
+      <label>
+        <span>{ checkbox('detailed', settingsObj.detailed) }</span>
+      </label>
+    </>)
+  }
 
   const orderData = firstToLast ? orderObject.orderHistory : reverseArr(orderObject.orderHistory);
 
@@ -78,12 +101,17 @@ const PrintAll = ({ login }) => {
           printActivate={printActivate}
           setPrintActivate={setPrintActivate} />} printActivate={printActivate}>
       {login  ? adminLogin :
-        <PrintContent showTime={true} orders={orderData ? orderData : []} />}
+        <PrintContent
+          printActivate={printActivate}
+          setPrintActivate={setPrintActivate}
+          showTime={true}
+          settingsObj={settingsObj}
+          orders={orderData ? orderData : []} />}
     </PrintableLayout> :
-    <PrintOut orderData={orderData} printActivate={printActivate} setPrintActivate={setPrintActivate} />}
-    {openModal === true ?
-      <Modal title={"Print Settings"} activate={openModal} setActivate={setOpenModal} id="settings">
-        {settings}
+    <PrintOut settingsObj={settingsObj} orderData={orderData} printActivate={printActivate} setPrintActivate={setPrintActivate} />}
+    {openModal === true && printActivate === false ?
+      <Modal modalClasses='print-settings' title={"Print Settings"} activate={openModal} setActivate={setOpenModal} id="settings">
+        {settings()}
       </Modal> : <></>}
     </>
 }

@@ -19,7 +19,10 @@ const PrintableLayout = ({ children, header, title, description, classes, showTi
   return(<>
     <Head>
       <title>{title ? title : 'Print Me!'}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta name="viewport"
+        content={printActivate === false ?
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"  :
+          "width=device-width, initial-scale=1.0"} />
       <meta name="theme-color" content="#ffffff" />
       <meta
         name="description"
@@ -47,7 +50,7 @@ const PrintableLayout = ({ children, header, title, description, classes, showTi
       <link rel="shortcut icon" href={ favicon.src } />
     </Head>
     {printActivate === false ?
-      <div className={style.body}>
+      <div className={printActivate === false ? style.body : style.printing}>
         { header }
         <div className="printable-background" />
         <div className={"printable-content "+paperSize} id="printable">
@@ -56,7 +59,7 @@ const PrintableLayout = ({ children, header, title, description, classes, showTi
             {children?children:<></>}
           </div>
         </div>
-      </div> : <></>}
+      </div> : <div className={styles.printing}></div>}
   </>)
 }
 

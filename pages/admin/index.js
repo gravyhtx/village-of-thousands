@@ -8,7 +8,7 @@ import PrintAll from '../../components/admin/Print/PrintAll';
 import { authCheck } from '../../utils/siteFunctions';
 import {  } from 'react';
 import LoginContainer from '../../components/LoginContainer';
-import { hash, shortenHash, simpleHash } from '../../modules/hashSystem';
+// import { hash, shortenHash, simpleHash } from '../../modules/hashSystem';
 import { checkType, fileName, unFileName } from '../../utils/validation';
 
 const Admin = () => {

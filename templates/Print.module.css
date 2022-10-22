@@ -42,8 +42,10 @@
   overflow-y: scroll;
   -ms-overflow-style: -ms-autohiding-scrollbar;  /* IE and Edge */
   scrollbar-width: 5px;  /* Firefox */
-  /* scrollbar-width: thin; */
 }
+
+.printing {}
+
 
 .printAreaLandscape::-webkit-scrollbar,
 .printAreaPortrait::-webkit-scrollbar {
@@ -56,4 +58,26 @@
 .landscape {
   height: 8.3in;
   width: 11.7in;
+}
+
+
+
+.printing {
+  display: block;
+  top: 0;
+  margin: 10px auto;
+  padding: 10px;
+  height: 100% !important;
+  width: 100% !important;
+  background: white !important;
+  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+  -ms-overflow-style: -ms-autohiding-scrollbar;  /* IE and Edge */
+  scrollbar-width: 0;
+  transform: none;
+}
+
+.printing::-webkit-scrollbar {
+  width: 0;
 }
