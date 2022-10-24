@@ -1,9 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD:components/admin/admin-partials/Sidebar/index.js
 import { MiCon } from '../../../icons/MatIco'
-=======
-import { MiCon } from '../../icons/MatIco';
->>>>>>> a3c23f3747ed153e9a4ee53b4f20cd60e0628348:components/admin/Sidebar/index.js
 
 const Sidebar = ({currentPage, pageChangeFn}) => {
   return (
@@ -44,13 +40,8 @@ const Sidebar = ({currentPage, pageChangeFn}) => {
             <a href="#" className={currentPage == "Physical Events" ? "active" : "non-active"}
                onClick={()=>{pageChangeFn("Physical Events")}}>
               {/* <span className="bi bi-cart"></span> */}
-<<<<<<< HEAD:components/admin/admin-partials/Sidebar/index.js
               <MiCon classes={"order"} name={'loyalty'} />
               <span>Physical Events</span>
-=======
-              <MiCon classes={"order"} name="Loyalty Above All" icon={'loyalty'} />
-              <span>Placeholder</span>
->>>>>>> a3c23f3747ed153e9a4ee53b4f20cd60e0628348:components/admin/Sidebar/index.js
             </a>
           </li>
           <li>
