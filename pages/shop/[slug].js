@@ -17,8 +17,8 @@ const Products = () => {
 
   const [allProducts, setAllProducts] = useState([]);
 
-  const [category, setCategory] = useState({ category_name: "", products: [], tags: [], _id: "" });
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState({ category_name: "", products: [], tags: [], _id: "" });
 
   const slug = router.query.slug;
 
