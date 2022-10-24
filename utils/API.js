@@ -7,6 +7,13 @@ export const createProduct = (productData) => {
     body: JSON.stringify(productData)
   })
 }
+export const getAllProducts = () => {
+  return fetch('/api/products', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+}
 
 export const getAllCategories = () => {
   return fetch('/api/products/category/', {

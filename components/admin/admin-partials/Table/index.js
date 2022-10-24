@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { Accordion, AccordionDetails, capitalize } from "@mui/material";
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { formatDate, taxAmount } from "../../../utils/siteFunctions";
-import { titleCase } from "../../../utils/generator";
-import { simpleHash } from "../../../modules/hashSystem";
-import { MiCon } from "../../icons/MatIco";
+import { formatDate, taxAmount } from "../../../../utils/siteFunctions";
+import { titleCase } from "../../../../utils/generator";
+import { simpleHash } from "../../../../modules/hashSystem";
+import { MiCon } from "../../../icons/MatIco";
 
-const Table = ({ orders, inOrderPage }) => {
+const Table = ({ orders, inOrderPage, pageChange }) => {
 
   const [expanded, setExpanded] = useState(undefined);
   const accordElem = useRef(null);

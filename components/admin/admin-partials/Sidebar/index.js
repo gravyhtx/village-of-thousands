@@ -1,5 +1,5 @@
 import React from 'react'
-import { MiCon } from '../../icons/MatIco'
+import { MiCon } from '../../../icons/MatIco'
 
 const Sidebar = ({currentPage, pageChangeFn}) => {
   return (
@@ -37,11 +37,11 @@ const Sidebar = ({currentPage, pageChangeFn}) => {
             </a>
           </li>
           <li>
-            <a href="#" className={currentPage == "Loyalty-Above-All" ? "active" : "non-active"}
-               onClick={()=>{pageChangeFn("Loyalty-Above-All")}}>
+            <a href="#" className={currentPage == "Physical Events" ? "active" : "non-active"}
+               onClick={()=>{pageChangeFn("Physical Events")}}>
               {/* <span className="bi bi-cart"></span> */}
               <MiCon classes={"order"} name={'loyalty'} />
-              <span>Placeholder</span>
+              <span>Physical Events</span>
             </a>
           </li>
           <li>

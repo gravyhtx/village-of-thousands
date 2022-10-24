@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import Sidebar from '../../components/admin/Sidebar';
-import Header from '../../components/admin/Header';
-import Main from '../../components/admin/Main';
-import Orders from '../../components/admin/Orders';
+import Sidebar from '../../components/admin/admin-partials/Sidebar';
+import Header from '../../components/admin/admin-partials/Header';
+import Main from '../../components/admin/admin-views/Main';
+import Orders from '../../components/admin/admin-views/Orders';
+import Events from '../../components/admin/admin-views/Events';
 
 import { authCheck } from '../../utils/siteFunctions';
 import {  } from 'react';
@@ -40,9 +41,11 @@ const Admin = () => {
       case "Overview":
         return <Main user={user} setUser={setUser} />;
       case "All-Orders":
-        return <Orders fullPage={true}/>;
+        return <Orders fullPage={true} />;
+      case "Physical Events":
+        return <Events fullPage={true} />
       case page !== null:
-        return <Orders fullPage={true}/>;
+        return <Orders fullPage={true} />;
       default:
         return adminLogin;
     }

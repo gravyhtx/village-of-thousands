@@ -10,7 +10,7 @@ export default async (req, res) => {
       try {
         models.Category.find({}).populate('products').exec(function(err, prod) {
           if (err) console.error(err);
-          // console.log(prod)
+          
           res.status(200).json(prod);
         });
         

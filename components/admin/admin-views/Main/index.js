@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import Cards from '../Cards'
-import Table from '../Table'
-import Aside from '../Aside'
+import Cards from '../../admin-partials/Cards'
+import Table from '../../admin-partials/Table'
+import Aside from '../../admin-partials/Aside'
 
-import { getAllOrders } from '../../../utils/API';
-import Auth from '../../../utils/auth';
-import { reverseArr } from '../../../utils/generator';
+import { getAllOrders } from '../../../../utils/API';
+import Auth from '../../../../utils/auth';
+import { reverseArr } from '../../../../utils/generator';
 
 const Main = ({ user, setUser }) => {
   const router = useRouter();

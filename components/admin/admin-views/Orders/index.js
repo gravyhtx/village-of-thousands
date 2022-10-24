@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import Table from '../Table'
+import Table from '../../admin-partials/Table'
 
-import { getAllOrders } from '../../../utils/API';
-import { reverseArr } from '../../../utils/generator';
+import { getAllOrders } from '../../../../utils/API';
+import { reverseArr } from '../../../../utils/generator';
 
 const Orders = ({ fullPage }) => {
   const [orderObject, setorderObject] = useState({});
