@@ -1,17 +1,10 @@
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import Sidebar from '../../components/admin/admin-partials/Sidebar';
 import Header from '../../components/admin/admin-partials/Header';
 import Main from '../../components/admin/admin-views/Main';
 import Orders from '../../components/admin/admin-views/Orders';
 import Events from '../../components/admin/admin-views/Events';
-=======
-import Sidebar from '../../components/admin/Sidebar';
-import Header from '../../components/admin/Header';
-import Main from '../../components/admin/Main';
-import Orders from '../../components/admin/Orders';
-import PrintAll from '../../components/admin/Print/PrintAll';
->>>>>>> a3c23f3747ed153e9a4ee53b4f20cd60e0628348
+import PrintAll from '../../components/admin/Print/PrintAll'
 
 import { authCheck } from '../../utils/siteFunctions';
 import {  } from 'react';
@@ -43,22 +36,15 @@ const Admin = () => {
         login = false;
         return <Main user={user} setUser={setUser} />;
       case "All-Orders":
-<<<<<<< HEAD
         return <Orders fullPage={true} />;
       case "Physical Events":
         return <Events fullPage={true} />
-      case page !== null:
-        return <Orders fullPage={true} />;
-=======
-        login = false;
-        return <Orders fullPage={true}/>;
       case "Print-Orders":
         login = false;
         return <PrintAll fullPage={true}/>;
       case page !== null:
         login = false;
         return <Orders />;
->>>>>>> a3c23f3747ed153e9a4ee53b4f20cd60e0628348
       default:
         login = true;
         return adminLogin;
