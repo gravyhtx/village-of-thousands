@@ -4,7 +4,7 @@ import Header from '../../components/admin/admin-partials/Header';
 import Main from '../../components/admin/admin-views/Main';
 import Orders from '../../components/admin/admin-views/Orders';
 import Events from '../../components/admin/admin-views/Events';
-import PrintAll from '../../components/admin/Print/PrintAll'
+import PrintAll from '../../components/admin/Print/PrintAll';
 
 import { authCheck } from '../../utils/siteFunctions';
 import {  } from 'react';
@@ -37,14 +37,13 @@ const Admin = () => {
         return <Main user={user} setUser={setUser} />;
       case "All-Orders":
         return <Orders fullPage={true} />;
-      case "Physical Events":
-        return <Events fullPage={true} />
       case "Print-Orders":
         login = false;
         return <PrintAll fullPage={true}/>;
+      case "Physical Events":
+        return <Events fullPage={true} />
       case page !== null:
-        login = false;
-        return <Orders />;
+        return <Orders fullPage={true} />;
       default:
         login = true;
         return adminLogin;
