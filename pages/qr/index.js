@@ -2,7 +2,7 @@ import DefaultLayout from "../../templates/DefaultLayout"
 
 const QrIndex = () => {
   return(
-    <DefaultLayout title={"QR"}></DefaultLayout>
+    <DefaultLayout title="QR"></DefaultLayout>
   )
 }
 

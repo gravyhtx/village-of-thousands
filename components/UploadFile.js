@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { fileName } from "../utils/validation";
 
 const UploadFile = ( data, success, instructions, instructionsClasses, containerClasses, inputClasses, labelClasses, fileNameClasses ) => {
 
   const [loaded, setLoaded] = useState(false);
   let active = false;
-  let fileName = "No file chosen";
+  let file = 'No file chosen';
   let fileNameElement;
   let buttonElement;
 
@@ -20,9 +21,13 @@ const UploadFile = ( data, success, instructions, instructionsClasses, container
     buttonElement.classList.add('active');
     fileNameElement.classList.add('active');
   }
-  const handleFileUpload = (fileName) => {
+  const handleFileUpload = (file) => {
     active=true;
-    fileNameElement.textContent = fileName;
+    fileNameElement.textContent =
+      file !== 'No file chosen'
+        ? fileName(file)
+        : 'No file chosen';
+
     uploadStyle();
   }
   if (active) {

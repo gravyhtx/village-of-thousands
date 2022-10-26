@@ -159,17 +159,17 @@ export const valiDate = (inputDate) => {
 }
 
 // CHECK IF DATE MATCHES TODAY'S DATE
-export const isToday = (inputDate) => {
+export const isToday = (inputDates) => {
   const today = formatDate(true);
-  const formatToday = (inputDate) => formatDate(inputDate,true);
+  const formatToday = (inputDates) => formatDate(inputDates,true);
 
-  if(!checkType(inputDate, 'array')) {
-    return formatToday(inputDate) === today;
+  if(checkType(inputDates, 'string')) {
+    return formatToday(inputDates) === today;
   }
 
-  if(checkType(inputDate, 'array')) {
-    for(let i=0; i < inputDate.length; i++) {
-      if(formatToday(inputDate[i]) === today) {
+  if(checkType(inputDates, 'array')) {
+    for(let i=0; i < inputDates.length; i++) {
+      if(formatToday(inputDates[i]) === today) {
         return true;
       }
     }}
