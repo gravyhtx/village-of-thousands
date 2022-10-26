@@ -1,35 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useState, useEffect, useRef } from "react";
-import { getAllCategories } from "../../../../utils/API";
+import { useState, useRef } from "react";
 
-const EventFormInput = () => {
-  const [productList, setProductList] = useState([]);
-  const [productsToBuy, setProductsToBuy] = useState([]);
-
-  // Object mapping, start with an object with no params. The only solution is a hash map
-  // 
-
-  const sizes = ["X-small", "Small", "Medium", "Large", "X-Large", "XX-Large"]
-  const [selectedSize, setSelectedSize] = useState("");
-
+const EventFormInput = ({productList, selectedSize, handleSizeSelect, handleProductAddition}) => {
   const [expanded, setExpanded] = useState(undefined);
   const accordElem = useRef(null)
-
-  useEffect(() => {
-    const getProductData = async () => {
-      try {
-        const response = await getAllCategories();
-        const products = await response.json();
-
-        console.log(products)
-
-        setProductList(products)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-    getProductData();
-  }, []);
 
   const handleAccordion = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -65,28 +39,6 @@ const EventFormInput = () => {
                       <div className="order-summary" key={category._id}>
                         <div className="col s9">{category.category_name}</div>
                         <div className="col s3">
-                          <FormControl>
-                            <InputLabel id="product-selection">Size</InputLabel>
-                            <Select
-                              labelId="product-selection"
-                              label="Size"
-                              value={selectedSize}
-                              sx={{ minWidth: 80 }}
-                            >
-                              {sizes.map((size) => {
-                                return (
-                                  <MenuItem
-                                    value={size}
-                                    label="Size"
-                                    // disabled={singleProduct.product_inventory > 0 ? false : true}
-                                  >
-                                    {size}
-                                  </MenuItem>
-                                )
-                              })
-                              }
-                            </Select>
-                          </FormControl>
                         </div>
                       </div>
                     </AccordionSummary>
@@ -104,10 +56,34 @@ const EventFormInput = () => {
                               {product.price}
                             </div>
                             <div className="col s2">
-
+                              <FormControl>
+                              <InputLabel id="product-selection">Size</InputLabel>
+                              <Select
+                                labelId="product-selection"
+                                defaultValue=""
+                                name={product._id}
+                                value={selectedSize[product._id] ? selectedSize[product._id] : ""}
+                                label="Size"
+                                onChange={handleSizeSelect}
+                                sx={{ minWidth: 80 }}
+                              >
+                                {product.product_information.map((singleProduct, index) => {
+                                  return (
+                                    <MenuItem
+                                      key={index}
+                                      value={singleProduct.product_size}
+                                      disabled={singleProduct.product_inventory > 0 ? false : true}
+                                    >
+                                      {singleProduct.product_size}
+                                    </MenuItem>
+                                  )
+                                })
+                                }
+                              </Select>
+                            </FormControl>
                             </div>
                             <div className="col">
-                              <button style={{ color: "black" }}>
+                              <button style={{ color: "black" }} onClick={() => {handleProductAddition(product._id)}}>
                                 Add To List
                               </button>
                             </div>

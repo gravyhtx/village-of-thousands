@@ -14,7 +14,6 @@ import Pixels from '../public/images/art/choose_your_vot.png';
 import Hope from '../public/images/art/hope.png';
 
 import { useWindowSize } from '../modules/getWindow';
-// import LoadComponents from '../modules/LoadComponents';
 
 const Home = () => {
 

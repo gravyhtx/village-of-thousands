@@ -10,7 +10,7 @@ import website from '../config/site-data.json';
 import favicon from '../public/favicon.ico'
 
 import { authCheck } from '../utils/siteFunctions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // import XMLHttpRequest from 'xhr2';
 
@@ -20,11 +20,6 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
 
-  useEffect(() => {
-    if(withAuth && (authCheck() === false)) {
-      window.location.href='/login';
-    }
-  });
 
   return (
     <div className={classes} id="layout">

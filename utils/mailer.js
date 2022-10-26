@@ -9,20 +9,7 @@ export const sendConfirmationEmail = function({ toUser, hash }) {
 
   sgMail.setApiKey(process.env.SENDGRID);
 
-  const link = "https://villageofthousands.com/activate/"+ hash
-
-  const context = () => {
-    return (
-      `<div style="margin-bottom: 15px;">
-        Welcome to the journey, fellow VoT Enthusiast! We look forward to growing with you.
-      </div>
-      <div>
-        <a href="${link}" target="_blank" style="text-decoration: underline;">
-          Click here to activate your account.
-        </a>
-      </div>`
-    )
-  }
+  const link = "https://villageofthousands.com/activate/"+ hash;
     
   const msg = {
     to: toUser.email,
