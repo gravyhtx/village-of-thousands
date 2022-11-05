@@ -12,9 +12,9 @@ const UserRegistration = () => {
   let router = useRouter();
   const query = router.query.q
 
-  const queryPath = query === 'claim'
+  const queryPath = query && query === 'claim'
       ? { path:'/qr/claim' , text: 'GO TO CLAIM PAGE'}
-    : query.includes('activate')
+    : query && query.includes('activate')
       ? { path: query.replaceAll('-', '/') , text: 'GO TO ACTIVATION PAGE'}
       : false;
 

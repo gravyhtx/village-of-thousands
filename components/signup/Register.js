@@ -8,6 +8,8 @@ import Auth from '../../utils/auth';
 const Register = ({ changeComponents, path }) =>  {
   
   changeComponents = changeComponents === true ? true : false;
+  path = path !== false ? path : false;
+  console.log(path);
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', reEnterPassword: ''});
   const [formError, setFormError] = useState({ email: '', password: '', passwordSpacing: '', passwordMatch: '' });
@@ -131,16 +133,17 @@ const Register = ({ changeComponents, path }) =>  {
       }
 
       const { token, user } = await response.json();
+      console.log(path)
       
-      if(pass && !changeComponents) {
+      if(pass && path) {
+        Auth.login(token);
+        localStorage.removeItem('seed_hex');
+        router.push(path ? '/signup-1?q='+path : (path && activate) ? '/signup-1?q='+activate : '/signup-1');
+      }
+      if(pass && path === false) {
         Auth.login(token);
         localStorage.removeItem('seed_hex');
         router.push('/signup-1');
-      }
-      if(pass && changeComponents) {
-        Auth.login(token);
-        localStorage.removeItem('seed_hex');
-        router.push(path === true ? '/signup-1?q='+path : activate ? '/signup-1?q='+activate : '/signup-1');
       }
 
     } catch (err) {
@@ -195,9 +198,14 @@ const Register = ({ changeComponents, path }) =>  {
   }
 
   const submitButton = [
-    <div className="center-text"><button className="login-btn next-button" onClick={formHandlerNext}>Next</button></div>,
     <div className="center-text">
-      <button className="login-btn form-text-blink" onClick={formHandlerPass}>Create Account</button>
+      <button className="login-btn next-button" onClick={formHandlerNext}>Next</button>
+    </div>,
+    <div className="center-text">
+      <button
+        className="login-btn form-text-blink"
+        disbled={pass===true?true:false}
+        onClick={formHandlerPass}>Create Account</button>
     </div>
   ]
 
