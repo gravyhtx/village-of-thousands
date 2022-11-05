@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import EventFormInput from '../../admin-partials/EventFormInput'
 import Calculator from '../../admin-partials/Calculator';
 import EventCartDisplay from '../../admin-partials/EventCartDisplay';
-import { getAllCategories } from "../../../../utils/API";
+import { createEventOrder, getAllCategories } from "../../../../utils/API";
+import { simpleHash } from '../../../../modules/hashSystem';
+import HexShowcase from '../../admin-partials/HexShowcase';
 
 const Events = () => {
   const [productList, setProductList] = useState([]);
@@ -13,6 +15,7 @@ const Events = () => {
   const [productSKUToBuy, setProductSKUToBuy] = useState([]);
 
   const [paymentType, setPaymentType] = useState("")
+  const [orderHex, setOrderHex] = useState("");
 
   useEffect(() => {
     const getProductData = async () => {
@@ -54,6 +57,26 @@ const Events = () => {
     setPaymentType(event.target.value)
   }
 
+  const handleOrderSetup = () => {
+    const parsedProductList = productsToBuy.map(product => product.id)
+    const totalPrice = productsToBuy.reduce((a,b) => a + parseInt(b.price), 0)
+    const newHex = simpleHash("" + Math.random().toFixed(6))
+
+    const newOrderObj = {
+      products: parsedProductList,
+      productSKU: productSKUToBuy,
+      paymentType: paymentType,
+      deliveryStatus: "Complete",
+      totalPrice: (totalPrice + (totalPrice *0.0825)).toFixed(2),
+      simpleHash: newHex,
+      isPhysicalSale: "true"
+    }
+
+    setOrderHex(newHex);
+    createEventOrder(newOrderObj)
+
+  }
+
   return (
     <>
       <div className="recent-grid row">
@@ -67,8 +90,9 @@ const Events = () => {
           productList={productsToBuy}
           SKU={productSKUToBuy}
           paymentType={paymentType}
-          handlePaymentTypeChange={handlePaymentTypeChange}/>
-        <Calculator />
+          handlePaymentTypeChange={handlePaymentTypeChange}
+          handleOrderSetup={handleOrderSetup}/>
+        <HexShowcase orderHex={orderHex}/>
         {paymentType === "Stripe" ?
         (
           <div className="projects col m12 l9">
@@ -83,7 +107,7 @@ const Events = () => {
         (
           <></>
         )
-      }
+        }
       </div>
     </>
   )

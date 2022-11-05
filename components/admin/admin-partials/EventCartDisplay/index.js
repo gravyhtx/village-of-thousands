@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const EventCartDisplay = ({ productList, SKU, paymentType, handlePaymentTypeChange }) => {
+const EventCartDisplay = ({ productList, SKU, paymentType, handlePaymentTypeChange, handleOrderSetup }) => {
   return (
     <>
       <div className="projects col m12 l9">
@@ -42,6 +42,15 @@ const EventCartDisplay = ({ productList, SKU, paymentType, handlePaymentTypeChan
           )
         }
         <h3>Total Money: {productList.reduce((prev, curr) => prev + curr.price, 0)}</h3>
+        {
+          paymentType !== "" ?
+          (
+            <button onClick={handleOrderSetup}>Set Up Order</button>
+          ) :
+          (
+            <></>
+          )
+        }
       </div>
     </>
   )
