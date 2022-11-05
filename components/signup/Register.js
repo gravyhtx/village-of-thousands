@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@mui/material';
 
-import { createUser } from '../utils/API';
-import Auth from '../utils/auth';
+import { createUser } from '../../utils/API';
+import Auth from '../../utils/auth';
 
-const Register = () =>  {
+const Register = ({ changeComponents, path }) =>  {
+  
+  changeComponents = changeComponents === true ? true : false;
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', reEnterPassword: ''});
   const [formError, setFormError] = useState({ email: '', password: '', passwordSpacing: '', passwordMatch: '' });
@@ -19,6 +21,7 @@ const Register = () =>  {
   }, [pass])
 
   const router = useRouter();
+  const activate = path === 'activate' ? 'activate-'+router.query.slug : false;
 
   const errorElements = [
     <div className='signup-error error-message italics' id='email-error'>Please enter a valid email address.</div>,
@@ -42,7 +45,8 @@ const Register = () =>  {
 
   function formValidation(email, password) {
     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, one uppercase and one lowercase letter
+    const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, 
+                                                                 // one uppercase and one lowercase letter
 
     const pwFormatSpaces = /^\S*$/;  // No white space
 
@@ -64,7 +68,8 @@ const Register = () =>  {
 
   function nextValidation(email, password) {
     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric digit, one uppercase and one lowercase letter
+    const pwFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;  // 6 to 20 characters with at least one numeric
+                                                                 // digit, one uppercase and one lowercase letter
 
     const pwFormatSpaces = /^\S*$/;  // No white space
 
@@ -127,10 +132,15 @@ const Register = () =>  {
 
       const { token, user } = await response.json();
       
-      if(pass) {
+      if(pass && !changeComponents) {
         Auth.login(token);
         localStorage.removeItem('seed_hex');
         router.push('/signup-1');
+      }
+      if(pass && changeComponents) {
+        Auth.login(token);
+        localStorage.removeItem('seed_hex');
+        router.push(path === true ? '/signup-1?q='+path : activate ? '/signup-1?q='+activate : '/signup-1');
       }
 
     } catch (err) {
@@ -186,7 +196,9 @@ const Register = () =>  {
 
   const submitButton = [
     <div className="center-text"><button className="login-btn next-button" onClick={formHandlerNext}>Next</button></div>,
-    <div className="center-text"><button className="login-btn form-text-blink" onClick={formHandlerPass}>Create Account</button></div>
+    <div className="center-text">
+      <button className="login-btn form-text-blink" onClick={formHandlerPass}>Create Account</button>
+    </div>
   ]
 
   return (
@@ -205,6 +217,20 @@ const Register = () =>  {
             value={userFormData.email} />
             {formError.email}
           </div>
+        {/* ADD PHONE NUMBER FIELD */}
+        {/* <div className='login-input-label' id="user-register-email">
+          Phone Number
+        </div>
+        <div className='input-field col'>
+          <input
+            name="phone"
+            aria-labelledby="user-register-email"
+            className={"input-field" + errorClass.email}
+            id="user-register-email_input"
+            onChange={handleInputChange}
+            value={userFormData.email} />
+            {formError.email}
+          </div> */}
       </div>
       {passwordField()}
       {!pwReEnter ? submitButton[0] : submitButton[1]}

@@ -3,12 +3,24 @@ import { getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
 import { checkType } from "./validation";
 
+//////////////////////
+// GLOBAL VARIABLWS //
+//////////////////////
+
 const date =  new Date();
+const timeElapsed = Date.now();
+const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // GET CURRENT YEAR
 // Input a number 1 to 4 (or -4 to -1) to specify the number of digits to output
-export const getYears = (int) => {
-  const year =  date.getFullYear().toString();
+
+export const getYears = (inputDate, int) => {
+  inputDate = inputDate === false ? inputDate : false;
+  const y = (d) = d.getFullYear().toString();
+  const d = inputDate ? inputDate : date;
+  const year = y(d);
   const getLast = int && int !== true && int <= 4 && int >= 1
       ? -1*int
     : int && int !== true && int <= -1 && int >= -4
@@ -18,23 +30,24 @@ export const getYears = (int) => {
 }
 
 // GET CURRENT MONTH
-export const getMonths = (addZeros, toString) => {
+export const getMonths = (inputDate, addZeros, toString) => {
+  inputDate = inputDate === false ? inputDate : false;
   toString = toString === true ? true : false;
-  const months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
   const month = addZeros && (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1; 
   return toString === false ? month : months[date.getMonth()];
 }
 
 // GET CURRENT DATE
-export const getDays = (addZeros) => {
+export const getDays = (inputDate, addZeros) => {
+  inputDate = inputDate === false ? inputDate : false;
   const today = date.getDate();
   return addZeros && today < 10 ? '0' + today.toString() : today.toString();
 }
 
 // GET HOURS/MINUTES IN CALCULATION OR MILITARY TIME
 // Ex. 14hr 30min = 14.5 or 1430
-export const getTimeCalc = (hour, minutes, military) => {
+export const getTimeCalc = (inputDate, hour, minutes, military) => {
+  inputDate = inputDate === false ? inputDate : false;
   const total = 60;
   const min = !Number.isNaN(minutes) && minutes <= 60 ? Number(minutes) : 0;
   const hr = !Number.isNaN(hour) && ((hour < 24 && min) || (hour === 24 && min === 0)) ? Number(hour) : 0;
@@ -49,7 +62,8 @@ export const getTimeCalc = (hour, minutes, military) => {
 }
 
 // GET CURRENT TIME
-export const currentTime = (military, sec, min, hr) => {
+export const currentTime = (inputDate, military, sec, min, hr) => {
+  inputDate = inputDate === false ? inputDate : false;
 
   military = military === true ? true : false;
 
@@ -77,10 +91,9 @@ export const currentTime = (military, sec, min, hr) => {
 
 // FORMAT DATE BASED ON 'FORMAT' INPUT
 export const formatDate = (inputDate, format) => {
-  inputDate = inputDate ? inputDate : false
+  inputDate = inputDate ? inputDate : false;
   format = format === true ? true : format && format !== true ? format.toLowerCase() : false;
 
-  const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
 
   const toDate = new Date(inputDate);
@@ -383,9 +396,17 @@ export const canvasToPng = ( el, alt, classes, id ) => {
 
 
 
+
 /////////////////////
 // RETURN ELEMENTS //
 /////////////////////
+
+
+
+
+////////////
+// IMAGES //
+////////////
 
 
 export const emptyData = ( dataArray, dataImage ) => {

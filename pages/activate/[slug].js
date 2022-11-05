@@ -65,9 +65,9 @@ const Activate = () => {
     <DefaultLayout title={activateStatus ? "Activate" : "Ya Did It!"}>{/* <DefaultLayout headerImages={headerImages}> */}
       <div className="activate-page center container animate__animated animate__fadeIn">
         {!isLogged ? (
-          <>
-            <LoginContainer activationPage={true} />
-          </>
+          <div className="row container signup-container login-container">
+            <LoginContainer changeComponents={true} activationPage={true} />
+          </div>
         ) : 
         (
           <div className="activate-content">

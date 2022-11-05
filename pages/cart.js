@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import DefaultLayout from "../templates/DefaultLayout";
 import { idbPromise } from "../utils/helpers";
-import { ProductImage } from "../components/dynamic-content/ProductData";
-import CartItem from "../components/CartItem.js";
+import CartItem from "../components/checkout/CartItem.js";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);

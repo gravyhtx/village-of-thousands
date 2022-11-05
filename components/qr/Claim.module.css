@@ -1,0 +1,87 @@
+/*
+/////////////
+// CLASSES //
+/////////////
+*/
+.main {
+  text-align: center;
+  padding: 40px 0 69px;
+}
+
+.componentHeader {
+  margin-bottom: 50px;
+}
+
+.headerText {
+  font-size: 4.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 10px auto;
+}
+
+.componentHeaderSpan {
+  border-bottom: 5px solid white;
+}
+
+.contentContainer {
+  padding: 20px;
+}
+
+.claimBoxContent {
+  padding: 20px 0;
+}
+
+.inputContainer {
+  padding: 40px;
+}
+
+.input {
+  font-size: 2rem !important;
+  font-weight: 500;
+  height: 4rem !important;
+}
+
+.link {
+  border-bottom: 1px solid white;
+  font-weight: 500;
+}
+
+.socials {
+  max-width: 67vw;
+  margin: 50px auto;
+}
+
+.socialsText {
+  font-size: 2rem;
+  margin-bottom: 35px;
+}
+
+
+@media only screen and (max-width: 770px) {
+  .componentHeader {
+    margin-bottom: 30px;
+  }
+  .mainHeader {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .headerText {
+    font-size: 3.2rem;
+  }
+  .header {
+    font-size: 1.2rem;
+  }
+  .contentContainer {
+    padding: 0px;
+  }
+  .inputContainer {
+    padding: 20px;
+  }
+  .socials {
+    max-width: 100vw;
+  }
+  .socialsText {
+    font-size: 1.6rem;
+  }
+}

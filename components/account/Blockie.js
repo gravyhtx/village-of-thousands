@@ -3,7 +3,7 @@
 //   const Blockies = require("blockies/react-component");
 //   <Blockies opts={{seed: "foo", color: "#dfe", bgcolor: "#a71", size: 15, scale: 3, spotcolor: "#000"}}/>
 import React from 'react';
-import blockie from '../modules/blockie';
+import blockie from '../../modules/blockie';
 
 class Blockie extends React.Component {
   constructor(props) {

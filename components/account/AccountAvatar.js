@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { Icon } from "@mui/material";
 
-import Auth from '../utils/auth';
-import { getSingleUser, updateUser } from '../utils/API';
+import Auth from '../../utils/auth';
+import { getSingleUser, updateUser } from '../../utils/API';
 
 import Blockie from "./Blockie";
-import Avatar from "../public/images/icons/vot_avatar.svg";
-import SvgContainer from "../components/SvgContainer";
-import { useRouter } from "next/router";
+import Avatar from "../../public/images/icons/vot_avatar.svg";
+import { SvgContainer } from "../../components/containers/SvgContainer";
 
-import { shuffleArr, randomize } from "../utils/generator";
+import { shuffleArr, randomize } from "../../utils/generator";
 
 const AccountAvatar = (props) => {
 

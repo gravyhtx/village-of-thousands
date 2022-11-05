@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import Auth from '../utils/auth';
-import { getSingleUser, resendConfirmationFetch } from '../utils/API';
+import Auth from '../../utils/auth';
+import { getSingleUser, resendConfirmationFetch } from '../../utils/API';
 
-import Web3Wallet from "./Web3Wallet.tsx";
+import Web3Wallet from "../web3/Web3Wallet.tsx";
 
 import AccountAvatar from "./AccountAvatar";
 
