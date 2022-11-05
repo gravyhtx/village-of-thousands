@@ -86,7 +86,7 @@ const ClaimPage = () => {
     
     const profile = token ? Auth.getProfile() : null;
 
-    resendConfirmationFetch(profile)
+    resendConfirmationFetch(profile);
   }
 
   const ClaimBox = () => {
@@ -122,7 +122,12 @@ const ClaimPage = () => {
   const ActivateYourAccount = () => {
     return (
       <div className={styles.activateAccountContainer}>
-        <div className={styles.activateAccountText}>You must Activate your account to Claim Your Order.</div>
+        <div className={styles.activateAccountText}>
+          <p>You must Activate your account to Claim Your Order. Please revisit this page when
+          you have activated your account.</p>
+          <p>Please check your <b>Spam</b> and <b>Promotions</b> folders
+          if you cannot find it.</p>
+        </div>
         <div className={styles.activationResendContainer}>
           <button
             className={styles.activateResendButton + " resend-confirmation not-a-button monospace"}
