@@ -1,4 +1,4 @@
-import { useWindowSize } from '../modules/getWindow';
+import { useWindowSize } from '../../modules/getWindow';
 
 const CartItem = ({ cart, item, removeItem, imgSize }) => {
   

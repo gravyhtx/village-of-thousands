@@ -1,0 +1,138 @@
+/*
+////////////////
+// ANIMATIONS //
+////////////////
+*/
+
+@keyframes bkg {
+  0%{background-position:15% 0%}
+  50%{background-position:86% 100%}
+  100%{background-position:15% 0%}
+}
+
+/*
+/////////////
+// CLASSES //
+/////////////
+*/
+.main {
+  text-align: center;
+  padding: 40px 0 69px;
+}
+
+.componentHeader {
+  margin-bottom: 50px;
+}
+
+.headerText {
+  font-size: 4.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 10px auto;
+}
+
+.componentHeaderSpan {
+  border-bottom: 5px solid white;
+}
+
+.link {
+  border-bottom: 1px solid white;
+  font-weight: 500;
+}
+
+/* EVENTS MAP */
+
+
+.eventCard {
+  max-width: 50%;
+  padding: 0px;
+  margin: 0 auto;
+  box-shadow: 4px 4px 20px #000000aa;
+  filter: drop-shadow(2px 4px 30px #7FCCE430);
+}
+
+.eventMap {
+  padding: 30px 10px;
+  background: #00000010;
+}
+
+.contentContainer {
+  padding: 20px;
+}
+
+.mapHeader {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 20px auto;
+}
+
+.mainHeader {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.subHeader {
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.dates {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px #aaa;
+}
+
+.location {
+  text-shadow: 2px 2px 10px #333, -2px -2px 10px #aaa, 2px -2px 10px #333, -2px 2px 10px #000;
+}
+
+.flyer {
+  width: 60vw;
+  max-width: 420px;
+  margin-bottom: 30px;
+  border: 2px solid white;
+  box-shadow: 2px 2px 0 white;
+  background: #050505 linear-gradient(140deg, #292a31, #3b4950, #232a2f, #334044, #333c44, #314449);
+  background-size: 1200% 1200%;
+  animation: bkg 15s ease infinite;
+  transition: 500ms ease-in-out;
+}
+
+.socials {
+  margin: 20px auto;
+}
+
+@media only screen and (max-width: 1080px) {
+  .flyer {
+    width: 30vw;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .eventCard {
+    max-width: 95%;
+  }
+  .eventMap {
+    padding: 30px 10px 30px;
+    margin: 0 auto;
+  }
+  .contentContainer {
+    padding: 0px;
+  }
+  .mainHeader {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+  }  
+  .header {
+    font-size: 1.2rem;
+  }
+  .flyer {
+    width: 60vw;
+    max-width: 300px;
+  }
+}

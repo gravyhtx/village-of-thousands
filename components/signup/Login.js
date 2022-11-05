@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { loginUser, searchUserByEmail } from '../utils/API';
-import Auth from '../utils/auth';
+import { loginUser, searchUserByEmail } from '../../utils/API';
+import Auth from '../../utils/auth';
 
 const Login = ({ reloadPage }) =>  {
 

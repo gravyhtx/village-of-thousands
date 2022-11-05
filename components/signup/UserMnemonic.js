@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import DefaultLayout from '../templates/DefaultLayout';
-import Mnemonic from "../components/Mnemonic";
+import DefaultLayout from '../../templates/DefaultLayout';
+import Mnemonic from "../Mnemonic";
 import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
-import { updatePendingUser, getSingleUser } from '../utils/API';
-import Auth from '../utils/auth';
+import { updatePendingUser, getSingleUser } from '../../utils/API';
+import Auth from '../../utils/auth';
 
-const UserMnemonic = () => {
+const UserMnemonic = ({ changeComponents }) => {
+
+  changeComponents = changeComponents === true ? true : false;
+
   let router = useRouter();
-  console.log(router.query)
 
   // Get User Data
   const [userData, setUserData] = useState({});
@@ -159,8 +161,8 @@ const UserMnemonic = () => {
     textData.click();
   }
 
-  return (
-    <DefaultLayout title={"Create Account"} withAuth={true}>
+  const MnemonicComponent = () => {
+    return (
       <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
         <h1 className="user-registration-header center">Complete Your Registration</h1>
         <div className="seed-phrase">
@@ -195,7 +197,7 @@ const UserMnemonic = () => {
         </div>
         <div className="user-registration-next center">
           {/* <Agree /> */}
-          <Link href={router.query.q ? "/signup-2?q="+router.query.q : "/signup-2"}><a><Button
+          <Link href="/signup-2"><a><Button
             node="button"
             style={{
               margin: '0 auto',
@@ -211,8 +213,14 @@ const UserMnemonic = () => {
         </div>
         <br /><br />
       </div>
+    )
+  }
+
+  return changeComponents ?
+    <MnemonicComponent /> :
+    <DefaultLayout title={"Create Account"} withAuth={true}>
+      <MnemonicComponent />
     </DefaultLayout>
-  )
 }
 
 export default UserMnemonic;

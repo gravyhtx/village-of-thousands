@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DefaultLayout from '../templates/DefaultLayout';
 
 import TextContainer from '../components/TextContainer';
-import SocialCircles from '../components/SocialCircles';
+import { SocialCircles } from '../components/containers/SocialCircles';
 import SiteImage from '../components/SiteImage';
 import { ProductImage } from '../components/dynamic-content/ProductData';
 import ProductImageGrid from '../components/ProductImageGrid';

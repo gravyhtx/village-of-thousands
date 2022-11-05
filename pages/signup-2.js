@@ -4,15 +4,19 @@ import { useRouter } from 'next/router';
 import { Button } from '@mui/material';
 import DefaultLayout from '../templates/DefaultLayout';
 
-import AddressFormContainer from '../components/AddressFormContainer';
-import Web3Wallet from '../components/Web3Wallet.tsx';
-
 import Auth from '../utils/auth';
 import {getSingleUser} from '../utils/API';
 
 const UserRegistration = () => {
     
   let router = useRouter();
+  const query = router.query.q
+
+  const queryPath = query === 'claim'
+      ? { path:'/qr/claim' , text: 'GO TO CLAIM PAGE'}
+    : query.includes('activate')
+      ? { path: query.replaceAll('-', '/') , text: 'GO TO ACTIVATION PAGE'}
+      : false;
 
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
@@ -54,29 +58,34 @@ const UserRegistration = () => {
       limited-edition NFT when our Web 3.0 site goes live!
       </div>
       </Link>
-      {/* <div className='user-registration-account-header'>ACCOUNT INFORMATION</div> */}
-      {/* <div className='user-registration-info container'>
-        <div className="user-register-email-header">USER</div>
-        <div className='user-registration-email container'>{userData.email}</div>
-        <div className='user-registration-wallet'>
-          <Web3Wallet />
+      
+      {queryPath ?
+        <div className="query-btn">
+          <Link href={queryPath.path}>
+            <a><Button
+              node="button"
+              style={{
+                width: '250px'
+              }}
+              waves="light"
+              className="back-btn"
+            >
+              {queryPath.text}
+            </Button></a>
+          </Link>
         </div>
-      </div> */}
-      {/* <div className="user-registration-forms">
-        <AddressFormContainer />
-      </div> */}
-      <Link href="/account">
-        <a><Button
-          node="button"
-          style={{
-            width: '250px'
-          }}
-          waves="light"
-          className="back-btn"
-        >
-          CHECK OUT YOUR ACCOUNT
-        </Button></a>
-      </Link>
+      : <Link href="/account">
+          <a><Button
+            node="button"
+            style={{
+              width: '250px'
+            }}
+            waves="light"
+            className="back-btn"
+          >
+            CHECK OUT YOUR ACCOUNT
+          </Button></a>
+        </Link>}
     </div>
     </DefaultLayout>
   )

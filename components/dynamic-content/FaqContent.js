@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SocialCircles from "./SocialCircles";
+import { SocialCircles } from "../containers/SocialCircles";
 
 const FaqContent = () => {
 

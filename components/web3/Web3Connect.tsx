@@ -6,13 +6,13 @@ import {
 } from '@web3-react/injected-connector';
 import { Web3Provider } from '@ethersproject/providers';
 import { formatEther } from '@ethersproject/units';
-import { useEagerConnect, useInactiveListener } from '../utils/hooks.ts';
+import { useEagerConnect, useInactiveListener } from '../../utils/hooks.ts';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
-import { deleteUserWallet, getSingleUser, updateUserWallet } from '../utils/API';
-import Auth from '../utils/auth';
+import { deleteUserWallet, getSingleUser, updateUserWallet } from '../../utils/API';
+import Auth from '../../utils/auth';
 import { useRouter } from 'next/router';
-import { isMobile } from '../utils/siteFunctions';
+import { isMobile } from '../../utils/siteFunctions';
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] });
 

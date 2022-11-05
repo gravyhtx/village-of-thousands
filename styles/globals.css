@@ -235,6 +235,16 @@
 .svg-color-blue-glow {
   filter: var(--svg-blue-glow);
 }
+.color-important { background: #D24B4B; }
+.svg-color-important { filter: invert(38%) sepia(45%) saturate(1023%) hue-rotate(315deg) brightness(96%) contrast(93%); }
+.dark-color-gravy { background: #64483b; }
+.svg-color-dark-gravy { filter: invert(27%) sepia(36%) saturate(501%) hue-rotate(334deg) brightness(91%) contrast(84%); }
+.color-light-gravy { background: #d6c8b4; }
+.svg-color-light-gravy { filter: invert(90%) sepia(25%) saturate(209%) hue-rotate(346deg) brightness(86%) contrast(95%); }
+.color-mintberry-crunch { background: #80ecc3; }
+.svg-color-mintberry-crunch { filter: invert(97%) sepia(64%) saturate(822%) hue-rotate(76deg) brightness(100%) contrast(86%); }
+.color-blue-glow { background: #7FCCE4; }
+.svg-color-blue-glow { filter: invert(83%) sepia(9%) saturate(2312%) hue-rotate(160deg) brightness(94%) contrast(89%); }
 
 
 /*
@@ -997,7 +1007,7 @@ h2, .h2 {
   .text-container.dark-gradient { background: var(--dark-gradient); }
 
   /* Container Box Styles */
-  .text-container.padding { padding: 20px 30px; }
+  .text-container.padding { padding: 30px; }
   .text-container.margin { margin: 50px; }
   .text-container.no-padding { padding: 0; }
   .text-container.no-margin { margin: 0; }
@@ -1522,7 +1532,6 @@ h2, .h2 {
 .gradient-box_wrapper.bottom-spacing.more,
 .gradient-box_wrapper.b-space.more {
   margin: 0 auto;
-  padding-bottom: 40px;
   /* border: 2px solid var(--gradient-box-border); */
 }
 
@@ -1720,7 +1729,7 @@ h2, .h2 {
   margin: 0 auto;
   padding: 4px 8px;
   text-align: center;
-  font-size: .8rem;
+  font-size: .9rem;
   color: var(--notify-color);
   text-shadow: 1px 1px 2px black;
   border-top: var(--notify-border);
@@ -1735,11 +1744,6 @@ h2, .h2 {
   -webkit-transition: 250ms ease-in-out;
   transition: 250ms ease-in-out;
 }
-
-/* .notify-container span {
-  -webkit-transition: 250ms ease-in-out;
-  transition: 250ms ease-in-out;
-} */
 
 .notify-container i {
   -webkit-transition: 500ms ease-in-out;
@@ -3273,9 +3277,9 @@ button.card-trigger.loading {
 }
 
 @keyframes productBkgGradient {
-    0%{background-position:15% 0%}
-    50%{background-position:86% 100%}
-    100%{background-position:15% 0%}
+  0%{background-position:15% 0%}
+  50%{background-position:86% 100%}
+  100%{background-position:15% 0%}
 }
 
 .card_price-container {
@@ -4258,7 +4262,7 @@ button.card-trigger.loading {
 
   body { font-size: 20px; }
   
-  .notify { font-size: 18px; }
+  .notify { font-size: 1rem; }
 
   .big-spacer { margin-top: 60px; }
   .yuge-spacer { margin-top: 80px; }
@@ -4530,7 +4534,7 @@ button.card-trigger.loading {
     font-size: 16px;
   }
 
-  body { font-size: 12px; }
+  body { font-size: 14px; }
 
   h1 { font-size: 3rem; }
   /* .header-img { padding: 15px; } */
