@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 mongoose.Promise = global.Promise;
 
+// This could have been a singular address sub-document but
+// It was probably 4 am and I had 2 hours of sleep the night prior
 const shippingAddress = new Schema(
   {
     addressOne: {
@@ -48,6 +50,12 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  userEmail: {
+    type: String
+  },
+  userPhone: {
+    type: String
+  },
   products: [
     {
       type: Schema.Types.ObjectId,
@@ -76,6 +84,15 @@ const orderSchema = new Schema({
   includesDigital: {
     type: Boolean,
     default: false
+  },
+  paymentType: {
+    type: String
+  },
+  simpleHash: {
+    type: String
+  },
+  isPhysicalSale: {
+    type: Boolean
   }
 });
 
