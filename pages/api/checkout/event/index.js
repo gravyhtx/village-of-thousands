@@ -1,6 +1,7 @@
 import dbConnect from "../../../../utils/dbConnect";
 import User from "../../../../models/User";
-import PendingOrder from "../../../../models/PendingOrder";
+import Order from "../../../../models/Order";
+import Claim from "../../../../models/Claim";
 
 dbConnect();
 
@@ -17,17 +18,24 @@ export default async (req, res) => {
         }
 
         //userEmail in this case is filler for future version implementations
+        // userEmail: req.body.paymentType === "Stripe" ? req.body.userEmail : "",
         const orderObj = {
-            userEmail: req.body.paymentType === "Stripe" ? req.body.userEmail : "",
             products: req.body.products,
             productSKU: req.body.productSKU,
-            totalPrice: req.body.totalPrice,
             paymentType: req.body.paymentType,
+            deliveryStatus: req.body.deliveryStatus,
+            totalPrice: req.body.totalPrice,
             simpleHash: req.body.simpleHash,
             isPhysicalSale: req.body.isPhysicalSale
         }
 
-        await PendingOrder.create(orderObj);
+        await Order.create(orderObj);
+
+        const claimObj = {
+          simpleHash: req.body.simpleHash
+        }
+
+        await Claim.create(claimObj);
 
         res.status(200).json('Added new order to DB')
       }catch (err) {

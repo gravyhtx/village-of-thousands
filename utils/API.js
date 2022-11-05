@@ -191,8 +191,30 @@ export const getAllOrders = () => {
     }
   })
 };
-//Demo Use Only Section
 
+//Events Section
+
+export const createEventOrder = (orderData) => {
+  return fetch('/api/checkout/event', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+  })
+}
+
+export const claimOrder = (orderData) => {
+  return fetch('/api/checkout/event', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+  })
+}
+
+//Demo Use Only Section
 
 export const getDemoProducts = () => {
   return fetch('/api/demo/products/', {
