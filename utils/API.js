@@ -205,7 +205,7 @@ export const createEventOrder = (orderData) => {
 }
 
 export const claimOrder = (orderData) => {
-  return fetch('/api/checkout/event', {
+  return fetch('/api/checkout/event/claim', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

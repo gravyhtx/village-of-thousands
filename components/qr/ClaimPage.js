@@ -6,7 +6,7 @@ import Auth from '../../utils/auth';
 
 import styles from './Claim.module.css'
 import { useRouter } from "next/router";
-import { getSingleUser, resendConfirmationFetch } from "../../utils/API";
+import { claimOrder, getSingleUser, resendConfirmationFetch } from "../../utils/API";
 
 const ClaimPage = () => {
   const [userData, setUserData] = useState({});
@@ -53,25 +53,20 @@ const ClaimPage = () => {
     }
 
     try {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      const profile = token ? Auth.getProfile() : null;
+      console.log(profile)
+      const claimObj = {
+        id: profile.data._id,
+        simpleHash: input.code
+      }
 
-      // const response = await loginUser(userFormData);
-      
-      // setErrorClass({
-      //   email: response.ok ? '' : ' input-error',
-      //   password: response.ok ? '' : ' input-error',
-      // });
-      
-      // if(!response.ok) {
-      //   const { message } = await response.json();
-      //   console.log(message)
-      //   throw new Error('something went wrong!');
-      // }
-      
-      const { token, user } = await response.json();
-      
-      Auth.login(token);
-
-      router.push('/account');
+      const request = await claimOrder(claimObj)
+      const response = await request.json()
+      console.log(response)
+      if(!response.success) {
+        alert(response.message)
+      }
 
     } catch (err) {
       console.error(err);
