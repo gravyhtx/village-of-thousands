@@ -7,6 +7,7 @@ import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
 import Succcess from './confirmation';
 import { useRouter } from 'next/router';
+import { simpleHash } from '../modules/hashSystem'
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -151,8 +152,11 @@ const CheckoutForm = () => {
                     productsOrdered.push(item.id)
                 })
 
+                const hashedOrderId = simpleHash(orderId, false);
+
                 const orderObj = {
                     id: user.data._id,
+                    userEmail: user.data.email,
                     products: productsOrdered,
                     productSKU,
                     addressCheck,
@@ -164,7 +168,10 @@ const CheckoutForm = () => {
                     },
                     paymentConfirmation: orderId,
                     totalPrice: totalAmount(cart),
-                    specialInstructions: "None"
+                    specialInstructions: "None",
+                    paymentType: "Stripe",
+                    simpleHash: hashedOrderId,
+                    isPhysicalSale: false
                 }
 
                 await createOrder(orderObj)
