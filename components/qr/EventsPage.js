@@ -20,13 +20,23 @@ const EventsPage = () =>  {
   ];
   
   const DisplayEvents = () => {
+    // const stripeColorsA = [
+    //   ['rgb(77 177 255 / 80%)','rgba(192.156,224.557,250.014,0) 80%'],
+    //   ['rgb(244 182 128 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
+    //   ['rgb(159 126 240 / 80%)','rgba(195.145,250.014,192.156,0) 80%'],
+    // ];
+    // const stripeColorsB = [
+    //   ['rgb(244 182 128 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
+    //   ['rgb(77 177 255 / 80%)','rgba(192.156,224.557,250.014,0) 80%'],
+    //   ['rgb(159 126 240 / 80%)','rgba(195.145,250.014,192.156,0) 80%'],
+    // ];
     const stripeColorsA = [
       ['rgb(77 177 255 / 80%)','rgba(192.156,224.557,250.014,0) 80%'],
-      ['rgb(244 182 128 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
+      ['rgb(133 165 193 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
       ['rgb(159 126 240 / 80%)','rgba(195.145,250.014,192.156,0) 80%'],
     ];
     const stripeColorsB = [
-      ['rgb(244 182 128 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
+      ['rgb(133 165 193 / 80%)','rgba(250.014,192.156,195.145,0) 80%'],
       ['rgb(77 177 255 / 80%)','rgba(192.156,224.557,250.014,0) 80%'],
       ['rgb(159 126 240 / 80%)','rgba(195.145,250.014,192.156,0) 80%'],
     ];
@@ -41,7 +51,7 @@ const EventsPage = () =>  {
         {gradientStripe(stripeColorsA)}
         <div className={styles.eventMap} key={index}>
           <div className={styles.contentContainer}>
-            <div className={styles.mapHeader}>{ item.name }</div>
+            <div className={styles.mapHeader}>{ item.showName ? item.name : '' }</div>
             <ImageContainer useNext={false} containerClasses={styles.flyer} img={item.flyer} />
             <div className={styles.dates}>{
               item.dates[0]

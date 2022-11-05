@@ -7,10 +7,11 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Login from './signup/Login';
 import Register from './signup/Register';
 import RandomQuote from "../components/dynamic-content/RandomQuote";
+import { checkType } from '../utils/validation';
 
 const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, admin, changeComponents, path }) =>  {
   
-  path = path === true ? path : activationPage === true ? 'activate' : false;
+  path = checkType(path, 'string') ? path : activationPage === true ? 'activate' : false;
 
   const [component, setComponent] = useState(
     name === 'login' || activationPage === true || admin === true

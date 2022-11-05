@@ -46,9 +46,12 @@
 .eventCard {
   max-width: 50%;
   padding: 0px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   box-shadow: 4px 4px 20px #000000aa;
-  filter: drop-shadow(2px 4px 30px #7FCCE430);
+  filter: drop-shadow(2px 4px 30px #7FCCE440);
+}
+.eventCard:last-child {
+  margin: 0 auto;
 }
 
 .eventMap {
@@ -70,12 +73,14 @@
   font-size: 2.4rem;
   font-weight: 600;
   line-height: 1;
+  margin-bottom: 20px;
 }
 
 .subHeader {
   font-size: 1.4rem;
   font-weight: 400;
   font-style: italic;
+  margin-top: -20px;
   margin-bottom: 10px;
 }
 
@@ -93,6 +98,7 @@
 .flyer {
   width: 60vw;
   max-width: 420px;
+  margin-top: 20px;
   margin-bottom: 30px;
   border: 2px solid white;
   box-shadow: 2px 2px 0 white;

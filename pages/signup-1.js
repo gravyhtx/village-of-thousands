@@ -195,7 +195,7 @@ const UserMnemonic = () => {
         </div>
         <div className="user-registration-next center">
           {/* <Agree /> */}
-          <Link href={router.query.q ? "/signup-2?q="+router.query.q : "/signup-2"}><a><Button
+          <Link href={router.query ? "/signup-2?q="+router.query.q : "/signup-2"}><a><Button
             node="button"
             style={{
               margin: '0 auto',

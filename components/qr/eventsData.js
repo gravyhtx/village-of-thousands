@@ -22,6 +22,7 @@ export const events = {
   "yr22": [
     {
       "name": eventsData.banger.fullEventName,
+      "showName": false,
       "confirmed": true,
       "street": "2202 Paul Quinn St.",
       "cityState": "Houston, TX",
@@ -62,6 +63,7 @@ export const events = {
     },
     {
       "name": "SNEAKER SUMMIT",
+      "showName": true,
       "confirmed": false,
       "street": "",
       "cityState": "Houston, TX",

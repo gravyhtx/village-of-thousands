@@ -41,6 +41,20 @@
   height: 4rem !important;
 }
 
+.activateAccountText {
+  font-size: 1.8rem;
+}
+
+.activateResendButton {
+  font-size: 2rem;
+  height: 60px;
+}
+.activateResendButton:hover,
+.activateResendButton:focus {
+  font-size: 2.2rem !important;
+  height: 65px !important;
+}
+
 .link {
   border-bottom: 1px solid white;
   font-weight: 500;
@@ -77,6 +91,18 @@
   }
   .inputContainer {
     padding: 20px;
+  }
+  .activateAccountText {
+    font-size: 1rem;
+  }
+  .activateResendButton {
+    font-size: 1.2rem;
+    height: 50px;
+  }
+  .activateResendButton:hover,
+  .activateResendButton:focus {
+    font-size: 1.4rem !important;
+    height: 55px !important;
   }
   .socials {
     max-width: 100vw;
