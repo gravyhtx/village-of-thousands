@@ -22,6 +22,7 @@ const PrintContent = ({ printActivate, setPrintActivate, settingsObj, orders, sh
 
   return (
     <div className={printing===false?style.printContent:style.printingContent}>
+      <div className="pagebreak">&nbsp;</div>
       <div className={settingsObj.detailed?style.printHeader:style.printHeaderSimple}>
         { title }
         <div className={style.printDate}>
@@ -29,7 +30,6 @@ const PrintContent = ({ printActivate, setPrintActivate, settingsObj, orders, sh
       
         {settingsObj.detailed === false ?
         <div className={style.headerRow}>
-          <br/>
           <div className="thead row center">
             <div className="header o-num col s2">ORDER</div>
             <div className="header o-cost col s3">COST</div>
@@ -40,27 +40,38 @@ const PrintContent = ({ printActivate, setPrintActivate, settingsObj, orders, sh
         </div> : <></>}
     </div>
     </div>
-    <br/>
     {orders ?
       orders.map((order, index) => {
       const total = (order.totalPrice).toFixed(2)
       const tax = (total * 0.0825).toFixed(2);
       const cost = (total - tax).toFixed(2);
+      const delStat = order.deliveryStatus;
+      const orderStatus = 'status ' + 
+        (!delStat
+          ? 'error'
+        : delStat.toLowerCase() === 'complete'
+          ? 'active'
+        : delStat.toLowerCase() === 'processing'
+          ? 'flagged'
+          : '')
         return (<>
           <div className={settingsObj.detailed?style.orderContainer:style.orderContainerSimple} key={index}>
+          <div className="pagebreak">&nbsp;</div>
             <div
               className={style.orderPrintArea}
               key={index}>
               {settingsObj.detailed ?
               <div className={style.headerRow}>
+              <div className="pagebreak">&nbsp;</div>
                 <div className="thead row center">
-                  <div className="header o-num col s2">ORDER</div>
+                  <div className="header o-num left col s2">ORDER</div>
                   <div className="header o-cost col s3">COST</div>
                   <div className="header o-tax col s2">TAX</div>
                   <div className="header o-totes col s3">TOTAL</div>
                   <div className="header o-date col s2">DATE</div>
                 </div>
               </div> : <></>}
+              <div className="pagebreak">&nbsp;</div>
               <div
                 className="print_row center row"
                 aria-label={"Order #"+(index+1)}
@@ -107,25 +118,39 @@ const PrintContent = ({ printActivate, setPrintActivate, settingsObj, orders, sh
                         )
                       })}
                     </div>
-                    <div className="pagebreak">&nbsp;</div>
-                    <div className="order-details_headers">
-                      <div className={style.addressHeader}>
-                        <b>ADDRESS:</b>&emsp;
-                        <span className={style.orderAddress}>
-                          <span>{titleCase(order.billingAddress.addressOne)},
-                            &nbsp;{capitalize(order.billingAddress.city).trim()},&nbsp;
-                            {order.billingAddress.state}&nbsp;{order.billingAddress.zip}</span>
-                        </span>
+                    {order.billingAddress ?
+                      <div className="order-details_headers">
+                        <div className={style.addressHeader}>
+                          <b>ADDRESS:</b>&emsp;
+                          <span className={style.orderAddress}>
+                            <span>{titleCase(order.billingAddress.addressOne)},
+                              &nbsp;{capitalize(order.billingAddress.city).trim()},&nbsp;
+                              {order.billingAddress.state}&nbsp;{order.billingAddress.zip}</span>
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    : <></>}
                     <div className={style.confirmation}>
                       <div className="col s12">
                         <br/>
-                        <span><b>CONFIRMATION:</b>&emsp;{simpleHash(order.paymentConfirmation)}</span>
+                        <span><b>PAYMENT TYPE:</b>&emsp;
+                          { order.isPhysicalSale === true && !order.paymentType
+                            ? "Physical"
+                          : order.isPhysicalSale === true && order.paymentType
+                            ? order.paymentType
+                            : "Online"}
+                        </span>
+                        &emsp;{'//'}&emsp;
+                        <span><b>CONFIRMATION:</b>&emsp;{
+                          order.paymentConfirmation
+                            ? simpleHash(order.paymentConfirmation)
+                          : order.simpleHash
+                            ? order.simpleHash
+                            : ''}</span>
                         &emsp;{'//'}&emsp;
                         <span>
                           <b>STATUS:</b>&emsp;
-                          <span className="status flagged"></span>
+                          <span className={orderStatus}></span>
                           &nbsp;{order.deliveryStatus}
                         </span>
                       </div>
@@ -134,7 +159,7 @@ const PrintContent = ({ printActivate, setPrintActivate, settingsObj, orders, sh
               </div></> : <></>}
             </div>
           </div>
-          <div className="pagebreak">&nbsp;</div></>)
+          </>)
         })  : (
           <tr>
               <td>Loading...</td>

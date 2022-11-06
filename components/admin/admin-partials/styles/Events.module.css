@@ -1,0 +1,215 @@
+.orderSummary {
+  font-size: 1.8rem;
+  padding: 10px;
+  user-select: none;
+}
+
+.orderAccordianMap {
+  background-color: black;
+  color: white;
+  user-select: none;
+}
+
+.orderProductHeader {
+  font-size: 2.4rem !important;
+  font-weight: 800 !important;
+}
+
+.productMapRow {
+  font-size: 1rem;
+  display: flex;
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  align-items: center;
+  height: 76px;
+  border-bottom: 1px solid #aaa;
+  user-select: none;
+}
+
+.productMapRow div button {
+  font-size: .8rem;
+  font-weight: 600;
+  height: 40px;
+  width: 40px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 20px;
+}
+
+.productMapRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0px !important;
+  margin-bottom: -10px !important;
+}
+
+/* HEX DISPLAY */
+
+.hexHeader {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+}
+
+.hexAside {
+  background-color: #111;
+}
+
+.showHex {
+  text-align: center;
+  margin: 0 auto;
+  color: #333;
+  padding: 10px;
+  text-shadow: 0 0 20px #ffffff80;
+}
+
+.showHex h3 {
+  font-size: 1.4rem;
+}
+
+.showHex .hex {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.showHex .hex span {
+  border-bottom: 4px solid #fff;
+}
+.showHex .noHex {
+  color: #999;
+}
+
+
+/* CALCULATOR */
+
+.calcAside {
+  padding-bottom: 0 !important;
+}
+
+.calculator div {
+  background: #333;
+}
+
+.calculator div div h3 {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.calcInput::placeholder {
+  font-size: .8rem !important;
+  color: #888;
+}
+
+.calcTax {
+  font-size: 1.3rem !important;
+}
+
+.calcContainer input {
+  text-align: center;
+  font-weight: 500;
+  background-color: #666 !important;
+  color: white !important;
+}
+
+.calcContainer h3 {
+  margin: 15px auto;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 500;
+  color: white !important;
+}
+
+
+/* CART */
+
+.cartDisplay,
+.hexShowcase .hexContainer {
+  margin-top: 50px !important;
+}
+
+.cartDisplay .header {
+  /* padding: 0 !important; */
+}
+.paymentType {
+  width: 100px !important;
+}
+
+.cartContainer {
+  padding: 20px;
+  background: #444;
+  border: 1px solid white;
+}
+
+.cartList {
+  padding-bottom: 30px;
+}
+
+.cartList .header {
+  padding-bottom: 10px !important;
+}
+
+.cartList .products {
+  padding-bottom: 10px;
+}
+
+.cartList .products:last-child {
+  padding-bottom: 0px;
+}
+
+.cartList .header div {
+  font-size: 1.2rem !important;
+  padding-left: 0px !important;
+}
+
+.cartList .products div {
+  font-size: 1rem !important;
+  padding-left: 0px !important;
+}
+
+.cartTotals {
+  margin-top: 10px;
+}
+
+.cartTotals h3 {
+  font-size: 1.4rem;
+  color: #ccc;
+  margin: 6px 0;
+  padding: 0 !important;
+}
+
+.showTotal h3 {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #ffffff80;
+}
+
+.processBtnContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+button.setUpOrder {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 10px;
+  width: 100%;
+  margin: 20px auto 0;
+  color: #aaa;
+  text-shadow: 3px 3px 0 #333;
+  background-color: #111;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  transition: 1s ease-in-out;
+}
+
+button.setUpOrder:hover {
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  background-color: rgb(41, 49, 57);
+  border: 2px solid #7fcced;
+  box-shadow: 0 0 20px #7fcced80;
+  transition: 1s ease-in-out;
+}

@@ -34,6 +34,11 @@ const UserMnemonic = () => {
 
         const user = await response.json();
         setUserData(user);
+
+        if(userData.pending === false) {
+          router.push('/')
+        }
+        
       } catch (err) {
         console.error(err);
       }
@@ -161,6 +166,7 @@ const UserMnemonic = () => {
 
   return (
     <DefaultLayout title={"Create Account"} withAuth={true}>
+    {userData.pending === true ?
       <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
         <h1 className="user-registration-header center">Complete Your Registration</h1>
         <div className="seed-phrase">
@@ -211,6 +217,8 @@ const UserMnemonic = () => {
         </div>
         <br /><br />
       </div>
+    : <></>
+    }
     </DefaultLayout>
   )
 }

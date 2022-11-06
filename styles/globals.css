@@ -258,10 +258,6 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-*::selection { /* WebKit/Blink Browsers */
-  background: var(--theme-secondary-dark-color); }
-*::-moz-selection { /* Gecko Browsers */
-  background: var(--theme-secondary-dark-color); }
 *:focus { outline: var(--no-outline); }
 
 html, body, div, span, applet, object, iframe,
@@ -300,6 +296,11 @@ html, body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
+
+*::selection { /* WebKit/Blink Browsers */
+  background: var(--theme-secondary-dark-color); }
+*::-moz-selection { /* Gecko Browsers */
+  background: var(--theme-secondary-dark-color); }
 
 body {
   font-family: var(--theme-font);
@@ -477,7 +478,8 @@ input.input-error {
 .transparent, .off, .no-opacity { opacity: 0; }
 .translucent { opacity: 0.67; }
 
-.disable-highlight {
+.disable-highlight,
+br {
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -1811,6 +1813,10 @@ h2, .h2 {
   transition: 1s !important;
 }
 
+a.active .micon {
+  color: black;
+}
+
 .top-nav,
 .navigation-link,
 .micon-link {
@@ -2302,6 +2308,27 @@ label#upload-label:hover {
   margin-bottom: 20px;
 }
 
+.user-registration-details div p a {
+  font-weight: 500;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.user-registration-details .check-your-spam {
+  width: 50vw;
+  margin: 0 auto;
+  padding: 0 30px;
+  font-style: italic;
+  font-weight: 500;
+  text-align: center;
+}
+
+.user-registration-details .check-your-spam p.note {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
 .user-registration-email {
   text-align: center;
   font-size: var(--theme-font-size-md);
@@ -2338,6 +2365,10 @@ label#upload-label:hover {
 }
 .user-registration-next {
   margin-bottom: 20px;
+}
+
+.user-registration-container a button {
+  margin: 50px auto 80px !important;
 }
 
 
@@ -4415,6 +4446,7 @@ button.card-trigger.loading {
   .signup-error.error-message {
     font-size: 0.8rem;
   }
+  .user-registration-details .check-your-spam { text-align: justify; }
   .scroll-box {
     font-size: 1.12rem;
   }
@@ -4684,6 +4716,10 @@ button.card-trigger.loading {
     padding: 30px 25px !important;
   }
 
+  .user-registration-details .check-your-spam {
+    width: 70vw;
+  }
+
   .account-header {
     font-size: var(--theme-font-size-xxl);
     padding: 10px 0;
@@ -4926,6 +4962,9 @@ button.card-trigger.loading {
   }
   .account-wallet .wallet-info {
     font-size: 16px;
+  }
+  .user-registration-details .check-your-spam {
+    width: 90vw;
   }
   .activate-page {
     height: 700px;

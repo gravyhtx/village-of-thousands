@@ -7,6 +7,8 @@ import { createEventOrder, getAllCategories } from "../../../../utils/API";
 import { simpleHash } from '../../../../modules/hashSystem';
 import HexShowcase from '../../admin-partials/HexShowcase';
 
+import styles from './EventsView.module.css';
+
 const Events = () => {
   const [productList, setProductList] = useState([]);
 
@@ -86,13 +88,20 @@ const Events = () => {
           handleSizeSelect={handleSizeSelect}
           handleProductAddition={handleProductAddition}/>
         <Calculator />
-        <EventCartDisplay 
-          productList={productsToBuy}
-          SKU={productSKUToBuy}
-          paymentType={paymentType}
-          handlePaymentTypeChange={handlePaymentTypeChange}
-          handleOrderSetup={handleOrderSetup}/>
-        <HexShowcase orderHex={orderHex}/>
+
+        <div className={styles.cartSection + ' row'}>
+          <div className={styles.section}>
+            <EventCartDisplay
+              productList={productsToBuy}
+              SKU={productSKUToBuy}
+              paymentType={paymentType}
+              handlePaymentTypeChange={handlePaymentTypeChange}
+              handleOrderSetup={handleOrderSetup}/>
+          </div>
+          <div className={styles.section}>
+            <HexShowcase orderHex={orderHex}/>
+          </div>
+        </div>
         {paymentType === "Stripe" ?
         (
           <div className="projects col m12 l9">

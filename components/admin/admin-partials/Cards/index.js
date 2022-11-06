@@ -30,7 +30,7 @@ const Cards = ({totalOrders, grossEarning}) => {
   return (
         <div className="cards row">
 
-          <div className="card-single_container col s12 m3">
+          <div className="card-single_container col s12 m6 l3">
             <div className="card-single">
               <div>
                 { totalOrders > 0 ?
@@ -43,7 +43,7 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s12 m3">
+          <div className="card-single_container col s12 m6 l3">
             <div className="card-single">
               <div>
                 { grossEarning > 0 ?
@@ -56,7 +56,7 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s12 m3">
+          <div className="card-single_container col s12 m6 l3">
             <div className="card-single">
               <div>
                 { taxAmount(grossEarning, totalOrders) > 0 ?
@@ -69,7 +69,7 @@ const Cards = ({totalOrders, grossEarning}) => {
             </div>
           </div>
 
-          <div className="card-single_container col s12 m3">
+          <div className="card-single_container col s12 m6 l3">
             <div className="card-single">
               <div>
                 { netAmount(grossEarning, totalOrders) > 0 ?

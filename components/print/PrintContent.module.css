@@ -13,6 +13,7 @@
 }
 
 .printHeader h2 {
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 
@@ -41,8 +42,8 @@
   font-weight: 400;
   padding-bottom: 50px;
   border-bottom: 1px solid #ccc;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  /* margin-top: 30px; */
+  margin-bottom: 0px;
 }
 
 .orderContainer:last-child {
@@ -63,6 +64,7 @@
 }
 
 .headerRow {
+  padding-top: 20px;
   font-weight: 600;
 }
 

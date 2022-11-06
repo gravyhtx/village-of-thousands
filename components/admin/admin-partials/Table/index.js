@@ -45,6 +45,15 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                   const total = (order.totalPrice).toFixed(2)
                   const tax = (total * 0.0825).toFixed(2);
                   const cost = (total - tax).toFixed(2);
+                  const delStat = order.deliveryStatus;
+                  const orderStatus = 'status ' + 
+                    (!delStat
+                      ? 'error'
+                    : delStat.toLowerCase() === 'complete'
+                      ? 'active'
+                    : delStat.toLowerCase() === 'processing'
+                      ? 'flagged'
+                      : '')
                   return (
                     <div className="order-accordian" key={index}>
                       <Accordion
@@ -64,9 +73,9 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                             <div className="cost col s2">${cost}</div>
                             <div className="tax col s2">${tax}</div>
                             <div className="total col s2">${total}</div>
-                            <div className="date col left s2 center">{formatDate(order.purchaseDate, 'utc')}</div>
+                            <div className="date col left s2 center">{formatDate(order.purchaseDate, 'locale')}</div>
                             <div className="status right col s2 center">
-                              <span className="status flagged"></span>
+                              <span className={orderStatus}></span>
                               {/* &emsp;{order.deliveryStatus} */}
                             </div>
                           </div>
@@ -77,11 +86,29 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                           </div>
                           <div className="row order-details_info">
                             <div className="confirmation col s12">
-                              <div><b>CONFIRMATION:</b> {order.paymentConfirmation ? simpleHash(order.paymentConfirmation) : "Physical Order"}</div>
+                              <div><b>PAYMENT TYPE:</b>&nbsp;
+                                { order.isPhysicalSale === true && order.paymentType
+                                  ? "Physical // " + order.paymentType
+                                : order.isPhysicalSale === true && !order.paymentType
+                                  ? "Physical"
+                                  : "Online"}
+                                </div>
+                              <div></div>
+                              <div><b>CONFIRMATION:</b>&nbsp;
+                                { order.paymentConfirmation && !order.isPhysicalSale
+                                    ? simpleHash(order.paymentConfirmation)
+                                  : order.simpleHash
+                                    ? order.simpleHash
+                                    : "ERROR: Cannot find confirmation."}
+                                </div>
                               <div>
                                 <b>STATUS:</b>&emsp;
-                                <span className="status flagged"></span>
+                                <span className={orderStatus}></span>
                                 {order.deliveryStatus}
+                              </div>
+                              <div>
+                                <b>DATE:</b>&emsp;
+                                {formatDate(order.purchaseDate, 'utc')}
                               </div>
                             </div>
                           </div>

@@ -1,5 +1,7 @@
-import { Accordion, AccordionDetails, AccordionSummary, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState, useRef } from "react";
+import { Accordion, AccordionDetails, AccordionSummary, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+import styles from '../styles/Events.module.css';
 
 const EventFormInput = ({productList, selectedSize, handleSizeSelect, handleProductAddition}) => {
   const [expanded, setExpanded] = useState(undefined);
@@ -12,13 +14,13 @@ const EventFormInput = ({productList, selectedSize, handleSizeSelect, handleProd
   return (
     <div className="projects col m12 l9">
       <div className="card">
-        <div className="card-header">
-          <h3>Incoming Order</h3>
+        <div className="card-header center">
+          <h3 className={styles.orderProductHeader}>PRODUCTS</h3>
         </div>
       </div>
 
       <div className="card-body">
-        <div className="order-accordian_map">
+        <div className={styles.orderAccordianMap + " order-accordian_map"}>
           {productList ?
             productList.map((category, index) => {
               return (
@@ -36,24 +38,24 @@ const EventFormInput = ({productList, selectedSize, handleSizeSelect, handleProd
                       aria-label={category.category_name}
                       style={{ marginBottom: '0' }}
                     >
-                      <div className="order-summary" key={category._id}>
-                        <div className="col s9">{category.category_name}</div>
-                        <div className="col s3">
-                        </div>
+                      <div className={styles.orderSummary + " order-summary"} key={category._id}>
+                        <div
+                          style={expanded === index ? { color: 'black'} : { color: 'white'}}
+                          className="col s12">{category.category_name}</div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails className="order-collapsible_details">
                       {category.products.map((product, index) => {
                         return (
-                          <div className="row" key={index}>
-                            <div className="col s3">
+                          <div className={styles.productMapRow + " row"} key={index}>
+                            <div className="col s4">
                               {product.product_name}
                             </div>
-                            <div className="col s3">
+                            <div className="col s2">
                               {product.product_colors}
                             </div>
                             <div className="col s2">
-                              {product.price}
+                              ${product.price}
                             </div>
                             <div className="col s2">
                               <FormControl>
@@ -83,8 +85,8 @@ const EventFormInput = ({productList, selectedSize, handleSizeSelect, handleProd
                             </FormControl>
                             </div>
                             <div className="col">
-                              <button style={{ color: "black" }} onClick={() => {handleProductAddition(product._id)}}>
-                                Add To List
+                              <button onClick={() => {handleProductAddition(product._id)}}>
+                              <i class="material-icons">add</i>
                               </button>
                             </div>
                           </div>

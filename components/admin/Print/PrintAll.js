@@ -14,7 +14,7 @@ import PrintHeader from '../../print/PrintHeader';
 import { useRouter } from 'next/router';
 
 const PrintAll = ({ login }) => {
-  
+  const router = useRouter()
 
   const [orderObject, setorderObject] = useState({});
   const [userIndex, setUserIndex] = useState(null);

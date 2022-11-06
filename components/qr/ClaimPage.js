@@ -11,7 +11,7 @@ import { claimOrder, getSingleUser, resendConfirmationFetch } from "../../utils/
 const ClaimPage = () => {
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
-  const [userCheck, setUserCheck] = useState();
+  const [userCheck, setUserCheck] = useState(null);
   
   useEffect(() => {
     const getUserData = async () => {
