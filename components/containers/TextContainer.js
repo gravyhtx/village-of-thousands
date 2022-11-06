@@ -1,4 +1,4 @@
-const TextContainer = ({ containerClasses, containerId, header, headerClasses, headerId, children, textId,
+const TextContainer = ({ children, containerClasses, containerId, header, headerClasses, headerId, textId,
   textClasses, contain, border, margin, backgroundColor, fnClick, fnChange, fnBlur }) => {
   let cClass = containerClasses ? " "+containerClasses : "";
   let cId = containerId || "";
@@ -21,9 +21,9 @@ const TextContainer = ({ containerClasses, containerId, header, headerClasses, h
     <div className={(margin === false ? "text-container no-margin" : "text-container")
                     + (backgroundColor === false ? ' no-bkg' : '')}>
       <div
-        onClick={fnClick?handleClick:null}
-        onChange={fnChange?handleChange:null}
-        onBlur={fnBlur?handleBlur:null}
+        // onClick={fnClick?handleClick:null}
+        // onChange={fnChange?handleChange:null}
+        // onBlur={fnBlur?handleBlur:null}
         className={"text-container box" + cClass + borders}
         id={cId}>
           {header ? <header className={"text-container_header"+hClass} id={hId}>{header}</header> : <></>}

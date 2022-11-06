@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SocialCircles } from "../containers/SocialCircles";
 import TextContainer from '../containers/TextContainer';
 
@@ -11,7 +11,10 @@ import { claimOrder, getSingleUser, resendConfirmationFetch } from "../../utils/
 const ClaimPage = () => {
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
-  const [userCheck, setUserCheck] = useState(null);
+  const [userCheck, setUserCheck] = useState(false);
+
+  const [claimSuccess, setClaimSuccess] = useState(null);
+  const [claimErrors, setClaimErrors] = useState({class: '', message: ''});
   
   useEffect(() => {
     const getUserData = async () => {
@@ -23,7 +26,7 @@ const ClaimPage = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
-        setLoaded(true);
+        // setLoaded(true);
       } catch (err) {
         console.error(err);
       }
@@ -33,14 +36,14 @@ const ClaimPage = () => {
   }, [userDataLength]);
 
   const [input, setInput] = useState({ code: '', });
-  const [errorClass, setErrorClass] = useState({ code: '', });
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
     setInput({...input, [name]: value.toUpperCase() });
-    setErrorClass({ code: '', })
+    setClaimErrors({ class: '', message: '' })
   }
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -66,14 +69,19 @@ const ClaimPage = () => {
       console.log(response)
       if(!response.success) {
         alert(response.message)
+        setClaimSuccess(false);
+        setClaimErrors({ ...claimErrors, class: ' error' })
+      }
+      if(response.success) {
+        setClaimSuccess(true);
       }
 
     } catch (err) {
       console.error(err);
     }
-    setInput({
-        code: '',
-    });
+    // setInput({
+    //     code: '',
+    // });
   }
 
   const resendConfirmation = async () => {
@@ -84,32 +92,52 @@ const ClaimPage = () => {
     resendConfirmationFetch(profile);
   }
 
+  const FormInput = () => {
+    return (
+      <input
+        type='text'
+        className={styles.input + ' input-field center' + claimErrors.class}
+        id='claim-code_input'
+        key='code'
+        name='code'
+        onChange={(e) => handleInputChange(e)}
+        value={input.code}
+      />)
+  }
+
+  const FormChildren = () => {
+    
+    return (<>
+      <div className={styles.inputContainer + ' input-field col'}>
+        <FormInput />
+      </div>
+      <div className="center-text">
+        <button
+          onClick={handleFormSubmit}
+          className='theme-btn'
+        >
+          CLAIM
+        </button>
+      </div>
+    </>)
+  }
+
+
+  const ClaimBoxChildren = () => {
+    return (
+      <TextContainer header="ENTER YOUR CODE"
+        containerClasses="reverse thick shadow padding dark-gradient no-margin"
+        border={true}
+        backgroundColor={false}>
+        {claimSuccess ? <>SUCCESS!</> : <FormChildren />}
+      </TextContainer>
+    )
+  }
+
   const ClaimBox = () => {
     return (
       <div className={styles.claimBox}>
-        <TextContainer header="ENTER YOUR CODE"
-          containerClasses="reverse thick shadow padding dark-gradient no-margin"
-          border={true}
-          backgroundColor={false}>
-          <div className={styles.inputContainer + ' input-field col'}>
-            <input
-              type='text'
-              className={styles.input + ' input-field center' + errorClass.code}
-              id='claim-code_input'
-              name='code'
-              onChange={handleInputChange}
-              value={input.code}
-            />
-          </div>
-          <div className="center-text">
-            <button
-              onClick={handleFormSubmit}
-              className='theme-btn'
-            >
-              CLAIM
-            </button>
-          </div>
-        </TextContainer>
+        <ClaimBoxChildren />
       </div>
     )
   }
