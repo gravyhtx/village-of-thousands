@@ -22,6 +22,8 @@ export const events = {
   "yr22": [
     {
       "name": eventsData.banger.fullEventName,
+      "textName": eventsData.banger.eventName,
+      "textSubName": "VERT JAM '22",
       "showName": false,
       "confirmed": true,
       "street": "2202 Paul Quinn St.",
@@ -63,6 +65,8 @@ export const events = {
     },
     {
       "name": "SNEAKER SUMMIT",
+      "textName": "SNEAKER SUMMIT",
+      "textSubName": "2022",
       "showName": true,
       "confirmed": false,
       "street": "",
