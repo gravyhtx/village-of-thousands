@@ -15,12 +15,12 @@ export const MiCon = ({ name, icon, classes, url, useButton, navColsTotal, onCli
       "('navColsTotal' is a "+checkTypeof(navColsTotal,'number').type)+")"
   }
 
-  navColsTotal = checkType(navColsTotal, 'number') ? (Number(navColsTotal) / 12) : false;
+  navColsTotal = checkType(navColsTotal, 'number') ? (12 / Number(navColsTotal)) : false;
 
   index=index?index:null;
 
   const micon = navColsTotal ?
-    <div className={"col s" + navColsTotal + "micon-col"} key={index}>
+    <div className={"col s" + navColsTotal + " micon-col"} key={index}>
       <span
         onClick={onClick && useButton === false ? onClick : null}
         alt={!url ? alt : null}
