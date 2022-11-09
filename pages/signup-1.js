@@ -11,6 +11,7 @@ import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
   let router = useRouter();
+  // console.log(router.query)
 
   // Get User Data
   const [userData, setUserData] = useState({});
@@ -33,6 +34,11 @@ const UserMnemonic = () => {
 
         const user = await response.json();
         setUserData(user);
+
+        if(userData.pending === false) {
+          router.push('/')
+        }
+        
       } catch (err) {
         console.error(err);
       }
@@ -160,6 +166,7 @@ const UserMnemonic = () => {
 
   return (
     <DefaultLayout title={"Create Account"} withAuth={true}>
+    {userData.pending === true ?
       <div className="user-mnemonic-container animate__animated animate__fadeIn box-container-fluid" id="user-registration-container">
         <h1 className="user-registration-header center">Complete Your Registration</h1>
         <div className="seed-phrase">
@@ -194,7 +201,7 @@ const UserMnemonic = () => {
         </div>
         <div className="user-registration-next center">
           {/* <Agree /> */}
-          <Link href="/signup-2"><a><Button
+          <Link href={router.query ? "/signup-2?q="+router.query.q : "/signup-2"}><a><Button
             node="button"
             style={{
               margin: '0 auto',
@@ -210,6 +217,8 @@ const UserMnemonic = () => {
         </div>
         <br /><br />
       </div>
+    : <></>
+    }
     </DefaultLayout>
   )
 }

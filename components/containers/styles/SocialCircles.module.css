@@ -1,0 +1,28 @@
+.socialCircles {
+  margin: 0 auto !important;
+}
+
+.contain {
+  margin: 0 auto !important;
+  max-width: 520px;
+  padding: 10px;
+}
+
+.wRap {
+  margin: 0 auto !important;
+  max-width: 100%;
+}
+
+.socialIcon {
+  max-width: 60px;
+  width: 75%;
+  filter: invert(100%);
+  cursor: pointer !important;
+}
+
+.socialEventIcon {
+  max-width: 60px;
+  width: 75%;
+  filter: invert(83%) sepia(9%) saturate(512%) hue-rotate(160deg) brightness(115%) contrast(120%);
+  cursor: pointer !important;
+}

@@ -13,8 +13,38 @@
   text-decoration: none;
   /* font-size: medium; */
 }
-/* background: #f0f0f0; */
-/* sidebar section */
+
+/* SELECTION */
+.order-accordian div b::selection,
+.order-accordian div::selection,
+.order-accordian span::selection,
+.order-accordian br::selection,
+.card-header h3::selection,
+.customer div::selection,
+.customer div h4::selection,
+.customer .info div small::selection,
+header.header-admin h2::selection,
+header.header-admin span::selection,
+.user-admin-wrapper div h4::selection,
+.user-admin-wrapper div small::selection,
+.order-accordian div::selection {
+  background: rgb(183, 195, 203) !important;
+  user-select: all;
+}
+
+header.header-admin h2::selection,
+header.header-admin span::selection,
+.user-admin-wrapper div small::selection {
+  color:rgba(36, 54, 75, 0.8)
+}
+
+.customer .info img,
+.user-admin-wrapper img {
+  user-select: none;
+}
+
+
+/* GENERAL */
 
 .sidebar-admin {
   width: 300px;
@@ -369,7 +399,7 @@ tr {
 
 .order-collapsible .row {
   font-weight: 500;
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 .order-accordian .collapsible.MuiAccordion-root {
@@ -388,6 +418,10 @@ tr {
   border-top: none;
 }
 
+.order-accordian .order-collapsible {
+  user-select: all;
+}
+
 .order-accordian .order-collapsible.active .order-collapsible {
   font-weight: 500;
   background: #f0f0f0;
@@ -395,6 +429,7 @@ tr {
   text-shadow: 1px 1px 0 #bbb;
   border-top: 1px solid #bbb;
   border-radius: 0px;
+  user-select: all;
 }
 
 .order-accordian .order-collapsible.active .order-collapsible:first-child {
@@ -437,6 +472,8 @@ tr {
   text-align: center;
   width: 100%;
   font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 .order-collapsible .confirmation {
@@ -484,6 +521,10 @@ tr {
 
 .status.flagged {
   background: rgb(219, 110, 67);
+}
+
+.status.error {
+  background: rgb(219, 67, 67);
 }
 
 .confirmation .status {
@@ -636,13 +677,15 @@ tr {
   }
 
   .card-single {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin:  0 auto;
     text-align: center;
   }
 
   .recent-grid div {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
 
   header {
@@ -676,6 +719,21 @@ tr {
   }
 }
 
+@media only screen and (max-width: 1080px) {
+  .card-single h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }}
+  @media only screen and (max-width: 800px) {
+    .card-single h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      height: 65%;
+    }
+    .card-single {
+      padding: 1rem;
+    }}
+
 @media only screen and (max-width: 560px) {
   .card-single h1 {
     font-size: 2rem;
@@ -685,5 +743,91 @@ tr {
   }
   .cards {
     /* grid-template-columns: 100%; */
+  }
+}
+
+
+/* PRINT */
+
+.micon-nav {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.micon-nav a {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  margin: auto;
+}
+.print-content {
+  color: black;
+}
+
+.print-out {
+  overflow: visible !important;
+  height: auto;
+  width: auto;
+}
+
+.print-settings {
+  color: white;
+}
+
+@media print {
+  @page {
+    size: A4;
+  }
+  html, body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 10px;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    display: inline;
+    position: absolute !important;
+  }
+  div {
+    display: block;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .pagebreak {
+    clear: both;
+    page-break-after: always;
+  }
+
+  .header.o-num {
+    margin-left: 8px !important;
+    margin-right: -8px !important;
+    text-align: left;
+  }
+  
+  .header.o-date {
+    margin-left: -10px !important;
+    text-align: right;
+  }
+  .print_row .date {
+    /* margin-left: -5px !important; */
+    text-align: right;
+  }
+  .print_row .tax {
+    color: #666;
+  }
+  .print_row .cost {
+    font-weight: 600;
+  }
+  .print_row .total {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  .print-deets {
+    color: #666;
   }
 }

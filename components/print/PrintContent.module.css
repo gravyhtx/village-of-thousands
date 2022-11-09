@@ -1,0 +1,167 @@
+.printContent {
+  color: black;
+  position: fixed;
+  top: 10px;
+  padding: 20px 20px 50px;
+  width: 90%;
+}
+
+.printHeader {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 50px;
+}
+
+.printHeader h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.printHeaderSimple {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0px;
+}
+
+.printHeaderSimple h2 {
+  margin-bottom: 10px;
+}
+
+.printHeaderSimple .headerRow {
+  font-size: 20px;
+}
+
+.printDate {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.orderContainer {
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #ccc;
+  /* margin-top: 30px; */
+  margin-bottom: 0px;
+}
+
+.orderContainer:last-child {
+  border-bottom: none;
+}
+
+.orderContainerSimple {
+  font-size: 14px;
+  font-weight: 400;
+  /* padding-bottom: 50px; */
+  border-bottom: 1px solid #ccc;
+  /* margin-top: 30px;
+  margin-bottom: 30px; */
+}
+
+.orderContainerSimple:last-child {
+  border-bottom: none;
+}
+
+.headerRow {
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+.o-num {
+  padding-left: 8px !important;
+}
+
+.oNum {
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 800;
+  border: 3px solid black;
+  padding: 4px 8px !important;
+  background: #eee;
+}
+
+.oNumSimple {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 800;
+  border: 3px solid black;
+  padding: 4px 8px !important;
+  background: #eee;
+}
+
+.printContent {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: 5px;  /* Firefox */
+}
+
+.printContent::-webkit-scrollbar {
+  width: 0;
+}
+
+.confirmation {
+  margin-bottom: 0;
+  padding: 0 0.75rem;
+}
+
+.addressHeader .row {
+  margin-bottom: 0 !important;
+}
+
+.addressHeader {
+  padding: 6px 0.75rem 0;
+}
+
+.addressHeader b {
+  text-decoration: none !important;
+}
+
+.orderAddress .address {
+  font-weight: 400;
+}
+
+.deetsHeaders {
+  font-weight: 600;
+}
+
+.printMap {
+  font-style: italic;
+}
+
+.printMap,
+.orderSummary {
+  font-size: 14px;
+}
+.orderSummary {
+  font-weight: 500;
+}
+
+.printingContent {
+  color: black;
+  background: white;
+  position: static;
+  top: 10px;
+  padding: 20px 20px 50px;
+  width: 90% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+}
+
+
+@media print {
+  
+  .printContent {
+    -ms-overflow-style: auto;  /* IE and Edge */
+    scrollbar-width: auto;  /* Firefox */
+  }
+
+  .printContent::-webkit-scrollbar {
+    width: auto;
+  }
+  .printContent {
+    position: sticky;
+    display: block;
+  }
+}

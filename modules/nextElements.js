@@ -15,7 +15,7 @@ export const NxtLink = ({ children, classes, url, linkClasses, linkAlt, button, 
 
   const bClassName =
     buttonClasses
-    + (float === true ? ' bton-floating' : ' ')
+    + (float === true ? ' btn-floating' : ' ')
     + (nav === true ? ' navigation-link nav-' : ' ')
     + (nav === true && index ? index : 'item')
 

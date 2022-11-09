@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react"
 import { getSingleUser } from '../utils/API';
 import Auth from '../utils/auth';
+import { checkType } from "./validation";
+
+//////////////////////
+// GLOBAL VARIABLWS //
+//////////////////////
 
 const date =  new Date();
+const timeElapsed = Date.now();
+const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // GET CURRENT YEAR
 // Input a number 1 to 4 (or -4 to -1) to specify the number of digits to output
-export const getYears = (int) => {
-  const year =  date.getFullYear().toString();
+
+export const getYears = (inputDate, int) => {
+  inputDate = inputDate === false ? inputDate : false;
+  const y = (d) = d.getFullYear().toString();
+  const d = inputDate ? inputDate : date;
+  const year = y(d);
   const getLast = int && int !== true && int <= 4 && int >= 1
       ? -1*int
     : int && int !== true && int <= -1 && int >= -4
@@ -17,23 +30,24 @@ export const getYears = (int) => {
 }
 
 // GET CURRENT MONTH
-export const getMonths = (addZeros, toString) => {
+export const getMonths = (inputDate, addZeros, toString) => {
+  inputDate = inputDate === false ? inputDate : false;
   toString = toString === true ? true : false;
-  const months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
   const month = addZeros && (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1; 
   return toString === false ? month : months[date.getMonth()];
 }
 
 // GET CURRENT DATE
-export const getDays = (addZeros) => {
+export const getDays = (inputDate, addZeros) => {
+  inputDate = inputDate === false ? inputDate : false;
   const today = date.getDate();
   return addZeros && today < 10 ? '0' + today.toString() : today.toString();
 }
 
 // GET HOURS/MINUTES IN CALCULATION OR MILITARY TIME
 // Ex. 14hr 30min = 14.5 or 1430
-export const getTimeCalc = (hour, minutes, military) => {
+export const getTimeCalc = (inputDate, hour, minutes, military) => {
+  inputDate = inputDate === false ? inputDate : false;
   const total = 60;
   const min = !Number.isNaN(minutes) && minutes <= 60 ? Number(minutes) : 0;
   const hr = !Number.isNaN(hour) && ((hour < 24 && min) || (hour === 24 && min === 0)) ? Number(hour) : 0;
@@ -47,12 +61,39 @@ export const getTimeCalc = (hour, minutes, military) => {
   return military === true ? milTime : timeCalc.toFixed(2);
 }
 
+// GET CURRENT TIME
+export const currentTime = (inputDate, military, sec, min, hr) => {
+  inputDate = inputDate === false ? inputDate : false;
+
+  military = military === true ? true : false;
+
+  hr = hr === false ? false : true;
+  min = min === false ? false : true;
+  sec = sec === true ? true : false;
+
+  const hours = military === false && date.getHours() > 12
+      ? date.getHours() - 12 + ':'
+    : military === false && date.getHours() <= 12
+      ? date.getHours() + ':'
+      : '';
+  const minutes = min === false ? '' : date.getMinutes() + ':';
+  const seconds = sec === true && military === false ? date.getSeconds() : '';
+
+  const time = hours + minutes + seconds;
+
+  const amPm = military === true
+      ? ''
+    : date.getHours() > 12 && military === false
+      ? 'PM' : 'AM'
+
+  return time + amPm;
+}
+
 // FORMAT DATE BASED ON 'FORMAT' INPUT
 export const formatDate = (inputDate, format) => {
-  inputDate = inputDate ? inputDate : false
-  format = format ? format.toLowerCase() : false;
+  inputDate = inputDate ? inputDate : false;
+  format = format === true ? true : format && format !== true ? format.toLowerCase() : false;
 
-  const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
 
   const toDate = new Date(inputDate);
@@ -60,43 +101,99 @@ export const formatDate = (inputDate, format) => {
   const toMonth = inputDate ? toDate.getMonth()+1 : today.getMonth()+1;
   const toDay = inputDate ? toDate.getDate() : today.getDate();
 
+  if(inputDate === true && format === false) {
+    return today.toLocaleDateString();
+  }
+  if(inputDate === false && format === true) {
+    return today.toISOString();
+  }
+  if(inputDate === true && format === true) {
+    return today.toDateString();
+  }
+
   switch (format) {
-    case format === false:
+    case false:
+    case 'number':
+      const numberFormat =
+        (toMonth < 10 ? '0'+toMonth : toMonth).toString() +
+        (toDay < 10 ? '0'+toDay : toDay).toString() +
+        toYear.toString().slice(-2);
       return inputDate === false
-      ? getMonths(true)+getDays(true)+getYears(2)
-      : (toMonth < 10 ? '0'+toMonth : toMonth)+(toDay < 10 ? '0'+toDay : toDay)+(toYear.slice(-2));
-    case format === 'str':
-    case format === 'string':
+        ? getMonths(true)+getDays(true)+getYears(2)
+        : Number(numberFormat);
+        // 061322
+    case true:
+    case 'local':
+    case 'locale':
+      return inputDate === false
+        ? today.toLocaleDateString()
+        : toDate.toLocaleDateString();
+        // "6/13/2020"
+    case 'str':
+    case 'string':
       return inputDate === false
         ? today.toDateString()
-        : toDate.toDateString()
+        : toDate.toDateString();
         // "Sun Jun 13 2020"
-    case format === 'iso':
+    case 'iso':
       return inputDate === false
         ? today.toISOString()
-        : toDate.toISOString()
+        : toDate.toISOString();
         // "2020-06-13T18:30:00.000Z"
-    case format === 'utc' && inputDate === false:
+    case 'utc':
       return inputDate === false
         ? today.toUTCString()
-        : toDate.toUTCString()
+        : toDate.toUTCString();
         // "Sat, 13 Jun 2020 18:30:00 GMT"
-    case format === 'local':
-    case format === 'locale':
-      return inputDate === false
-        ? today.toLocaleDateString()
-        : toDate.toLocaleDateString()
-        // "6/13/2020"
-    case format === 'obj':
-    case format === 'object':
+    case 'obj':
+    case 'object':
+    default:
       return { month: toMonth, day: toDay, year: toYear }
       // {month: 6, day: 13, year: 2020}
-    default:
-      return inputDate === false
-        ? today.toLocaleDateString()
-        : toDate.toLocaleDateString()
   }
 }
+
+export const valiDate = (inputDate) => {
+  const formatted = formatDate(inputDate,'obj');
+  const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+  if (regex.test(formatted)) {
+    return false;
+  }
+  
+  const date = new Date(inputDate);
+  const timestamp = date.getTime();
+
+  if (!checkType(timestamp, 'number')) {
+    return false;
+  }
+
+  return true;
+}
+
+// CHECK IF DATE MATCHES TODAY'S DATE
+export const isToday = (inputDates) => {
+  const today = formatDate(true);
+  const formatToday = (inputDates) => formatDate(inputDates,true);
+
+  if(checkType(inputDates, 'string')) {
+    return formatToday(inputDates) === today;
+  }
+
+  if(checkType(inputDates, 'array')) {
+    for(let i=0; i < inputDates.length; i++) {
+      if(formatToday(inputDates[i]) === today) {
+        return true;
+      }
+    }}
+  
+  return false;
+}
+
+
+/////////////////
+// PRICE CHECK //
+/////////////////
 
 export const taxAmount = (grossTotal, orderTotal) => {
   const stripePercent = ((grossTotal * 0.029) + 0.3).toFixed(2);
@@ -113,8 +210,26 @@ export const netAmount = (grossTotal, orderTotal) => {
   return (( grossTotal - stripePercent - shippingPercent - taxPercent)).toFixed(2);
 }
 
+
+//////////////////
+// ADMIN CHECKS //
+//////////////////
+
+export const adminWhitelist = (email) => {
+
+  let envOnj = process.env.ADMIN_WHITELIST;
+
+  return {
+    name: adminName,
+    email: adminEmail,
+    phone: adminEmail
+  }
+
+}
+
+
 ////////////////////////
-// CLIENT SIDE CHECKS //
+// SERVER SIDE CHECKS //
 ////////////////////////
 
 export const authCheck = () => {
@@ -122,6 +237,49 @@ export const authCheck = () => {
   const authorized = token ? true : false;
   return authorized;
 };
+
+export const orderStatus = (deliveryStatus, showText, errorMessage) => {
+
+  deliveryStatus = deliveryStatus && deliveryStatus !== true
+      ? deliveryStatus.toLowerCase()
+    : deliveryStatus === true
+      ? 'complete'
+    : deliveryStatus === false
+      ? 'processing'
+      : undefined;
+
+  showText = showText === false ? false : true;
+
+  errorMessage = errorMessage && errorMessage !== true
+      ? errorMessage
+    : errorMessage === true
+      ? ''
+      : false;
+
+  const statusEl = (statusObj) => <>
+    <span className={"status "+statusObj.class} />
+    { showText === true ? statusObj.text : '' }
+    { deliveryStatus === 'error' && errorMessage !== false ? statusObj.message : '' }
+  </>;
+
+  switch(deliveryStatus) {
+    case 'processing':
+      return statusEl({ class: 'flagged', text: 'Processing' });
+    case 'complete':
+      return statusEl({ class: 'done', text: 'Complete' });
+    case 'error' && errorMessage:
+      return statusEl({ class: 'error', text: 'Error', message: errorMessage });
+    case 'error' && errorMessage === false:
+      return statusEl({ class: 'error', text: 'Error' });
+    case undefined:
+      return statusEl({ class: 'error', text: 'Error', message: 'Unable to get delivery status.' });
+  }
+}
+
+
+////////////////////////
+// CLIENT SIDE CHECKS //
+////////////////////////
 
 export const isMobile = () => {
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -213,6 +371,14 @@ export const screenHeight = (window) => {
   return windowSize(window).height;
 }
 
+////////////////////////
+// CLIENT SIDE CHECKS //
+////////////////////////
+
+
+
+
+
 //////////////////////
 // CONVERT ELEMENTS //
 //////////////////////
@@ -230,9 +396,17 @@ export const canvasToPng = ( el, alt, classes, id ) => {
 
 
 
+
 /////////////////////
 // RETURN ELEMENTS //
 /////////////////////
+
+
+
+
+////////////
+// IMAGES //
+////////////
 
 
 export const emptyData = ( dataArray, dataImage ) => {

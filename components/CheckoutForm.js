@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useScreenWidth } from '../modules/getWindow'
 import { idbPromise } from "../utils/helpers";
-import { updateAmount, fetchPayment, deletePaymentIntent , createOrder } from "../utils/API";
+import { updateAmount, fetchPayment, deletePaymentIntent , createOrder, fetchEventStatus } from "../utils/API";
 import Auth from '../utils/auth';
 import AddressCheckout from "./AddressCheckout";
 import Succcess from './confirmation';
 import { useRouter } from 'next/router';
+import { simpleHash } from '../modules/hashSystem'
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -73,9 +74,12 @@ const CheckoutForm = () => {
                 return
             }
 
+            const eventResponse = await fetchEventStatus(token);
+            const {eventStatus} = await eventResponse.json();
+
             const response = await fetchPayment(
                 {
-                    amount: totalAmount(cart),
+                    amount: totalAmount(cart, eventStatus),
                     userId: userProfile.data._id,
                     userEmail: userProfile.data.email
                 },
@@ -96,9 +100,12 @@ const CheckoutForm = () => {
 
             const { cart } = await idbPromise('cart', 'get');
 
+            const eventResponse = await fetchEventStatus(token);
+            const {eventStatus} = await eventResponse.json();
+
             const response = await updateAmount(
                 {
-                    amount: totalAmount(cart),
+                    amount: totalAmount(cart, eventStatus),
                     stripeId: paymentIntent.id
                 },
                 token
@@ -115,9 +122,10 @@ const CheckoutForm = () => {
         postNewPaymentIntent()
     }, []);
 
-    function totalAmount(arr) {
+    function totalAmount(arr, eventStatus) {
         const sum = arr.reduce((prev, curr) => prev + parseInt(curr.price), 0);
-        return (12 + sum + (Math.round((sum * 0.0825) * 100) / 100))
+        const shipping = eventStatus ? 0 : 12;
+        return (shipping + sum + (Math.round((sum * 0.0825) * 100) / 100))
     }
 
     const handleSubmit = async event => {
@@ -151,8 +159,11 @@ const CheckoutForm = () => {
                     productsOrdered.push(item.id)
                 })
 
+                const hashedOrderId = simpleHash(orderId, false);
+
                 const orderObj = {
                     id: user.data._id,
+                    userEmail: user.data.email,
                     products: productsOrdered,
                     productSKU,
                     addressCheck,
@@ -164,7 +175,10 @@ const CheckoutForm = () => {
                     },
                     paymentConfirmation: orderId,
                     totalPrice: totalAmount(cart),
-                    specialInstructions: "None"
+                    specialInstructions: "None",
+                    paymentType: "Stripe",
+                    simpleHash: hashedOrderId,
+                    isPhysicalSale: false
                 }
 
                 await createOrder(orderObj)

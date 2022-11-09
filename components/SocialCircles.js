@@ -8,7 +8,8 @@ import TikTok from '../public/images/icons/tiktok_social-circles.svg';
 
 import website from '../config/site-data.json';
 
-const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, icon4, icon1link, icon2link, icon3link, icon4link, icon1alt, icon2alt, icon3alt, icon4alt }) => {
+
+export const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, icon4, icon1link, icon2link, icon3link, icon4link, icon1alt, icon2alt, icon3alt, icon4alt }) => {
 
   iClass=iClass?" "+iClass:" svg-color-light";
   socialContainer=socialContainer?" "+socialContainer:"";
@@ -70,5 +71,3 @@ const SocialCircles = ({ socialContainer, iClass, width, icon1, icon2, icon3, ic
     </div>
   )
 }
-
-export default SocialCircles;

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import DefaultLayout from "../templates/DefaultLayout";
 import { idbPromise } from "../utils/helpers";
-import { ProductImage } from "../components/dynamic-content/ProductData";
-import CartItem from "../components/CartItem.js";
+import CartItem from "../components/checkout/CartItem.js";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -14,7 +13,7 @@ const Cart = () => {
       const indexedDB = await idbPromise('cart', 'get');
       if(indexedDB) {
         const { cart } = await idbPromise('cart', 'get');
-        console.log(cart)
+        // console.log(cart)
         setCart(cart)
       }
     }
@@ -32,7 +31,7 @@ const Cart = () => {
 
   async function deleteFromCart(id) {
     const itemId = id
-    console.log(itemId)
+    // console.log(itemId)
     await idbPromise('cart', 'deleteone', {
       id: itemId
     })

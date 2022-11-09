@@ -5,7 +5,7 @@ import DefaultLayout from "../templates/DefaultLayout";
 import { Accordion, AccordionDetails } from "@mui/material";
 import AccordionSummary from '@mui/material/AccordionSummary';
 import SiteImage from "../components/SiteImage";
-import Questions from "../components/FaqContent";
+import Questions from "../components/dynamic-content/FaqContent";
 import RandomQuote from "../components/dynamic-content/RandomQuote";
 
 import Cartas from "../public/images/art/cartas.png";

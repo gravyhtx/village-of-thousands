@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Head from 'next/head'
+import Head from 'next/head';
 import TopNav from '../components/TopNav';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,7 +10,7 @@ import website from '../config/site-data.json';
 import favicon from '../public/favicon.ico'
 
 import { authCheck } from '../utils/siteFunctions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // import XMLHttpRequest from 'xhr2';
 
@@ -20,11 +20,6 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
 
-  useEffect(() => {
-    if(withAuth && (authCheck() === false)) {
-      window.location.href='/login';
-    }
-  });
 
   return (
     <div className={classes} id="layout">
@@ -58,10 +53,10 @@ export default function DefaultLayout({ headerImages, title, classes, descriptio
         <link rel="shortcut icon" href={ favicon.src } />
       </Head>
       <ScrollToTop />
-      {headerImages ? <Header images={headerImages} /> : <Header />}
+      {headerImages ? <Header images={ headerImages } /> : <Header />}
       <TopNav />
         <div className="main-content" id="content">
-          {withAuth && authCheck() || !withAuth ? children : <></>}
+          { withAuth && authCheck() || !withAuth ? children : <></> }
         </div>
       <Footer />
     </div>

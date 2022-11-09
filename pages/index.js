@@ -2,19 +2,18 @@ import Link from 'next/link';
 
 import DefaultLayout from '../templates/DefaultLayout';
 
-import Hero from '../components/Hero';
+import Hero from '../components/layout/Hero';
 import HeroImage from '../public/images/vot_banner.png';
 import RandomQuote from '../components/dynamic-content/RandomQuote';
+import { SocialCircles } from '../components/containers/SocialCircles';
 
 import TextContainer from '../components/TextContainer';
 import ImageContainer from '../components/ImageContainer';
-import SocialCircles from '../components/SocialCircles';
 
 import Pixels from '../public/images/art/choose_your_vot.png';
 import Hope from '../public/images/art/hope.png';
 
 import { useWindowSize } from '../modules/getWindow';
-// import LoadComponents from '../modules/LoadComponents';
 
 const Home = () => {
 

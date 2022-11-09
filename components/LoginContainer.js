@@ -4,14 +4,21 @@ import Link from "next/link";
 import { Accordion, AccordionDetails, capitalize } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from './signup/Login';
+import Register from './signup/Register';
 import RandomQuote from "../components/dynamic-content/RandomQuote";
+import { checkType } from '../utils/validation';
 
-const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, admin }) =>  {
+const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, admin, changeComponents, path }) =>  {
+  
+  path = checkType(path, 'string') ? path : activationPage === true ? 'activate' : false;
+
+  const [component, setComponent] = useState(
+    name === 'login' || activationPage === true || admin === true
+    ? 'login' : 'register');
 
   // Ensure names are correct
-  name = name === 'login' || activationPage === true || admin === true ? 'login' : 'register';
+  // name = name === 'login' || activationPage === true || admin === true ? 'login' : 'register';
 
   // Sets admin to 'false' by default unless specified
   admin = admin === true ? true : false;
@@ -26,7 +33,7 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
   // If "reloadPage" is true, page will reload on login (instead of go to home) -- Default is 'false'.
   //  ** Used in '/activate/[slug]', '/admin', and QR pages -- wherever
   //     login is needed to continue on the same page **
-  reloadPage = reloadPage === true || activationPage === true || admin === true ? true : false;
+  reloadPage = (reloadPage === true || activationPage === true || admin === true) ? true : false;
   
   // Check to see which component is expanded
   const [expanded, setExpanded] = useState(name || 'login');
@@ -37,7 +44,20 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
   };
 
   // Component object
-  const signupContainers = [{name:'login', component: <Login reloadPage={reloadPage}/>}, {name:'register', component: <Register/>}];
+  const signupContainers = [
+    {name:'login', component: <Login reloadPage={reloadPage}/>},
+    {name:'register', component: <Register path={path} changeComponents={changeComponents} />}
+  ];
+
+  const switchComponents = () => {
+    if(component === 'register') {
+      setComponent('login');
+      setExpanded('login');
+    } else {
+      setComponent('register');
+      setExpanded('register');
+    }
+  }
 
   const accordianComponent = (container, index) =>
       <Accordion
@@ -56,16 +76,24 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
         </AccordionSummary>
         <AccordionDetails className={
             container.name+"-collapsible-item" +
-            ((mapBoth === false && container.name === "login") || (activationPage)
+            ((mapBoth === false && container.name === "login") || activationPage || changeComponents === true
               ? " margin"
               : "")
           }>
           {container.component}
           { ((mapBoth === false && container.name === "login") || (activationPage)) && admin === false
+            || changeComponents === true
             ? <div className="login-only-message">
-              <Link href="/register"><a className="did-you-register">
-                <div className="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
-              </a></Link></div>
+              {changeComponents !== true ? 
+                <Link href="/register"><a className="did-you-register center">
+                  <div className="monospace">[ DID YOU EVEN REGISTER YET, BROH? ]</div>
+                </a></Link>
+              : <div className="did-you-register center monospace" onClick={() => switchComponents()}>
+                  { component === 'login' ?
+                    <>[ DID YOU EVEN REGISTER YET, BROH? ]</>
+                  : <>[ DID YOU ALREADY REGISTER, DAWG? ]</>}
+                </div>
+              }</div>
             : <></> }
         </AccordionDetails>
       </Accordion>
@@ -73,9 +101,9 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
   
   return (<>
     <div className="signup-collapsible">
-      {  mapBoth === false && name === "login"
+      {  mapBoth === false && component === "login"
           ? accordianComponent(signupContainers[0], 0)
-        : mapBoth === false && name === "register"
+        : mapBoth === false && component === "register"
           ? accordianComponent(signupContainers[1], 0)
         : signupContainers.map((container, index) => {
             return accordianComponent(container, index)

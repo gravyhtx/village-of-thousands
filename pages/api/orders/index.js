@@ -11,7 +11,7 @@ export default async (req, res) => {
       try {
         models.Order.find({}).populate('products').exec(function(err, orderHistory) {
           if (err) console.error(err);
-          console.log(orderHistory)
+          
           const totalGrossEarnings = orderHistory.reduce((x, y) => x + y.totalPrice, 0)
           res.status(200).json({orderHistory, totalGrossEarnings});
         });  

@@ -1,7 +1,7 @@
 import dbConnect from "../../../../utils/dbConnect";
 import User from "../../../../models/User";
 import Order from "../../../../models/Order";
-import Product from "../../../../models/Product";
+
 dbConnect();
 
 export default async (req, res) => {
@@ -30,14 +30,19 @@ export default async (req, res) => {
           }
         }
 
+        //object adjusted for both physical and online stripe formats
         const orderObj = {
+            userEmail: req.body.userEmail,
             products: req.body.products,
             productSKU: req.body.productSKU,
             paymentConfirmation: req.body.paymentConfirmation,
             totalPrice: req.body.totalPrice,
             specialInstructions: req.body.specialInstructions,
-            shippingAddress,
-            billingAddress
+            shippingAddress: !req.body.isPhysicalSale ? shippingAddress : "",
+            billingAddress: !req.body.isPhysicalSale ? shippingAddress : "",
+            paymentType: req.body.paymentType,
+            simpleHash: req.body.simpleHash,
+            isPhysicalSale: req.body.isPhysicalSale
         }
 
         const newOrder = await Order.create(orderObj);
@@ -47,10 +52,6 @@ export default async (req, res) => {
             orders: newOrder
           }
         })
-
-        // orderObj.products.forEach(async (item, index) => {
-        //   await Product.updateOne({''})
-        // })
 
         res.status(200).json('Added new order to DB')
       }catch (err) {

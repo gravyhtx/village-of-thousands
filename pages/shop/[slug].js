@@ -17,8 +17,8 @@ const Products = () => {
 
   const [allProducts, setAllProducts] = useState([]);
 
-  const [category, setCategory] = useState({ category_name: "", products: [], tags: [], _id: "" });
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState({ category_name: "", products: [], tags: [], _id: "" });
 
   const slug = router.query.slug;
 
@@ -52,7 +52,7 @@ const Products = () => {
     setProducts(category ? category.products : [])
   }, [!allProducts.length]);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <DefaultLayout title={"Shop" + (category ? " " + capitalize(category.category_name) : "")}>{/* <DefaultLayout headerImages={headerImages}> */}

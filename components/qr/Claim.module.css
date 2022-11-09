@@ -1,0 +1,238 @@
+/*
+/////////////
+// CLASSES //
+/////////////
+*/
+.main {
+  text-align: center;
+  padding: 40px 0 69px;
+}
+
+.componentHeader {
+  margin-bottom: 50px;
+}
+
+.headerText {
+  font-size: 4.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 10px auto;
+}
+
+.componentHeaderSpan {
+  border-bottom: 5px solid white;
+}
+
+.contentContainer {
+  padding: 20px;
+}
+
+.claimBox {
+  max-width: 60vw;
+  margin: 0 auto;
+}
+
+span.boxHeader {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.claimBoxContent {
+  padding: 20px 0;
+}
+
+@media only screen and (max-width: 108px) {
+  .claimBox {
+    max-width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  span.boxHeader {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .claimBox {
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+  span.boxHeader {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+}
+
+.inputContainer {
+  padding: 40px 60px;
+}
+
+.claimBox .inputContainer .input {
+  font-size: 3rem;
+  font-weight: 700;
+  height: 4.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .claimBox div div {
+    max-width: 90vw;
+    padding: 15px 10px 5px;
+  }
+  span.boxHeader {
+    margin-top: 10px !important;
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  .claimBox .inputContainer .input {
+    margin-top: -10px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .claimBox div div {
+    font-size: 2rem;
+    max-width: 90vw;
+    padding: 15px 10px 5px;
+  }
+  span.boxHeader {
+    font-size: 1.8rem;
+  }
+  .claimBox .inputContainer .input {
+    font-size: 2.8rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  span.boxHeader {
+    font-size: 1.2rem;
+  }
+  .claimBox .inputContainer .input {
+    font-size: 1.8rem;
+  }
+}
+.activateAccountContainer {
+  max-width: 50vw;
+  margin: 0 auto;
+}
+
+.activateAccountText {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.activateResendButton {
+  font-size: 2rem;
+  height: 60px;
+}
+.activateResendButton:hover,
+.activateResendButton:focus {
+  font-size: 2.2rem !important;
+  height: 65px !important;
+}
+
+.link {
+  border-bottom: 1px solid white;
+  font-weight: 500;
+}
+
+.socials {
+  max-width: 67vw;
+  margin: 50px auto;
+}
+
+.socialsText {
+  font-size: 2rem;
+  margin-bottom: 35px;
+}
+
+
+@media only screen and (max-width: 770px) {
+  .componentHeader {
+    margin-bottom: 30px;
+  }
+  .mainHeader {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .headerText {
+    font-size: 3.2rem;
+  }
+  .header {
+    font-size: 1.2rem;
+  }
+  .contentContainer {
+    padding: 0px;
+  }
+  .inputContainer {
+    padding: 20px;
+  }
+  .activateAccountContainer {
+    padding: 20px;
+    max-width: 100vw;
+  }
+  .activateAccountText {
+    font-size: 1.3rem;
+  }
+  .activateResendButton {
+    font-size: 1.2rem;
+    height: 50px;
+  }
+  .activateResendButton:hover,
+  .activateResendButton:focus {
+    font-size: 1.4rem !important;
+    height: 55px !important;
+  }
+  .socials {
+    max-width: 100vw;
+  }
+  .socialsText {
+    font-size: 1.6rem;
+  }
+}
+
+/* --important: #D24B4B;
+--important-highlight: #e57d7d;
+--important-darken: #873535; */
+/* ERROR CLASSES */
+
+.claimBox div .container.error {
+  border-color: var(--important) !important;
+  box-shadow: 8px 8px #87353540 !important;
+  filter: drop-shadow(0 0 #87353550 50px);
+  background: var(--error-gradient);
+  transition: all 4s;
+}
+
+.inputContainer.error input {
+  border-bottom: 3px solid var(--important-darken);
+}
+
+.inputContainer.error input:hover {
+  border-bottom: 3px solid #87353530;
+}
+
+input.error {
+  box-shadow: 2px 2px 20px #eba1a120 !important;
+  transition: box-shadow 5s;
+}
+
+.errorIcon {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: -6px 7px 0;
+}
+
+button.error {
+  border-color: var(--important-darken) !important;
+  background: black;
+  transition: all 1s;
+}
+
+button.error:hover {
+  border-color: var(--important) !important;
+  background: rgba(62, 28, 28, .1);
+  transition: all 1s;
+}
