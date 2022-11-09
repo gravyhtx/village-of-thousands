@@ -188,6 +188,7 @@
   --theme-gradient: rgb(28, 36, 39) linear-gradient(330deg, rgb(25, 34, 36) 0%, rgb(33, 35, 36) 35%, rgb(39, 42, 43) 100%);
   --dark-gradient: rgb(28, 33, 36) linear-gradient(330deg, rgb(20, 23, 26) 0%, rgb(22, 27, 29) 35%, rgb(24, 24, 24) 100%);
   --darker-gradient: rgb(21, 22, 22) linear-gradient(330deg, rgb(19, 20, 20) 0%, rgb(24, 25, 26) 35%, rgb(15, 15, 15) 100%);
+  --error-gradient: rgb(27, 24, 24) linear-gradient(330deg, rgb(18, 13, 13) 0%, rgb(22, 17, 17) 35%, rgb(20, 16, 16) 100%);
 
 /* GRAVY STYLES */
   --gravy-font: 'Poppins', Helvetica, sans-serif;

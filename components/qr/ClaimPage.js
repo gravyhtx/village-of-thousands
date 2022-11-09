@@ -1,12 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect,  useState } from "react";
+
 import { SocialCircles } from "../containers/SocialCircles";
 import TextContainer from '../containers/TextContainer';
 
+import { claimOrder, getSingleUser, resendConfirmationFetch } from "../../utils/API";
 import Auth from '../../utils/auth';
 
 import styles from './Claim.module.css'
 import { useRouter } from "next/router";
-import { claimOrder, getSingleUser, resendConfirmationFetch } from "../../utils/API";
+import { style } from "@mui/system";
+import { MiCon } from "../icons/MatIco";
 
 const ClaimPage = () => {
   const [userData, setUserData] = useState({});
@@ -26,7 +29,6 @@ const ClaimPage = () => {
         }
         const user = await response.json();
         setUserData(user.foundUser);
-        // setLoaded(true);
       } catch (err) {
         console.error(err);
       }
@@ -36,8 +38,6 @@ const ClaimPage = () => {
   }, [userDataLength]);
 
   const [input, setInput] = useState({ code: '', });
-
-  // const router = useRouter();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -64,24 +64,24 @@ const ClaimPage = () => {
         simpleHash: input.code
       }
 
-      const request = await claimOrder(claimObj)
-      const response = await request.json()
-      // console.log(response)
-      if(!response.success) {
-        alert(response.message)
-        setClaimSuccess(false);
-        setClaimErrors({ ...claimErrors, class: ' error' })
-      }
+      const request = await claimOrder(claimObj);
+      const response = await request.json();
+
+      // console.log(response);
+
       if(response.success) {
         setClaimSuccess(true);
+      }
+      if(!response.success) {
+        // alert(response.message)
+        setClaimSuccess(false);
+        setClaimErrors({ ...claimErrors, class: ' '+styles.error })
+        console.log(claimErrors)
       }
 
     } catch (err) {
       console.error(err);
     }
-    // setInput({
-    //     code: '',
-    // });
   }
 
   const resendConfirmation = async () => {
@@ -90,56 +90,6 @@ const ClaimPage = () => {
     const profile = token ? Auth.getProfile() : null;
 
     resendConfirmationFetch(profile);
-  }
-
-  const FormInput = () => {
-    return (
-      <input
-        type='text'
-        className={styles.input + ' input-field center' + claimErrors.class}
-        id='claim-code_input'
-        key='code'
-        name='code'
-        onChange={(e) => handleInputChange(e)}
-        value={input.code}
-      />)
-  }
-
-  const FormChildren = () => {
-    
-    return (<>
-      <div className={styles.inputContainer + ' input-field col'}>
-        <FormInput />
-      </div>
-      <div className="center-text">
-        <button
-          onClick={handleFormSubmit}
-          className='theme-btn'
-        >
-          CLAIM
-        </button>
-      </div>
-    </>)
-  }
-
-
-  const ClaimBoxChildren = () => {
-    return (
-      <TextContainer header="ENTER YOUR CODE"
-        containerClasses="reverse thick shadow padding dark-gradient no-margin"
-        border={true}
-        backgroundColor={false}>
-        {claimSuccess ? <>SUCCESS!</> : <FormChildren />}
-      </TextContainer>
-    )
-  }
-
-  const ClaimBox = () => {
-    return (
-      <div className={styles.claimBox}>
-        <ClaimBoxChildren />
-      </div>
-    )
   }
 
   const ActivateYourAccount = () => {
@@ -161,13 +111,62 @@ const ClaimPage = () => {
       </div>)
   }
 
+  const claimBoxHeader =
+      <span className={(claimSuccess ? styles.boxHeaderSuccess : styles.boxHeader) + claimErrors.class}>
+        {claimSuccess ? 'SUCCESS!' : "ENTER YOUR CODE"}
+      </span>
+
+  const successMessage =
+      <span className={successMessage}>
+        SWEEEEEEET! YOUR ORDER HAS SUCCESSFULLY BEEN CLAIMED TO YOUR ACCOUNT! IF YOU HAVE MORE
+        CLAIM CODES, PLEASE REFRESH THIS PAGE TO PROCESS ADDITIONAL ORDER VERIFICATION CODES.
+      </span>
+
+  const router = useRouter();
+  const refreshPage = () => router.reload();
+
+  const errorIcon =  <MiCon name={'Invalid Code'} icon={'warning'} classes={styles.errorIcon} />
+  const buttonText = claimSuccess
+    ? 'CLAIM ANOTHER CODE'
+    : ( claimErrors.class ? <>INVALID CODE</> :'CLAIM')
+
   return(
     <div className={styles.main}>
       <div className={styles.contentContainer}>
         <div className={styles.componentHeader}>
           <div className={styles.headerText}>CLAIM YOUR ORDER</div>
         </div>
-        { userCheck === true ? <ClaimBox /> : <ActivateYourAccount /> }
+        { userCheck === true ?
+          <div className={styles.claimBox}>
+            <TextContainer header={claimBoxHeader}
+              containerClasses={styles.container + " reverse thick shadow padding dark-gradient no-margin" + claimErrors.class}
+              border={true}
+              backgroundColor={false}>
+              {claimSuccess ? successMessage : <>
+                <div className={styles.inputContainer  + claimErrors.class + ' input-field col'}>
+                  <input
+                    type='text'
+                    className={styles.input + claimErrors.class + ' input-field center'}
+                    id='claim-code_input'
+                    key='code'
+                    name='code'
+                    maxLength={7}
+                    onChange={handleInputChange}
+                    value={input.code}
+                  />
+                </div>
+                <div className="center-text">
+                  <button
+                    onClick={ claimSuccess ? refreshPage : handleFormSubmit }
+                    className={'theme-btn' + ' ' + styles.claimBtn + claimErrors.class
+                              + ( claimSuccess ? ' '+styles.success : '' )}
+                    >{ buttonText }
+                  </button>
+                </div>
+              </>}
+            </TextContainer>
+          </div>
+        : <ActivateYourAccount /> }
         <div className={styles.socials}>
           <p className={styles.socialsText + ' monospace'}>VISIT OUR SOCIALS</p>
           <SocialCircles />
