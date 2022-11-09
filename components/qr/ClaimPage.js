@@ -8,6 +8,8 @@ import Auth from '../../utils/auth';
 
 import styles from './Claim.module.css'
 import { useRouter } from "next/router";
+import { style } from "@mui/system";
+import { MiCon } from "../icons/MatIco";
 
 const ClaimPage = () => {
   const [userData, setUserData] = useState({});
@@ -71,9 +73,10 @@ const ClaimPage = () => {
         setClaimSuccess(true);
       }
       if(!response.success) {
-        alert(response.message)
+        // alert(response.message)
         setClaimSuccess(false);
-        setClaimErrors({ ...claimErrors, class: ' error' })
+        setClaimErrors({ ...claimErrors, class: ' '+styles.error })
+        console.log(claimErrors)
       }
 
     } catch (err) {
@@ -109,7 +112,7 @@ const ClaimPage = () => {
   }
 
   const claimBoxHeader =
-      <span className={claimSuccess ? styles.boxHeaderSuccess : styles.boxHeader}>
+      <span className={(claimSuccess ? styles.boxHeaderSuccess : styles.boxHeader) + claimErrors.class}>
         {claimSuccess ? 'SUCCESS!' : "ENTER YOUR CODE"}
       </span>
 
@@ -122,6 +125,11 @@ const ClaimPage = () => {
   const router = useRouter();
   const refreshPage = () => router.reload();
 
+  const errorIcon =  <MiCon name={'Invalid Code'} icon={'warning'} classes={styles.errorIcon} />
+  const buttonText = claimSuccess
+    ? 'CLAIM ANOTHER CODE'
+    : ( claimErrors.class ? <>INVALID CODE</> :'CLAIM')
+
   return(
     <div className={styles.main}>
       <div className={styles.contentContainer}>
@@ -131,27 +139,28 @@ const ClaimPage = () => {
         { userCheck === true ?
           <div className={styles.claimBox}>
             <TextContainer header={claimBoxHeader}
-              containerClasses="reverse thick shadow padding dark-gradient no-margin"
+              containerClasses={styles.container + " reverse thick shadow padding dark-gradient no-margin" + claimErrors.class}
               border={true}
               backgroundColor={false}>
               {claimSuccess ? successMessage : <>
-                <div className={styles.inputContainer + ' input-field col'}>
-                <input
-                  type='text'
-                  className={styles.input + ' input-field center' + claimErrors.class}
-                  id='claim-code_input'
-                  key='code'
-                  name='code'
-                  maxLength={7}
-                  onChange={handleInputChange}
-                  value={input.code}
-                />
+                <div className={styles.inputContainer  + claimErrors.class + ' input-field col'}>
+                  <input
+                    type='text'
+                    className={styles.input + claimErrors.class + ' input-field center'}
+                    id='claim-code_input'
+                    key='code'
+                    name='code'
+                    maxLength={7}
+                    onChange={handleInputChange}
+                    value={input.code}
+                  />
                 </div>
                 <div className="center-text">
                   <button
                     onClick={ claimSuccess ? refreshPage : handleFormSubmit }
-                    className='theme-btn'
-                    >{ claimSuccess ? 'REFRESH' : 'CLAIM' }
+                    className={'theme-btn' + ' ' + styles.claimBtn + claimErrors.class
+                              + ( claimSuccess ? ' '+styles.success : '' )}
+                    >{ buttonText }
                   </button>
                 </div>
               </>}

@@ -192,3 +192,47 @@ span.boxHeader {
     font-size: 1.6rem;
   }
 }
+
+/* --important: #D24B4B;
+--important-highlight: #e57d7d;
+--important-darken: #873535; */
+/* ERROR CLASSES */
+
+.claimBox div .container.error {
+  border-color: var(--important) !important;
+  box-shadow: 8px 8px #87353540 !important;
+  filter: drop-shadow(0 0 #87353550 50px);
+  background: var(--error-gradient);
+  transition: all 4s;
+}
+
+.inputContainer.error input {
+  border-bottom: 3px solid var(--important-darken);
+}
+
+.inputContainer.error input:hover {
+  border-bottom: 3px solid #87353530;
+}
+
+input.error {
+  box-shadow: 2px 2px 20px #eba1a120 !important;
+  transition: box-shadow 5s;
+}
+
+.errorIcon {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: -6px 7px 0;
+}
+
+button.error {
+  border-color: var(--important-darken) !important;
+  background: black;
+  transition: all 1s;
+}
+
+button.error:hover {
+  border-color: var(--important) !important;
+  background: rgba(62, 28, 28, .1);
+  transition: all 1s;
+}
