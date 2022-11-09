@@ -150,6 +150,7 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                             <br />
                             <div className="p-deets row">
                               {order.products.map((item, index) => {
+                                console.log(item)
                                 const num = index + 1;
                                 const itemNum = num < 10 ? '00' + num : num < 100 ? '0' + num : num;
                                 const cost = item.price;
@@ -159,7 +160,7 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                                   <div className={"product-map" + (expanded === index ? " active" : "")} key={index}>
                                     <div className="col s5">
                                       <span className="number">{itemNum}//</span>
-                                      &emsp;{item.product_name} - {item.product_colors}</div>
+                                      &emsp;{item.product_name} // {item.product_colors} //  </div>
                                     <div className="col s3 center">${cost}</div>
                                     <div className="col s2 center">${tax}</div>
                                     <div className="col s2 center">${total}</div>
