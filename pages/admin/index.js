@@ -17,7 +17,7 @@ const Admin = () => {
   const [user, setUser] = useState({name: '', email: ''});
 
   const allPages = ["Overview","All-Orders","Print-Orders"]
-  console.log(fileName('This Will be A filename!'))
+  // console.log(fileName('This Will be A filename!'))
 
   const changePageLocation = (newPage) => {
     setPage(newPage)

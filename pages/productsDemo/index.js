@@ -55,7 +55,7 @@ const Products = () => {
         const response = await getAllCategories();
         const productInfo = await response.json();
 
-        console.log(productInfo)
+        // console.log(productInfo)
         setProducts(productInfo)
       } catch (err) {
           console.error(err);

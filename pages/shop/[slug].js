@@ -52,7 +52,7 @@ const Products = () => {
     setProducts(category ? category.products : [])
   }, [!allProducts.length]);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <DefaultLayout title={"Shop" + (category ? " " + capitalize(category.category_name) : "")}>{/* <DefaultLayout headerImages={headerImages}> */}

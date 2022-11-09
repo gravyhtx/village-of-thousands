@@ -41,7 +41,7 @@ const ClaimPage = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(value)
+    // console.log(value)
     setInput({...input, [name]: value.toUpperCase() });
     setClaimErrors({ class: '', message: '' })
   }
@@ -58,7 +58,7 @@ const ClaimPage = () => {
     try {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
       const profile = token ? Auth.getProfile() : null;
-      console.log(profile)
+      // console.log(profile)
       const claimObj = {
         id: profile.data._id,
         simpleHash: input.code
@@ -66,7 +66,7 @@ const ClaimPage = () => {
 
       const request = await claimOrder(claimObj)
       const response = await request.json()
-      console.log(response)
+      // console.log(response)
       if(!response.success) {
         alert(response.message)
         setClaimSuccess(false);

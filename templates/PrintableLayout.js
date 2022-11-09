@@ -11,7 +11,7 @@ const PrintableLayout = ({ children, header, title, description, classes, showTi
   title = title ? (website.name + " // " + title) : website.name;
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
-  console.log(printActivate)
+  // console.log(printActivate)
 
   const printMode = landscape === true ? style.printAreaLandscape : style.printAreaPortrait;
   paperSize = checkType(paperSize, 'string') ? paperSize : 'A4';

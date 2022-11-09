@@ -9,7 +9,7 @@ const Register = ({ changeComponents, path }) =>  {
   
   changeComponents = changeComponents === true ? true : false;
   path = path !== false ? path : false;
-  console.log(path);
+  // console.log(path);
 
   const [userFormData, setUserFormData] = useState({ email:'', password:'', reEnterPassword: ''});
   const [formError, setFormError] = useState({ email: '', password: '', passwordSpacing: '', passwordMatch: '' });
@@ -133,7 +133,7 @@ const Register = ({ changeComponents, path }) =>  {
       }
 
       const { token, user } = await response.json();
-      console.log(path)
+      // console.log(path)
       
       if(pass && path) {
         Auth.login(token);

@@ -11,7 +11,7 @@ import Auth from '../utils/auth';
 
 const UserMnemonic = () => {
   let router = useRouter();
-  console.log(router.query)
+  // console.log(router.query)
 
   // Get User Data
   const [userData, setUserData] = useState({});

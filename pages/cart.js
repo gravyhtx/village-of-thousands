@@ -13,7 +13,7 @@ const Cart = () => {
       const indexedDB = await idbPromise('cart', 'get');
       if(indexedDB) {
         const { cart } = await idbPromise('cart', 'get');
-        console.log(cart)
+        // console.log(cart)
         setCart(cart)
       }
     }
@@ -31,7 +31,7 @@ const Cart = () => {
 
   async function deleteFromCart(id) {
     const itemId = id
-    console.log(itemId)
+    // console.log(itemId)
     await idbPromise('cart', 'deleteone', {
       id: itemId
     })

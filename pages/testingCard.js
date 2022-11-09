@@ -19,7 +19,7 @@ const TestingCard = () => {
         const response = await getDemoProducts();
         const productInfo = await response.json();
 
-        console.log(productInfo)
+        // console.log(productInfo)
         setProducts(productInfo)
       } catch (err) {
           console.error(err);

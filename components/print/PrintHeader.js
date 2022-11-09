@@ -13,12 +13,12 @@ const PrintHeader = ({ printLinks, setPrintActivate, openModal, setOpenModal }) 
   ];
 
   const openSettings = () => {
-    console.log(openModal)
+    // console.log(openModal)
     setOpenModal(!openModal);
   }
 
   const click = (item) => {
-    console.log(item)
+    // console.log(item)
   }
 
   return (
