@@ -48,7 +48,7 @@ const Login = ({ reloadPage }) =>  {
       
       if(!response.ok) {
         const { message } = await response.json();
-        console.log(message)
+        // console.log(message)
         throw new Error('something went wrong!');
       }
       

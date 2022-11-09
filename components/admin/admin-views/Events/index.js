@@ -25,7 +25,7 @@ const Events = () => {
         const response = await getAllCategories();
         const products = await response.json();
         
-        console.log(products)
+        // console.log(products)
         
         setProductList(products)
       } catch (err) {

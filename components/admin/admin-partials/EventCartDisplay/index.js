@@ -46,7 +46,7 @@ const EventCartDisplay = ({ productList, SKU, paymentType, handlePaymentTypeChan
             </div>
             {productList.length > 0 ?
               productList.map((product, index) => {
-                console.log(product)
+                // console.log(product)
                 return (
                   <div className={styles.products} key={index}>
                     <div className='row'>
