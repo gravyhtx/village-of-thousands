@@ -27,20 +27,91 @@
   padding: 20px;
 }
 
+.claimBox {
+  max-width: 60vw;
+  margin: 0 auto;
+}
+
+span.boxHeader {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
 .claimBoxContent {
   padding: 20px 0;
 }
 
+@media only screen and (max-width: 108px) {
+  .claimBox {
+    max-width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  span.boxHeader {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .claimBox {
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+  span.boxHeader {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+}
+
 .inputContainer {
-  padding: 40px;
+  padding: 40px 60px;
 }
 
-.input {
-  font-size: 2rem !important;
-  font-weight: 500;
-  height: 4rem !important;
+.claimBox .inputContainer .input {
+  font-size: 3rem;
+  font-weight: 700;
+  height: 4.2rem;
 }
 
+@media only screen and (max-width: 600px) {
+  .claimBox div div {
+    max-width: 90vw;
+    padding: 15px 10px 5px;
+  }
+  span.boxHeader {
+    margin-top: 10px !important;
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  .claimBox .inputContainer .input {
+    margin-top: -10px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .claimBox div div {
+    font-size: 2rem;
+    max-width: 90vw;
+    padding: 15px 10px 5px;
+  }
+  span.boxHeader {
+    font-size: 1.8rem;
+  }
+  .claimBox .inputContainer .input {
+    font-size: 2.8rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  span.boxHeader {
+    font-size: 1.2rem;
+  }
+  .claimBox .inputContainer .input {
+    font-size: 1.8rem;
+  }
+}
 .activateAccountContainer {
   max-width: 50vw;
   margin: 0 auto;
