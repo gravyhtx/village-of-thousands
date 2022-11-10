@@ -13,13 +13,12 @@ export default async (req, res) => {
       try {
         const userVerification = await User.find({ _id: req.body.id});
 
-        if(!userVerification) {
+        if(!userVerification || userVerification.length == 0) {
           return res.status(401).json({success: false, message: "This user is not a valid one"});
         }
 
         const claimExists = await Claim.find({simpleHash: req.body.simpleHash})
-
-        if(!claimExists) {
+        if(claimExists.length == 0 || !claimExists) {
           return res.status(404).json({sucess: false, message: "This claim number does not exist"});
         }
 

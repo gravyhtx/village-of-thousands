@@ -51,7 +51,7 @@ export const GradientBox = ({ colorsArray, children, position, stripe, height, s
       return `${str}turn,`;
     }
     if(checkType(str, 'number') && str >= 1) {
-      console.log('deg')
+      // console.log('deg')
       return `${str}deg, `;
     }
     if(checkType(str, 'string')) {

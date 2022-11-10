@@ -194,6 +194,16 @@ export const getAllOrders = () => {
 
 //Events Section
 
+export const fetchEventStatus = (token) => {
+  return fetch('/api/checkout/event', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    }
+  })
+}
+
 export const createEventOrder = (orderData) => {
   return fetch('/api/checkout/event', {
     method: 'POST',

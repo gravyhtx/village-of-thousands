@@ -56,7 +56,7 @@ const Main = ({ user, setUser }) => {
     setLoaded(true);
   },  [!loaded])
 
-  console.log(reverseArr(orderObject.orderHistory))
+  // console.log(reverseArr(orderObject.orderHistory))
 
   return (
     <>

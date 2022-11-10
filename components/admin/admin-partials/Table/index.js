@@ -142,26 +142,28 @@ const Table = ({ orders, inOrderPage, pageChange }) => {
                           <br />
                           <div className="order-deets">
                             <div className="details-headers row">
-                              <div className="col s5"><span>PRODUCT</span></div>
-                              <div className="col s3 center"><span>COST</span></div>
+                              <div className="col s6"><span>PRODUCT</span></div>
+                              <div className="col s2 center"><span>COST</span></div>
                               <div className="col s2 center"><span>TAX</span></div>
                               <div className="col s2 center"><span>TOTAL</span></div>
                             </div>
                             <br />
                             <div className="p-deets row">
                               {order.products.map((item, index) => {
-                                console.log(item)
+                                // console.log(item)
                                 const num = index + 1;
                                 const itemNum = num < 10 ? '00' + num : num < 100 ? '0' + num : num;
                                 const cost = item.price;
                                 const tax = (cost * 0.0825).toFixed(2);
                                 const total = Number(cost) + Number(tax);
+
+                                const sizeStructure = order.productSKU[index].split("-")[2].substring(2).toUpperCase()
                                 return (
                                   <div className={"product-map" + (expanded === index ? " active" : "")} key={index}>
-                                    <div className="col s5">
+                                    <div className="col s6">
                                       <span className="number">{itemNum}//</span>
-                                      &emsp;{item.product_name} // {item.product_colors} //  </div>
-                                    <div className="col s3 center">${cost}</div>
+                                      &emsp;{item.product_name} // {item.product_colors} //  {sizeStructure}</div>
+                                    <div className="col s2 center">${cost}</div>
                                     <div className="col s2 center">${tax}</div>
                                     <div className="col s2 center">${total}</div>
                                   </div>
