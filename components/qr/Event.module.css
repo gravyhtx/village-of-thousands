@@ -53,6 +53,7 @@
   max-width: 650px;
   padding: 0px;
   margin: 0 auto 50px;
+  background: #7fcce408;
   box-shadow: 4px 4px 20px #000000aa;
   filter: drop-shadow(2px 4px 30px #7FCCE440);
 }
