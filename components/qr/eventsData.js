@@ -1,6 +1,7 @@
 import styles from './Event.module.css';
 import { iconObj } from '../containers/SocialCircles';
-import bangerFlyer from '../../public/images/events/vert_jam-site_flyer.png';
+import bangerFlyerOg from '../../public/images/events/vert_jam-site_flyer.png';
+import bangerFlyer from '../../public/images/events/vertjam_11-22b.png';
 
 export const eventsData = {
   banger: {
