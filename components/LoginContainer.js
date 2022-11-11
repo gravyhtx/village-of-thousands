@@ -28,7 +28,7 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
   mapBoth = mapBoth === false || activationPage === true || admin === true ? false : true;
 
   // Determine if quote is shown or not -- Default is 'true'.
-  showQuote = showQuote === false || admin === true ? false : true;
+  showQuote = showQuote === false || showQuote === undefined || admin === true ? false : true;
 
   // If "reloadPage" is true, page will reload on login (instead of go to home) -- Default is 'false'.
   //  ** Used in '/activate/[slug]', '/admin', and QR pages -- wherever
@@ -113,7 +113,7 @@ const LoginContainer = ({ name, mapBoth, reloadPage, activationPage, showQuote, 
         ? <div className="center-text italics">
             <RandomQuote
               className={"center-text "
-                + activationPage
+                + path === 'activate'
                 ? "activate-zen"
                 : "login-zen" }
               type="zen" />
