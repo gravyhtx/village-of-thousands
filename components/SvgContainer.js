@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const SvgContainer = ( { margins, src, link, color, width, description, container, classes, id, styles, drag, maxWidth } ) => {
   let svgContainer="";
@@ -12,6 +11,7 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
   if(color === "white") {
     color = "invert(100%)"
   }
+  console.log(src)
 
   margins=margins?margins:"0 auto"
   let svgStyles = {
@@ -25,10 +25,11 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
 
   if(src.src){ path = src.src }
   else { path = src }
+  console.log(path)
+  console.log(src)
 
   return (
     <Link href={link?link:'/'} target="_blank" rel="noreferrer">
-    <a target="_blank" rel="noreferrer">
     <div className={"svg-container"+svgContainer}>
       <img
         style={svgStyles ? svgStyles : {}}
@@ -38,7 +39,6 @@ const SvgContainer = ( { margins, src, link, color, width, description, containe
         draggable={drag ? drag : false}
         alt={description} />
     </div>
-    </a>
     </Link>
   )
 }

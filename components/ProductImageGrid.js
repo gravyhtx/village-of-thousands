@@ -15,7 +15,7 @@ const ProductImageGrid = ({ containerClasses, width, imageClasses, category, ran
   const productImage = (randomize && !randomSetLength) ?    
       <ProductImage width={width} containerClasses={imageClasses} randomize={randomize ? randomize : "all"} blur={blur ? blur : false} />
     : randomSetLength ?
-    <ProductImage colSize={colsize} width={width} containerClasses={imageClasses} randomize={randomize ? randomize : "all"} randomSetLength={randomSetLength} blur={blur ? blur : false} />
+      <ProductImage colSize={colsize} width={width} containerClasses={imageClasses} randomize={randomize ? randomize : "all"} randomSetLength={randomSetLength} blur={blur ? blur : false} />
     : <ProductImage width={width} containerClasses={imageClasses} category={category} color={colors} blur={blur ? blur : false} />
   return (<>{productImage}</>)
 }

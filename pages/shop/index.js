@@ -93,6 +93,10 @@ export const ProductCardTest = () => {
     }
   }
 
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+  }
+
   const renderCategories = () => {
     const categories = [{
       name: "Crewnecks",
@@ -107,13 +111,14 @@ export const ProductCardTest = () => {
     return categories.map((category, index) =>
       <div role="button" aria-label={"View VoT "+category.name}
         onClick={scrollToContainer()}
+        onContextMenu={handleContextMenu}
         className={"col s12 m6 l6 product_view-category"+(index === setPC ? " active" : "")}
         id={"product_view-category"+index}
         key={index}>
         <ProductImage colorId={category.id}
           category={category.name.toLowerCase()}
           containerClasses={"col s12 m6 l6" + (loaded ? "" : " loading")} />
-        <div className="card-trigger_container">
+        <div className="card-trigger_container disable-highlight">
           <button role="button" aria-controls={activatePCness ? "product-card" : ""}
             aria-haspopup="grid"
             tabIndex={index}

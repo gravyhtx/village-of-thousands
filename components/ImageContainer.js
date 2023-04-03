@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const ImageContainer = ({ width, height, size, square, containerClasses, imgClasses, layout, description, src, id, containerId, svg, priority, blur, drag, contain }) => {
-
   const [imageData, setImageData] = useState({
     width: {
       width: width,

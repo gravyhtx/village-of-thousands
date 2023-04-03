@@ -1,42 +1,60 @@
 import Image from "next/image";
-
-import products from "../../config/products.json";
-import website from '../../config/site-data.json';
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { randomize } from "../../utils/generator";
+import website from '../../config/site-data.json';
 
 ////////////////////////
 // SZN 001 - PRODUCTS //
 ////////////////////////
 
 // CREWNECKS
-import vocnbk from '../../public/images/szn/001/products/crewnecks/vocn-bk.png';
-import vocnnt from '../../public/images/szn/001/products/crewnecks/vocn-nt.png';
-import vocnaq from '../../public/images/szn/001/products/crewnecks/vocn-aq.png';
-import vocnsf from '../../public/images/szn/001/products/crewnecks/vocn-sf.png';
-import vocnlv from '../../public/images/szn/001/products/crewnecks/vocn-lv.png';
+import vocnbk from '../../public/images/szn/001/products/crewnecks/vocn-bk.webp';
+import vocnnt from '../../public/images/szn/001/products/crewnecks/vocn-nt.webp';
+import vocnaq from '../../public/images/szn/001/products/crewnecks/vocn-aq.webp';
+import vocnsf from '../../public/images/szn/001/products/crewnecks/vocn-sf.webp';
+import vocnlv from '../../public/images/szn/001/products/crewnecks/vocn-lv.webp';
+import vocnbkfb from '../../public/images/szn/001/products/crewnecks/vocn-bk.png';
+import vocnntfb from '../../public/images/szn/001/products/crewnecks/vocn-nt.png';
+import vocnaqfb from '../../public/images/szn/001/products/crewnecks/vocn-aq.png';
+import vocnsffb from '../../public/images/szn/001/products/crewnecks/vocn-sf.png';
+import vocnlvfb from '../../public/images/szn/001/products/crewnecks/vocn-lv.png';
 
 // HOODIES
-import vohdbk from '../../public/images/szn/001/products/hoodies/vohd-bk.png';
-import vohdnt from '../../public/images/szn/001/products/hoodies/vohd-nt.png';
-import vohdaq from '../../public/images/szn/001/products/hoodies/vohd-aq.png';
-import vohdsf from '../../public/images/szn/001/products/hoodies/vohd-sf.png';
-import vohdlv from '../../public/images/szn/001/products/hoodies/vohd-lv.png';
+import vohdbk from '../../public/images/szn/001/products/hoodies/vohd-bk.webp';
+import vohdnt from '../../public/images/szn/001/products/hoodies/vohd-nt.webp';
+import vohdaq from '../../public/images/szn/001/products/hoodies/vohd-aq.webp';
+import vohdsf from '../../public/images/szn/001/products/hoodies/vohd-sf.webp';
+import vohdlv from '../../public/images/szn/001/products/hoodies/vohd-lv.webp';
+import vohdbkfb from '../../public/images/szn/001/products/hoodies/vohd-bk.png';
+import vohdntfb from '../../public/images/szn/001/products/hoodies/vohd-nt.png';
+import vohdaqfb from '../../public/images/szn/001/products/hoodies/vohd-aq.png';
+import vohdsffb from '../../public/images/szn/001/products/hoodies/vohd-sf.png';
+import vohdlvfb from '../../public/images/szn/001/products/hoodies/vohd-lv.png';
 
 // LONGSLEEVES
-import volsbk from '../../public/images/szn/001/products/longsleeves/vols-bk.png';
-import volswt from '../../public/images/szn/001/products/longsleeves/vols-wt.png';
-import volsaq from '../../public/images/szn/001/products/longsleeves/vols-aq.png';
-import volssf from '../../public/images/szn/001/products/longsleeves/vols-sf.png';
-import volslv from '../../public/images/szn/001/products/longsleeves/vols-lv.png';
+import volsbk from '../../public/images/szn/001/products/longsleeves/vols-bk.webp';
+import volswt from '../../public/images/szn/001/products/longsleeves/vols-wt.webp';
+import volsaq from '../../public/images/szn/001/products/longsleeves/vols-aq.webp';
+import volssf from '../../public/images/szn/001/products/longsleeves/vols-sf.webp';
+import volslv from '../../public/images/szn/001/products/longsleeves/vols-lv.webp';
+import volsbkfb from '../../public/images/szn/001/products/longsleeves/vols-bk.png';
+import volswtfb from '../../public/images/szn/001/products/longsleeves/vols-wt.png';
+import volsaqfb from '../../public/images/szn/001/products/longsleeves/vols-aq.png';
+import volssffb from '../../public/images/szn/001/products/longsleeves/vols-sf.png';
+import volslvfb from '../../public/images/szn/001/products/longsleeves/vols-lv.png';
 
 // SHIRTS
-import votsbk from '../../public/images/szn/001/products/shirts/vots-bk.png';
-import votswt from '../../public/images/szn/001/products/shirts/vots-wt.png';
-import votsaq from '../../public/images/szn/001/products/shirts/vots-aq.png';
-import votssf from '../../public/images/szn/001/products/shirts/vots-sf.png';
-import votslv from '../../public/images/szn/001/products/shirts/vots-lv.png';
-import { maxWidth } from "@mui/system";
+import votsbk from '../../public/images/szn/001/products/shirts/vots-bk.webp';
+import votswt from '../../public/images/szn/001/products/shirts/vots-wt.webp';
+import votsaq from '../../public/images/szn/001/products/shirts/vots-aq.webp';
+import votssf from '../../public/images/szn/001/products/shirts/vots-sf.webp';
+import votslv from '../../public/images/szn/001/products/shirts/vots-lv.webp';
+import votsbkfb from '../../public/images/szn/001/products/shirts/vots-bk.png';
+import votswtfb from '../../public/images/szn/001/products/shirts/vots-wt.png';
+import votsaqfb from '../../public/images/szn/001/products/shirts/vots-aq.png';
+import votssffb from '../../public/images/szn/001/products/shirts/vots-sf.png';
+import votslvfb from '../../public/images/szn/001/products/shirts/vots-lv.png';
 
 const drop = {
   id: "001",
@@ -52,7 +70,8 @@ const catalog = {
     category: "crewnecks",
     price: 110,
     colors: ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
-    public: [vocnbk, vocnnt, vocnaq, vocnsf, vocnlv],
+    public: [vocnbk, vocnnt, vocnaq, vocnsf, vocnlv,],
+    fallback: [vocnbkfb, vocnntfb, vocnaqfb, vocnsffb, vocnlvfb,],
     sizes: ["SM", "MD", "LG", "XL", "2X"],
     description: ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
     sku: ["VOCNR-1001-BK", "VOCNR-1001-NT", "VOCNR-1001-AQ", "VOCNR-1001-SF", "VOCNR-1001-LV"],
@@ -63,7 +82,8 @@ const catalog = {
     category: "hoodies",
     price: 112,
     colors: ["Black", "Natural", "Aqua", "Seafoam", "Lavender"],
-    public: [vohdbk, vohdnt, vohdaq, vohdsf, vohdlv],
+    public: [vohdbk, vohdnt, vohdaq, vohdsf, vohdlv,],
+    fallback: [vohdbkfb, vohdntfb, vohdaqfb, vohdsffb, vohdlvfb,],
     sizes: ["SM", "MD", "LG", "XL", "2X"],
     description: ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
     sku: ["VOHDR-1001-BK", "VOHDR-1001-NT", "VOHDR-1001-AQ", "VOHDR-1001-SF", "VOHDR-1001-LV"],
@@ -74,7 +94,8 @@ const catalog = {
     category: "longsleeves",
     price: 64,
     colors: ["Black", "White", "Aqua", "Seafoam", "Lavender"],
-    public: [volsbk, volswt, volsaq, volssf, volslv],
+    public: [volsbk, volswt, volsaq, volssf, volslv,],
+    fallback: [volsbkfb, volswtfb, volsaqfb, volssffb, volslvfb,],
     sizes: ["SM", "MD", "LG", "XL", "2X"],
     description: ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
     sku: ["VOLSR-1001-BK", "VOLSR-1001-WT", "VOLSR-1001-AQ", "VOLSR-1001-SF", "VOLSR-1001-LV"],
@@ -85,7 +106,8 @@ const catalog = {
     category: "shirts",
     price: 55,
     colors: ["Black", "White", "Aqua", "Seafoam", "Lavender"],
-    public: [votsbk, votswt, votsaq, votssf, votslv],
+    public: [votsbk, votswt, votsaq, votssf, votslv,],
+    fallback: [votsbkfb, votswtfb, votsaqfb, votssffb, votslvfb,],
     sizes: ["SM", "MD", "LG", "XL", "2X"],
     description: ["Relaxed Fit", "100% Supima® Cotton", "100% Grown in the USA"],
     sku: ["VOTSR-1001-BK", "VOTSR-1001-WT", "VOTSR-1001-AQ", "VOTSR-1001-SF", "VOTSR-1001-LV"],
@@ -121,7 +143,7 @@ export const allProductData = () => {
 }
 
 export const categoryData = (category) => {
-  category ? category.toLowerCase() : '';
+  category = category ? category.toLowerCase() : '';
   
   const cn = catalog.crewnecks;
   const hd = catalog.hoodies;
@@ -140,49 +162,77 @@ export const categoryData = (category) => {
 export const ProductImage = ({ category, colorId, containerClasses, imgClasses, description, boxSize, imgId, containerId, allowHighlight, contain, allowDrag, random }) => {
 
   containerClasses = containerClasses ? 'product-image '+containerClasses : '';
-  imgClasses = imgClasses ? imgClasses : '';
-
+  imgClasses = imgClasses ?? '';
+  
+  // Get product and category data
   const szn = website.szn;
-
-  const p = categoryData(category ? category.toLowerCase() : '');
+  const p = categoryData(category ?? '');
   const categoryLength = p.colors.length;
-  const randomId = randomize(categoryLength);
+  
+  const idRef = useRef(null);
+  const randNum = () => {
+    if(!idRef.current) {
+      idRef.current = randomize(categoryLength);
+    }
+    return idRef.current;
+  }
+  
+  // Set 'id' from 'colorId' as it changes to update image
+  const pid = colorId ?? randNum();
+  const [id, setId] = useState(pid);
+  const color = p.colors[id];
 
-  const color = p.colors[random ? randomId : colorId];
+  // Set 'imgSrc' and 'err' to get the proper 'src', 'width', and 'height' on load/change/error
+  //   >> 'p.public' contains '.webp' images
+  //   >> 'p.fallback' contains '.png' images
+  const [imgSrc, setImgSrc] = useState(p.public[id]);
+  const [err, setErr] = useState(false);
 
-  const img = {
-    src: "/"+p.public[random ? randomId : colorId].src,
-    width: p.public[random ? randomId : colorId].width,
-    height: p.public[random ? randomId : colorId].height,
-    alt: description ? description : p.name+' // '+color+' // '+szn,
-    imgClasses: imgClasses ? 'image-class '+imgClasses : 'image-class',
-    containerClasses: containerClasses ? 'image-container '+containerClasses : 'image-container',
-    contain: contain ? ' contain' : '',
-    imgId: imgId ? imgId : '',
-    containerId: containerId ? containerId : 'container-'+(random ? randomId : colorId),
-    draggable: allowDrag ? true : false,
-    highlight: allowHighlight ? "" : " disable-highlight",
+  const handleError = useCallback(() => {
+    setErr(true);
+    setImgSrc(p.fallback[id]);
+  }, [id, p.fallback[id]])
+
+  useEffect(() => {
+    setImgSrc(!err?p.public[id]:p.fallback[id]);
+  }, [id, p.fallback, p.public, setImgSrc]);
+  
+  useEffect(() => {
+    setId(pid);
+  }, [pid]);
+
+  const handleContextMenu = (event) => {
+    event.preventDefault();
   }
 
-  // const boxSizing = {
-  //   maxWidth: boxSize ? boxSize : '100%',
-  //   maxHeight: boxSize ? boxSize : '100%',
-  // }
+  const img = {
+    src: imgSrc?"/"+imgSrc.src:'',
+    width: imgSrc?imgSrc.width:null,
+    height: imgSrc?imgSrc.height:null,
+    alt: description ? description : p.name+' // '+color+' // '+szn,
+    imgClasses: 'image-class' + (imgClasses ? ' '+imgClasses : ''),
+    containerClasses: 'image-container' + (containerClasses ? ' ' + containerClasses : ''),
+    contain: contain ? ' contain' : '',
+    imgId: imgId ? imgId : '',
+    containerId: containerId ? containerId : 'container-'+(colorId ?? randNum()),
+    draggable: allowDrag ? true : false,
+    highlight: allowHighlight ? '' : ' disable-highlight',
+  }
 
   const productImg =
       <Image layout='responsive'
         src={ img.src }
         sizes="100vw"
-        width={ p.public[random ? randomId : colorId].width }
-        height={ p.public[random ? randomId : colorId].height }
+        width={ img.width }
+        height={ img.height }
         draggable={img.draggable}
         description={img.description}
-        // className={ img.imgClasses }
+        onError={handleError}
         id={img.imgId} />
 
   return (
-    <div className={img.containerClasses+img.contain+img.highlight}>
-      <div className={img.imgClasses}>{productImg}</div>
+    <div onContextMenu={handleContextMenu} className={img.containerClasses+img.contain+img.highlight}>
+      {imgSrc?<div className={img.imgClasses}>{productImg}</div>:<></>}
     </div>
   )
 }

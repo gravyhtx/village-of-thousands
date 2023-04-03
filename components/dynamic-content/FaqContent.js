@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { SocialCircles } from "../containers/SocialCircles";
-
 const FaqContent = () => {
-
   const questions = [
     {
       // 001
@@ -30,8 +28,7 @@ const FaqContent = () => {
         <>Village of Thousands intends to achieve our collective vision through our brand’s platform and
         utilize our diversity, creativity, and passion to participate in a more sustainable future.</>
       ]
-    },
-    {
+    },{
       // 002
       "question": "How does Village of Thousands promote sustainability?",
       "answer": [
@@ -68,8 +65,7 @@ const FaqContent = () => {
         companies that take sustainability as seriously as we do.</>,
         <>We are always growing and adapting with this primary objective in the forefront of our mind.</>
       ]
-    },
-    {
+    },{
       // 003
       "question": "How can I become part of the community of VoT Enthusiasts?",
       "answer": [
@@ -78,53 +74,14 @@ const FaqContent = () => {
         accounts, buy our apparel when our first SZN drops, and rep our brand.</>,
         <>You can be an early VoT Enthusiast and create your account with an integrated crypto wallet so
         you can be ready for our Web 3.0 expansion. We will announce a date in 2022 and VoT Enthusiasts
-        with verified wallets added to their accounts will be able to receive rewards and airdrops as soon
-        as that date arrives.</>,
+        with verified wallets added to their accounts will be able to participate in our online community and
+        receive rewards as soon as that date arrives.</>,
         <>Follow us on our socials to stay updated and be part of the community we're building for and
         with our fellow Enthusiasts.</>,
         <SocialCircles />
       ]
-    },
-    {
+    },{
       // 004
-      "question": "Why will VoT be selling NFT-authenticated apparel and products?",
-      "answer": [
-        <>The VoT Digital HQ will be among the first wave of web apps to combine digital
-        blockchain-authentication with physical product sales.</>,
-        <>After our first SZN drop, we will sell our products linked to authenticated NFTs for potential
-        collectors, investors, and VoT Enthusiasts. NFTs are just one amazing example of what Web 3.0 has to
-        offer and will play a major role in the next phase of the decentralized web.</>,
-        <>They are gaining tremendous support from buyers and sellers alike since blockchain technology now
-        allows for creators to publish digital works that are uniquely identifiable, have verified ownership,
-        and are created to be scarce in order to hold value just like any other physical collectible. By
-        combining this technology with each product we sell, collector value of each item is increased with
-        authentication in the form of unique digital art.</>,
-        <>VoT has a team of designers and developers that are working together to bring our Village of
-        Thousands to life. We're giving as much attention, customization, and care to our digital brand
-        as we are with our physical product line. Our NFTs will consist of programmatically generated works and
-        varying pieces of digital art. We are currently writing code and making art for some really
-        exciting projects with endless creation possibilities that we cannot wait to share with you!</>
-      ]
-    },
-    {
-      // 005
-      "question": "What is a decentralized application (dApp)?",
-      "answer": [
-        <>DApps are, simply put, the future of websites and how customers form and build a relationship with
-        brands. They offer the security and privacy of the blockchain network while using transparent
-        technologies that are strong barriers to accessing your sensitive data from being collected by
-        large, centralized corporations.</>,
-        <>The State of the DApps, a curated list of over 1320 decentralized apps, defines decentralized
-        apps as "...applications which run on a P2P network of computers, instead of one computer. They
-        are considered to be a form of software program designed to function on the internet without being
-        controlled by a single entity. DApps can have front-end code and user interfaces written in any
-        language, just like a traditional application, which can make calls to its backend."</>,
-        <>While we are not considered a blockchain dApp currently we do share the same ethos and if it
-        benefits our community we will integrate this site onto the blockchain in the future as well.</>
-      ]
-    },
-    {
-      // 006
       "question": "How is this website being developed to be Web 3.0 ready?",
       "answer": [
         <>Our developers and designers are working together to prepare for our complete Web 3.0 release in
@@ -140,16 +97,6 @@ const FaqContent = () => {
         is built by our developers, line-by-line, in order to provide a sustainable decentralized platform
         for the future of our brand. Because of this process we are able to carefully vet and select every
         service we use and organically grow with Web 3.0 without restriction.</>,
-        // <>Village of Thousands also has our very own, <a className='link underline'
-        // href='https://ethereum.org/en/developers/docs/standards/tokens/erc-20/' target="_blank"
-        // rel="noreferrer">ERC-20</a> token, VOT, ready for distribution in 2022 alongside our full Web 3.0
-        // release. If you’d like to be able to trade, purchase, and invest in our token when it has been
-        // released then make sure you have an account with a non-custodial wallet service, such
-        // as <a className='link underline' href='https://metamask.io/download' target="_blank"
-        // rel="noreferrer">MetaMask</a>, stored on a Web 3.0 integrated browser, such
-        // as <a className='link underline' href='https://brave.com/download/' target="_blank"
-        // rel="noreferrer">Brave Browser</a>. We are already in development of our NFT-authenticated products
-        // and will be airdropping rewards as VOT token and limited runs of NFTs.</>,
         <>We have already set up our website to store your wallet address for quick, easy, and secure
         checkout using “browser injection”. Injection uses your in-browser wallet in order to verify that we
         have a correct address to send and receive assets so that you don’t need to worry about incorrectly
@@ -163,9 +110,8 @@ const FaqContent = () => {
         <>Our source code will be available online in a publicly accessible Github repository. If you are
         a Web 3.0 dev, or aspiring dev, feel free to follow along with our updates and offer feedback.</>
       ]
-    },
-    {
-      // 007
+    },{
+      // 005
       "question": "What services and tools will I need to prepare myself for Web 3.0?",
       "answer": [
         <>There are a few apps you will need to download to be ready for Web 3.0 changes across the whole
@@ -223,34 +169,8 @@ const FaqContent = () => {
         Wallet. Just make sure that whatever wallet you choose is able to be read from browser injection
         so it must be available as a browser extension.</>
       ]
-    },
-    {
-      // 008
-      "question": "How will I be receiving my free limited-edition NFT?",
-      "answer": [
-        <>We are going to release and send the first 200 customers a limited edition NFT from our first digital
-        collection to their verified wallets before our Web 3.0 site is ready (late 2022). Your NFT
-        will go directly into your wallet and any files you receive will be available to download
-        from your Village of Thousands user account. This set of NFTs may vary in rarity and be randomly
-        distributed amongst participating VoT Enthusiasts.</>,
-        <>In order to receive the NFT you’ll need a wallet connected to your account so we’ve made it easy for
-        you to add your wallet along with resources to help you prepare for Web 3.0. You’ll need a secure,
-        verified wallet for making crypto purchases and accepting rewards and NFTs from brands like ours.
-        Once you have completed your first purchase we will verify that you are a unique user and send
-        instructions for claiming your first VoT NFT before we drop them so stay tuned!</>,
-        <>While many browsers are beginning to integrate things like wallet extensions and dApp
-        support, <a className='link underline' href='https://brave.com/download/' target="_blank"
-        rel="noreferrer">Brave Browser</a> is already preloaded with a full suite of Web 3.0 integrated
-        products and services.</>,
-        <>We aren’t officially sponsored by Brave but you might see a few download links to their browser
-        on our site because we highly recommend you use their browser. With their browser you can set yourself
-        up for Web 3.0 and earn crypto rewards directly from Brave’s token (BAT), easily integrate your
-        MetaMask account, and access wallets from popular providers. Brave Browser is available on all major
-        mobile and computer operating systems.</>
-      ]
-    },
-    {
-    // 009
+    },{
+    // 006
       "question": "How do I get a wallet that can accept crypto and store NFTs?",
       "answer": [
         <>After you create and activate your VoT account, you will be able to optionally add your in-browser
@@ -273,9 +193,8 @@ const FaqContent = () => {
         at signup. <Link href="/login"><a className="link thicc underline">Click here</a></Link> to create
         your VoT account today.</>
       ]
-    },
-    {
-      // 010
+    },{
+      // 007
       "question": "This website uses cookies? Why?! Omg.. is my data being collected too???",
       "answer": [
         <>Yes we do use cookies... so that you can place orders with us. Breathe, my dude. Did you
@@ -298,9 +217,8 @@ const FaqContent = () => {
         that we can create a safe space for everyone and focus on the good we can do together and all
         the fun we plan on having as a community.</>
       ]
-    },
-    {
-      // 011
+    },{
+      // 008
       "question": "How does VoT handle ordering, shipping, and returns?",
       "answer": [
         <>Currently, all orders are being processed and checked manually. We also limit one color in any size
@@ -323,9 +241,8 @@ const FaqContent = () => {
         <>For now though, we recommend that you let us know of any feedback and we are prepared to discuss if we run
         into special cases where we must adapt as a business. Any and all changes to our policy will be in our FAQ.</>
       ]
-    },
-    {
-      // 012
+    },{
+      // 009
       "question": "Where can I report bugs?",
       "answer": [
         <>Please visit our GitHub repository <Link href="https://github.com/gravyhtx/village-of-thousands">
@@ -338,10 +255,7 @@ const FaqContent = () => {
       ]
     }
   ]
-
   // https://github.com/gravyhtx/village-of-thousands
   return (questions)
 }
-
 export default FaqContent;
-

@@ -24,10 +24,10 @@ const Footer = () => {
   const RowOne = () => {
     return (
       row1.map((row, index) =>
-      <span key={index}>
-        <Link href={row.link}><a aria-label={row.label}>
+      <span key={row.name.toLowerCase()+index}>
+        <Link aria-label={row.label} href={row.link}>
           <span className="footer-link">{row.name}</span>
-        </a></Link>{index !== row1.length-1 ? spacer : <></>}
+        </Link>{index !== row1.length-1 ? spacer : <></>}
       </span>
     ))
   };
@@ -35,10 +35,10 @@ const Footer = () => {
   const RowTwo = () => {
     return (
       row2.map((row, index) =>
-      <span key={index}>
-        <Link href={row.link}><a aria-label={row.label}>
+      <span key={row.name.toLowerCase()+index}>
+        <Link href={row.link}>
           <span className="footer-link">{row.name}</span>
-        </a></Link>{index !== row2.length-1 ? spacer : <></>}
+        </Link>{index !== row2.length-1 ? spacer : <></>}
       </span>
     ))
   };

@@ -1744,20 +1744,26 @@ h2, .h2 {
 }
 
 .notify-container {
-  -webkit-transition: 250ms ease-in-out;
+  display: flex;
+  justify-content: center;
   transition: 250ms ease-in-out;
+  -webkit-transition: 250ms ease-in-out;
 }
 
 .notify-container i {
-  -webkit-transition: 500ms ease-in-out;
   transition: 500ms ease-in-out;
+  -webkit-transition: 500ms ease-in-out;
 }
 
 .notify-container:hover {
   color: var(--notify-hover-color);
   text-shadow: 1px 1px 3px rgb(159, 159, 159);
-  -webkit-transition: 250ms ease-in-out;
   transition: 250ms ease-in-out;
+  -webkit-transition: 250ms ease-in-out;
+}
+
+.notify-container #ext-link {
+  line-height: 1;
 }
 
 .info-icon i {
@@ -3299,7 +3305,7 @@ button.card-trigger.loading {
 .product-card_img .image-container .card-image:active {
   box-shadow: 1px 1px 18px #7fcce450;
   border: 3px solid #7FCCE4;
-  max-width: 69%;
+  max-width: 80%;
   background: #050505 linear-gradient(-140deg, #000000, #1b1e20, #050505, #1e2021, #0e0e0f, #171a1c);
   background-size: 200% 200%;
   /* -webkit-animation: hueRotate01 500ms forwards ease-in-out; */
@@ -3567,6 +3573,7 @@ button.card-trigger.loading {
 .faq-collapsible.container {
   border: 1px solid white !important;
   border-radius: 0;
+  width: 75%
 }
 
 .collapsible .faq-body {
@@ -4485,6 +4492,9 @@ button.card-trigger.loading {
     min-width: 75vh;
     max-width: 75vh;
   }
+  .faq-collapsible.container {
+    width: 75%;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -4492,10 +4502,6 @@ button.card-trigger.loading {
 
   .navigation-link span, .micon-link span { line-height: 1.8; font-size: 1.45rem }
 
-  .nav-icon,
-  .micon {
-    /* font-size: 1.3rem; */
-  }
   .index-main.container {
     font-size: var(--theme-font-size);
     width: 90%;
@@ -4512,11 +4518,13 @@ button.card-trigger.loading {
   .faq-image {
     width: 66.6vw;
   }
+  .faq-collapsible.container {
+    width: 85%;
+  }
   .activate-button {
     padding-bottom: 7.5%;
     margin-bottom: 2.5vh;
   }
-  
   .product-card {
     min-width: 65vh;
     max-width: 65vh;

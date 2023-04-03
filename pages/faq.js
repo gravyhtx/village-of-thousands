@@ -12,8 +12,6 @@ import Cartas from "../public/images/art/cartas.png";
 
 import scrollToEl from "../modules/scrollToEl";
 
-// import CryptoConverter from "../components/modules/CryptoConverter";
-
 const Faq = () => {
   const questions = Questions();
 
@@ -22,7 +20,6 @@ const Faq = () => {
   const accordElem = useRef(null);
 
   const scroll = () => {
-    // scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : expanded === undefined ? ('layout', 200) : null);
     scrollToEl(expanded !== undefined ? ('scrollToEl-'+expanded) : null);
   }
   const handleChange = (panel) => (event, newExpanded) => {
@@ -64,7 +61,7 @@ const Faq = () => {
         <SiteImage
           layout="responsive"
           containerClasses="faq-image-container"
-          imgClasses="faq-image"
+          imgClasses="faq-image disable-highlight"
           description="Cartas"
           images={Cartas} />
         <h1 className="faq-header center italics thin focus-in-expand">frequently ask questions...</h1>

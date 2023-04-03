@@ -19,14 +19,14 @@ const TopNav = () => {
   return (
     <div className={"top-nav disable-highlight row"+(location === '/' ? ' home': '')} role="navigation" aria-label="Site Navigation" id="top-nav">
       {navlinks.map((item, index) =>
-          <Link href={item.link} key={index}><a alt={item.alt} suppressHydrationWarning>
+          <Link href={item.link} alt={item.alt} suppressHydrationWarning key={index}>
             <div className="col s3 nav-top-col">
                 <button alt= {item.name}
                   color="inherit"
                   className={"btn-floating navigation-link nav-"+item.name.toLowerCase()}
                 ><Icon className="material-Icons nav-icon">{item.ref}</Icon></button>
             </div>
-          </a></Link>
+          </Link>
       )}
     </div>
   );

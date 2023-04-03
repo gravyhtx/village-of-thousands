@@ -23,6 +23,7 @@ export const SvgImg =
 
   const data = svg.src ? svg : { src: svg };
   const dataSrc = data.src;
+  console.log(svg)
 
   link = link ? link : false;
 
@@ -200,7 +201,6 @@ export const SvgContainer = ({ margins, src, link, color, width, description, co
 
   return (
     <Link href={link?link:'/'} target="_blank" rel="noreferrer">
-    <a target="_blank" rel="noreferrer">
     <div className={"svg-container"+svgContainer}>
       <img
         style={svgStyles ? svgStyles : {}}
@@ -210,7 +210,6 @@ export const SvgContainer = ({ margins, src, link, color, width, description, co
         draggable={drag ? drag : false}
         alt={description} />
     </div>
-    </a>
     </Link>
   )
 }

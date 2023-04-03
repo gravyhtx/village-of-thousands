@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import DefaultLayout from '../templates/DefaultLayout';
@@ -68,19 +68,20 @@ const ProductsPage = () =>  {
   const catArr = ["shirts", "longsleeves", "hoodies", "crewnecks"];
 
   const [productGrid, setProductGrid] = useState(<>
-    <ProductImage category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
-    <ProductImage category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
-    <ProductImage category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
-    <ProductImage category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage key={catArr[0]} category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage key={catArr[1]} category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage key={catArr[2]} category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
+    <ProductImage key={catArr[3]} category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
   </>);
   
   const refreshArr = () => {
     shuffleArr(catArr);
+    setProductGrid(<></>)
     setProductGrid(<>
-      <ProductImage category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
-      <ProductImage category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
-      <ProductImage category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
-      <ProductImage category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage key={catArr[0]} category={catArr[0]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage key={catArr[1]} category={catArr[1]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage key={catArr[2]} category={catArr[2]} containerClasses={"col s12 m6 l6"} random />
+      <ProductImage key={catArr[3]} category={catArr[3]} containerClasses={"col s12 m6 l6"} random />
     </>)
   }
 

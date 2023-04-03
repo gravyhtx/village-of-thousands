@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-// import Logo from "../images/header.svg";
 import SvgContainer from "./SvgContainer";
 import NotificationBar from './NotificationBar';
-import SiteData from "../config/site-data.json"
 import Auth from '../utils/auth';
 import { getSingleUser } from '../utils/API';
-import HeaderImg from '../public/images/header.png';
-import HeaderSvg from '../public/images/header.svg';
 import ImageContainer from "./ImageContainer";
 import { resendConfirmationFetch } from "../utils/API";
 
@@ -74,15 +70,16 @@ const Header = ({ images }) => {
   }
 
 
-  const notificationText = <>Create your account today and get a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
-  const notificationTextWallet = <>Add your In-Browser Web3 Wallet to your account to qualify a <u>FREE</u> Limited Edition VoT NFT!&nbsp;</>
+  // NEED TO CHANGE TEXT TO SOMETHING ELSE -- Check email
+  const notificationText = <>Create an account with us today to shop our line of sustainable apparel and join the movement!</>
+  const notificationTextWallet = <>Add your In-Browser Web3 Wallet to your account to prepare for our Web 3.0 online community!&nbsp;</>
 
-  const helpLink = "/faq#8"
+  const helpLink = "/faq#3"
   const help =
-    <span className="info-icon" id="info-icon">
-      <Link href={helpLink}><a>
-      <i className="material-icons info-icon">info_outline</i>
-      </a></Link>
+    <span className="info-icon" id="info-icon">&nbsp;
+      <Link href={helpLink}>
+        <i className="material-icons info-icon">info_outline</i>
+      </Link>
     </span>
 
   const [emailSent, setEmailSent] = useState(false)
@@ -172,26 +169,17 @@ const Header = ({ images }) => {
   return (
     <header className="site-header" id="site-header">
       <div className="navbar-container black" id="header-container">
-        {/* {loaded && userData.email && !userData.completeRegistration ?
-          <Notification />:<></>} */}
         <Link className="navbar-brand container" href="/" id="header-link-container">
           <div className="header-img-container disable-highlight" id="header-img-container">
             <div className={
               path === "/"
               ? "header-img animate__animated animate__fadeInDown vot-txt-header"
               : "vot-txt-header header-img" }>
-              {/* <Svg /> */}
               <Fallback />
-              {/* {useWindowSize().width > 1080
-                ? <Svg />
-                : <Fallback />} */}
             </div>
           </div>
         </Link>
         <Notification />
-        {/* {userData.completeRegistration
-          ? <Notification />
-          : <div id="notification-bar"><NotificationBar text={notificationText} link={notificationLink} ext={help} extLink={helpLink} /></div>} */}
       </div>
     </header>
 

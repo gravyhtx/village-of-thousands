@@ -194,9 +194,6 @@ export const SocialCircles = ({ socialContainer, iconsObjArray, isEvent, iClass,
     }
   ];
 
-  // const array = iconsObjArray === false ? votIcons : iconsObjArray;
-  // console.log(array);
-
   iClass=iClass?" "+iClass:!iClass&&!color?" svg-color-light":"";
   socialContainer=socialContainer?" "+socialContainer:"";
   width=width?width:"";

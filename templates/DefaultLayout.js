@@ -1,25 +1,20 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-import TopNav from '../components/TopNav';
+
 import Header from '../components/Header';
+import TopNav from '../components/TopNav';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 
 import website from '../config/site-data.json';
-
-import favicon from '../public/favicon.ico'
-
 import { authCheck } from '../utils/siteFunctions';
-import { useEffect, useState } from 'react';
 
-// import XMLHttpRequest from 'xhr2';
+import favicon from '../public/favicon.ico';
 
 export default function DefaultLayout({ headerImages, title, classes, description, withAuth, children }) {
 
   title = title ? (website.name + " // " + title) : website.name;
   description = description ? description : website.description;
   classes = classes ? "animate__animated animate__fadeIn "+classes : "animate__animated animate__fadeIn";
-
 
   return (
     <div className={classes} id="layout">

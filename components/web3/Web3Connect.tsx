@@ -6,7 +6,7 @@ import {
 } from '@web3-react/injected-connector';
 import { Web3Provider } from '@ethersproject/providers';
 import { formatEther } from '@ethersproject/units';
-import { useEagerConnect, useInactiveListener } from '../../utils/hooks.ts';
+import { useEagerConnect, useInactiveListener } from '../../utils/hooks';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { MetaMask } from '@web3-react/metamask';
 import { deleteUserWallet, getSingleUser, updateUserWallet } from '../../utils/API';

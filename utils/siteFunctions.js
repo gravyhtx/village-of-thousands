@@ -217,7 +217,7 @@ export const netAmount = (grossTotal, orderTotal) => {
 
 export const adminWhitelist = (email) => {
 
-  let envOnj = process.env.ADMIN_WHITELIST;
+  let envOnj = process.env?.ADMIN_WHITELIST;
 
   return {
     name: adminName,
