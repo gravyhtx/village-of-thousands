@@ -26,7 +26,7 @@ const Home = () => {
       <div className="row img-main_container">
         <div className="main-text col m12 l6 justify-text">
           <div style={{'marginTop': '20px'}}><span className="weight-6 special-text">Village of Thousands</span> is a Web 3.0 ready, skateboard culture lifestyle
-          brand and community that produces high quality, sustainable NFT-authenticated fashion and products.
+          brand and community that produces high quality, sustainable fashion and products.
           </div>
           <p>Our village is a state of mind. We believe that our dedication to <span className="weight-7 italics">sustainability</span> is
           what will help us achieve our vision of building a community with the <span className="weight-7 italics">ability to sustain.</span>
@@ -84,8 +84,7 @@ const Home = () => {
           <div className="index-aside_text">
             <p>We strive to be a leader in providing quality, eco-friendly products in the fashion world and set high standards
             for all emerging Web 3.0 products and services.
-            </p><p>Our company is currently preparing for a full Web 3.0 release in 2023 when we will begin selling
-            our products with NFTs for collection and as a means of authentication. If you’d like to join the movement,
+            </p><p>Our company is currently preparing for a full Web 3.0 digital art collection in 2023. If you’d like to join the movement,
             follow us on our socials
             and you can get ready for our first drop by <Link className="text-link" href="/register">creating an
             account</Link> with us today.

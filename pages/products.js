@@ -36,14 +36,17 @@ const ProductsPage = () =>  {
       <p>We are currently preparing for our first SZN, and will be dropping the first wave of product online in 2022. We will
       be featuring our VoT Logo on <b>100% organic <span className="italics">Supima®</span> cotton</b> apparel with all of our
       materials GROWN IN THE USA.
-      </p><p>We believe in  a crypto future so are preparing for the Web 3.0 movement by selling our physical products with collectible
-      digital NFTs and completely integrating our website onto the blockchain. For our upcoming drop we will
-      be offering multiple payment options until we are completely on-chain.
+      </p><p>
+      We believe in blockchain technology and are in the process of developing our digital ecosystem using the security of the
+      Ethereum network as we prepare to launch via Layer 2 Arbitrum. We invite you to add your add your wallet to your account
+      to be ready to participate in our Web 3.0 community early, though for our current drop we are currently accepting
+      credit card payments while we build up our brand and invite everyone interested to participate in our movement.
       </p><p>If you’d like to be notified for our release then <Link href="/register"><a className="link weight-6 underline">create
-      an account</a></Link> with us today and follow us on Instagram and Twitter so we can keep you updated. Sign up with
-      your crypto wallet to prepare for our full Web 3.0 release in 2022. We will be airdropping some rewards and our first
-      collection of limited edition NFTs but you will need a verified wallet for us to send your
-      digital swag so make sure to complete your registration if you want to be among the first VoT Enthusiasts.
+      an account</a></Link> with us today and follow us
+      on <a href="https://discord.gg/t3VJZZwzmq" className="link weight-6 underline">Discord</a> so we can keep you updated.
+      Sign up with your crypto wallet to prepare for our full Web 3.0 release in 2022. We will be dropping our first digital art
+      collection and you will need a verified wallet for us to send your digital swag so make sure to complete your registration
+      if you want to be among the first VoT Enthusiasts.
       </p>
     </>
   }

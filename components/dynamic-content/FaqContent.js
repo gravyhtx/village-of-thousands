@@ -69,13 +69,13 @@ const FaqContent = () => {
       // 003
       "question": "How can I become part of the community of VoT Enthusiasts?",
       "answer": [
-        <>We are currently growing and developing our brand while building our community both online and
-        locally. The best way to be a part of the community right now is to follow our social media
+        
+        <>We are currently growing our brand locally as well as developing and incorporating our digital
+        ecosystem. The best way to be a part of the community right now is to follow our social media
         accounts, buy our apparel when our first SZN drops, and rep our brand.</>,
         <>You can be an early VoT Enthusiast and create your account with an integrated crypto wallet so
-        you can be ready for our Web 3.0 expansion. We will announce a date in 2022 and VoT Enthusiasts
-        with verified wallets added to their accounts will be able to participate in our online community and
-        receive rewards as soon as that date arrives.</>,
+        you can be ready for our Web 3.0 expansion. We will announce a date in 2023 and VoT Enthusiasts
+        with verified wallets added to their accounts will be able to participate in our online community.</>,
         <>Follow us on our socials to stay updated and be part of the community we're building for and
         with our fellow Enthusiasts.</>,
         <SocialCircles />
