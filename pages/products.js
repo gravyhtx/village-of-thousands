@@ -38,13 +38,13 @@ const ProductsPage = () =>  {
       materials GROWN IN THE USA.
       </p><p>
       We believe in blockchain technology and are in the process of developing our digital ecosystem using the security of the
-      Ethereum network as we prepare to launch via Layer 2 Arbitrum. We invite you to add your add your wallet to your account
+      Ethereum network as we prepare to launch via Layer 2 Arbitrum. We invite you to add your wallet to your account
       to be ready to participate in our Web 3.0 community early, though for our current drop we are currently accepting
       credit card payments while we build up our brand and invite everyone interested to participate in our movement.
       </p><p>If you’d like to be notified for our release then <Link href="/register"><a className="link weight-6 underline">create
       an account</a></Link> with us today and follow us
       on <a href="https://discord.gg/t3VJZZwzmq" className="link weight-6 underline">Discord</a> so we can keep you updated.
-      Sign up with your crypto wallet to prepare for our full Web 3.0 release in 2022. We will be dropping our first digital art
+      Sign up with your crypto wallet to prepare for our full Web 3.0 release in 2023. We will be dropping our first digital art
       collection and you will need a verified wallet for us to send your digital swag so make sure to complete your registration
       if you want to be among the first VoT Enthusiasts.
       </p>
@@ -108,7 +108,7 @@ const ProductsPage = () =>  {
         <br/>
         <div className="products_showcase-container row">
           <h2 className="center product-carousel-header gravy-font">{
-            `SZN // SPRING 2022 // DROP #${dropNumber()}`
+            `SZN // SPRING 2023 // DROP #${dropNumber()}`
           }</h2>
           <div className="product-grid">
           <div className="row" onClick={refreshArr}>{ productGrid }</div>
